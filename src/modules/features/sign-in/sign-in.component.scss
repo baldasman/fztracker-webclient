@@ -1,0 +1,38 @@
+.active-account {
+  height: 60px;
+  cursor: pointer;
+  background-color: #e2e2e2;
+}
+
+.active-account-icon {
+  width: 30px;
+}
+
+.another-account {
+  height: 40px;
+  cursor: pointer;
+}
+
+.another-account-icon {
+  background-color: #e2e2e2;
+  border-radius: 25px;
+  height: 30px;
+  width: 30px;
+  padding-top: 6px;
+
+  i {
+    font-size: 1.5em;
+    color: #383737;
+  }
+}
+
+.sign-in-button {
+  float: right;
+  margin-top: 10px;
+  margin-right: 15px;
+}
+
+.sign-in-form {
+  margin-left: -10px;
+  margin-right: -10px;
+}

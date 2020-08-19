@@ -1,0 +1,92 @@
+<app-sign-up-layout [view]="currentView">
+  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 register-card">
+    <app-generic-card *ngIf="currentView === 'confirmAccount'">
+      <div body>
+        <div *ngIf="errors.length > 0"
+          class="alert alert-danger alert-dismissible fade show m-alert m-alert--air m-alert--outline m-alert--outline-2x"
+          role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+          <span *ngFor="let error of errors">
+            {{ error | translate }}
+          </span>
+        </div>
+        <h4 class="text-center"> {{ 'auth.labels.confirmation_code' | translate }} </h4>
+        <div class="confirmation-code row pt-2">
+          <div class="col-12 d-flex justify-content-center code">
+            <input (keyup)="changeInputValue($event, 0)" class="form-control m-input text-dark code-input" type="text"
+              maxlength="1" [value]="confirmationCode[0]" autofocus />
+            <input (keyup)="changeInputValue($event, 1)" class="form-control m-input text-dark code-input" type="text"
+              maxlength="1" [value]="confirmationCode[1]" />
+            <input (keyup)="changeInputValue($event, 2)" class="form-control m-input text-dark code-input" type="text"
+              maxlength="1" [value]="confirmationCode[2]" />
+            <input (keyup)="changeInputValue($event, 3)" class="form-control m-input text-dark code-input" type="text"
+              maxlength="1" [value]="confirmationCode[3]" />
+            <input (keyup)="changeInputValue($event, 4)" class="form-control m-input text-dark code-input" type="text"
+              maxlength="1" [value]="confirmationCode[4]" />
+            <input (keyup)="changeInputValue($event, 5)" class="form-control m-input text-dark code-input" type="text"
+              maxlength="1" [value]="confirmationCode[5]" />
+          </div>
+        </div>
+        <div>
+          <h5 class="sub-text my-4">
+            {{ 'auth.labels.you_dont_receive_our_email' | translate }} </h5>
+          <div><i class="fa fa-check-circle text-success"></i> &nbsp;&nbsp; <span class="topic">
+              {{ 'auth.labels.spam_folder' | translate }} </span>
+          </div>
+          <div class="sub-text">
+            {{ 'auth.labels.check_your_spam_folder' | translate }}
+          </div>
+          <br />
+          <div><i class="fa fa-check-circle text-success"></i> &nbsp;&nbsp; <span class="topic">
+              {{ 'auth.labels.please_wait'  | translate }}
+            </span>
+          </div>
+          <div class="sub-text">
+            {{ 'auth.labels.please_wait_or_try_again'  | translate }}
+          </div>
+          <div class="mt-4 text-right">
+            <button (click)="resendEmail()" class="btn btn-info m-btn--custom m-btn--air">
+              {{ 'auth.labels.resend_email' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </app-generic-card>
+    <app-generic-card *ngIf="currentView === 'setPassword'">
+      <div body>
+        <div *ngIf="errors.length === 0 && !hasChanges"
+          class="alert alert-success alert-dismissible fade show m-alert m-alert--air m-alert--outline m-alert--outline-2x"
+          role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+          <strong>
+            {{ 'dictionary.success' | translate | titlecase }}
+          </strong>
+          {{ 'auth.labels.validated_code' | translate }}
+        </div>
+        <div *ngIf="errors.length > 0"
+          class="alert alert-danger alert-dismissible fade show m-alert m-alert--air m-alert--outline m-alert--outline-2x"
+          role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+          <span *ngFor="let error of errors">
+            {{ error | translate }}
+          </span>
+        </div>
+        <form class="set-password-form" [formGroup]="setPasswordForm">
+          <app-form-input formControlName="password" [formControlField]="f.password" type="password" [required]="true"
+            placeholder="{{'auth.labels.enter_your_password' | translate}}">
+          </app-form-input>
+          <div class="mt-2">
+            <app-form-input formControlName="confirmPassword" [formControlField]="f.confirmPassword" type="password"
+              [required]="true" placeholder="{{'auth.labels.confirm_password' | translate}}">
+            </app-form-input>
+          </div>
+          <div class="mt-4 float-right">
+            <button class="btn btn-info m-btn--custom m-btn--air" type="submit" (click)="validateForm()">
+              {{ 'dictionary.confirm' | translate | titlecase }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </app-generic-card>
+  </div>
+</app-sign-up-layout>

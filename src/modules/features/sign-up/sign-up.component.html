@@ -1,0 +1,99 @@
+<app-sign-up-layout>
+  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 register-card">
+    <app-generic-card>
+      <div body *ngIf="contentReady">
+        <div *ngIf="errors.length > 0"
+          class="alert alert-danger alert-dismissible fade show m-alert m-alert--air m-alert--outline m-alert--outline-2x"
+          role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+          <span *ngFor="let error of errors">
+            {{ error | translate }}
+          </span>
+        </div>
+        <div *ngIf="successMessage.visible">
+          <div role="alert"
+            class="alert alert-success alert-dismissible fade show m-alert m-alert--air m-alert--outline m-alert--outline-2x">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+            {{ successMessage.text }}
+          </div>
+          <div class="row mt-4 text-right">
+            <div class="col">
+              <button type="button" (click)="backToLogin()" class="btn btn-outline-info m-btn--custom">
+                {{ 'auth.labels.sign_in' | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+        <form id="sign-up-form" *ngIf="!successMessage.visible" class="m-login__form m-form mt-2 position-relative" [formGroup]="signUpForm">
+          <app-form-input formControlName="name" [formControlField]="f.name" [required]="true" [autofocus]="true"
+            placeholder="{{'dictionary.name' | translate | titlecase }}">
+          </app-form-input>
+          <div class="mt-2">
+            <app-form-input formControlName="email" [formControlField]="f.email" [required]="true"
+              placeholder="{{'dictionary.email' | translate | titlecase }}">
+            </app-form-input>
+          </div>
+          <div class="mt-2">
+            <app-form-select formControlName="country" [formControlField]="f.country" [items]="datasets.countries"
+              [required]="true" [clearable]="false" appendTo="#sign-up-form" bindValue="countryId"
+              placeholder="{{'auth.placeholders.select_your_country' | translate}}" bindLabel="countryName">
+            </app-form-select>
+          </div>
+          <div class="mt-2 d-flex justify-content-between">
+            <app-form-input class="w-25" formControlName="phoneCode" [formControlField]="f.phoneCode" [required]="true"
+              placeholder="{{'auth.placeholders.phone_code' | translate}}">
+            </app-form-input>
+            <app-form-input class="w-70" formControlName="phone" [formControlField]="f.phone" [required]="true"
+              placeholder="{{'auth.placeholders.phone_number' | translate}}" type="number">
+            </app-form-input>
+          </div>
+          <div class="mt-2">
+            <app-form-select formControlName="companyTypeId" [formControlField]="f.companyTypeId"
+              [items]="datasets.companyTypes" [required]="true" [clearable]="false" appendTo="#sign-up-form"
+              bindValue="companyTypeId" placeholder="{{ 'auth.placeholders.select_your_company_type' | translate }}"
+              bindLabel="companyTypeName">
+            </app-form-select>
+          </div>
+          <div class="row mt-4">
+            <div class="col text-left pr-0">
+              <app-form-checkbox formControlName="terms" [formControlField]="f.terms"></app-form-checkbox>
+              {{ 'auth.labels.i_agree' | translate }}
+              <a target=" _blank" [href]="termsUrl" class="m-link m-link--info">
+                {{ 'auth.labels.terms_and_conditions' | translate }}
+              </a>
+              {{ 'dictionary.and' | translate }}
+              <a target="_blank" [href]="privacyUrl" class="m-link m-link--info">
+                {{ 'auth.labels.privacy_policy' | translate }}
+              </a>
+              <span class="m-form__help"></span>
+            </div>
+          </div>
+          <div class="row pt-2">
+            <div class="col text-left">
+              <app-form-checkbox formControlName="allowEmailMarketing" [formControlField]="f.allowEmailMarketing"
+                label="{{ 'auth.labels.subscribe_to_domatica' | translate }}"></app-form-checkbox>
+              <span class="m-form__help"></span>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col recaptcha">
+              <re-captcha (resolved)="resolved($event)" siteKey="6Lc1YUwUAAAAAMVaz8rBpTwS_5aJZE4wRLXInNvf">
+              </re-captcha>
+            </div>
+          </div>
+          <div class="row mt-4 text-right">
+            <div class="col">
+              <button type="button" (click)="backToLogin()" class="btn btn-outline-info m-btn--custom">
+                {{ 'auth.labels.sign_in' | translate }}
+              </button>
+              &nbsp;
+              <button type="submit" class="btn btn-info m-btn--custom m-btn--air" (click)="signUp()">
+                {{ 'dictionary.register' | translate | titlecase }}
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </app-generic-card>
+  </div>
+</app-sign-up-layout>

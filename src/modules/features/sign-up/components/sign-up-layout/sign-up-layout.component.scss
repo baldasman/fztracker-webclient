@@ -1,0 +1,195 @@
+.register {
+  height: 100%;
+  min-height: 600px;
+}
+
+.easyedge-logo {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 150px;
+  margin-bottom: 140px;
+  max-width: 100%;
+  padding-right: 100px;
+
+  @media (max-width: 992px) {
+    display: block;
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 0px;
+    position: inherit;
+  }
+}
+
+.partners-logo {
+  bottom: 0;
+  max-width: 100%;
+  padding-bottom: 45px;
+  padding-right: 100px;
+  position: absolute;
+  right: 0;
+
+  @media (max-width: 992px) {
+    display: block;
+    margin: auto;
+    padding-right: 0px;
+    position: inherit;
+  }
+}
+
+.top-left {
+  background-color: #1b4161;
+
+  @media (min-width: 992px) {
+    min-height: 350px;
+    position: relative;
+    top: 0px;
+    width: 50%;
+    float: left;
+  }
+}
+
+.top-right {
+  background-color: #1b4161;
+
+  @media (max-width: 992px) {
+    padding: 40px 20px 40px 20px;
+  }
+
+  @media (min-width: 992px) {
+    min-height: 350px;
+    position: relative;
+    width: 50%;
+    float: right;
+  }
+}
+
+.bottom {
+  @media (max-width: 992px) {
+    transform: scaleY(-1);
+  }
+
+  @media (min-width: 992px) {
+    height: 60%;
+    position: relative;
+    display: flex;
+    width: 100%;
+  }
+}
+
+.bottom-left {
+  @media (max-width: 992px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  @media (min-width: 992px) {
+    position: relative;
+    width: 50%;
+  }
+}
+
+.bottom-right {
+  @media (min-width: 992px) {
+    position: relative;
+    width: 50%;
+    top: 0;
+  }
+}
+
+.top-left-content {
+  color: white;
+}
+
+.top-right-content {
+  color: white;
+
+  @media (max-width: 700px) {
+    padding-bottom: 40px;
+    width: 50%;
+  }
+
+  @media (min-width: 700px) and (max-width: 992px) {
+    margin: 0 auto;
+    padding-bottom: 40px;
+    width: 50%;
+  }
+
+  @media (min-width: 992px) {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 80px;
+    margin-left: 15px;
+  }
+}
+
+.bottom-left-content {
+  @media (max-width: 700px) {
+    transform: scaleY(-1);
+    margin-top: -40px;
+  }
+
+  @media (min-width: 700px) and (max-width: 992px) {
+    transform: scaleY(-1);
+    margin-top: -40px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+  }
+
+  @media (min-width: 992px) {
+    position: relative;
+    color: #008AFC;
+    width: 400px;
+    float: right;
+    margin-right: 100px;
+  }
+}
+
+.bottom-right-content {
+  width: 450px;
+
+  @media (max-width: 700px) {
+    transform: scaleY(-1);
+  }
+
+  @media (min-width: 700px) and (max-width: 992px) {
+    margin: 0 auto;
+    transform: scaleY(-1);
+  }
+
+  @media (min-width: 992px) {
+    margin-top: -60px;
+  }
+}
+
+.register-card .m-portlet {
+  border: solid 2px #ebedf2;
+}
+
+.register-card .m-input {
+  background-color: rgb(250, 251, 252);
+  border-color: rgb(223, 225, 230);
+  border-radius: 3px;
+}
+
+.register-card .dropdown {
+  background-color: rgb(250, 251, 252);
+  border-color: rgb(223, 225, 230);
+}
+
+.sub-text {
+  color: #999a9b;
+  word-wrap: break-word;
+}
+
+.word-break {
+  word-break: break-word;
+  width: 500px;
+}
+
+.topic {
+  font-size: 16px;
+  font-weight: 500;
+}

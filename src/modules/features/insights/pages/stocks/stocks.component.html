@@ -1,0 +1,128 @@
+<h1 class="title">Stocks</h1>
+
+<!-- Chart:  -->
+<div id="pie-chart-container" style="width:80%; height:400px; margin: auto; padding-bottom: 32px;"></div>
+
+<!-- Table  -->
+<ng-container *ngIf="contentReady">
+  <div class="accordion" id="accordionExample">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h2 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            A
+          </button>
+        </h2>
+      </div>
+  
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">productId</th>
+                <th scope="col">productName</th>
+                <th scope="col">category</th>
+                <th scope="col">subCategory</th>
+                <th scope="col">price</th>
+                <th scope="col">quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let item of aProducts; let i = index">
+                <tr>
+                  <th scope="row">{{ i+1 }}</th>
+                  <td>{{ item.productId }}</td>
+                  <td>{{ item.productName }}</td>
+                  <td>{{ item.category }}</td>
+                  <td>{{ item.subCategory }}</td>
+                  <td>{{ item.price }}</td>
+                  <td>{{ item.quantity }}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            B
+          </button>
+        </h2>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <div class="card-body">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">productId</th>
+                <th scope="col">productName</th>
+                <th scope="col">category</th>
+                <th scope="col">subCategory</th>
+                <th scope="col">price</th>
+                <th scope="col">quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let item of bProducts; let i = index">
+                <tr>
+                  <th scope="row">{{ i+1 }}</th>
+                  <td>{{ item.productId }}</td>
+                  <td>{{ item.productName }}</td>
+                  <td>{{ item.category }}</td>
+                  <td>{{ item.subCategory }}</td>
+                  <td>{{ item.price }}</td>
+                  <td>{{ item.quantity }}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingThree">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            C
+          </button>
+        </h2>
+      </div>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+        <div class="card-body">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">productId</th>
+                <th scope="col">productName</th>
+                <th scope="col">category</th>
+                <th scope="col">subCategory</th>
+                <th scope="col">price</th>
+                <th scope="col">quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let item of cProducts; let i = index">
+                <tr>
+                  <th scope="row">{{ i+1 }}</th>
+                  <td>{{ item.productId }}</td>
+                  <td>{{ item.productName }}</td>
+                  <td>{{ item.category }}</td>
+                  <td>{{ item.subCategory }}</td>
+                  <td>{{ item.price }}</td>
+                  <td>{{ item.quantity }}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

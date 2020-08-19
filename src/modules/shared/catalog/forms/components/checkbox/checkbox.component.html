@@ -1,0 +1,9 @@
+<label class="m-checkbox m-checkbox--solid mb-0"
+  [ngClass]="{ 'm-checkbox--disabled': formControlField.disabled, 'm-checkbox--brand': !formControlField.disabled }">
+  <input type="checkbox" name="radio" [disabled]="formControlField.disabled"
+    [checked]="checked" (change)="onChanged($event)">
+  <span></span>
+  <label class="mb-0">
+    {{label}}
+  </label>
+</label>

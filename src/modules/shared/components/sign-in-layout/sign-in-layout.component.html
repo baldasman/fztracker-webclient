@@ -1,0 +1,20 @@
+<div class="background">
+  <img class="easyedge-logo" [src]="logo">
+  <div class="title"> {{ title | translate }} </div>
+  <div class="sign-in-card position-relative">
+    <app-section-loader loaderId="signInContent"></app-section-loader>
+    <ng-content></ng-content>
+  </div>
+  <div *ngIf="showLinks" class="actions">
+    <div class="text-center pt-2">
+      <a [routerLink]="['/recover']" class="link text-white">
+        {{ 'auth.labels.dont_remember_password' | translate }}
+      </a>
+    </div>
+    <div *ngIf="userRegisterMethod !== 'disabled'" class="text-center">
+      <a [routerLink]="['/signup']" class="link text-white">
+        {{ 'auth.labels.create_an_account' | translate }}
+      </a>
+    </div>
+  </div>
+</div>

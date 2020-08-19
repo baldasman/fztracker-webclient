@@ -1,0 +1,66 @@
+<div class="register">
+  <div class="top-left">
+    <div class="top-left-content">
+      <img class="easyedge-logo" [src]="logo">
+    </div>
+  </div>
+  <div class="top-right">
+    <div *ngIf="showRegistrationTitles" class="top-right-content">
+      <h1> {{ 'auth.labels.start_for_free' | translate }} </h1>
+      <br />
+      <h4 class="word-break"> {{ 'auth.labels.we_make_iot'| translate }} </h4>
+      <h4 class="word-break"> {{ 'auth.labels.the_easiest_way'| translate }} </h4>
+      <br />
+      <h4> {{ 'auth.labels.create_your_free_account' | translate }} </h4>
+    </div>
+    <div *ngIf="showSetPasswordTitles" class="top-right-content">
+      <h1> {{ 'auth.labels.set_password' | translate }} </h1>
+    </div>
+    <div *ngIf="showConfirmPasswordTitles" class="top-right-content">
+      <h1> {{ 'auth.labels.check_your_email' | translate }} </h1>
+      <br />
+      <h4 class="word-break"> {{ 'auth.labels.confirmation_code_description' | translate }} </h4>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="bottom-left">
+      <div class="bottom-left-content">
+        <h4 class="sub-text py-4">
+          {{ 'auth.labels.easyedge_tutorial' | translate }} </h4>
+        <div><i class="fa fa-check-circle text-success"></i> &nbsp;&nbsp; <span class="topic text-capitalize">
+            {{ 'dictionary.dashboard' | translate }} </span>
+        </div>
+        <div class="sub-text">
+          {{ 'auth.labels.dashboard_description' | translate }}
+        </div>
+        <br />
+        <div><i class="fa fa-check-circle text-success"></i> &nbsp;&nbsp; <span class="topic">
+            {{ 'auth.labels.edge_management' | translate }} </span>
+        </div>
+        <div class="sub-text">
+          {{ 'auth.labels.edge_management_description' | translate }}
+        </div>
+        <br />
+        <div><i class="fa fa-check-circle text-success"></i> &nbsp;&nbsp; <span class="topic text-capitalize">
+            {{ 'dictionary.dataflow' | translate }} </span>
+        </div>
+        <div class="sub-text">
+          {{ 'auth.labels.dataflow_description' | translate }}
+        </div>
+        <br />
+        <div><i class="fa fa-check-circle text-success"></i> &nbsp;&nbsp; <span class="topic">
+            {{ 'auth.labels.connector_engine_builder' | translate }} </span>
+        </div>
+        <div class="sub-text">
+          {{ 'auth.labels.connector_engine_builder_description' | translate }}
+        </div>
+      </div>
+    </div>
+    <div class="bottom-right">
+      <div class="bottom-right-content position-relative">
+        <app-section-loader loaderId="signUpContent"></app-section-loader>
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

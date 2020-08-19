@@ -1,0 +1,72 @@
+.background {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #1b4161;
+  min-height: 100%;
+}
+
+.title {
+  color: white;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 28px;
+  padding-top: 260px;
+  padding-bottom: 50px;
+  text-align: center;
+}
+
+.easyedge-logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 120px;
+  margin-top: 80px;
+}
+
+.sign-in-form-component {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sign-in-card {
+  background: rgb(255, 255, 255);
+  border-radius: 3px;
+  bottom:0;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 10px;
+  box-sizing: border-box;
+  color: rgb(23, 43, 77);
+  left:0;
+  margin: auto;
+  max-height:100%;
+  max-width:100%;
+  padding: 30px 25px;
+  top:0;
+  width: 400px;
+}
+
+.sign-in-card .m-portlet {
+  border-radius: 2px;
+  box-shadow: 2px 2px 2px 2px #ebedf2;
+}
+
+.sign-in-card .m-input {
+  background-color: rgb(250, 251, 252);
+  border-color: rgb(223, 225, 230);
+  border-radius: 3px;
+}
+
+.actions {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.link:hover {
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color:white !important;
+}
