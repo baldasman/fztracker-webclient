@@ -15,7 +15,7 @@ export class SignUpLayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   public showRegistrationTitles: boolean;
   public showSetPasswordTitles: boolean;
   public showConfirmPasswordTitles: boolean;
-  public logo = 'assets/images/auth-logo.png';
+  public logo = 'assets/images/logo.png';
 
   constructor(
     private environmentService: EnvironmentService,

@@ -16,7 +16,7 @@ export class UsersService {
   }
 
   getUser(params: {}) {
-    return this.http.get(this.url + 'insights/v1/user/info?authId=' + params['authId']);
+    return this.http.get(this.url + 'fztracker/v1/user/info?authId=' + params['authId']);
   }
 }
 

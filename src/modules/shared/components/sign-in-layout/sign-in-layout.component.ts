@@ -13,7 +13,7 @@ export class SignInLayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   public title: string;
   public showLinks: boolean;
   public userRegisterMethod: string;
-  public logo = 'assets/images/auth-logo.png';
+  public logo = 'assets/images/logo.png';
 
   constructor(
     private environmentService: EnvironmentService,

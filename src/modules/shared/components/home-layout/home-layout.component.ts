@@ -13,7 +13,7 @@ export class HomeLayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   public title: string;
   public showLinks: boolean;
   public userRegisterMethod: string;
-  public logo = 'assets/images/auth-logo.png';
+  public logo = 'assets/images/logo.png';
   public name : string;
 
   constructor(

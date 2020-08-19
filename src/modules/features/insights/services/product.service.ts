@@ -6,7 +6,7 @@ import {ContextService} from '@core/services/context.service';
 
 @Injectable()
 export class ProductService {
-  private apiUrl = environment.apiUrl + 'insights/v1/cards';
+  private apiUrl = environment.apiUrl + 'fztracker/v1/cards';
 
   constructor(
       private contextService: ContextService, private http: HttpClient) {
