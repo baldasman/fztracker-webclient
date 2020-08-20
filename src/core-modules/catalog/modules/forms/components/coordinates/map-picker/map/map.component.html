@@ -1,0 +1,18 @@
+<form *ngIf="search" [formGroup]="form">
+  <input #search type="text" class="form-control w-25 m-3"
+    placeholder="{{ 'dictionary.search' | translate | titlecase }} {{ 'dictionary.location' | translate | lowercase }}"
+    autocorrect="off" autocapitalize="off" spellcheck="off" type="text" (keydown.enter)="$event.preventDefault()">
+</form>
+<agm-map [latitude]="coordinates.latitude" [longitude]="coordinates.longitude" [zoom]="zoom" [disableDefaultUI]="false"
+  [zoomControl]="true" [fullscreenControl]="true" [style.height.px]="dimensions.height"
+  [style.width.px]="dimensions.width" (mapClick)="mapClicked($event)" (mapReady)="mapReady($event)">
+  <agm-marker *ngFor="let marker of markers; let i = index" [latitude]="marker.latitude" [longitude]="marker.longitude"
+    [label]="marker.label" [markerDraggable]="marker.draggable" [iconUrl]="marker.icon"
+    (markerClick)="clickedMarker(marker)" (dragEnd)="markerDragEnd(marker, $event)">
+
+    <agm-info-window>
+      <ng-template *ngTemplateOutlet="infoWindowTemplateRef; context : { marker: marker }"></ng-template>
+    </agm-info-window>
+
+  </agm-marker>
+</agm-map>

@@ -1,0 +1,27 @@
+.form-input-icon {
+	position: relative;
+
+	.field-icon {
+		display: flex;
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+    align-items: center;
+    font-size: 1.2em;
+    cursor: pointer;
+	}
+
+	&.form-input-icon-right {
+		.field-icon {
+			right: 12px;
+			left: auto;
+    }
+
+	}
+}
+
+.messages-section {
+  min-height: 1.5rem;
+  margin-bottom: 0.5rem;
+}

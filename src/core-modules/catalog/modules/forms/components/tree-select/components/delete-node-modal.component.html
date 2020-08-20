@@ -1,0 +1,14 @@
+<div cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+
+  <button (click)="onClose()" class="close pointer" mat-button mat-button-close><span aria-hidden="true">&times;</span></button>
+
+  <h1 mat-dialog-title cdkDragHandle>{{ 'labels.delete_node' | translate }}</h1>
+
+  <mat-dialog-content>{{ 'messages.warnings.delete_confirmation_node' | translate }}</mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button type="button" class="btn-cancel" (click)="onClose()">{{ 'dictionary.cancel' | translate | titlecase }}</button>
+    <button type="submit" class="btn-danger" (click)="onDelete()">{{ 'dictionary.delete' | translate | titlecase }}</button>
+  </mat-dialog-actions>
+
+</div>

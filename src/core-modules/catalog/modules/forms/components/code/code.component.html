@@ -1,0 +1,5 @@
+<div> {{ label }} </div>
+<div>
+  <input class="input" maxlength="6" (keyup)="changeValue($event.target.value)">
+</div>
+<div class="hint" [innerHTML]="hint"></div>

@@ -1,0 +1,32 @@
+<label *ngIf="label"><i [class]="icon"></i> {{label}} {{required ? '*' : ''}}</label>
+<div class="form-input">
+  <ng-select [disabled]="formControlField.disabled" [appendTo]="appendTo" [(ngModel)]="selectedValue" [items]="itemsToShow"
+    [bindLabel]="bindLabel" [bindValue]="bindValue" [placeholder]="placeholder" [required]="required"
+    [clearable]="clearable" class="custom-theme w-100"
+    [ngClass]="{'ng-select-error': hasError &&  formControlField.touched, 'select-reduce-width': action && action.type === 'button'}"
+    [virtualScroll]="true" (change)="onChanged($event)" (blur)="onTouched()" (scroll)="onScroll($event)"
+    (scrollToEnd)="onScrollToEnd()">
+
+    <ng-template ng-label-tmp let-item="item">{{ item?.path }}</ng-template>
+    <ng-template ng-option-tmp let-item="item">
+      <div class="row">
+        <ng-container *ngFor="let path of item.path.split('\\'); let i = index">
+          <div class="col-xs-auto" *ngIf="i + 1 !== item.path.split('\\').length"></div>
+          <div class="col-xs-auto" *ngIf="i + 1 === item.path.split('\\').length">{{ path }}</div>
+        </ng-container>
+      </div>
+    </ng-template>
+  </ng-select>
+
+  <div *ngIf="action && action.type === 'button'" class="input-group-append">
+    <div class="input-group-text pointer" (click)="onActionClicked()">
+      <i class="{{action.icon}}"></i>
+    </div>
+  </div>
+
+</div>
+
+<div *ngIf="!hideMessages" class="messages-section">
+  <small *ngIf="!hasError && description">{{ description }}</small>
+  <small *ngIf="hasError" [ngClass]="{'text-danger': formControlField.touched}">{{ errorMessage }}</small>
+</div>

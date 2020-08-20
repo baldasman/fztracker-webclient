@@ -35,7 +35,7 @@
  * will put import in the top of bundle, so user need to create a separate file
  * in this directory (for example: zone-flags.ts), and put the following flags
  * into that file, and then add the following code before importing zone.js.
- * import './zone-flags.ts';
+ * import './zone-flags';
  *
  * The flags allowed in zone-flags.ts are listed here.
  *
@@ -51,6 +51,11 @@
  *  (window as any).__Zone_enable_cross_context_check = true;
  *
  */
+
+ /***************************************************************************************************
+ * Load `$localize` onto the global scope - used if i18n tags appear in Angular templates.
+ */
+import '@angular/localize/init';
 
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.

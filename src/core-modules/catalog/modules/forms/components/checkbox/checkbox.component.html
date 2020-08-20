@@ -1,0 +1,13 @@
+<div class="pt-2">
+  <mat-checkbox
+    [checked]="checked"
+    [indeterminate]="false"
+    [disabled]="formControlField.disabled"
+    labelPosition="after"
+    (change)="onChanged($event)">
+    {{ label | titlecase }}
+  </mat-checkbox>
+</div>
+<div *ngIf="!hideMessages" class="messages-section">
+  <small *ngIf="hasError" [ngClass]="{'text-danger': formControlField.touched}">{{ errorMessage }}</small>
+</div>

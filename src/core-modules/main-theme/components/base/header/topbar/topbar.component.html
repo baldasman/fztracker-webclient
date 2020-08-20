@@ -1,0 +1,78 @@
+<div *ngIf="systemChanges.isDirty" class="topbar-item">
+
+  <div class="save-changes-notification">
+    <div class="text-right px-3 py-2 undeployed-text" (click)="saveSystem()">
+      <div class="">{{ 'messages.informations.you_have_unsaved_changes' | translate }}</div>
+      <div class="text-success">{{ 'labels.press_to_save' | translate }}</div>
+    </div>
+    <div class="divider"></div>
+    <div class="items-number-section" (click)="onToogleNotifications()">
+      <div class="items-number" matTooltip="{{ 'messages.informations.you_have_x_gateways_with_changes' | translate: { number: systemChanges.dirtyGateways.length } }}">
+        {{ systemChanges.dirtyGateways.length }}
+      </div>
+      <i class="fas fa-bell text-primary font-size-h3 pl-3 pr-4"></i>
+    </div>
+  </div>
+
+</div>
+
+
+<main-theme-header-topbar-language-selector></main-theme-header-topbar-language-selector>
+
+<main-theme-header-topbar-user-profile></main-theme-header-topbar-user-profile>
+
+<main-theme-aside-bar name="asideBarLayoutRight" sidenavStyleClass="unsaved-changes-column" position="end">
+
+  <ng-container title>{{ 'labels.unsaved_changes' | translate }}</ng-container>
+
+  <ng-container sidenav>
+    <div class="system-changes-aside-bar aside-menu">
+        <ul class="menu-nav">
+          <li class="">
+            <h4>{{ 'dictionary.gateways' | translate | titlecase }} ({{ systemChanges.dirtyGateways.length }})</h4>
+          </li>
+
+          <!-- dirty gateways -->
+          <li *ngFor="let gateway of systemChanges.dirtyGateways; let i = index">
+            <div class="collapsable-section-title" (click)="toggleGatewaySection(i)">
+              <div>
+                <div class="font-size-sm" matTooltip="{{gateway.name}}">{{ gateway.serialNumber }}</div>
+                <div class="font-weight-bold" matTooltip="{{gateway.name}}">{{ gateway.name }}</div>
+              </div>
+              <span *ngIf="gateway.dirtyFieldDevices?.length > 0" class="label mr-auto ml-2">{{ gateway.dirtyFieldDevices.length }}</span>
+              <span class="pr-2"><i class="fa" [ngClass]="{ 'fa-chevron-up': sections.gateways[i], 'fa-chevron-down': !sections.gateways[i] }"></i></span>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <!-- gateway dirty field devices -->
+            <div [@grow]="sections.gateways[i] ? 'big' : 'small'" *ngFor="let device of gateway.dirtyFieldDevices" class="ml-4">
+              <div class="collapsable-section-title" (click)="toggleFieldDeviceSection(device.id, gateway.id)">
+                <span class="align-self-center text-truncate resource-name pl-2" matTooltip="{{device.name}}">{{device.name}}</span>
+                <span *ngIf="gateway.dirtyApplicationBindings?.length > 0" class="label mr-auto ml-2">
+                  {{ device.dirtyApplicationBindings?.length }}
+                </span>
+                <span class="pr-2">
+                  <i class="fa" [ngClass]="{ 'fa-chevron-up': isFieldDeviceOpened(device.id, gateway.id), 'fa-chevron-down': !isFieldDeviceOpened(device.id, gateway.id) }"></i>
+                </span>
+              </div>
+
+              <mat-divider></mat-divider>
+
+              <!-- dirty application bindings -->
+              <div [@grow]="isFieldDeviceOpened(device.id, gateway.id) ? 'big' : 'small'" *ngFor="let applicationBinding of device.dirtyApplicationBindings" class="ml-4">
+                <div class="collapsable-section-title">
+                  <span class="align-self-center text-truncate resource-name pl-2" matTooltip="{{applicationBinding.name}}">
+                    {{ applicationBinding.name }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+
+    </div>
+  </ng-container>
+
+</main-theme-aside-bar>

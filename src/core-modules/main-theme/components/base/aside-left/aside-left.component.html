@@ -1,0 +1,22 @@
+<div #asideMenuOffcanvas class="aside aside-left d-flex flex-column flex-row-auto" [ngClass]="asideClasses" id="kt_aside">
+
+  <main-theme-aside-left-brand></main-theme-aside-left-brand>
+
+  <ng-content select="[top-menu-bar]"></ng-content>
+
+  <div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
+    <div #asideMenu ktMenu [options]="menuOptions" [perfectScrollbar]="{wheelPropagation: false, suppressScrollX: false}"
+      [ngStyle]="{'max-height': '100vh', 'position': 'relative'}" id="kt_aside_menu" class="aside-menu scroll"
+      [ngClass]="htmlClassService.getClasses('aside_menu', true)">
+      <!-- (mouseenter)="mouseEnter($event)" -->
+      <!-- (mouseleave)="mouseLeave($event)" -->
+
+      <ng-content select="[content]"></ng-content>
+
+
+    </div>
+  </div>
+
+  <ng-content select="[bottom-menu-bar]"></ng-content>
+
+</div>

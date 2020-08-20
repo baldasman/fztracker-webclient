@@ -1,0 +1,21 @@
+:host {
+	::ng-deep {
+		.topbar-item {
+			height: 100%;
+		}
+
+		@media (min-width: 1025px) {
+			.topbar, .topbar-item-wrapper {
+				height: 100%;
+			}
+		}
+	}
+}
+
+.mat-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}

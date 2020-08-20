@@ -1,0 +1,25 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <div class="title">{{ 'Welcome to WebTool' | translate }} </div>
+
+  <div class="row">
+
+    <div class="col-12">
+      <catalog-forms-input autoFocus id="sign-in-email" [formControlField]="f.authId" formControlName="authId" placeholder="Username"
+        required="true" [hideMessages]="true"></catalog-forms-input>
+    </div>
+    <div class="col-12 mt-2">
+      <catalog-forms-input type="password" [formControlField]="f.authPassword" formControlName="authPassword"
+        placeholder="Password" required="true" [hideMessages]="false">
+      </catalog-forms-input>
+    </div>
+
+    <div class="col-12 mt-5">
+      <button type="submit" class="btn btn-primary w-100">Sign In</button>
+    </div>
+
+  </div>
+
+
+
+</form>

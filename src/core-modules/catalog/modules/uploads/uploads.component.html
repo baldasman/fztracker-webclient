@@ -1,0 +1,14 @@
+<div
+  [dropzone]="dzConfig"
+  (addedFile)="onFileAdded($event)"
+  (removedFile)="onFileRemoved($event)"
+  (uploadProgress)="onUploadProgress($event)"
+  (success)="onUploadSuccess($event)"
+  (error)="onUploadError($event)"
+  class="dropzone"
+  [ngClass]="'height-' + config.style.heightLevel"
+>
+</div>
+
+<!-- Preview collection of uploaded documents -->
+<div id="{{ previewContainer }}" class="preview-container"></div>

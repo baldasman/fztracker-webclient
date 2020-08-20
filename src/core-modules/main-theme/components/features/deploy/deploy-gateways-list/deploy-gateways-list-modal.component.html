@@ -1,0 +1,130 @@
+<main-theme-modal (dismissEvent)="onCancel()">
+
+  <ng-container header>{{ 'dictionary.deploy' | translate | titlecase }}</ng-container>
+
+  <ng-container body>
+
+    <catalog-loader name="gateways-list"></catalog-loader>
+
+    <div class="py-3">{{ 'features.deploy.messages.choose_gateways_to_deploy' | translate }}</div>
+
+    <mat-table [hidden]="!contentReady" [dataSource]="table.dataSource">
+
+      <mat-header-row *matHeaderRowDef="table.displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: table.displayedColumns" (click)="onRowSelect(row)"></mat-row>
+
+      <ng-container matColumnDef="selections">
+        <mat-header-cell *matHeaderCellDef>
+          <mat-checkbox [checked]="isAllSelected()" [indeterminate]="isAnySelected() && !isAllSelected()"
+            [disabled]="!isMasterSelectable()" (change)="$event ? masterToggle() : null">
+          </mat-checkbox>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <mat-checkbox [checked]="table.selection.isSelected(row)" [disabled]="!isRowSelectable(row)"
+            (click)="$event.stopPropagation(); onRowSelect(row);">
+          </mat-checkbox>
+
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="gateway">
+        <mat-header-cell *matHeaderCellDef>{{ 'dictionary.gateway' | translate | titlecase }}</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <i class="fas fa-server pr-2" [ngClass]="{
+            'text-success': row.status.id === GatewayStatusEnum.ONLINE || row.status.id === GatewayStatusEnum.STALE,
+            'text-danger': row.status.id === GatewayStatusEnum.OFFLINE}">
+          </i>
+          {{ row.name }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="additional-modules">
+        <mat-header-cell *matHeaderCellDef>{{ 'labels.additional_modules' | translate }}</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="centered-column">
+          {{ (row.modules.length === 1 ? 'dictionary.no' : 'dictionary.yes') | translate | titlecase }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="field-devices">
+        <mat-header-cell *matHeaderCellDef>{{ 'labels.field_devices' | translate | titlecase }}</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.fieldDevicesNumber }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="application-devices">
+        <mat-header-cell *matHeaderCellDef>{{ 'labels.application_objects' | translate | titlecase }}</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.applicationDevicesNumber }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef>{{ 'features.deploy.labels.last_deploy' | translate | titlecase }}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+
+          <div *ngIf="row.deployInfo?.isDeploying" class="d-block text-center">
+            <span *ngIf="row.deployInfo.status === 'STARTED'"
+              class="text-center">{{ 'features.deploy.messages.deploy_started' | translate }}</span>
+            <span *ngIf="row.deployInfo.status === 'DEPLOYING'"
+              class="pr-4">{{ 'dictionary.deploying' | translate | titlecase }}</span>
+            <span *ngIf="row.deployInfo.status === 'DEPLOYING'">{{ row.deployInfo.executionPercentage }}%</span>
+            <span
+              *ngIf="row.deployInfo.status === 'COMPLETED::ERROR'">{{ 'dictionary.error' | translate | titlecase }}</span>
+            <mat-progress-bar [mode]="row.deployInfo.status === 'DEPLOYING' ? 'determinate' : 'indeterminate'"
+              [value]="row.deployInfo.executionPercentage" class="custom-progress-bar">
+            </mat-progress-bar>
+          </div>
+
+          <div *ngIf="!row.deployInfo?.isDeploying">
+            <div *ngIf="!row.deployInfo.status" matTooltip="{{ row.deployMessage }}">
+              <div>{{ 'features.deploy.messages.no_deploy' | translate }}</div>
+            </div>
+            <div *ngIf="row.deployInfo.status === 'COMPLETED::OK'" matTooltip="{{ row.deployMessage }}">
+              <i class="fas fa-check text-success pr-2"></i>
+              <span>{{ 'features.deploy.messages.deploy_successful' | translate }}</span>
+              <div class="path">{{ row.deployDate }}</div>
+            </div>
+            <div *ngIf="row.deployInfo.status === 'COMPLETED::ERROR'" matTooltip="{{ row.deployMessage }}">
+              <i class="fas fa-times text-danger pr-2"></i>
+              <span>{{ 'features.deploy.messages.deploy_failed' | translate }}</span>
+              <div class="path">{{ row.deployDate }}</div>
+            </div>
+          </div>
+
+        </mat-cell>
+      </ng-container>
+
+    </mat-table>
+
+    <div class="pt-3 d-flex align-items-center">
+      <h5 class="font-xl m-0">{{ 'labels.deploy_notes' | translate }} *</h5>
+      <span class="switch switch-outline switch-primary switch-sm pl-5 d-flex align-items-center">
+        <label>
+          <input type="checkbox" [checked]="individualNotes ? 'checked' : undefined"
+            [disabled]="isAnySelected() === false ? 'disabled' : undefined" (click)="toggleIndividualNotes()">
+          <span></span>
+        </label>
+        <span class="pl-1">{{ 'labels.individual_notes' | translate }}</span>
+      </span>
+    </div>
+    <form [formGroup]="form">
+      <ng-container formArrayName="notes">
+        <div *ngFor="let note of f['notes']['controls']; let i = index" class="pt-2">
+          <ng-container [formGroupName]="i">
+            <h5 class="pt-2">{{ getNoteLabel(note.controls.gateway.value) }}</h5>
+            <catalog-forms-textarea [formControlField]="note.controls.note" formControlName="note"
+              placeholder="{{ 'features.deploy.labels.describe_your_deploy' | translate }}" [required]="true">
+            </catalog-forms-textarea>
+            <small *ngIf="!individualNotes">* {{ 'features.deploy.messages.deploy_notes_info' | translate }}.</small>
+          </ng-container>
+        </div>
+      </ng-container>
+    </form>
+  </ng-container>
+
+  <ng-container footer>
+    <button type="button" class="btn-cancel"
+      (click)="onCancel()">{{ 'dictionary.close' | translate | titlecase }}</button>
+    <button type="button" class="btn-primary" [disabled]="table.selection.selected.length === 0"
+      (click)="onDeploy()">{{ 'dictionary.deploy' | translate | titlecase }}</button>
+  </ng-container>
+
+</main-theme-modal>

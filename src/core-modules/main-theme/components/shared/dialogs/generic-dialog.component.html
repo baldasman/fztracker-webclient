@@ -1,0 +1,13 @@
+<main-theme-modal [allowDismiss]="data.allowDismiss" (dismissEvent)="onCancel()" (keydown.enter)="keyDownFunction($event)">
+
+  <ng-container header>{{ data.title }}</ng-container>
+
+  <ng-container body>
+    <div innerHtml="{{ data.message }}"></div>
+  </ng-container>
+
+  <ng-container footer>
+    <button *ngFor="let action of data.actions" id="{{ action.id }}" type="button" class="{{ action.class || 'btn-submit' }}" (click)="onAction(action.id)">{{ action.label }}</button>
+  </ng-container>
+
+</main-theme-modal>

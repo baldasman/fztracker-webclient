@@ -1,41 +1,39 @@
-import { environment } from '@app/config/environment';
-
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { TranslateModule } from '@ngx-translate/core';
 
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+// import { environment } from '@app/config';
+
+import { CoreModule } from '@core-modules/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { StoreModule } from '@core-modules/stores/store.module';
+import { LoaderModule } from '@core-modules/catalog/modules/loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CoreModule } from '@core/core.module';
-import { SharedModule } from '@shared/shared.module';
-import { AuthGuard } from '@core/guards/auth.guard';
-import { UsersService } from '@core/services/users.service';
-import { AdminGuard } from '@core/guards/admin.guard';
 
-export function httpLoaderFactory(http: HttpClient) { return new TranslateHttpLoader(http, `${environment.apiUrl}assets/i18n/`); }
+import { DialogsService } from '@core-modules/main-theme';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
-    AppRoutingModule,
     BrowserModule,
-    CoreModule,
+    BrowserAnimationsModule,
     HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: httpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
-    SharedModule
+    TranslateModule.forRoot(),
+
+    CoreModule,
+    StoreModule,
+    // CoreModule.forRoot({
+    //   baseHref: environment.BASE_HREF
+    // }),
+    LoaderModule,
+    MatDialogModule,
+    AppRoutingModule
   ],
-  providers: [AuthGuard, AdminGuard, UsersService],
+  declarations: [AppComponent],
+  providers: [DialogsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,26 @@
+<div cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+
+  <button (click)="onClose()" class="close" mat-button mat-button-close><span aria-hidden="true">&times;</span></button>
+
+  <h1 mat-dialog-title cdkDragHandle class="pl-3"> {{ data.label }}</h1>
+
+  <mat-dialog-content>
+    <div class="draw-zone">
+      <div>
+        <catalog-tree #treeElement [nodes]="treeNodes" [enableNestedActions]="true" (treeEvents)="onTreeEvents($event)"></catalog-tree>
+      </div>
+      <div *ngIf="treeNodes.length === 0" class="pl-3">
+        {{ 'labels.no_zones' | translate }}
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button *ngIf="treeNodes.length !== 0" type="button" class="btn-primary" [disabled]="!selectedNode" [ngClass]="{'disabled': !selectedNode, 'not-allowed': !selectedNode}" (click)="onSelectNode()"> {{ 'dictionary.select' | translate | titlecase }} </button>
+    <button type="button" class="btn-primary" (click)="onAddNode()">{{ 'dictionary.new' | translate | titlecase }}</button>
+    <button *ngIf="treeNodes.length !== 0" type="button" class="btn-primary" [disabled]="!selectedNode" [ngClass]="{'disabled': !selectedNode, 'not-allowed': !selectedNode}" (click)="onEditNode()">{{ 'dictionary.edit' | translate | titlecase }}</button>
+    <button *ngIf="treeNodes.length !== 0" type="button" class="btn-danger" [disabled]="!selectedNode" [ngClass]="{'disabled': !selectedNode, 'not-allowed': !selectedNode}" (click)="onDeleteNode()">{{ 'dictionary.delete' | translate | titlecase }}</button>
+    <button type="button" class="btn-cancel" (click)="onClose()">{{ 'dictionary.close' | translate | titlecase }}</button>
+  </mat-dialog-actions>
+
+</div>

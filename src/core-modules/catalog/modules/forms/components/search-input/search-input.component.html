@@ -1,0 +1,20 @@
+<div class="form-input-icon form-input-icon-right">
+  <input
+    [id]="id"
+    [placeholder]="placeholder"
+    [title]="tooltip"
+    value="{{value}}"
+    [attr.autofocus]="autofocus"
+    class="form-control text-dark"
+    [ngClass]="{ 'form-control-lg': size === 'large' }"
+    (input)="onChanged($event)"
+    (blur)="onTouched()">
+  <span [hidden]="!deleteIconVisible" title="{{ 'dictionary.clear' | translate | titlecase }}"
+    class="field-icon clear-icon" (click)="onClearButtonClicked()">
+    <i class="fas fa-times"></i>
+  </span>
+  <span class="field-icon search-icon" title="{{ 'dictionary.search' | translate | titlecase }}"
+    (click)="onSearchButtonClicked()">
+    <i class="fas fa-search text-primary"></i>
+  </span>
+</div>

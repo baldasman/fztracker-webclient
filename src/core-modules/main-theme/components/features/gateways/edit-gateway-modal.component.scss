@@ -1,0 +1,24 @@
+.section-separator {
+  position: relative;
+  border-bottom: 1px solid #aeaeae;
+  line-height: 0.1em;
+  margin: 10px 0;
+  cursor: pointer;
+
+  .title {
+    background: #fff;
+    font-weight: 500;
+    font-size: 1.25rem;
+    padding-right: 15px;
+  }
+
+  i {
+    position: absolute;
+    background: #fff;
+    font-size: 1.1rem;
+    // top: 15px;
+    bottom: -6px;
+    right: 0;
+    padding-left: 15px;
+  }
+}

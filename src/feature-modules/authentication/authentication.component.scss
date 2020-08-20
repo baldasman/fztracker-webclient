@@ -1,0 +1,24 @@
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 50px;
+  margin: 0;
+  background-color: var(--background-color);
+}
+
+img {
+  margin: 0 auto 50px;
+  max-width: 375px;
+}
+
+.form-card {
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: rgba(0,0,0,.1) 0 10px 10px;
+  box-sizing: border-box;
+  max-width: 450px;
+  padding: 40px 40px 50px;
+  font-weight: 500;
+}

@@ -1,0 +1,173 @@
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
+import { Mixin, Core, Animations, Stores } from '@app/base';
+
+import { NewditSystemModalComponent } from '@core-modules/main-theme/components/features/system/newdit-system/newdit-system-modal.component';
+import { OpenSystemModalComponent } from '@core-modules/main-theme/components/features/system/open-system/open-system-modal.component';
+
+import { ButtonModel } from '@core-modules/core/models/button.model';
+import { LayoutConfigService } from '@core-modules/main-theme/services/layout-config.service';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
+})
+export class HomeComponent extends Mixin(Core, Animations, Stores) implements OnInit, OnDestroy {
+  @Input() cssClasses = '';
+  chartOptions: any = {};
+  fontFamily = '';
+  colorsGrayGray500 = '';
+  colorsGrayGray200 = '';
+  colorsGrayGray300 = '';
+  colorsThemeBaseDanger = '';
+  colorsThemeBasePrimary = '';
+  colorsThemeLightPrimary = '';
+
+  constructor(private layoutConfigService: LayoutConfigService) {
+    super();
+
+    this.fontFamily = this.layoutConfigService.getConfig('js.fontFamily');
+    this.colorsGrayGray500 = this.layoutConfigService.getConfig('js.colors.gray.gray500');
+    this.colorsGrayGray200 = this.layoutConfigService.getConfig('js.colors.gray.gray200');
+    this.colorsGrayGray300 = this.layoutConfigService.getConfig('js.colors.gray.gray300');
+    this.colorsThemeBaseDanger = this.layoutConfigService.getConfig('js.colors.theme.base.danger');
+    this.colorsThemeBasePrimary = this.layoutConfigService.getConfig('js.colors.theme.base.primary');
+    this.colorsThemeLightPrimary = this.layoutConfigService.getConfig('js.colors.theme.light.primary');
+  }
+
+  ngOnInit() {
+    this.chartOptions = this.getChartOptions();
+  }
+
+  getChartOptions() {
+    return {
+      series: [
+        {
+          name: 'Net Profit',
+          data: [40, 40, 30, 30, 35, 35, 50]
+        }
+      ],
+      chart: {
+        type: 'area',
+        height: 150,
+        toolbar: {
+          show: false
+        },
+        zoom: {
+          enabled: false
+        },
+        sparkline: {
+          enabled: true
+        }
+      },
+      plotOptions: {},
+      legend: {
+        show: false
+      },
+      dataLabels: {
+        enabled: false
+      },
+      fill: {
+        type: 'solid',
+        opacity: 1
+      },
+      stroke: {
+        curve: 'smooth',
+        show: true,
+        width: 3,
+        colors: [this.colorsThemeBasePrimary]
+      },
+      xaxis: {
+        categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Aug', 'Sep'],
+        axisBorder: {
+          show: false
+        },
+        axisTicks: {
+          show: false
+        },
+        labels: {
+          show: false,
+          style: {
+            colors: this.colorsGrayGray500,
+            fontSize: '12px',
+            fontFamily: this.fontFamily
+          }
+        },
+        crosshairs: {
+          show: false,
+          position: 'front',
+          stroke: {
+            color: this.colorsGrayGray300,
+            width: 1,
+            dashArray: 3
+          }
+        },
+        tooltip: {
+          enabled: true,
+          formatter: undefined,
+          offsetY: 0,
+          style: {
+            fontSize: '12px',
+            fontFamily: this.fontFamily
+          }
+        }
+      },
+      yaxis: {
+        min: 0,
+        max: 55,
+        labels: {
+          show: false,
+          style: {
+            colors: this.colorsGrayGray500,
+            fontSize: '12px',
+            fontFamily: this.fontFamily
+          }
+        }
+      },
+      states: {
+        normal: {
+          filter: {
+            type: 'none',
+            value: 0
+          }
+        },
+        hover: {
+          filter: {
+            type: 'none',
+            value: 0
+          }
+        },
+        active: {
+          allowMultipleDataPointsSelection: false,
+          filter: {
+            type: 'none',
+            value: 0
+          }
+        }
+      },
+      tooltip: {
+        style: {
+          fontSize: '12px',
+          fontFamily: this.fontFamily
+        },
+        y: {
+          // tslint:disable-next-line
+          formatter: function (val) {
+            return '$' + val + ' thousands';
+          }
+        },
+        marker: {
+          show: false
+        }
+      },
+      colors: [this.colorsThemeLightPrimary],
+      markers: {
+        colors: this.colorsThemeLightPrimary,
+        strokeColor: [this.colorsThemeBasePrimary],
+        strokeWidth: 3
+      }
+    };
+  }
+}

@@ -1,0 +1,49 @@
+catalog-forms-tree-select {
+  .form-input {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .pointer {
+    cursor: pointer;
+  }
+}
+
+.input-group-text {
+  background-color: white;
+}
+
+.ng-dropdown-panel {
+  max-width: 0;
+}
+
+.ng-select.custom-theme {
+  font-weight: 400;
+  border-radius: 0.25rem;
+
+  &.ng-select-single .ng-select-container {
+    height: 40px;
+  }
+
+  .ng-select-container {
+    border: 1px solid #ebedf2;
+    border-radius: 0.25rem;
+    height: 40px;
+  }
+
+  &.ng-select-error .ng-select-container {
+    border-color: #f4516c !important;
+  }
+}
+
+.col-xs-auto {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.messages-section {
+  min-height: 1.5rem;
+  margin-bottom: 0.5rem;
+}

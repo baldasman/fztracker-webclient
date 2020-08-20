@@ -1,0 +1,29 @@
+<main-theme-modal (dismissEvent)="onCancel()">
+
+  <ng-container header>{{ 'labels.open_system' | translate }}</ng-container>
+
+  <ng-container body>
+    <catalog-loader name="open-system"></catalog-loader>
+    <form *ngIf="contentReady" [formGroup]="form">
+      <catalog-forms-select [formControlField]="f.entity" formControlName="entity"
+        [items]="datasets.entities" label="{{ 'dictionary.entity' | translate | titlecase }}"
+        placeholder="Select entity" bindLabel="name" appendTo=".cdk-overlay-pane">
+      </catalog-forms-select>
+      <div class="position-relative">
+        <catalog-loader name="open-system-system-select"></catalog-loader>
+        <catalog-forms-select [formControlField]="f.system" formControlName="system"
+          label="{{ 'dictionary.system' | translate | titlecase }}" placeholder="Select system"
+          [items]="datasets.systems" bindLabel="name" appendTo=".cdk-overlay-pane" [required]="true">
+        </catalog-forms-select>
+      </div>
+    </form>
+  </ng-container>
+
+  <ng-container footer>
+    <button type="button" class="btn btn-cancel"
+      (click)="onCancel()">{{ 'dictionary.cancel' | translate | titlecase }}</button>
+    <button type="button" class="btn-submit"
+      (click)="onOpenSystem()">{{ 'dictionary.open' | translate | titlecase }}</button>
+  </ng-container>
+
+</main-theme-modal>

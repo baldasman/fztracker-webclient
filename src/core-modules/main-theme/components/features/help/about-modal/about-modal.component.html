@@ -1,0 +1,20 @@
+<main-theme-modal (dismissEvent)="onClose()">
+
+  <ng-container header>{{ 'dictionary.about' | translate | titlecase }}</ng-container>
+
+  <ng-container body>
+    <div class="text-center">
+      <img src="{{ tenantImageUrl }}" />
+      <p class="pt-2">{{ 'dictionary.version' | translate | titlecase }} <strong>{{ version }} ({{ buildNumber}})</strong></p>
+    </div>
+    <div class="d-flex justify-content-center pt-4 text-center">
+      <p class="description" innerHtml="{{ 'app.description' | translate }}"></p>
+    </div>
+  </ng-container>
+
+  <ng-container footer>
+    <button type="button" class="btn-cancel"
+      (click)="onClose()">{{ 'dictionary.close' | translate | titlecase }}</button>
+  </ng-container>
+
+</main-theme-modal>

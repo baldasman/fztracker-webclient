@@ -1,27 +1,58 @@
-# WebClient
-This is a **Angular Project**.
+# iDomLive GUI Tool
+iDomLive GUI Tool is a **Angular** project. It is an online version of the Tool Desktop version.
 
 ## Installation
-Create a new file "environment.js" file in "src" directory with the content below. Attention: this is a JS file, not TS!
+
+### Set environment variables file
+| Name        | Required |      Default      | Possibilities                                | Description |
+| ----------- | :------: | :---------------: | -------------------------------------------- | ----------- |
+| BASE_HREF   |          |         /         |                                              |             |
+| DOMAIN      |   Yes    |                   |                                              |             |
+| API_URL     |   Yes    |                   |                                              |             |
+| LOG_LEVEL   |          | ['error', 'warn'] | ['log', 'error', 'warn', 'debug', 'verbose'] |             |
+| WS_PROTOCOL |          |        wss        | ws, wss                                      |             |
+| WS_HOSTNAME |   Yes    |                   |                                              |             |
+| WS_PORT     |   Yes    |        443        | 0 - 40000                                    |             |
+| WS_PATH     |          |                   |                                              |             |
+| WS_USERNAME |   Yes    |                   |                                              |             |
+| WS_PASSWORD |   Yes    |                   |                                              |             |
+
+Create a new file "environment.js" file in "src" directory with the content below. Atention: this is a JS file, not TS!
 ```
 window.__env = {
-  apiUrl: 'http://localhost:8000'
+  DOMAIN: 'cloudnode.domatica.pt',
+  API_URL: 'https://api-tool.cloudnode.domatica.pt',
+  GOOGLE_API_KEY: 'AIzaSyBkENf5vtxRW87wseMjKeXHEqS-CBE5sGg',
+  LOG_LEVEL: 'TRACE',
+
+  WS_PROTOCOL: 'wss',
+  WS_HOSTNAME: 'ws.cloudnode.domatica.pt',
+  WS_PORT: 443,
+  WS_PATH: '',
+  WS_USERNAME: 'edge',
+  WS_PASSWORD: 'D0m4t1c4Rul35Th31o7W0rld'
 };
 ```
 
-Run the following commands:
-```bash
-nvm use 10.16.3
+### Run the following commands:
+```
 npm install
 ```
 
 ## Running the app
-Depending of what you need to develop, you can run both frameworks independently.
-```bash
-# Development mode:
-npm run dev
+### Development mode
+```
+npm run start:dev
+```
 
-# Build distributable:
+### Production mode
+```
 npm run build
-npm run build-documentantion
+npm run build-documentation (optional: only to generate automatic documentation)
+npm start:prod
+```
+
+## Docker Image build
+```
+DOCKER_USERNAME="jenkinstfs" DOCKER_PASSWORD="D0m@tica123#" REGISTRY_HOST="domatica.no-ip.org:1080" REGISTRY_PROJECT="idomlive" REGISTRY_NAME="idomlive-gui-tool" REPOSITORY_TAG="latest" PROJECT_VERSION="1.0.0" COMMAND="publish" ./docker/build.sh
 ```

@@ -1,0 +1,185 @@
+<form [formGroup]="form" *ngIf="contentReady">
+
+  <div class="row">
+    <div *ngFor="let p of parameters; let i = index" id="parameter-{{ replaceSpaces(p.key) }}" class="col-12" [ngClass]="
+      {
+        'd-none': !isParameterVisible(p),
+        'col-lg-6': p.dataType !== 'fields-group' && p.dataType !== 'separator' && p.dataType !== 'dual-list'
+      }">
+      <ng-container
+        *ngTemplateOutlet="formTemplate; context: { parameter: p, parentControls: form.controls, index: i }">
+      </ng-container>
+    </div>
+  </div>
+
+  <ng-template #formTemplate let-p="parameter" let-parentControls="parentControls" let-index="index">
+
+    <ng-container *ngIf="isParameterVisible(p)">
+
+      <ng-container [ngSwitch]="p.dataType">
+
+        <!-- <div *ngSwitchCase="'coordinates'">
+          <catalog-forms-coordinates [formControlField]="parentControls[p.key]" [formControlName]="p.key"
+            [coordinates]="p.values"></catalog-forms-coordinates>
+        </div> -->
+
+        <div *ngSwitchCase="'static-list'">
+          <catalog-forms-select [formControlField]="parentControls[p.key]" [formControlName]="p.key" label="{{ p.label | translate }}"
+            [placeholder]="p.placeholder" [items]="p.values" [required]="p.validations?.isRequired"
+            [clearable]="!p.validations?.isRequired || p.multipleSelection" [multiple]="p.multipleSelection"
+            appendTo="body">
+          </catalog-forms-select>
+        </div>
+
+        <div *ngSwitchCase="'dynamic-list'">
+          <catalog-loader name="parameter-{{ replaceSpaces(p.key) }}"></catalog-loader>
+          <catalog-forms-select [formControlField]="parentControls[p.key]" [formControlName]="p.key" label="{{ p.label | translate }}"
+            [placeholder]="p.placeholder" [items]="datasets[p.key]" [required]="p.validations?.isRequired"
+            [clearable]="!p.validations?.isRequired || p.multipleSelection" [multiple]="p.multipleSelection"
+            appendTo="body" [groupBy]="datasetGroupBy(p.key)">
+            <!-- If first position has 'group' key, it groups by that key! -->
+          </catalog-forms-select>
+        </div>
+
+        <div *ngSwitchCase="'tree-list'">
+          <catalog-loader name="parameter-{{ replaceSpaces(p.key) }}"></catalog-loader>
+          <catalog-forms-tree-select [formControlField]="parentControls[p.key]" [formControlName]="p.key"
+            label="{{ p.label | translate }}" [placeholder]="p.placeholder" [items]="datasets[p.key]"
+            [required]="p.validations?.isRequired" appendTo="body" [clearable]="!p.validations?.isRequired"
+            (updateDatasetValueEvent)="updateTreeDataset(p.key, $event)" (updateSelectedOptionEvent)="updateSelectedTreeNode(p.key, $event)">
+          </catalog-forms-tree-select>
+        </div>
+
+        <div *ngSwitchCase="'dual-list'">
+          <catalog-forms-dual-list label="{{ p.label | translate }}" [values]="p.values"></catalog-forms-dual-list>
+        </div>
+
+        <div *ngSwitchCase="'code'">
+          <catalog-forms-code label="{{ p.label | translate }}" [hint]="p.hint"></catalog-forms-code>
+        </div>
+
+        <div *ngSwitchCase="'hexadecimal'">
+          <catalog-forms-input [formControlField]="parentControls[p.key]" [formControlName]="p.key" label="{{ p.label | translate }}"
+            [placeholder]="p.placeholder" [required]="p.validations?.isRequired">
+            <ng-container prepend><span class="input-group-text">0x</span></ng-container>
+          </catalog-forms-input>
+        </div>
+
+        <div *ngSwitchCase="'number'">
+          <catalog-forms-input type="number" [formControlField]="parentControls[p.key]" [formControlName]="p.key"
+            label="{{ p.label | translate }}" [placeholder]="p.placeholder" [required]="p.validations?.isRequired">
+          </catalog-forms-input>
+        </div>
+
+        <div *ngSwitchCase="'password'">
+          <catalog-forms-input type="password" [formControlField]="parentControls[p.key]" [formControlName]="p.key"
+            label="{{ p.label | translate }}" [placeholder]="p.placeholder" [required]="p.validations?.isRequired">
+          </catalog-forms-input>
+        </div>
+        <div *ngSwitchCase="'boolean'">
+          <label>{{ p.label | translate }} {{ p.validations?.isRequired ? '*' : '' }}</label>
+          <catalog-forms-checkbox [formControlField]="parentControls[p.key]" [formControlName]="p.key"
+            label="{{ (parentControls[p.key].value ? 'dictionary.yes' : 'dictionary.no') | translate | titlecase }}">
+          </catalog-forms-checkbox>
+        </div>
+
+        <div *ngSwitchCase="'text'">
+          <catalog-forms-textarea [formControlField]="parentControls[p.key]" [formControlName]="p.key" label="{{ p.label | translate }}"
+            [placeholder]="p.placeholder" [required]="p.validations?.isRequired">
+          </catalog-forms-textarea>
+        </div>
+
+        <div *ngSwitchCase="'separator'">
+          <div class="w-100 mt-5">
+            <h4> {{ p.label | translate }} </h4>
+            <hr />
+          </div>
+        </div>
+
+        <div *ngSwitchCase="'fields-group'">
+          <h4 class="pb-3">{{ p.label | translate }} {{ p.validations?.isRequired ? '*' : '' }}</h4>
+
+          <div class="table-responsive">
+            <table [formArrayName]="p.key" class="table table-hover" [ngClass]="{'has-actions-column': p.isEditable}">
+
+              <thead>
+                <tr>
+                  <th *ngFor="let f of getFieldsGroupVisibleFields(p.fields)" [ngClass]="'column-' + f.dataType">
+                    {{ f.label }} {{ f.validations?.isRequired ? '*' : '' }}
+                  </th>
+                  <th *ngIf="p.isEditable" [ngClass]="'column-actions'">
+                    <i class="fa fa-plus text-primary" (click)="addFieldGroupRow(p)"></i>
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let parameterControls of parentControls[p.key].controls; let i = index">
+
+                  <td *ngFor="let f of getFieldsGroupVisibleFields(p.fields)" [formGroupName]="i"
+                    [ngClass]="'column-' + f.dataType">
+
+                    <ng-container [ngSwitch]="f.dataType">
+
+                      <ng-container *ngSwitchCase="'static-list'">
+                        <catalog-forms-select [formControlField]="parameterControls.controls[f.key]"
+                          [formControlName]="f.key" [placeholder]="f.placeholder" [items]="f.values"
+                          [required]="f.validations?.isRequired" [clearable]="!p.validations?.isRequired || p.multipleSelection"
+                          [multiple]="f.multipleSelection" appendTo="body"
+                          hideMessages="true">
+                        </catalog-forms-select>
+                      </ng-container>
+
+                      <div *ngSwitchCase="'hexadecimal'">
+                        <catalog-forms-input [formControlField]="parameterControls.controls[f.key]"
+                          [formControlName]="f.key" [placeholder]="f.placeholder" [required]="f.validations?.isRequired"
+                          hideMessages="true">
+                          <ng-container prepend><span class="input-group-text">0x</span></ng-container>
+                        </catalog-forms-input>
+                      </div>
+
+                      <div *ngSwitchCase="'number'">
+                        <catalog-forms-input type="number" [formControlField]="parameterControls.controls[f.key]"
+                          [formControlName]="f.key" [placeholder]="f.placeholder" [required]="f.validations?.isRequired"
+                          hideMessages="true">
+                        </catalog-forms-input>
+                      </div>
+
+                      <ng-container *ngSwitchCase="'boolean'">
+                        <catalog-forms-checkbox [formControlField]="parameterControls.controls[f.key]"
+                          [formControlName]="f.key" hideMessages="true"></catalog-forms-checkbox>
+                      </ng-container>
+
+                      <ng-container *ngSwitchDefault>
+                        <catalog-forms-input [formControlField]="parameterControls.controls[f.key]"
+                          [formControlName]="f.key" [placeholder]="f.placeholder" [required]="p.validations?.isRequired"
+                          hideMessages="true" [minLength]="p.validations?.minLength" [maxLength]="p.validations?.maxLength">
+                        </catalog-forms-input>
+                      </ng-container>
+                    </ng-container>
+
+                  </td>
+                  <td *ngIf="p.isEditable" [ngClass]="'column-actions'">
+                    <i class="fa fa-trash text-danger" (click)="removeFieldGroupRow(p.key, i)"></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div *ngSwitchDefault>
+          <catalog-forms-input [formControlField]="parentControls[p.key]" [formControlName]="p.key" label="{{ p.label | translate }}"
+            [placeholder]="p.placeholder" [required]="p.validations?.isRequired" [minLength]="p.validations?.minLength" [maxLength]="p.validations?.maxLength">
+          </catalog-forms-input>
+        </div>
+
+      </ng-container>
+
+      <div *ngIf="p.hint" class="pt-5"> {{ p.hint }} </div>
+
+    </ng-container>
+
+  </ng-template>
+
+</form>

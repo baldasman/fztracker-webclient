@@ -1,0 +1,19 @@
+<div cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+
+  <a *ngIf="allowDismiss" class="close pointer" mat-button mat-button-close (click)="dismiss()"><span aria-hidden="true">&times;</span></a>
+
+  <h1 mat-dialog-title cdkDragHandle>
+    <ng-content select="[header]"></ng-content>
+  </h1>
+
+  <mat-dialog-content>
+    <!-- <perfect-scrollbar style="height: 50vh;" [config]="{disabled: true, scrollIndicators: false}"> -->
+    <ng-content select="[body]"></ng-content>
+    <!-- </perfect-scrollbar> -->
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <ng-content select="[footer]"></ng-content>
+  </mat-dialog-actions>
+
+</div>

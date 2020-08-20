@@ -1,0 +1,34 @@
+.mat-sidenav {
+  position: fixed;
+  padding: 25px;
+
+  .inner-container {
+    margin-right: 15px
+  }
+}
+
+.close-button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  background-color: #f7f8fa;
+  transition: all 0.3s;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: #74788d;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  background-color: var(--brand-color);
+  transition: all 0.3s;
+
+  i {
+    color: #fff;
+  }
+}

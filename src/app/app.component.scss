@@ -1,5 +1,4 @@
-/* update your 'styles.css' with */
-@import '~bootstrap/dist/css/bootstrap.css';
-
-/* or your 'styles.scss' with */
-@import "~bootstrap/scss/bootstrap";
+:host {
+	height: 100%;
+	margin: 0;
+}

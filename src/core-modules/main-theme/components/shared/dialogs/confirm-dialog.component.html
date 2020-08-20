@@ -1,0 +1,14 @@
+<main-theme-modal (dismissEvent)="onCancel()">
+
+  <ng-container header>{{ data.title }}</ng-container>
+
+  <ng-container body>
+    <div innerHtml="{{ data.message }}"></div>
+  </ng-container>
+
+  <ng-container footer>
+    <button type="button" class="btn-cancel" (click)="onCancel()">{{ data.cancelText }}</button>
+    <button type="button" class="btn-danger" (click)="onConfirm()">{{ data.confirmText }}</button>
+  </ng-container>
+
+</main-theme-modal>

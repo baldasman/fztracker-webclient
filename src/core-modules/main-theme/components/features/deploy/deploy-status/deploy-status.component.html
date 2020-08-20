@@ -1,0 +1,48 @@
+<div class="position-relative">
+  <catalog-loader name="deploy-status"></catalog-loader>
+  <div class="d-flex flex-wrap">
+    <div class="kt-notification">
+      <div class="kt-notification__item p-0">
+        <div class="kt-notification__item-icon pr-4">
+          <span
+            class="kt-badge kt-badge--username kt-badge--unified-dark kt-badge--xl kt-badge--rounded kt-badge--bold">
+            {{ usernameAcronym }}
+          </span>
+        </div>
+        <div class="kt-notification__item-details">
+          <div class="kt-notification__item-title">
+            {{ username }}
+          </div>
+          <div class="kt-notification__item-time">
+            <ng-container *ngIf="deployInfo.stageParcial < deployInfo.totalStages">
+              {{ 'labels.deploy_started_at' | translate:{ datetime: deployInfo.startDate } }}
+            </ng-container>
+            <ng-container *ngIf="deployInfo.stageParcial === deployInfo.totalStages">
+              {{ 'labels.deploy_ended_at' | translate:{ datetime: deployInfo.endDate } }}
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pt-3 deploy-progress d-flex">
+      <div class="w-100">
+        <h5>{{ deployingTranslation }} {{ deployInfo.stageTotal }}%
+        </h5>
+        <div class="progress">
+          <div class="progress-bar bg-success"
+            [ngClass]="{'progress-bar-striped progress-bar-animated': deployInfo.stageParcial < deployInfo.totalStages}"
+            role="progressbar" [style.width.%]="deployInfo.stageTotal"></div>
+        </div>
+      </div>
+
+      <button class="btn btn-primary ml-4"
+        [ngClass]="{'disabled not-allowed': deployInfo.stageParcial === deployInfo.totalStages}"
+        (click)="onCancelDeploy()">{{ 'dictionary.cancel' | translate | titlecase }}
+      </button>
+    </div>
+  </div>
+
+  <div class="pt-5">
+    <pre class="m-0 p-3 rounded-lg source-code">{{ deployInfo.log }}</pre>
+  </div>
+</div>

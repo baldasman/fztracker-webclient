@@ -1,0 +1,18 @@
+<div ktHeader #ktHeader class="header " [ngClass]="headerClasses" id="kt_header">
+
+  <div [ngClass]="headerContainerClasses" class="d-flex align-items-stretch justify-content-between">
+
+    <mat-progress-bar mode="determinate" *ngIf="(loader.progress$|async) > 0" [value]="loader.progress$|async"></mat-progress-bar>
+
+    <main-theme-header-menu-horizontal [headerMenuClasses]="headerMenuClasses"></main-theme-header-menu-horizontal>
+
+    <!-- empty div to fix topbar to stay on the right when menu-horizontal is hidden -->
+    <ng-container *ngIf="!headerMenuSelfDisplay">
+      <div></div>
+    </ng-container>
+
+    <main-theme-header-topbar class="topbar"></main-theme-header-topbar>
+
+  </div>
+
+</div>

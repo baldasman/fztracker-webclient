@@ -1,0 +1,14 @@
+<div class="brand flex-column-auto" [ngClass]="brandClasses" id="kt-aside">
+
+  <a class="brand-logo" (click)="goToHome()">
+    <img [attr.src]="headerLogo" class="header-logo" />
+  </a>
+
+  <ng-container *ngIf="asideSelfMinimizeToggle">
+    <button class="brand-toggle btn btn-sm px-0" id="kt_aside_toggle" (click)="toggleAsideClick()" >
+      <span class="svg-icon svg-icon-xl" inlineSVG="assets/theme/media/svg/icons/Navigation/Angle-double-left.svg"></span>
+    </button>
+  </ng-container>
+
+</div>
+

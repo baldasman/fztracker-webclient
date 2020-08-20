@@ -1,0 +1,15 @@
+<main-theme-modal (dismissEvent)="onCancel()">
+
+  <ng-container header>{{ 'labels.gateway_name_deploy_info' | translate:{ gatewayName: data.gatewayName } }}
+  </ng-container>
+
+  <ng-container body>
+    <app-main-theme-deploy-status [deploy]="data.deploy" [stageParcial]="data.stageParcial"></app-main-theme-deploy-status>
+  </ng-container>
+
+  <ng-container footer>
+    <button type="button" class="btn btn-cancel"
+      (click)="onCancel()">{{ 'dictionary.close' | translate | titlecase }}</button>
+  </ng-container>
+
+</main-theme-modal>

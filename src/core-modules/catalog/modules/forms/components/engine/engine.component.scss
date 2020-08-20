@@ -1,0 +1,39 @@
+.table-responsive {
+  th {
+    min-width: 100px;
+    vertical-align: middle !important;
+  }
+}
+
+// Nice trick to put actions column fixed to the right!
+.column-actions {
+  min-width: unset !important;
+  position: absolute;
+  right: 0;
+  padding: 20px 15px;
+  background-color: #fff;
+
+  i {
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+}
+th.column-actions {
+  padding: 15px 15px;
+}
+
+// This is a trick to give a little space to the next-to-last (PT: penultimo),
+// only when the table is editable (have actions column)
+.has-actions-column th:nth-last-child(2),
+.has-actions-column td:nth-last-child(2) {
+  min-width: 135px; // To compensate padding!
+  padding-right: 35px;
+}
+
+// Columns dataType specific styles.
+.column-boolean {
+  text-align: center;
+}
+td.column-boolean {
+  padding-top: 14px;
+}

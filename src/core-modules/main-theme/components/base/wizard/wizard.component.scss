@@ -1,0 +1,54 @@
+.custom-states {
+  border-left: 4px solid var(--secondary-color);
+
+  &.current {
+    border-left: 4px solid var(--primary-color);
+  }
+
+  &.pending {
+    border-left: 4px solid var(--warning-color);
+  }
+
+  &.completed {
+    border-left: 4px solid var(--success-color);
+  }
+
+}
+
+.summary-step-icon {
+  width: 30px;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.custom-content {
+  padding: 4rem 3rem 6rem;
+}
+
+.label {
+  height: 20px;
+  width: 20px;
+  font-size: .8rem;
+  font-weight: 400;
+  padding: 0;
+  margin: 0 0.25rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+
+  &.current {
+    color: white;
+    background-color: var(--primary-color);
+  }
+
+  &.pending {
+    background-color: var(--warning-color);
+  }
+
+  &.completed {
+    color: white;
+    background-color: var(--success-color);
+  }
+
+}

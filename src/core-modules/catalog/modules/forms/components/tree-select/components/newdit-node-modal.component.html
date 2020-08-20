@@ -1,0 +1,22 @@
+<div cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+
+  <button tabindex="-1" (click)="onClose()" class="close pointer" mat-button mat-button-close><span
+      aria-hidden="true">&times;</span></button>
+
+  <h1 mat-dialog-title cdkDragHandle>{{ title }}</h1>
+
+  <mat-dialog-content>
+    <form [formGroup]="form">
+      <catalog-forms-input autoFocus id="new-node-name" type="name" [formControlField]="f.name"
+        formControlName="name" placeholder="Name" required="true"></catalog-forms-input>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button tabindex="1" type="button" class="btn btn-cancel"
+      (click)="onClose()">{{ 'dictionary.close' | translate | titlecase }}</button>
+    <button tabindex="2" type="submit" class="btn btn-submit"
+      (click)="onSave()">{{ 'dictionary.save' | translate | titlecase }}</button>
+  </mat-dialog-actions>
+
+</div>

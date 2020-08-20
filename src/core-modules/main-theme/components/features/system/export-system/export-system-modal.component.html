@@ -1,0 +1,21 @@
+<main-theme-modal (dismissEvent)="onCancel()">
+
+  <ng-container header>{{ 'labels.choose_format' | translate }}
+  </ng-container>
+
+  <ng-container body>
+    <form [formGroup]="form" (keydown.enter)="onConfirm()">
+      <catalog-forms-select formControlName="format" [formControlField]="f.format"
+        label="{{ 'dictionary.format' | translate | titlecase }}" [items]="datasets.formats" [required]="true"
+        [clearable]="false" appendTo=".cdk-overlay-pane"></catalog-forms-select>
+    </form>
+  </ng-container>
+
+  <ng-container footer>
+    <button type="button" class="btn btn-cancel"
+      (click)="onCancel()">{{ 'dictionary.close' | translate | titlecase }}</button>
+    <button type="submit" class="btn-submit"
+      (click)="onConfirm()">{{ 'dictionary.confirm' | translate | titlecase }}</button>
+  </ng-container>
+
+</main-theme-modal>

@@ -1,0 +1,50 @@
+<main-theme-modal (dismissEvent)="onCancel()">
+  <ng-container header>{{ 'labels.gprs' | translate }}</ng-container>
+
+  <ng-container body>
+
+    <catalog-loader name="edit-gateway-communications-dialog"></catalog-loader>
+
+    <form [formGroup]="form" (ngSubmit)="onSave()">
+
+      <div class="row">
+        <div class="col-12 d-flex">
+          <span class="switch switch-outline switch-primary">
+            <label>
+              <input type="checkbox" [checked]="f.enabled.value" (change)="f.enabled.setValue(!f.enabled.value)">
+              <span></span>
+            </label>
+          </span>
+          <h5 class="m-0 pl-2 align-self-center">{{ (f.enabled.value ? 'dictionary.active' : 'dictionary.inactive') | translate | titlecase }}</h5>
+        </div>
+      </div>
+
+      <div class="row pt-3">
+        <div class="col-12">
+          <catalog-forms-input [formControlField]="f.apn" formControlName="apn" label="{{ 'forms.apn.label' | translate }}">
+          </catalog-forms-input>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <catalog-forms-input [formControlField]="f.user" formControlName="user" label="{{ 'forms.user.label' | translate | titlecase }}">
+          </catalog-forms-input>
+        </div>
+        <div class="col-6">
+          <catalog-forms-input [formControlField]="f.password" formControlName="password"
+            label="{{ 'forms.password.label' | translate | titlecase }}">
+          </catalog-forms-input>
+        </div>
+      </div>
+
+    </form>
+
+  </ng-container>
+
+  <ng-container footer>
+    <button tabindex="3" type="button" class="btn-cancel" (click)="onCancel()">{{ 'dictionary.cancel' | translate | titlecase }}</button>
+    <button tabindex="4" type="submit" class="btn-submit" (click)="onSave()">{{ 'dictionary.save' | translate | titlecase }}</button>
+  </ng-container>
+
+</main-theme-modal>

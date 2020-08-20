@@ -1,0 +1,34 @@
+<div cdkDrag cdkDragRootElement=".cdk-overlay-pane">
+
+  <button class="close" mat-button mat-button-close (click)="dismiss()"><span aria-hidden="true">&times;</span></button>
+
+  <h4 class="pb-2">
+    {{ 'labels.choose_a_location' | translate }}
+  </h4>
+
+  <mat-dialog-content>
+    <app-map [coordinates]="mapCoordinates" [markers]="markers" [zoom]="10" [dimensions]="mapDimensions"
+      (mapEvents)="onMapEvent($event)">
+      <ng-template window let-marker="marker">
+        <div class="d-flex justify-content-between marker-info">
+          <div class="w-50">
+            <strong>{{ 'dictionary.latitude' | translate | titlecase }}</strong>
+            <br>
+            {{ marker.latitude }}
+          </div>
+          <div class="w-50">
+            <strong>{{ 'dictionary.longitude' | translate | titlecase }}</strong>
+            <br>
+            {{ marker.longitude }}
+          </div>
+        </div>
+      </ng-template>
+    </app-map>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="mat-dialog-actions">
+    <button type="button" class="btn-cancel" (click)="dismiss()">{{ 'dictionary.cancel' | translate | titlecase }}</button>
+    <button type="button" class="btn-submit" (click)="onSave()">{{ 'dictionary.choose' | translate | titlecase }}</button>
+  </mat-dialog-actions>
+
+</div>

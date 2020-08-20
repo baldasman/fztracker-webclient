@@ -1,35 +1,39 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {AuthGuard} from '@core/guards/auth.guard';
-import {ConfigurationsListGuard} from '@core/guards/configurations.guard';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
+import { AuthenticationGuard } from '@core-modules/core';
+
+import { StoresResolver } from '@core-modules/core';
+
+import { PageNotFoundComponent } from '@core-modules/main-theme';
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'landing'}, 
   {
-    path: 'landing',
-    pathMatch: 'prefix',
-    loadChildren: '@landing/landing.module#LandingModule'
+    path: 'not-found',
+    component: PageNotFoundComponent,
   },
   {
-    path: 'insights',
-    pathMatch: 'prefix',
-    canActivate: [AuthGuard],
-    loadChildren: '@insights/insights.module#InsightsModule'
-  },
-  {path: 'signin', loadChildren: '@sign-in/sign-in.module#SignInModule'}, 
-  {
-    path: 'signup',
-    canActivate: [ConfigurationsListGuard],
-    loadChildren: '@sign-up/sign-up.module#SignUpModule'
+    path: 'auth',
+    loadChildren: () => import('@auth-feature-module/authentication.module').then(m => m.AuthenticationModule)
   },
   {
-    path: 'recover',
-    loadChildren: '@recover/recover-password.module#RecoverPasswordModule'
+    path: '',
+    canActivate: [AuthenticationGuard],
+    resolve: {
+      storesResolver: StoresResolver
+    },
+    loadChildren: () => import('@home-feature-module/home.module').then(m => m.HomeModule)
   },
-  {path: '**', redirectTo: 'landing'}
+
+  {
+    path: '**',
+    redirectTo: 'not-found',
+  }
+
 ];
 
-@NgModule({imports: [RouterModule.forRoot(routes)], exports: [RouterModule]})
-export class AppRoutingModule {
-}
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

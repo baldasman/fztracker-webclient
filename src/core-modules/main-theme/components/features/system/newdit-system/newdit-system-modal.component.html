@@ -1,0 +1,40 @@
+<main-theme-modal (dismissEvent)="onCancel()">
+  <ng-container header>{{ title }}</ng-container>
+
+  <ng-container body>
+    <catalog-loader name="create-system"></catalog-loader>
+    <form *ngIf="contentReady" [formGroup]="form" (ngSubmit)="onSave()">
+      <catalog-forms-select formControlName="entity" [formControlField]="f.entity"
+        label="{{ 'labels.system_entity' | translate }}" placeholder="{{ 'labels.select_entity' | translate }}"
+        [items]="datasets.entities" [required]="true" [clearable]="false" appendTo=".cdk-overlay-pane" bindLabel="name">
+      </catalog-forms-select>
+      <div class="row">
+        <div class="col-12">
+          <catalog-forms-input autoFocus id="new-system-name"formControlName="name" [formControlField]="f.name" [required]="true"
+            label="{{ 'labels.system_name' | translate }}" maxLength="100">
+          </catalog-forms-input>
+        </div>
+      </div>
+      <catalog-forms-select formControlName="timezone" [formControlField]="f.timezone"
+        label="{{ 'labels.system_timezone' | translate }}" placeholder="{{ 'labels.select_timezone' | translate }}"
+        [items]="datasets.timezones" [required]="true" [clearable]="false" appendTo=".cdk-overlay-pane" bindValue="name"
+        bindLabel="name">
+      </catalog-forms-select>
+      <div class="row">
+        <div class="col-12">
+          <label>{{ 'labels.system_coordinates' | translate }}</label>
+          <catalog-forms-coordinates [form]="form" [coordinates]="data?.system?.coordinates" (mapStateEvent)="updateMapStatus($event)">
+          </catalog-forms-coordinates>
+        </div>
+      </div>
+    </form>
+  </ng-container>
+
+  <ng-container footer>
+    <button type="button" class="btn-cancel"
+      (click)="onCancel()">{{ 'dictionary.cancel' | translate | titlecase }}</button>
+    <button type="button" class="btn-submit"
+      (click)="onSave()">{{ actionButton }}</button>
+  </ng-container>
+
+</main-theme-modal>

@@ -1,0 +1,35 @@
+<div class="kt-grid kt-wizard-v2 kt-wizard-v2--white">
+
+  <div class="kt-grid__item kt-wizard-v2__aside px-5">
+    <div class="kt-wizard-v2__nav">
+
+      <div class="text-center pb-5">
+        <i class="fa-8x text-secondary" [ngClass]="wizardSummary.getIcon()"></i>
+        <h2 class="pt-4">{{ wizardSummary.getTitle() | translate }}</h2>
+        <span class="pt-4">{{ wizardSummary.getDescription() | translate }}</span>
+      </div>
+
+      <div *ngFor="let summaryStep of wizardSummary.summary; let i = index;"
+        class="w-100 d-inline-flex align-items-center justify-content-between text-left py-2 my-2 custom-states"
+        [ngClass]="wizardSummary.getSummaryState(i)">
+        <div>
+          <h6 class="mb-0 ml-3">{{ summaryStep.title | translate }}</h6>
+          <span class="ml-3"> {{ 'dictionary.' + wizardSummary.getSummaryState(i) | translate | titlecase }} </span>
+        </div>
+        <div *ngIf="wizardSummary.getSummarySteps(i).length > 1" class="ml-auto mr-3 text-center">
+          <!-- steps: -->
+          <span *ngFor="let step of wizardSummary.getSummarySteps(i); let sI = index;" class="label" [class]="step.state">{{ sI + 1 }}</span>
+        </div>
+        <div class="summary-step-icon">
+          <i class="" [class]="summaryStep.icon"></i>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v2__wrapper custom-content">
+    <ng-container [ngTemplateOutlet]="selected.content"></ng-container>
+  </div>
+
+</div>

@@ -1,0 +1,35 @@
+<div [matMenuTriggerFor]="userPopup" class="topbar-item">
+  <div class="btn btn-icon w-auto btn-clean d-flex align-items-center btn-lg px-2">
+    <span class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1">{{ 'dictionary.hi' | translate | titlecase }}, </span>
+    <span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3">{{ firstName | titlecase }}</span>
+    <span class="symbol symbol-35 symbol-light-success">
+      <span class="symbol-label font-size-h5 font-weight-bold">{{ firstNameLetter }}</span>
+    </span>
+  </div>
+</div>
+
+<mat-menu #userPopup>
+  <div class="navi">
+
+    <div class="d-flex align-items-center p-4 user-popup">
+      <div class="d-flex flex-grow-1 font-size-h5 mr-5">{{ userInfo.user.name | titlecase }}</div>
+      <div class="symbol">
+        <span class="symbol-label text-success font-weight-bold font-size-h4">{{ firstNameLetter }}</span>
+      </div>
+    </div>
+
+    <div class="navi-separator"></div>
+
+    <div class="px-4 py-3">
+      <div>{{ 'labels.you_are_on_entity' | translate }} </div>
+      <div><b>{{ userInfo.entity.name | titlecase }}</b></div>
+    </div>
+
+    <div class="navi-separator"></div>
+
+    <div class="px-4 py-3">
+      <button class="btn btn-light-primary btn-bold w-100" (click)="signOut()">{{ 'labels.sign_out' | translate }}</button>
+    </div>
+
+  </div>
+</mat-menu>

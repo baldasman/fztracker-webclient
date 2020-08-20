@@ -1,0 +1,44 @@
+<main-theme-header-mobile></main-theme-header-mobile>
+
+<div class="d-flex flex-column flex-root">
+
+  <div class="d-flex flex-row flex-column-fluid page">
+
+    <ng-container *ngIf="asideSelfDisplay">
+      <router-outlet name="layout-aside-left"></router-outlet>
+    </ng-container>
+
+    <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+
+      <main-theme-header></main-theme-header>
+
+      <div class="content d-flex flex-column flex-column-fluid" id="kt_content" [ngClass]="contentClasses">
+
+        <!-- <main-theme-aside-bar name="asideBarLayoutPageLeft" sidenavStyleClass="aside-bar-layout-page-left">
+          <ng-container sidenav>
+            <router-outlet name="page-aside-left"></router-outlet>
+          </ng-container>
+        </main-theme-aside-bar> -->
+
+        <ng-container *ngIf="subheaderDisplay">
+          <main-theme-subheader></main-theme-subheader>
+        </ng-container>
+
+        <div ktContentAnimate class="d-flex flex-column-fluid">
+          <div [ngClass]="contentContainerClasses">
+            <catalog-loader name="appPageLoader" type="ball-clip-rotate-multiple"></catalog-loader>
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- <kt-footer></kt-footer> -->
+
+    </div>
+
+  </div>
+
+  <main-theme-scroll-top></main-theme-scroll-top>
+
+</div>

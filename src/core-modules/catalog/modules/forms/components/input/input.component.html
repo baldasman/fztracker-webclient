@@ -1,0 +1,76 @@
+<label *ngIf="label"><i [class]="icon"></i>{{ label | titlecase }} {{ required ? '*' : '' }}</label>
+<div [ngClass]="{'form-input-icon form-input-icon-right': fieldIcon || hasError || isLoading || showClearContentAction, 'input-group': isInputGroup}">
+  <div #prependedContent class="input-group-prepend">
+    <ng-content select="[prepend]"></ng-content>
+  </div>
+  <div *ngFor="let action of actions" class="input-group-prepend">
+    <span *ngIf="action.type === 'label' && action.orientation === 'left'" class="input-group-text">
+      {{ action.title }}
+    </span>
+    <a *ngIf="action.type === 'button' && action.orientation === 'left'" class="btn btn-secondary"
+      (click)="onActionClicked(action.id)">
+      <i class="{{action.icon}}"></i>
+    </a>
+  </div>
+  <input
+    [id]="id"
+    [type]="type"
+    [placeholder]="placeholder"
+    [required]="required"
+    [disabled]="formControlField.disabled"
+    [readonly]="readonly"
+    [title]="tooltip"
+    [value]="value"
+    [attr.minLength]="minLength"
+    [attr.maxLength]="maxLength"
+    [attr.min]="min"
+    [attr.max]="max"
+    [attr.autofocus]="autofocus"
+    class="form-control text-dark"
+    [ngClass]="{'border border-danger': hasError && formControlField.touched}"
+    (input)="onChanged($event)"
+    (blur)="onTouched()">
+  <div #appendedContent class="input-group-append">
+    <ng-content select="[append]"></ng-content>
+  </div>
+  <div *ngIf="copyToClipboard" class="input-group-append">
+    <a [id]="clipboardId" href="javascript:;" class="btn btn-secondary clipboardId" data-clipboard="true"><i class="la la-copy"></i></a>
+  </div>
+  <div *ngFor="let action of actions" class="input-group-prepend">
+    <span *ngIf="action.type === 'label' && action.orientation === 'right'" class="input-group-text">
+      {{ action.title }}
+    </span>
+    <a *ngIf="action.type === 'button' && action.orientation === 'right'" href="javascript:;" class="btn btn-secondary"
+      (click)="onActionClicked(action.id)">
+      <i class="{{action.icon}}"></i>
+    </a>
+    <a *ngIf="action.type === 'download'" href="{{action.downloadLink}}" target="_blank" class="btn btn-secondary">
+      <i class="{{action.icon}}"></i>
+    </a>
+    <a *ngIf="action.type === 'password' && type === 'password'" href="javascript:;"
+      (click)="togglePasswordVisibility(true)" class="btn btn-secondary">
+      <i class="fa fa-eye"></i>
+    </a>
+    <a *ngIf="action.type === 'password' && type === 'text'" href="javascript:;" (click)="togglePasswordVisibility(false)"
+      class="btn btn-secondary">
+      <i class="fa fa-eye-slash"></i>
+    </a>
+  </div>
+  <span *ngIf="hasError" class="field-icon">
+    <i class="fa fa-exclamation-triangle text-danger" title="{{ errorMessage }}"></i>
+  </span>
+  <span *ngIf="fieldIcon" class="field-icon" (click)="fieldIconClicked($event)">
+    <i class="{{ fieldIcon }}"></i>
+  </span>
+  <span *ngIf="isLoading" class="field-icon">
+    <div class="spinner-border text-primary"></div>
+  </span>
+  <span *ngIf="showClearContentAction && value && !isLoading" class="field-icon" (click)="onShowClearContentActionClicked()">
+    <i class="fa fa-times"></i>
+  </span>
+</div>
+
+<div *ngIf="!hideMessages" class="messages-section">
+  <small *ngIf="description && !hasError" class="pt-1">{{ description }}</small>
+  <small *ngIf="hasError" [ngClass]="{'text-danger': formControlField.touched}">{{ errorMessage }}</small>
+</div>

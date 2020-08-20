@@ -6,38 +6,21 @@
       "@app/*": [
         "src/app/*"
       ],
-      "@core/*": [
-        "src/modules/core/*"
+      "@core-modules/*": [
+        "src/core-modules/*"
       ],
-      "@features/*": [
-        "src/modules/features/*"
+      "@auth-feature-module/*": [
+        "src/feature-modules/authentication/*"
       ],
-      "@landing/*": [
-        "src/modules/features/landing/*"
-      ],
-      "@insights/*": [
-        "src/modules/features/insights/*"
-      ],
-      "@sign-in/*": [
-        "src/modules/features/sign-in/*"
-      ],
-      "@sign-up/*": [
-        "src/modules/features/sign-up/*"
-      ],
-      "@recover/*": [
-        "src/modules/features/recover-password/*"
-      ],
-      "@layout/*": [
-        "src/modules/layout/*"
-      ],
-      "@shared/*": [
-        "src/modules/shared/*"
-      ],
-      "@catalog/*": [
-        "src/modules/shared/catalog/*"
+      "@home-feature-module/*": [
+        "src/feature-modules/home/*"
       ]
     },
-    "outDir": "./dist/app",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    // "strict": true,
+    // "noImplicitReturns": true,
+    // "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
@@ -46,9 +29,6 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
     "lib": [
       "es2018",
       "dom"
@@ -57,5 +37,6 @@
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true
+    // "strictTemplates": true
   }
 }

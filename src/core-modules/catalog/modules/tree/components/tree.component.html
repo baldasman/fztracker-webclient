@@ -1,0 +1,27 @@
+<mat-tree [dataSource]="nodes" [treeControl]="treeControl" class="tree-instance">
+
+  <!-- This is the tree node template for leaf nodes -->
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle (click)="onNodeClick(node)"
+    (dblclick)="onNodeDblClick(node)" [ngClass]="{'background-highlight': activeNode === node}">
+    <li>
+      <div class="mat-tree-node">
+        <i class="toogle-button fa fa-chevron-down node-icon"></i>
+        <span> {{node.name}} </span>
+      </div>
+    </li>
+  </mat-tree-node>
+
+  <!-- This is the tree node template for expandable nodes -->
+  <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+    <li>
+      <div class="mat-tree-node" matTreeNodeToggle (click)="onNodeNestedClick(node)" (dblclick)="onNodeNestedDblClick(node)" [ngClass]="{'background-highlight': activeNode === node}">
+        <i class="toogle-button fas" [ngClass]="{'fa-chevron-down': treeControl.isExpanded(node), 'fa-chevron-right': !treeControl.isExpanded(node)}"></i>
+        {{node.name}} <span class="label ml-2">{{ node.totalChildren || 0 }}</span>
+      </div>
+      <ul [@slideVertical]="treeControl.isExpanded(node) ? 'show' : null">
+        <ng-container matTreeNodeOutlet></ng-container>
+      </ul>
+    </li>
+  </mat-nested-tree-node>
+
+</mat-tree>

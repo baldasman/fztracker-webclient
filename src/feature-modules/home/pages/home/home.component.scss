@@ -1,0 +1,9 @@
+.page-custom {
+  @media (min-width: 1024px) {
+    margin-top: -55px; // to remove gap left by subheader bar
+  }
+}
+
+.system-card {
+  padding-top: 25px;
+}

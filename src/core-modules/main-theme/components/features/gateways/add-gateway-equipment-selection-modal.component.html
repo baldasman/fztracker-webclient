@@ -1,0 +1,105 @@
+<main-theme-modal (dismissEvent)="onCancel()">
+
+  <ng-container header>{{ 'features.gateway_management.titles.choose_your_equipment' | translate }}</ng-container>
+
+  <ng-container body>
+
+    <catalog-loader name="add-gateway-template-selection-loader"></catalog-loader>
+
+    <div *ngIf="pageState === 'EQUIPMENTS'" class="row">
+
+      <div class="d-flex justify-content-between">
+        <a *ngFor="let gatewaTemplate of gatewayTemplates" (click)="onGatewayTemplateClick(gatewaTemplate.id)"
+          (dblclick)="onGatewayTemplateDblClick(gatewaTemplate.id)" class="gateway-template-card"
+          [ngClass]="{'selected': gatewaTemplate.id === selectedGatewayTemplateId}">
+          <div class="text-center p-2">
+            <img [src]="gatewaTemplate.imageUrl" class="image">
+            <div class="font-weight-bold">{{ gatewaTemplate.name }}</div>
+          </div>
+        </a>
+      </div>
+
+    </div>
+
+    <div *ngIf="pageState === 'COMMAND'">
+
+      <div *ngIf="!licensingInfo.isCompleted">
+        <div class="pb-4">
+          <h5>{{ 'features.gateway_management.titles.run_this_command' | translate }}</h5>
+          <div>{{ 'features.gateway_management.messages.run_this_command' | translate }}</div>
+        </div>
+
+        <div class="command-section input-group">
+          <input type="text" class="form-control form-control-lg" [value]="licensingInfo.command" disabled="true">
+          <div class="input-group-append">
+            <button [cdkCopyToClipboard]="licensingInfo.command" class="btn btn-outline-secondary" (click)="onCopyToClipboard()">
+              <i class="fas fa-copy px-2"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="pt-5 pb-4">
+          <h5>{{ 'features.gateway_management.titles.wait_for_a_license' | translate }}</h5>
+          <div>{{ 'features.gateway_management.messages.wait_for_a_license' | translate }}</div>
+        </div>
+
+        <div class="row py-5">
+          <div class="col-3">
+            <div><catalog-loader name="waiting-for-license-loader" type="timer" size="medium" bgColor="rgba(0, 0, 0, 0)" color="#0abb87"></catalog-loader></div>
+          </div>
+          <div class="col-9">
+            <h4>{{ licensingInfo.message | translate }}</h4>
+          </div>
+          <div class="col-3 timer">
+            <div>{{ timer.counterFormatted }} {{ 'dictionary.remaining' | translate }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="licensingInfo.isCompleted && licensingInfo.isCompletedOk" class="row py-5">
+        <div class="col-5 text-center text-success">
+          <i class="fas fa-flag-checkered fa-10x"></i>
+        </div>
+        <div class="col-5">
+          <h4>{{ 'dictionary.congratulations' | translate | titlecase }}...</h4>
+          <div>{{ licensingInfo.message | translate }}</div>
+            <div class="d-flex justify-content-between pt-5">
+              <h6>{{ 'labels.serial_number' | translate | titlecase }}:</h6>
+            <h6>{{ licensingInfo.serialNumber }}</h6>
+          </div>
+          <div class="d-flex justify-content-between py-3">
+            <h6>{{ 'labels.label_key' | translate | titlecase }}:</h6>
+            <h6>{{ licensingInfo.labelKey }}</h6>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="licensingInfo.isCompleted && !licensingInfo.isCompletedOk" class="row py-5">
+        <div class="col-4 text-center text-warning">
+          <i class="fas fa-frown fa-10x"></i>
+        </div>
+        <div class="col-8">
+          <h4>{{ licensingInfo.message | translate }}</h4>
+          <div>{{ 'features.gateway_management.messages.error_try_again' | translate }}</div>
+        </div>
+      </div>
+
+    </div>
+
+  </ng-container>
+
+  <ng-container footer>
+    <button type="button" *ngIf="!licensingInfo.isCompleted"
+      class="btn-cancel" (click)="onCancel()">{{ 'dictionary.cancel' | translate | titlecase }}</button>
+
+    <button type="button" *ngIf="pageState === 'EQUIPMENTS'" [disabled]="!selectedGatewayTemplateId"
+      class="btn-submit" (click)="requestLicense()">{{ 'dictionary.choose' | translate | titlecase }}</button>
+
+    <button type="button" *ngIf="pageState === 'COMMAND' && licensingInfo.isCompleted && licensingInfo.isCompletedOk"
+      [disabled]="!licensingInfo.isCompletedOk" class="btn-submit" (click)="onSubmit()">{{ 'dictionary.proceed' | translate | titlecase }}</button>
+
+    <button type="button" *ngIf="pageState === 'COMMAND' && licensingInfo.isCompleted && !licensingInfo.isCompletedOk"
+      class="btn-primary" (click)="onCancel()">{{ 'dictionary.close' | translate | titlecase }}</button>
+  </ng-container>
+
+</main-theme-modal>

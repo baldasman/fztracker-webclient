@@ -1,0 +1,48 @@
+.tree-instance-invisible {
+  display: none;
+}
+
+.tree-instance {
+  font-size: 1rem;
+
+  .toogle-button {
+    font-size: 1.2rem !important;
+    color: #959cb6;
+    width: 30px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+
+  ul,
+  li {
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+  }
+
+  ul {
+    padding-left: 20px;
+    overflow: hidden;
+  }
+
+  .mat-tree-node {
+    font-size: 1rem;
+    min-height: unset !important;
+    height: 30px;
+    cursor: pointer;
+  }
+
+  .mat-tree-node:hover {
+    background-color: #f0f0f6;
+    border-radius: 4px;
+  }
+
+}
+
+.background-highlight {
+  background-color: whitesmoke;
+}
+
+.node-icon {
+  color: transparent !important;
+}

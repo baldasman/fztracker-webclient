@@ -1,0 +1,18 @@
+<div [matMenuTriggerFor]="languagePopup" class="topbar-item">
+  <div class="btn btn-icon btn-clean btn-dropdown btn-lg mr-1">
+    {{ currentLanguage.language | uppercase }}
+  </div>
+</div>
+
+<mat-menu #languagePopup>
+  <ul class="navi navi-hover py-4">
+    <ng-container *ngFor="let language of languages">
+      <li class="navi-item" [ngClass]="{'active': language.active}">
+        <a class="navi-link" [ngClass]="{'active': language.active}" (click)="setLanguage(language.language)">
+          <span class="symbol symbol-20 mr-4"> {{language.language | uppercase }} </span>
+          <span class="navi-text">{{ language.name }}</span>
+        </a>
+      </li>
+    </ng-container>
+  </ul>
+</mat-menu>

@@ -1,0 +1,38 @@
+<!-- <div id="kt_header_mobile" class="kt-header-mobile kt-header-mobile--fixed">
+	<div class="kt-header-mobile__logo">
+		<a href="javascript:;" (click)="redirect()">
+			<img alt="logo" [attr.src]="headerLogo" class="header-logo" />
+		</a>
+	</div>
+
+	<div class="kt-header-mobile__toolbar">
+		<button [hidden]="!asideDisplay" class="kt-header-mobile__toggler kt-header-mobile__toggler--left" id="kt_aside_mobile_toggler"><span></span></button>
+		<button class="kt-header-mobile__toggler" id="kt_header_mobile_toggler"><span></span></button>
+		<button ktToggle [options]="toggleOptions" class="kt-header-mobile__topbar-toggler" id="kt_header_mobile_topbar_toggler"><i class="flaticon-more"></i></button>
+	</div>
+</div> -->
+
+
+<div id="kt_header_mobile" class="header-mobile align-items-center" [ngClass]="headerMobileClasses">
+  
+	<a href="javascript:;" (click)="goToHome()">
+		<img alt="logo" [attr.src]="headerLogo" class="header-logo" />
+	</a>
+
+  <div class="d-flex align-items-center">
+    <ng-container *ngIf="asideSelfDisplay">
+      <button class="btn p-0 burger-icon burger-icon-left" id="kt_aside_mobile_toggle"><span></span></button>
+    </ng-container>
+
+    <ng-container *ngIf="headerMenuSelfDisplay">
+      <button class="btn p-0 burger-icon ml-4" id="kt_header_mobile_toggle"><span></span></button>
+    </ng-container>
+
+    <button ktToggle [options]="toggleOptions" class="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle">
+      <span inlineSVG="assets/theme/media/svg/icons/General/User.svg" class="svg-icon svg-icon-xl"></span>
+    </button>
+
+  </div>
+
+</div>
+
