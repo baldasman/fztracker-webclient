@@ -56,7 +56,7 @@ export class EnvironmentStore extends Store<EnvironmentModel> implements OnDestr
           state.authentication // Has authentication info!
         ) {
 
-          this.initializeWebsockets(); // Having authentication information, we can start WebSockets connection.
+          // this.initializeWebsockets(); // Having authentication information, we can start WebSockets connection.
 
           subscription$.next(true);
           subscription$.unsubscribe(); // Unsubscribe own subscription.

@@ -1,6 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Animations, Core, Mixin, Stores } from '@app/base';
 import { LayoutConfigService } from '@core-modules/main-theme/services/layout-config.service';
+import { Observable, Subscription } from 'rxjs';
+import { CardService } from '@core-modules/core/services/card.service';
 
 
 @Component({
@@ -19,7 +21,9 @@ export class HomeComponent extends Mixin(Core, Animations, Stores) implements On
   colorsThemeBasePrimary = '';
   colorsThemeLightPrimary = '';
 
-  constructor(private layoutConfigService: LayoutConfigService) {
+  private _docSub: Subscription;
+
+  constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService) {
     super();
 
     this.fontFamily = this.layoutConfigService.getConfig('js.fontFamily');
@@ -32,6 +36,12 @@ export class HomeComponent extends Mixin(Core, Animations, Stores) implements On
   }
 
   ngOnInit() {
+    this._docSub = this.cardService.notification.subscribe(data => {
+      console.log('event', data);
+
+      // save uuid to input
+    });
+ 
     this.chartOptions = this.getChartOptions();
   }
 
