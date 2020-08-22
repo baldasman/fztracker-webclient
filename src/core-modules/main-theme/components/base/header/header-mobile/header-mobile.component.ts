@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { LayoutConfigService } from '../../../../services/layout-config.service';
-import { HtmlClassService } from '../../../../services/html-class.service';
-
 import { ToggleOptions } from '../../../../directives/toggle.directive';
-import { SystemStore } from '@core-modules/stores';
+import { HtmlClassService } from '../../../../services/html-class.service';
+import { LayoutConfigService } from '../../../../services/layout-config.service';
+
 
 @Component({
   selector: 'main-theme-header-mobile',
@@ -28,7 +26,6 @@ export class HeaderMobileComponent implements OnInit {
   constructor(
     private layoutConfigService: LayoutConfigService,
     private router: Router,
-    private systemStore: SystemStore,
     private htmlClassService: HtmlClassService
   ) { }
 
@@ -41,10 +38,6 @@ export class HeaderMobileComponent implements OnInit {
   }
 
   goToHome() {
-    if (this.systemStore.getSystem() && this.systemStore.getSystem().id) {
-      this.router.navigateByUrl(`/${this.systemStore.getSystem().id}`);
-    } else {
-      this.router.navigateByUrl('/');
-    }
+    this.router.navigateByUrl('/');
   }
 }

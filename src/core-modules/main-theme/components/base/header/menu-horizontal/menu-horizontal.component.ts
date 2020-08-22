@@ -1,25 +1,16 @@
-import { AfterViewInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
-import { take } from 'rxjs/operators';
-
-import { get, cloneDeep, upperFirst } from 'lodash';
-
-import { Mixin, Core, Stores, Animations } from '@app/base';
-
-import { ImportSystemModalComponent } from '@core-modules/main-theme/components/features/system/import-system-modal.component';
-// import { ExportSystemModalComponent } from '@core-modules/main-theme/components/features/system/export-system/export-system-modal.component';
-
+import { Animations, Core, Mixin, Stores } from '@app/base';
 import { DialogsService } from '@core-modules/main-theme/services/dialogs.service';
-import { LayoutConfigService } from '../../../../services/layout-config.service';
-import { HtmlClassService } from '../../../../services/html-class.service';
-import { SystemsService } from '../../../../services/systems.service';
-
+import { get } from 'lodash';
+import { filter } from 'rxjs/operators';
+import { MenuOptions } from '../../../../directives/menu.directive';
 import { OffcanvasOptions } from '../../../../directives/offcanvas.directive';
-import { MenuOptions} from '../../../../directives/menu.directive';
+import { HtmlClassService } from '../../../../services/html-class.service';
+import { LayoutConfigService } from '../../../../services/layout-config.service';
+import { menus } from '../../../../_config/menus.config';
 
-import { menus, menuDatasources } from '../../../../_config/menus.config';
 
 @Component({
   selector: 'main-theme-header-menu-horizontal',
@@ -71,7 +62,6 @@ export class MenuHorizontalComponent extends Mixin(Core, Stores, Animations) imp
     private dialog: MatDialog,
     private dialogsService: DialogsService,
     private layoutConfigService: LayoutConfigService,
-    private systemsService: SystemsService,
     public htmlClassService: HtmlClassService,
   ) {
     super();
@@ -110,126 +100,6 @@ export class MenuHorizontalComponent extends Mixin(Core, Stores, Animations) imp
       });
       return;
     }
-
-    if (menu.datasource) {
-      const datasourceFuntions = {
-        [menuDatasources.closeSystem]: this.closeSystem.bind(this),
-        [menuDatasources.exportSystemWebtool]: this.exportSystemWebtool.bind(this),
-        [menuDatasources.exportSystemWorkspace]: this.exportSystemWorkspace.bind(this),
-        [menuDatasources.importSystemWebtool]: this.importSystemWebtool.bind(this),
-        [menuDatasources.importSystemWorkspace]: this.importSystemWorkspace.bind(this),
-        [menuDatasources.saveSystem]: this.saveSystem.bind(this)
-      };
-      datasourceFuntions[menu.datasource]();
-      return;
-    }
-  }
-
-  closeSystem() {
-    if (!this.store.system.getSystem().id) {
-      this.notification.error(this.translate('messages.errors.need_to_be_in_system'));
-      return;
-    }
-
-    if (this.store.system.getSystem().isDirty) {
-      this.dialogsService.openConfirmationDialog({
-        title: this.translate('labels.close_system'),
-        message: this.translate('messages.warnings.system_changes_will_be_lost', { systemName: this.store.system.getSystem().name }),
-        confirmText: this.translate('labels.yes_close'),
-        cancelText: upperFirst(this.translate('dictionary.cancel'))
-      }).subscribe(evt => {
-        // only override current system if chosen so
-        if (evt) {
-          this.store.system.closeSystem();
-          this.notification.success(this.translate('messages.notifications.close.success'));
-          this.router.navigateByUrl('/');
-        }
-      });
-    } else {
-      this.store.system.closeSystem();
-      this.notification.success(this.translate('messages.notifications.close.success'));
-      this.router.navigateByUrl('/');
-    }
-  }
-
-  exportSystemWebtool() {
-    if (!this.store.system.getSystem().id) {
-      this.notification.error(this.translate('messages.errors.need_to_be_in_system'));
-      return;
-    }
-
-    const system = cloneDeep(this.store.system.getSystemFullStateInfo());
-    delete system.selectedGateway;
-
-    this.systemsService.exportSystem(system).subscribe(
-      res => {
-        const contentDisposition = res.headers.get('content-disposition');
-        const filename = contentDisposition?.split(';')[1]?.split('filename=')[1]?.replace(new RegExp('"', 'g'), '')?.trim() || `${this.store.system.getSystem().name}.iwfx`;
-        this.downloadFile(res.body, filename, res.headers.get('content-type'));
-      },
-      () => this.notification.error('Error exporting system.')
-    );
-  }
-
-  exportSystemWorkspace() {
-    if (!this.store.system.getSystem().id) {
-      this.notification.error(this.translate('messages.errors.need_to_be_in_system'));
-      return;
-    }
-
-    const system = cloneDeep(this.store.system.getSystemFullStateInfo());
-    delete system.selectedGateway;
-    this.systemsService.exportSystemDesktopTool(system).pipe(take(1)).subscribe(
-      res => {
-        const contentDisposition = res.headers.get('content-disposition');
-        const filename = contentDisposition?.split(';')[1]?.split('filename=')[1]?.replace(new RegExp('"', 'g'), '')?.trim() || `${this.store.system.getSystem().name}.isfx`;
-        this.downloadFile(res.body, filename, res.headers.get('content-type'));
-      },
-      () => this.notification.error('Error exporting system.')
-    );
-  }
-
-  importSystemWebtool() {
-    if (!this.store.system.getSystem().id) {
-      this.notification.error(this.translate('messages.errors.need_to_be_in_system'));
-      return;
-    }
-
-    this.dialog.open(ImportSystemModalComponent, {
-      panelClass: 'dialog-width-50',
-      data: { type: 'webtool' }
-    });
-  }
-
-  importSystemWorkspace() {
-    if (!this.store.system.getSystem().id) {
-      this.notification.error(this.translate('messages.errors.need_to_be_in_system'));
-      return;
-    }
-
-    this.dialog.open(ImportSystemModalComponent, {
-      panelClass: 'dialog-width-50',
-      data: { type: 'workspace' }
-    });
-  }
-
-  saveSystem() {
-    if (!this.store.system.getSystem().id) {
-      this.notification.error(this.translate('messages.errors.need_to_be_in_system'));
-      return;
-    }
-
-    this.showPageLoader();
-    this.store.system.saveSystem$().pipe(take(1)).subscribe(
-      () => {
-        this.notification.success(this.translate('messages.notifications.save.success'));
-        this.hidePageLoader();
-      },
-      () => {
-        this.notification.error(this.translate('messages.notifications.save.error'));
-        this.hidePageLoader();
-      }
-    );
   }
 
   downloadFile(data, name, type) {

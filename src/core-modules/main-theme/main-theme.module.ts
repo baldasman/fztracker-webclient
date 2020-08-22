@@ -46,30 +46,8 @@ import { WizardComponent } from './components/base/wizard/wizard.component';
 import { ScrollTopComponent } from './components/base/scroll-top/scroll-top.component';
 
 // // Features.
-// // Deploy
-import { DeployInfoModalComponent } from './components/features/deploy/deploy-info-modal/deploy-info-modal.component';
-import { DeployStatusComponent } from './components/features/deploy/deploy-status/deploy-status.component';
-import { DeployGatewaysListModalComponent } from './components/features/deploy/deploy-gateways-list/deploy-gateways-list-modal.component';
-
-// Gateways
-import { AddGatewayModalComponent } from './components/features/gateways/add-gateway-modal.component';
-import { AddGatewayEquipmentSelectionModalComponent } from './components/features/gateways/add-gateway-equipment-selection-modal.component';
-import { DeleteGatewayModalComponent } from './components/features/gateways/delete-gateway-modal.component';
-import { EditGatewayDetailsModalComponent } from './components/features/gateways/edit-gateway-details-modal.component';
-import { EditGatewayCommunicationsModalComponent } from './components/features/gateways/edit-gateway-communications-modal.component';
-import { EditGatewayModalComponent } from './components/features/gateways/edit-gateway-modal.component';
-import { GatewayManagementModalComponent } from './components/features/gateways/gateway-management-modal.component';
-
 // // Help
 import { AboutModalComponent } from './components/features/help/about-modal/about-modal.component';
-
-
-// // System
-import { ExportSystemModalComponent } from './components/features/system/export-system/export-system-modal.component';
-import { ImportSystemModalComponent } from './components/features/system/import-system-modal.component';
-import { NewditSystemModalComponent } from './components/features/system/newdit-system/newdit-system-modal.component';
-import { OpenSystemModalComponent } from './components/features/system/open-system/open-system-modal.component';
-import { SynchronizeSystemModalComponent } from './components/features/system/synchronize-system-modal.component';
 
 // // Shared.
 import { ConfirmDialogComponent } from './components/shared/dialogs/confirm-dialog.component';
@@ -78,9 +56,6 @@ import { PageNotFoundComponent } from './components/shared/pages/not-found.compo
 
 // Services.
 import { HtmlClassService } from './services/html-class.service';
-import { DialogsService } from './services/dialogs.service';
-import { EntitiesService } from './services/entities.service';
-import { SystemsService } from './services/systems.service';
 
 // Guards.
 import { CanDeactivateGuard } from './guards/can-deactivate.guard';
@@ -150,29 +125,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ScrollTopComponent,
 
     // Features.
-    // Deploy
-    DeployInfoModalComponent,
-    DeployStatusComponent,
-    DeployGatewaysListModalComponent,
-
-    // Gateways
-    AddGatewayModalComponent,
-    AddGatewayEquipmentSelectionModalComponent,
-    DeleteGatewayModalComponent,
-    EditGatewayDetailsModalComponent,
-    EditGatewayCommunicationsModalComponent,
-    EditGatewayModalComponent,
-    GatewayManagementModalComponent,
-
     // Help
     AboutModalComponent,
-
-    // System
-    ExportSystemModalComponent,
-    ImportSystemModalComponent,
-    NewditSystemModalComponent,
-    OpenSystemModalComponent,
-    SynchronizeSystemModalComponent,
 
     // Shared.
     ConfirmDialogComponent,
@@ -192,9 +146,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     },
     HtmlClassService,
-    DialogsService,
-    EntitiesService,
-    SystemsService,
 
     // Guards.
     CanDeactivateGuard
@@ -241,23 +192,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ScrollTopComponent,
 
     // Features.
-    // Deploy
-    DeployInfoModalComponent,
-    DeployStatusComponent,
-    DeployGatewaysListModalComponent,
-
-    // Gateways
-    DeleteGatewayModalComponent,
-    EditGatewayDetailsModalComponent,
-    // EditGatewayCommunicationsModalComponent,
-    EditGatewayModalComponent,
-    GatewayManagementModalComponent,
-
-    ExportSystemModalComponent,
-    NewditSystemModalComponent,
-    // ImportSystemModalComponent,
-    // SynchronizeSystemModalComponent,
-
     // Shared.
     // ConfirmDialogComponent,
     // GenericDialogComponent,

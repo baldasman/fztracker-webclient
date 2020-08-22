@@ -1,10 +1,8 @@
-import { Component, ChangeDetectionStrategy, OnInit, AfterViewInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { LayoutConfigService } from '../../../../services/layout-config.service';
 import { HtmlClassService } from '../../../../services/html-class.service';
+import { LayoutConfigService } from '../../../../services/layout-config.service';
 
-import { SystemStore } from '@core-modules/stores';
 
 @Component({
   selector: 'main-theme-aside-left-brand',
@@ -21,10 +19,8 @@ export class BrandComponent implements OnInit, AfterViewInit {
   constructor(
     private layoutConfigService: LayoutConfigService,
     private htmlClassService: HtmlClassService,
-    private router: Router,
-    private systemStore: SystemStore
+    private router: Router
   ) { }
-
 
   ngOnInit(): void {
     this.headerLogo = 'assets/images/logos/default-logo.png';
@@ -35,13 +31,8 @@ export class BrandComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void { }
 
-
   goToHome() {
-    if (this.systemStore.getSystem() && this.systemStore.getSystem().id) {
-      this.router.navigateByUrl(`/${this.systemStore.getSystem().id}`);
-    } else {
-      this.router.navigateByUrl('/');
-    }
+    this.router.navigateByUrl('/');
   }
 
   toggleAsideClick() {

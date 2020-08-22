@@ -1,4 +1,3 @@
-import { OpenSystemModalComponent } from '../components/features/system/open-system/open-system-modal.component';
 import { AboutModalComponent } from '../components/features/help/about-modal/about-modal.component';
 // import { NewditSystemModalComponent } from '../components/features/system/newdit-system/newdit-system-modal.component';
 
@@ -21,25 +20,6 @@ export const menus = {
         alignment: 'left',
         toggle: 'click',
         submenu: [
-          // ADD SYSTEM FEATURE
-          // {
-          //   title: 'app.menus.new',
-          //   bullet: 'dot',
-          //   icon: 'fas fa-file',
-          //   modal: {
-          //     component: NewditSystemModalComponent,
-          //     class: 'dialog-width-25'
-          //   }
-          // },
-          {
-            title: 'app.menus.open',
-            bullet: 'dot',
-            icon: 'fas fa-folder-open',
-            modal: {
-              component: OpenSystemModalComponent,
-              class: 'dialog-width-25'
-            }
-          },
           {
             title: 'app.menus.save',
             bullet: 'dot',

@@ -141,7 +141,6 @@ export class EnvironmentStore extends Store<EnvironmentModel> implements OnDestr
   }
 
   updateUserEntityName(id: string, name: string) {
-    this.state.authentication.entity = { id, name };
     this.setState(this.state);
   }
 

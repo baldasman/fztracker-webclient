@@ -1,25 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
-import { Observable, forkJoin } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { EnvironmentStore } from '../../stores';
 
-import { EnvironmentStore, SystemStore } from '../../stores';
 
 @Injectable()
 export class StoresResolver implements Resolve<any> {
 
   constructor(
-    private environmentStore: EnvironmentStore,
-    private systemStore: SystemStore
+    private environmentStore: EnvironmentStore
   ) { }
 
   resolve(): Observable<boolean> {
 
     return forkJoin([
-      this.environmentStore.initializeStore$(),
-      this.systemStore.initializeStore$()
+      this.environmentStore.initializeStore$()
     ]).pipe(
-      map(([envStoreInitialized, wsStoreInitialized]) => (envStoreInitialized && wsStoreInitialized))
+      map(([envStoreInitialized]) => (envStoreInitialized))
     );
 
   }

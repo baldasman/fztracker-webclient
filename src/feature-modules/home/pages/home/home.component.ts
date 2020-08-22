@@ -1,13 +1,7 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-
-import { Mixin, Core, Animations, Stores } from '@app/base';
-
-import { NewditSystemModalComponent } from '@core-modules/main-theme/components/features/system/newdit-system/newdit-system-modal.component';
-import { OpenSystemModalComponent } from '@core-modules/main-theme/components/features/system/open-system/open-system-modal.component';
-
-import { ButtonModel } from '@core-modules/core/models/button.model';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Animations, Core, Mixin, Stores } from '@app/base';
 import { LayoutConfigService } from '@core-modules/main-theme/services/layout-config.service';
+
 
 @Component({
   selector: 'app-home',

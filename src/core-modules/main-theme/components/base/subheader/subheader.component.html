@@ -1,64 +1,7 @@
-<ng-container *ngIf="isSystemOpened">
+<ng-container>
 
   <div class="subheader py-2 py-lg-4" id="kt_subheader">
     <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
-
-      <div class="btn-group btn-group-lg">
-        <button [matMenuTriggerFor]="gatewaysList" class="btn btn-clean gateway-selection-button">
-          <div *ngIf="!gateway.id" class="py-2">{{ 'dictionary.gateways' | translate | titlecase }}</div>
-          <div *ngIf="gateway.id">
-            <div class="font-size-sm">{{ gateway.serialNumber }}</div>
-            <div class="font-size-lg text-dark" style="margin-top: -2px">{{ gateway.name }}</div>
-          </div>
-          <i class="fas fa-chevron-down gateway-selection-button__arrow"></i>
-        </button>
-        <mat-menu #gatewaysList>
-          <button mat-menu-item *ngFor="let g of datasets.gateways" class="gateways-list-button" (click)="onGatewaySelected(g.id)">
-            <span class="font-size-sm">{{ g.serialNumber }}</span>
-            <h6>{{ g.name }}</h6>
-          </button>
-        </mat-menu>
-      </div>
-
-      <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
-
-      <div *ngIf="gateway.id" class="d-flex align-self-center pl-1 mr-auto" [ngClass]="gateway.statusAdditionalInfo.cssClass">
-        <i class="fa fa-server pr-2" [ngClass]="gateway.statusAdditionalInfo.cssClass"></i>
-        <h6 class="m-0" [ngClass]="gateway.statusAdditionalInfo.cssClass">
-          {{ gateway.statusAdditionalInfo.translation | translate | titlecase }}
-        </h6>
-      </div>
-
-
-      <div *ngIf="gatewaysWithUndeployedChanges > 0 && !gateway.deployInfo?.isDeploying"
-        class="deploy-notification" (click)="onDeployGateway()">
-        <div class="text-right px-3 py-2 undeployed-text">
-          <div class="">{{ 'messages.informations.you_have_undeployed_changes' | translate }}</div>
-          <div class="text-success">{{ 'labels.press_to_deploy' | translate }}</div>
-        </div>
-        <div class="divider"></div>
-        <div class="position-relative">
-          <div class="items-number">{{ gatewaysWithUndeployedChanges }}</div>
-          <i class="fas fa-paper-plane text-primary font-size-h3 pl-3 pr-4"></i>
-        </div>
-      </div>
-
-      <button *ngIf="gatewaysWithUndeployedChanges === 0 && !gateway.deployInfo?.isDeploying"
-        class="btn btn-hover-primary" matTooltip="{{ 'dictionary.deploy' | translate | titlecase }}"
-        (click)="onDeployGateway()">
-        <i class="fas fa-paper-plane text-primary font-size-h3"></i>
-      </button>
-
-
-      <div *ngIf="gateway.deployInfo?.isDeploying" class="text-center">
-        <span *ngIf="gateway.deployInfo.status === 'STARTED'" class="text-center">{{ 'features.deploy.messages.deploy_started' | translate }}</span>
-        <span *ngIf="gateway.deployInfo.status === 'DEPLOYING'" class="pr-4">{{ 'dictionary.deploying' | translate | titlecase }}</span>
-        <span *ngIf="gateway.deployInfo.status === 'DEPLOYING'">{{ gateway.deployInfo.executionPercentage }}%</span>
-        <span *ngIf="gateway.deployInfo.status === 'COMPLETED::ERROR'">{{ 'dictionary.error' | translate | titlecase }}</span>
-        <mat-progress-bar [mode]="gateway.deployInfo.status === 'DEPLOYING' ? 'determinate' : 'indeterminate'"
-          [value]="gateway.deployInfo.executionPercentage" class="custom-progress-bar">
-        </mat-progress-bar>
-      </div>
 
     </div>
   </div>

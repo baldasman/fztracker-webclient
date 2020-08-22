@@ -43,8 +43,7 @@ export class EnvironmentModel {
   };
 
   authentication: {
-    user: { auth: string, email: string, name: string, type: number }
-    entity: { id: string, name: string },
+    user: { auth: string, email: string, name: string, type: string }
     mqttConnection: IMqttServiceOptions
   };
 

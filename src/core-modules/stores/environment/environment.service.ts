@@ -17,21 +17,33 @@ export class EnvironmentService {
   constructor(
     private http: HttpClient
   ) { }
-
+  
   getUserInfo() {
-    const url = new UrlModel(this.apiUrl).setPath('auth/v1/user/details');
+    const url = new UrlModel(this.apiUrl).setPath('auth/v1/token');
     return this.http.get(url.buildUrl()).pipe(
       map((response: {
         data: {
-          auth: string,
-          name: string,
-          email?: string,
-          type?: number,
-          entity: { id: string, name: string }
+          session: {
+            authId: string,
+            sessionId: string,
+            sessionType: string,
+            numberOfLogins: number,
+            lastLoginDate: number,
+            ttl: number,
+            createdAt: number,
+          },
+          user: {
+            name: string,
+            isAdmin: boolean
+          }
         }
       }) => ({
-        user: { auth: response.data.auth, email: response.data.email, name: response.data.name, type: response.data.type },
-        entity: response.data.entity
+        user: { 
+          auth: response.data.session.authId, 
+          email: response.data.session.authId, 
+          name: response.data.user.name, 
+          type: response.data.session.sessionType 
+        }
       })
       )
     );
