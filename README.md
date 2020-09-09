@@ -20,17 +20,13 @@ iDomLive GUI Tool is a **Angular** project. It is an online version of the Tool 
 Create a new file "environment.js" file in "src" directory with the content below. Atention: this is a JS file, not TS!
 ```
 window.__env = {
-  DOMAIN: 'cloudnode.domatica.pt',
-  API_URL: 'https://api-tool.cloudnode.domatica.pt',
-  GOOGLE_API_KEY: 'AIzaSyBkENf5vtxRW87wseMjKeXHEqS-CBE5sGg',
+  DOMAIN: 'fztracker.pt',
+  API_URL: 'http://localhost:8000',
   LOG_LEVEL: 'TRACE',
 
-  WS_PROTOCOL: 'wss',
-  WS_HOSTNAME: 'ws.cloudnode.domatica.pt',
-  WS_PORT: 443,
-  WS_PATH: '',
-  WS_USERNAME: 'edge',
-  WS_PASSWORD: 'D0m4t1c4Rul35Th31o7W0rld'
+  WS_PROTOCOL: 'http',
+  WS_HOSTNAME: 'localhost',
+  WS_PORT: 8081
 };
 ```
 
