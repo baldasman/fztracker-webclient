@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-6 col-xxl-4">
+  <div class="col-lg-6 col-xxl-3">
     <div class="card card-custom" [ngClass]="cssClasses">
       <!-- Body -->
       <div class="card-body d-flex flex-column p-0">
@@ -11,7 +11,7 @@
           </span>
           <div class="d-flex flex-column text-right">
             <span class="text-dark-75 font-weight-bolder font-size-h3">652</span>
-            <span class="text-muted font-weight-bold mt-2">Cartões Registados</span>
+            <span class="text-muted font-weight-bold mt-2 font-size-h5">Cartões Registados</span>
           </div>
         </div>
         <!--begin::Chart-->
@@ -29,4 +29,132 @@
     </div>
   </div>
 
+
+
+  <div class="col-lg-6 col-xxl-3">
+    <div class="card card-custom" [ngClass]="cssClasses">
+      <!-- Body -->
+      <div class="card-body d-flex flex-column p-0">
+        <div class="d-flex align-items-center justify-content-between card-spacer flex-grow-1">
+          <span class="symbol symbol-10 symbol-light-primary mr-2">
+            <span class="symbol-label">
+              <span class="svg-icon svg-icon-xl svg-icon-primary"></span>
+            </span>
+          </span>
+          <div class="d-flex flex-column text-right">
+            <span class="text-dark-75 font-weight-bolder font-size-h3">20</span>
+            <span class="text-muted font-weight-bold mt-2 font-size-h5">Entradas-EF </span>
+          </div>
+        </div>
+        <!--begin::Chart-->
+        <div id="kt_stats_widget_12_chart" class="card-rounded-bottom" [style.height]="'150px'">
+          <apx-chart [series]="chartOptions1.series" [chart]="chartOptions1.chart" [xaxis]="chartOptions1.xaxis"
+            [yaxis]="chartOptions1.yaxis" [dataLabels]="chartOptions1.dataLabels" [stroke]="chartOptions1.stroke"
+            [legend]="chartOptions1.legend" [fill]="chartOptions1.fill" [states]="chartOptions1.states"
+            [tooltip]="chartOptions1.tooltip" [colors]="chartOptions1.colors" [markers]="chartOptions1.markers"
+            [plotOptions]="chartOptions1.plotOptions">
+          </apx-chart>
+        </div>
+        <!--end::Chart-->
+        <!--end::Stats-->
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-lg-6 col-xxl-3">
+    <div class="card card-custom" [ngClass]="cssClasses">
+      <!-- Body -->
+      <div class="card-body d-flex flex-column p-0">
+        <div class="d-flex align-items-center justify-content-between card-spacer flex-grow-1">
+          <span class="symbol symbol-10 symbol-light-primary mr-2">
+            <span class="symbol-label">
+              <span class="svg-icon svg-icon-xl svg-icon-primary"></span>
+            </span>
+          </span>
+          <div class="d-flex flex-column text-right">
+            <span class="text-dark-75 font-weight-bolder font-size-h3">100</span>
+            <span class="text-muted font-weight-bold mt-2 font-size-h5">Entradas-ALF </span>
+          </div>
+        </div>
+        <!--begin::Chart-->
+        <div id="kt_stats_widget_12_chart" class="card-rounded-bottom" [style.height]="'150px'">
+          <apx-chart [series]="chartOptions2.series" [chart]="chartOptions2.chart" [xaxis]="chartOptions2.xaxis"
+            [yaxis]="chartOptions2.yaxis" [dataLabels]="chartOptions2.dataLabels" [stroke]="chartOptions2.stroke"
+            [legend]="chartOptions2.legend" [fill]="chartOptions2.fill" [states]="chartOptions2.states"
+            [tooltip]="chartOptions2.tooltip" [colors]="chartOptions2.colors" [markers]="chartOptions2.markers"
+            [plotOptions]="chartOptions2.plotOptions">
+          </apx-chart>
+        </div>
+        <!--end::Chart-->
+        <!--end::Stats-->
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="col-lg-6 col-xxl-3">
+    <div class="card card-custom" [ngClass]="cssClasses">
+      <!-- Body -->
+      <div class="card-body d-flex flex-column p-0">
+        <div class="d-flex align-items-center justify-content-between card-spacer flex-grow-1">
+          <span class="symbol symbol-10 symbol-light-primary mr-2">
+            <span class="symbol-label">
+              <span class="svg-icon svg-icon-xl svg-icon-primary"></span>
+            </span>
+          </span>
+          <div class="d-flex flex-column text-right">
+            <span class="text-dark-75 font-weight-bolder font-size-h3">120</span>
+            <span class="text-muted font-weight-bold mt-2 font-size-h5">Entradas-CCF </span>
+          </div>
+        </div>
+        <!--begin::Chart-->
+        <div id="kt_stats_widget_12_chart" class="card-rounded-bottom" [style.height]="'150px'">
+          <apx-chart [series]="chartOptions3.series" [chart]="chartOptions3.chart" [xaxis]="chartOptions3.xaxis"
+            [yaxis]="chartOptions3.yaxis" [dataLabels]="chartOptions3.dataLabels" [stroke]="chartOptions3.stroke"
+            [legend]="chartOptions3.legend" [fill]="chartOptions3.fill" [states]="chartOptions3.states"
+            [tooltip]="chartOptions3.tooltip" [colors]="chartOptions3.colors" [markers]="chartOptions3.markers"
+            [plotOptions]="chartOptions3.plotOptions">
+          </apx-chart>
+        </div>
+        <!--end::Chart-->
+        <!--end::Stats-->
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+<div class="row">
+<div class="col-lg-6 col-xxl-6">
+  <div id="chart">
+  <apx-chart
+    [series]="chartOptions4.series"
+    [chart]="chartOptions4.chart"
+    [yaxis]="chartOptions4.yaxis"
+    [xaxis]="chartOptions4.xaxis"
+    [labels]="chartOptions4.labels"
+    [stroke]="chartOptions4.stroke"
+    [title]="chartOptions4.title"
+    [dataLabels]="chartOptions4.dataLabels"
+    [fill]="chartOptions4.fill"
+
+    [tooltip]="chartOptions4.tooltip"
+  ></apx-chart>
+</div>
+
+</div>
+
+<div class="col-lg-6 col-xxl-6">
+
+  <div id="chart">
+  <apx-chart
+    [series]="chartOptions5.series"
+    [chart]="chartOptions5.chart"
+    [labels]="chartOptions5.labels"
+    [responsive]="chartOptions5.responsive"
+  ></apx-chart>
+</div>
+</div>
 </div>
