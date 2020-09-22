@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { BaseLayoutComponent, CanDeactivateGuard } from '@core-modules/main-theme';
 // Pages.
 import { HomeComponent } from '@home-feature-module/pages/home/home.component';
+import { CardListComponent } from './pages/card-list/card-list.component';
+import { AttachCardComponent } from './pages/attach-card/attach-card.component';
 
 
 const routes: Routes = [
@@ -12,9 +14,29 @@ const routes: Routes = [
     children: [
       {
         path: '',
+        redirectTo: 'home',
+        // component: HomeComponent,
+        // resolve: { systemResolver: SystemsResolver }
+      },
+      {
+        path: 'home',
         component: HomeComponent,
         // resolve: { systemResolver: SystemsResolver }
       },
+
+      {
+        path: 'card-list',
+        component: CardListComponent,
+        // resolve: { systemResolver: SystemsResolver }
+      },
+
+      {
+        path: 'link',
+        component: AttachCardComponent ,
+
+        // resolve: { systemResolver: SystemsResolver }
+      },
+
     ]
   }
 ];
