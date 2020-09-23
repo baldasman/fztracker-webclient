@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { CardService } from '@core-modules/core/services/card.service';
 
 
+
 @Component({
   selector: 'app-attach-card',
   templateUrl: './attach-card.component.html',
@@ -11,7 +12,9 @@ import { CardService } from '@core-modules/core/services/card.service';
 })
 export class AttachCardComponent extends Mixin(Core, Animations, Stores) implements OnInit, OnDestroy {
   @Input() cssClasses = '';
-
+  FindNii : string ="";
+  Name : string;
+  RankClass: string;
 
   private _docSub: Subscription;
 
@@ -32,6 +35,11 @@ export class AttachCardComponent extends Mixin(Core, Animations, Stores) impleme
 
   }
 
+
+  FindNum() {
+    console.log("ligar a BD"+ this.FindNii)
+
+  }
 
     }
 

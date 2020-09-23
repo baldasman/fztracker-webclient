@@ -7,12 +7,14 @@ import { HomeComponent } from '@home-feature-module/pages/home/home.component';
 import { HomeRoutingModule } from './home-routing.module';
 
 
+
 @NgModule({
   imports: [
     MainThemeModule,
     SharedModule,
     NgApexchartsModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    
   ],
   declarations: [
     HomeComponent,

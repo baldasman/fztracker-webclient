@@ -13,6 +13,7 @@ import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from './config';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 const config: SocketIoConfig = { url: `${environment.WS_PROTOCOL}://${environment.WS_HOSTNAME}:${environment.WS_PORT}`, options: {} };
@@ -32,7 +33,8 @@ const config: SocketIoConfig = { url: `${environment.WS_PROTOCOL}://${environmen
     LoaderModule,
     MatDialogModule,
     AppRoutingModule,
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    NgbModule
   ],
   declarations: [AppComponent],
   providers: [DialogsService],
