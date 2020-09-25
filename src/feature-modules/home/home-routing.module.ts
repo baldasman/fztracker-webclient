@@ -5,6 +5,7 @@ import { BaseLayoutComponent, CanDeactivateGuard } from '@core-modules/main-them
 import { HomeComponent } from '@home-feature-module/pages/home/home.component';
 import { CardListComponent } from './pages/card-list/card-list.component';
 import { AttachCardComponent } from './pages/attach-card/attach-card.component';
+import { CardAddComponent } from './pages/card-add/card-add.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,13 @@ const routes: Routes = [
       {
         path: 'card-list',
         component: CardListComponent,
+        // resolve: { systemResolver: SystemsResolver }
+      },
+
+
+      {
+        path: 'addcard',
+        component: CardAddComponent,
         // resolve: { systemResolver: SystemsResolver }
       },
 

@@ -8,23 +8,27 @@
 
 <div class="">
 <div class="card card-custom card-stretch gutter-b min-h-260px">
-<form class="form">
+<form class="form"  [formGroup]="form" (ngSubmit)="FindNum()">
     <div class="card-body">
      <div class="form-group" ng-app="DemoApp" ng-controller="DemoCtrl">
-      <label>NII:</label>
-      <input (ng-model)="FindNii" class="form-control"/>
+      <label>NII: {{findnii}}</label>
 
+      <!--<input type="text" [(ngModel)]="findnii" class="form-control"/>-->
+
+      <catalog-forms-input autoFocus id="findnii" [formControlField]="f.findnii" formControlName="findnii" placeholder="Username"
+      required="true" [hideMessages]="true"></catalog-forms-input>
       <span class="form-text text-muted">Insira o NII</span>
      </div>
-     <button (click)="FindNum()" type="reset" class="btn btn-primary mr-2">Pesquisar</button>
+     <button type="submit" class="btn btn-primary mr-2">Pesquisar</button>
         </div>
      </form>
+
 
 </div></div>
 
 
 
-    <div class="">
+    <div class="123">
         
     <div class="card card-custom card-stretch gutter-b min-h-260px">
     <form class="form">
@@ -32,7 +36,7 @@
             <div class="form-group row">
             <div class="col">
             <div class="image-input image-input-outline" id="kt_image_1">
-                <div class="image-input-wrapper" style="background-image: url(assets/media/users/teste1.jpg)"></div>
+                <div class="image-input-wrapper" style="background-image: url({{urlImage}})"></div>
                
                 <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
                  <i class="fa fa-pen icon-sm text-muted"></i>
@@ -48,16 +52,17 @@
             <div class="col">
          <div class="form-group">
           <label>Nome:</label>
-          <label type="text" class="form-control"></label>
+          <label type="text" class="form-control">{{name}}</label>
      
          </div>
          <div class="form-group">
           <label>Posto e Class</label>
-          <label type="text" class="form-control">546456</label>
+          <label type="text" class="form-control">{{rankClass}}</label>
          </div>
      
         </div>
-    </div></div>
+    </div>
+    </div>
        </form>
     </div>
        
@@ -87,25 +92,25 @@
           </div>
           <div class="form-group">
             <label>Número:</label>
-           <label class="form-control">Numero do Cartão</label>
+           <label class="form-control">{{cardNumber}}</label>
            <label>Tipo:</label>
-           <label class="form-control">Tipo de Cartão</label>
+           <label class="form-control">{{cardType}}</label>
           </div>
       
        
          </div>
          <div class="card-footer" >
             
-          <button type="reset" class="btn btn-primary mr-2">Atribuir Cartão</button>
+          <button type="reset" (click)="LinkCard()" class="btn btn-primary mr-2">Atribuir Cartão</button>
           
-          <button type="reset" class="btn btn-danger float-right">Elimirar atribuição</button>
+          <button type="reset" (click)="NounCard()"class="btn btn-danger float-right">Elimirar atribuição</button>
           
       
         </div>
-          <div id= "caixa" class="alert alert-custom alert-default" role="alert">
+          <div id= "caixa" class="alert alert-custom alert-default"  style="background-color:{{color}};" role="alert">
             <div class="alert-icon"><i class="flaticon-warning text-primary"></i></div>
-            <div class="alert-text ">
-             Cartao não atribuido.
+            <div class="alert-text " >
+                {{cardStatus}}
             </div>
            </div>
          

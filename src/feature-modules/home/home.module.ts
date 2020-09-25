@@ -5,6 +5,13 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 // Pages.
 import { HomeComponent } from '@home-feature-module/pages/home/home.component';
 import { HomeRoutingModule } from './home-routing.module';
+import { AttachCardComponent } from './pages/attach-card/attach-card.component';
+import { CardListComponent } from './pages/card-list/card-list.component';
+import { CardAddComponent } from './pages/card-add/card-add.component';
+
+
+
+
 
 
 
@@ -15,9 +22,15 @@ import { HomeRoutingModule } from './home-routing.module';
     NgApexchartsModule,
     HomeRoutingModule,
     
+    
+    
   ],
   declarations: [
     HomeComponent,
+    AttachCardComponent,
+    CardListComponent,
+    CardAddComponent
+
   ],
   providers: [
     
