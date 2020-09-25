@@ -11,8 +11,18 @@ import { CardService } from '@core-modules/core/services/card.service';
   styleUrls: ['./card-list.component.scss']
 })
 export class CardListComponent extends Mixin(Core, Animations, Stores) implements OnInit, OnDestroy {
-  @Input() cssClasses = '';
  
+  //exemplo para teste, será preciso API para ir buscar este conteudo.
+  name: string = "Martins de Brito";
+  rankClass: string = "CMG FZ";
+  totalRegistos: number = 300;
+  cardNumber: string = "M0001";
+  cardUid: string = "US12324235322";
+  addDate: string = "17/01/2020";
+  cardType: string = "Militar";
+  lastRegist: string = "12/09/2020";
+  cardStatus: string = "Activo";
+  cardStatusColor: string = "label-success"
 
   private _docSub: Subscription;
 
@@ -33,6 +43,10 @@ export class CardListComponent extends Mixin(Core, Animations, Stores) implement
 
   }
 
+
+
+
+  
   
 
 
