@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { CardService } from '@core-modules/core/services/card.service';
 
 
+
 @Component({
   selector: 'app-attach-card',
   templateUrl: './attach-card.component.html',
@@ -28,6 +29,9 @@ export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) 
   cardStatus : string = "Status do Cartão ";
   cardOwner: string = "";
   color: string = "";
+  placeholherNii: string;
+  checked: boolean =false; 
+  isSwitchedOn = false;
 ;
   
 
@@ -54,14 +58,29 @@ export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) 
   }
 
 
+  onOff() {
+    //console.log("checked");
+
+    
+  }
+
   FindNum() {
     console.log("findnii =" + this.f.findnii.value);
+
+    
+
+ 
+
+    if(this.f.findnii.value ==null){
+    this.placeholherNii ="insira NII Válido"
+     return;
+    }
+    
     this.name = "teste"; // API - Devolve Entity name
     this.urlImage = "assets/media/users/teste1.jpg" ;// altera para foto cujo o nome é no {{NII}}.jpg
     this.rankClass = "rank e class"; //API - devolde o Rank e Classe
     this.cardNumber = "Numero do Cartão"; // API - Devolve cardNumber associado a esta entidade se nao existir devolve (this.cardOwner = "")
     this.cardType = "teste de cardType"; // API - Devolve Cardtype
-
 
     if (this.cardOwner == ""){
          this.cardStatus = "Cartao não Atribuido";
@@ -69,7 +88,7 @@ export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) 
 
       }     
 
-    if (!this.form.valid) {
+     if (!this.form.valid) {
       // this.hidePageLoader();
       this.f.findnii.setErrors({ custom: 'Campo obrigatório' });
       this.formService.showErrors(this.form);
@@ -81,7 +100,7 @@ export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) 
     }
     
   }
-
+ 
   
   WaitCard() {
 // API - se cartao lido, devolve o numero de cartao (this.cardNumber) e Tipo de Cartao (cardType)
@@ -108,6 +127,17 @@ NounCard(){
 // desasocia o cartao da entidade 
 
     }
+
+
+
+
+
+
+
+
+    
+
+
 
 
 }

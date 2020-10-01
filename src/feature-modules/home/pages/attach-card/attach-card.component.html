@@ -15,7 +15,7 @@
 
       <!--<input type="text" [(ngModel)]="findnii" class="form-control"/>-->
 
-      <catalog-forms-input autoFocus id="findnii" [formControlField]="f.findnii" formControlName="findnii" placeholder="Username"
+      <catalog-forms-input autoFocus id="findnii" [formControlField]="f.findnii" formControlName="findnii" placeholder="{{placeholherNii}}"
       required="true" [hideMessages]="true"></catalog-forms-input>
       <span class="form-text text-muted">Insira o NII</span>
      </div>
@@ -82,12 +82,13 @@
          </h3>
         
               <!-- como ler se o botão está on ou of ??   -->    
-             <span class="switch">Activar Leitor
+             <span class="switch" >Activar Leitor
               <label>
-               <input type="checkbox"  name=""/>
+               <input  [(ngModel)]="isSwitchedOn" value="Click" type="checkbox"  name="first"/>
                <span></span>
               </label>
              </span>
+
            
         </div>
       
@@ -100,7 +101,7 @@
            <div class="alert alert-custom alert-default" id="center" role="alert">
             <div class="alert-icon"><i class="flaticon-warning text-primary"></i></div>
             <div class="alert-text">
-            <b > Passar o cartão no leitor de cartões, e validar atribuição.</b>
+            <b > Passar o cartão no leitor para validar atribuição.</b>
             </div>
            </div>
           </div>
@@ -121,7 +122,7 @@
           
       
         </div>
-          <div id= "caixa" class="alert alert-custom alert-default"  style="background-color:{{color}};" role="alert">
+          <div id= "caixa" class="alert alert-custom alert-default"  style="background-color:{{color}}" role="alert">
             <div class="alert-icon"><i class="flaticon-warning text-primary"></i></div>
             <div class="alert-text " >
                 {{cardStatus}}
@@ -136,6 +137,11 @@
 
 
 </div>
+
+
+
+
+
 
 
 
