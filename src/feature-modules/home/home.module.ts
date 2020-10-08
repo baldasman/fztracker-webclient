@@ -7,9 +7,14 @@ import { HomeComponent } from '@home-feature-module/pages/home/home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { AttachCardComponent } from './pages/attach-card/attach-card.component';
 import { CardListComponent } from './pages/card-list/card-list.component';
-import { CardAddComponent } from './pages/card-add/card-add.component';
+import { CardProfileComponent } from './pages/card-profile/card-profile.component';
 
 
+import { BrowserModule } from '@angular/platform-browser';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CardProfileEditComponent } from './card-profileEdit/card-profileEdit.component';
+
+  
 
 
 
@@ -21,7 +26,10 @@ import { CardAddComponent } from './pages/card-add/card-add.component';
     SharedModule,
     NgApexchartsModule,
     HomeRoutingModule,
+   
+   
     
+    NgbModule,
     
     
   ],
@@ -29,11 +37,13 @@ import { CardAddComponent } from './pages/card-add/card-add.component';
     HomeComponent,
     AttachCardComponent,
     CardListComponent,
-    CardAddComponent
+    CardProfileComponent,
+    CardProfileEditComponent,
 
   ],
-  providers: [
+  providers: [ 
     
-  ]
+  ],
+  bootstrap: [HomeComponent]
 })
 export class HomeModule { }

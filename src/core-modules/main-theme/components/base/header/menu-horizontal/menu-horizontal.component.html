@@ -1,10 +1,10 @@
 <div #headerMenuOffcanvas class="header-menu-wrapper header-menu-wrapper-left" id="kt_header_menu_wrapper">
 
-  <!-- <div class="header-logo">
-      <a href="javascript:;" routerLink="/" >
-        <img alt="logo" [attr.src]="headerLogo" />
-      </a>
-    </div> -->
+  <div class="header-logo">
+    
+        <img alt="logo" src="assets/media/users/fz.png" width="40" height="40" />
+     
+    </div> 
 
 
   <div ktMenu [options]="menuOptions" id="kt_header_menu" class="header-menu header-menu-mobile " [ngClass]="headerMenuClasses">
@@ -31,6 +31,9 @@
         </ng-container>
         <!-- else arrow icons -->
         <i *ngIf="item.submenu && !item.root" class="menu-arrow"></i>
+
+  
+
       </a>
     </ng-container>
 

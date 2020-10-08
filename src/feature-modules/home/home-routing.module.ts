@@ -5,7 +5,9 @@ import { BaseLayoutComponent, CanDeactivateGuard } from '@core-modules/main-them
 import { HomeComponent } from '@home-feature-module/pages/home/home.component';
 import { CardListComponent } from './pages/card-list/card-list.component';
 import { AttachCardComponent } from './pages/attach-card/attach-card.component';
-import { CardAddComponent } from './pages/card-add/card-add.component';
+import { CardProfileComponent } from './pages/card-profile/card-profile.component';
+import { CardProfileEditComponent } from './card-profileEdit/card-profileEdit.component';
+
 
 
 const routes: Routes = [
@@ -33,8 +35,14 @@ const routes: Routes = [
 
 
       {
-        path: 'addcard',
-        component: CardAddComponent,
+        path: 'profile',
+        component: CardProfileComponent,
+        // resolve: { systemResolver: SystemsResolver }
+      },
+
+      {
+        path: 'profileEdit',
+        component: CardProfileEditComponent,
         // resolve: { systemResolver: SystemsResolver }
       },
 

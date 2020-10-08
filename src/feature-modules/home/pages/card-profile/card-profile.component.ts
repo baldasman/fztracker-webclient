@@ -9,13 +9,22 @@ import { CardService } from '@core-modules/core/services/card.service';
 
 
 
+
+
 @Component({
-  selector: 'app-card-add',
-  templateUrl: './card-add.component.html',
-  styleUrls: ['./card-add.component.scss']
+  selector: 'app-card-profile',
+  templateUrl: './card-profile.component.html',
+  styleUrls: ['./card-profile.component.scss']
 })
-export class CardAddComponent extends Mixin(Core, Animations, Stores) implements OnInit, OnDestroy {
+export class CardProfileComponent extends Mixin(Core, Animations, Stores) implements OnInit, OnDestroy {
   
+  
+  title = 'appBootstrap';
+  
+  model;
+  model2;
+
+
   @Input() cssClasses = '';
 
   chartOptions6: any = {};
@@ -26,6 +35,19 @@ export class CardAddComponent extends Mixin(Core, Animations, Stores) implements
   colorsThemeBaseDanger = '';
   colorsThemeBasePrimary = '';
   colorsThemeLightPrimary = '';
+  urlImage : string = "assets/media/users/1212.jpg";
+  name: string = "Conceição Silva";
+  rankClass: string = "Civil";
+  totalRegistos: number = 300;
+  cardNumber: string = "M0001";
+  cardUid: string = "US12324235322";
+  addDate: string = "17/01/2020";
+  cardType: string = "Civil";
+  lastRegistDate: string = "12/09/2020";
+  lastRegistHora: string = "10:22";
+  cardStatus: string = "Entrou";
+  cardStatusColor: string = "label-success";
+
 
   private _docSub: Subscription;
 
@@ -112,6 +134,15 @@ export class CardAddComponent extends Mixin(Core, Animations, Stores) implements
         ]
       };
     };
+
+
+
+
+
+
+    Find() { console.log(this.model)}
+
+
 
 
 }

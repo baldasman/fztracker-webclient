@@ -5,8 +5,8 @@ const createInterfaceArray = (s: string, n: number): string[] => {
 
 
 export const CONSTANTS = {
-  version: '3.0.0',
-  buildNumber: '20200809.1',
+  version: '1.0.0',
+  buildNumber: '2020.10',
 
   deployStatus: {
     SUCCESS: 'SUCCESS',

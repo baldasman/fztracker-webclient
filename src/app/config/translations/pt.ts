@@ -23,7 +23,7 @@ export const locale = {
         new: 'Novo',
         open: 'Abrir',
         save: 'Gravar',
-        system: 'Sistema',
+        system: 'Administrador',
         webtool: 'Webtool',
         workspace: 'Workspace'
       }
