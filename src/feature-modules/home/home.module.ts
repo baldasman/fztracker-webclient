@@ -12,7 +12,7 @@ import { CardProfileComponent } from './pages/card-profile/card-profile.componen
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CardProfileEditComponent } from './card-profileEdit/card-profileEdit.component';
+import { CardProfileEditComponent } from './pages/card-profileEdit/card-profileEdit.component';
 
   
 

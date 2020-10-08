@@ -6,7 +6,7 @@ import { HomeComponent } from '@home-feature-module/pages/home/home.component';
 import { CardListComponent } from './pages/card-list/card-list.component';
 import { AttachCardComponent } from './pages/attach-card/attach-card.component';
 import { CardProfileComponent } from './pages/card-profile/card-profile.component';
-import { CardProfileEditComponent } from './card-profileEdit/card-profileEdit.component';
+import { CardProfileEditComponent } from './pages/card-profileEdit/card-profileEdit.component';
 
 
 

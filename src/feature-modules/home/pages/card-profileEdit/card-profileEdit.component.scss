@@ -44,14 +44,14 @@
   padding: 10px 0;
 }
 .portlet>.portlet-title>.caption {
-  float: left;
+
   display: inline-block;
   font-size: 18px;
   line-height: 18px;
   padding: 10px 0;
 }
 .portlet>.portlet-title>.caption {
-  float: left;
+  
   display: inline-block;
   font-size: 18px;
   line-height: 18px;
@@ -69,7 +69,7 @@
 .portlet>.portlet-title>.nav-tabs {
   background: 0 0;
   margin: 1px 0 0;
-  float: right;
+
   display: inline-block;
   border: 0;
 }
@@ -86,4 +86,6 @@
 }
 .btn {
   outline: 0!important;
+  margin-right: 10px;
 }
+
