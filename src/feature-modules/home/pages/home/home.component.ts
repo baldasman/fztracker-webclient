@@ -37,7 +37,8 @@ export class HomeComponent extends Mixin(Core, Animations, Stores) implements On
     this.colorsGrayGray300 = this.layoutConfigService.getConfig('js.colors.gray.gray300');
     this.colorsThemeBaseDanger = this.layoutConfigService.getConfig('js.colors.theme.base.danger');
     this.colorsThemeBasePrimary = this.layoutConfigService.getConfig('js.colors.theme.base.primary');
-    this.colorsThemeLightPrimary = this.layoutConfigService.getConfig('js.colors.theme.light.primary');
+    this.colorsThemeLightPrimary = this.layoutConfigService.getConfig('js.colors.theme.light.primary'); 
+
   }
 
   ngOnInit() {
@@ -198,7 +199,7 @@ export class HomeComponent extends Mixin(Core, Animations, Stores) implements On
         }
       ],
       chart: {
-        type: 'area',
+        type: 'bar',
         height: 150,
         toolbar: {
           show: false
@@ -335,7 +336,7 @@ export class HomeComponent extends Mixin(Core, Animations, Stores) implements On
           }
         ],
         chart: {
-          type: 'area',
+          type: 'bar',
           height: 150,
           toolbar: {
             show: false
@@ -665,6 +666,7 @@ export class HomeComponent extends Mixin(Core, Animations, Stores) implements On
           type: "pie"
         },
         labels: ["No CCF", "Fora do CCF"],
+        color: ["#86c7f3", "#fffff"],
         responsive: [
           {
             breakpoint: 480,
@@ -682,6 +684,7 @@ export class HomeComponent extends Mixin(Core, Animations, Stores) implements On
 
 
     }
+
 
 
 
