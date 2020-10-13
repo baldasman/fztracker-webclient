@@ -41,6 +41,7 @@ export class CardProfileEditComponent extends Mixin(Core, Animations, Stores) im
   totalRegistos: number = 300;
   cardNumber: string = "M001";
   cardUid: string = "US12324235322";
+  cardRen: string = "";
   addDate: string = "17/01/2020";
   cardType: string = "Civil";
   lastRegistDate: string = "12/09/2020";
@@ -71,7 +72,7 @@ export class CardProfileEditComponent extends Mixin(Core, Animations, Stores) im
  
 
 
-    
+
   }
 
   ngOnInit() {
