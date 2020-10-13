@@ -39,14 +39,21 @@ export class CardProfileEditComponent extends Mixin(Core, Animations, Stores) im
   name: string = "Conceição Silva";
   rankClass: string = "Civil";
   totalRegistos: number = 300;
-  cardNumber: string = "M0001";
+  cardNumber: string = "M001";
   cardUid: string = "US12324235322";
   addDate: string = "17/01/2020";
   cardType: string = "Civil";
   lastRegistDate: string = "12/09/2020";
   lastRegistHora: string = "10:22";
   cardStatus: string = "Entrou";
-  cardStatusColor: string = "label-success";
+  cardStatus2: string = "Estado do cartão";
+  checked: boolean =false; 
+  isSwitchedOn = false;
+  btnstatus: string = "";
+  btnblock: string = "";
+
+ 
+
 
 
   private _docSub: Subscription;
@@ -54,7 +61,17 @@ export class CardProfileEditComponent extends Mixin(Core, Animations, Stores) im
   constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService) {
     super();
 
+    if (this.cardNumber == "" ) {
+      this.btnstatus = "active";
+    
+    } 
+    else {
+      this.btnstatus = "disabled";
+    }
  
+
+
+    
   }
 
   ngOnInit() {
@@ -67,8 +84,7 @@ export class CardProfileEditComponent extends Mixin(Core, Animations, Stores) im
 
   }
 
-  
-
+ 
 
 
 
@@ -76,6 +92,46 @@ export class CardProfileEditComponent extends Mixin(Core, Animations, Stores) im
     Find() { console.log(this.model)}
 
 
+    NounCard(){
+
+      // desasocia o cartao da entidade 
+            
+      var txt;
+      var person = prompt("Motivo da eliminação do Cartão");
+      if (person == null ) {
+        txt = "User cancelled the prompt.";
+      } else {
+        txt = "Motivo " + person;
+      }
+      console.log(txt);
+    }
+          
+
+  LinkCard(){
+
+    // link da entidader ao cartao 
+    console.log("add")
+
+   
+    
+    
+        }
+
+
+
+    BlockCard(){
+
+      var txt;
+      var person = prompt("Motivo do Bloqueio");
+      if (person == "") {
+        alert("Motivo Obrigatório");
+      } else {
+        txt = "Motivo " + person;
+      }
+      console.log(txt);
+
+
+    }
 
 
 }

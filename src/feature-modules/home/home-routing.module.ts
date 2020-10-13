@@ -7,6 +7,7 @@ import { CardListComponent } from './pages/card-list/card-list.component';
 import { AttachCardComponent } from './pages/attach-card/attach-card.component';
 import { CardProfileComponent } from './pages/card-profile/card-profile.component';
 import { CardProfileEditComponent } from './pages/card-profileEdit/card-profileEdit.component';
+import { CardMovementComponent } from './pages/card-movement/card-movement.component';
 
 
 
@@ -30,6 +31,12 @@ const routes: Routes = [
       {
         path: 'card-list',
         component: CardListComponent,
+        // resolve: { systemResolver: SystemsResolver }
+      },
+
+      {
+        path: 'movimentos',
+        component: CardMovementComponent,
         // resolve: { systemResolver: SystemsResolver }
       },
 
