@@ -11,6 +11,7 @@ import { CardService } from '@core-modules/core/services/card.service';
 
 
 
+
 @Component({
   selector: 'app-card-profile',
   templateUrl: './card-profile.component.html',
@@ -47,11 +48,11 @@ export class CardProfileComponent extends Mixin(Core, Animations, Stores) implem
   lastRegistHora: string = "10:22";
   cardStatus: string = "Entrou";
   cardStatusColor: string = "label-success";
-
+  
 
   private _docSub: Subscription;
 
-  constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService) {
+  constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService,) {
     super();
     this.fontFamily = this.layoutConfigService.getConfig('js.fontFamily');
     this.colorsGrayGray500 = this.layoutConfigService.getConfig('js.colors.gray.gray500');
@@ -61,14 +62,11 @@ export class CardProfileComponent extends Mixin(Core, Animations, Stores) implem
     this.colorsThemeBasePrimary = this.layoutConfigService.getConfig('js.colors.theme.base.primary');
     this.colorsThemeLightPrimary = this.layoutConfigService.getConfig('js.colors.theme.light.primary');
  
+    
   }
 
-  ngOnInit() {
-    this._docSub = this.cardService.notification.subscribe(data => {
-      console.log('event', data);
-
-      // save uuid to input
-    });
+  ngOnInit(){  
+    
  
     this.chartOptions6 = this.getChartOptions6();
 
@@ -141,6 +139,17 @@ export class CardProfileComponent extends Mixin(Core, Animations, Stores) implem
 
 
     Find() { console.log(this.model)}
+
+
+
+
+   
+    
+    
+
+
+
+
 
 
 

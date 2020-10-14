@@ -3,10 +3,8 @@ import { Animations, Core, Mixin, Stores } from '@app/base';
 import { LayoutConfigService } from '@core-modules/main-theme/services/layout-config.service';
 import { Subscription } from 'rxjs';
 import { CardService } from '@core-modules/core/services/card.service';
-
-
-
-
+import { HomeModule } from '../../home.module';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -17,16 +15,11 @@ import { CardService } from '@core-modules/core/services/card.service';
   styleUrls: ['./card-profileEdit.component.scss']
 })
 export class CardProfileEditComponent extends Mixin(Core, Animations, Stores) implements OnInit, OnDestroy {
-  
+   @Input() cssClasses = '';
   
   title = 'appBootstrap';
-  
   model;
   model2;
-
-
-  @Input() cssClasses = '';
-
   chartOptions6: any = {};
   fontFamily = '';
   colorsGrayGray500 = '';
@@ -52,38 +45,39 @@ export class CardProfileEditComponent extends Mixin(Core, Animations, Stores) im
   isSwitchedOn = false;
   btnstatus: string = "";
   btnblock: string = "";
-
+  dynamicArray: Array<HomeModule> = [];  
+  newDynamic: any = {}; 
  
 
 
 
   private _docSub: Subscription;
 
-  constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService) {
+  constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService, private toastr: ToastrService) {
     super();
 
-    if (this.cardNumber == "" ) {
+  /*   if (this.cardNumber == "" ) {
       this.btnstatus = "active";
     
     } 
     else {
       this.btnstatus = "disabled";
-    }
+    } */
  
 
 
 
   }
 
-  ngOnInit() {
-    this._docSub = this.cardService.notification.subscribe(data => {
-      console.log('event', data);
-
-      // save uuid to input
-    });
+  ngOnInit(): void {  
+    this.newDynamic = {name: "", email: "",phone:""};  
+    this.dynamicArray.push(this.newDynamic); 
  
+    
 
   }
+
+
 
  
 
@@ -133,6 +127,37 @@ export class CardProfileEditComponent extends Mixin(Core, Animations, Stores) im
 
 
     }
+
+
+
+
+
+
+    addRow() {    
+      this.newDynamic = {card: "", type: "",uid:"",addcards:"",statuscard:""};  
+        this.dynamicArray.push(this.newDynamic);  
+        this.toastr.success('Novo registo Adicionado com sucesso', 'Novo Registo');  
+        console.log(this.dynamicArray);  
+        return true;  
+    }  
+    
+    deleteRow(index) {  
+        if(this.dynamicArray.length ==1) {  
+          this.toastr.error("Não podes apagar uma linha Vazia", 'Atenção');  
+            return false;  
+        } else {  
+            this.dynamicArray.splice(index, 1);  
+            this.toastr.warning('Registao apagado com sucesso', 'Apagar Registo');  
+            return true;  
+        }  
+    }
+
+
+
+
+
+
+
 
 
 }

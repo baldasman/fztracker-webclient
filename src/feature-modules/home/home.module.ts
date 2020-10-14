@@ -11,8 +11,13 @@ import { CardProfileComponent } from './pages/card-profile/card-profile.componen
 import { CardProfileEditComponent } from './pages/card-profileEdit/card-profileEdit.component';
 import { CardMovementComponent } from './pages/card-movement/card-movement.component';
 
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+
+
 
 
   
@@ -27,9 +32,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SharedModule,
     NgApexchartsModule,
     HomeRoutingModule,
-   
-   
-    
+    FormsModule,
+    ReactiveFormsModule,
     NgbModule,
     
     
@@ -48,4 +52,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   bootstrap: [HomeComponent]
 })
-export class HomeModule { }
+export class HomeModule {
+
+  card:string;  
+  type:string;  
+  uid:string;
+  statuscard:string;
+  addcards:string;
+
+ }
