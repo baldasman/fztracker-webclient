@@ -121,7 +121,7 @@
                                         <div class="imgmil"> <div class="symbol symbol-40 symbol-sm flex-shrink-0"> 
                                        
                                             <img
-                                                src="assets/media/users/{{entity.permanent.serial}}.bmp" alt="photo"> </div></div>
+                                                src="assets/media/users/{{entity.permanent.serial}}.bmp" alt="Sem Foto"> </div></div>
                                         <div class="ml-4">
                                              <a href="/profile" class="text-dark-75 font-weight-bolder font-size-lg mb-0 text-hover-primary">
                                                 {{entity.permanent.name}}</a> <div
@@ -154,6 +154,23 @@
                        
                     
                     </tbody>
+
+                    <tfoot > 
+                        
+                        
+                        <tr><td colspan="7">  <hr>  </td> </tr>
+                        <tr>   <td   colspan="2"></td>
+                             <td data-field="Status" aria-label="5" class="datatable-cell">
+                                        <a href="#"> <span style="width: 158px;"><span
+                                            class="label label-lg font-weight-bold {{cardStatusColor}} label-inline"> < </span></span></a>
+                            </td>
+                             <td data-field="Status" aria-label="5" class="datatable-cell">
+                                    <a href="#"> <span style="width: 158px;">
+                                    <span class="label label-lg font-weight-bold {{cardStatusColor}} label-inline">></span></span></a>
+                            </td>
+                        </tr>
+                    </tfoot>
+
                 </table>
             </div>
             <!--end: Datatable-->
