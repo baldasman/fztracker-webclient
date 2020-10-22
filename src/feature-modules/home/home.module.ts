@@ -16,6 +16,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { EntityListComponent } from './pages/entity-list/entity-list.component';
 
 
 
@@ -46,6 +47,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
     CardProfileComponent,
     CardProfileEditComponent,
     CardMovementComponent,
+    EntityListComponent,
     
 
   ],

@@ -8,6 +8,7 @@ import { AttachCardComponent } from './pages/attach-card/attach-card.component';
 import { CardProfileComponent } from './pages/card-profile/card-profile.component';
 import { CardProfileEditComponent } from './pages/card-profileEdit/card-profileEdit.component';
 import { CardMovementComponent } from './pages/card-movement/card-movement.component';
+import { EntityListComponent } from './pages/entity-list/entity-list.component';
 
 
 
@@ -35,6 +36,12 @@ const routes: Routes = [
         // resolve: { systemResolver: SystemsResolver }
       },
 
+      
+      {
+        path: 'entidades',
+        component: EntityListComponent,
+        // resolve: { systemResolver: SystemsResolver }
+      },
      
       
 
