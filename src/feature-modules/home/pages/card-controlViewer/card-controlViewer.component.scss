@@ -1,0 +1,16 @@
+.page-custom {
+  @media (min-width: 1024px) {
+    margin-top: -55px; // to remove gap left by subheader bar
+  }
+}
+
+
+.parent-div {
+  height: 300px; 
+  width:200px;
+ }
+ 
+ .parent-div img {
+  height: 100%;
+  width: 100%;
+ }
