@@ -1,153 +1,128 @@
 <h1>Atribuir cartões </h1>
 
 <div class="attach">
+  <div class="form-group row">
+    <!-- left column -->
+    <div class="col-lg-3">
+      <!-- Search entity -->
+      <div class="">
+        <div class="card card-custom card-stretch gutter-b min-h-260px">
+          <form class="form" [formGroup]="entitySearchform" (ngSubmit)="searchEntity()">
+            <div class="card-body">
+              <div class="form-group" ng-app="DemoApp" ng-controller="DemoCtrl">
+                <label>NII: {{findnii}}</label>
 
-<form class="form">
-    <div class="form-group row">
-        <div class="col-lg-3">
-
-<div class="">
-<div class="card card-custom card-stretch gutter-b min-h-260px">
-<form class="form"  [formGroup]="form" (ngSubmit)="FindNum()">
-    <div class="card-body">
-     <div class="form-group" ng-app="DemoApp" ng-controller="DemoCtrl">
-      <label>NII: {{findnii}}</label>
-
-      <!--<input type="text" [(ngModel)]="findnii" class="form-control"/>-->
-
-      <catalog-forms-input autoFocus id="findnii" [formControlField]="f.findnii" formControlName="findnii" placeholder="{{placeholherNii}}"
-      required="true" [hideMessages]="true"></catalog-forms-input>
-      <span class="form-text text-muted">Insira o NII</span>
-     </div>
-     <button type="submit" class="btn btn-primary mr-2">Pesquisar</button>
-        </div>
-     </form>
-
-
-</div></div>
-
-
-
-    <div class="123">
-        
-    <div class="card card-custom card-stretch gutter-b min-h-260px">
-    <form class="form">
-        <div class="card-body">
-            <div class="form-group row">
-            <div class="col">
-            <div class="image-input image-input-outline" id="kt_image_1">
-                <div class="image-input-wrapper" style="background-image: url({{urlImage}})"></div>
-               
-                <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
-                 <i class="fa fa-pen icon-sm text-muted"></i>
-                 <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg"/>
-                 <input type="hidden" name="profile_avatar_remove"/>
-                </label>
-               
-                <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
-                 <i class="ki ki-bold-close icon-xs text-muted"></i>
-                </span>
-               </div>
+                <catalog-forms-input autoFocus id="findnii" [formControlField]="fes.findnii" formControlName="findnii"
+                  placeholder="{{ placeholherNii }}" required="true" [hideMessages]="true"></catalog-forms-input>
+                <span class="form-text text-muted">Insira o NII</span>
+              </div>
+              <button type="submit" class="btn btn-primary mr-2">Pesquisar</button>
             </div>
-            <div class="col">
-         <div class="form-group">
-          <label>Nome:</label>
-          <label type="text" class="form-control">{{name}}</label>
-     
-         </div>
-         <div class="form-group">
-          <label>Posto e Class</label>
-          <label type="text" class="form-control">{{rankClass}}</label>
-         </div>
-     
+          </form>
         </div>
+      </div>
+
+      <!-- Edit entity -->
+      <div class="123">
+        <div class="card card-custom card-stretch gutter-b min-h-260px">
+          <form class="form">
+            <div class="card-body">
+              <div class="form-group row">
+                <div class="col">
+                  <div class="image-input image-input-outline" id="kt_image_1">
+                    <div class="image-input-wrapper" style="background-image: url({{urlImage}})"></div>
+
+                    <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                      data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
+                      <i class="fa fa-pen icon-sm text-muted"></i>
+                      <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg" />
+                      <input type="hidden" name="profile_avatar_remove" />
+                    </label>
+
+                    <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                      data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+                      <i class="ki ki-bold-close icon-xs text-muted"></i>
+                    </span>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label>Nome:</label>
+                    <label type="text" class="form-control">{{name}}</label>
+
+                  </div>
+                  <div class="form-group">
+                    <label>Posto e Class</label>
+                    <label type="text" class="form-control">{{rankClass}}</label>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-    </div>
-       </form>
-    </div>
-       
-    </div>
-</div>
 
-
-
-<div class="col-lg-4">
-
-  
-
-    <div class="card card-custom  min-h-500px">
+    <!-- right column -->
+    <div class="col-lg-4">
+      <div class="card card-custom min-h-500px">
         <div class="card-header">
-         <h3 class="card-title">
-          Cartão
-         </h3>
-        
-              <!-- como ler se o botão está on ou of ??   -->    
-             <span class="switch" >Activar Leitor
-              <label>
-               <input  [(ngModel)]="isSwitchedOn" value="Click" type="checkbox"  name="first"/>
-               <span></span>
-              </label>
-             </span>
+          <h3 class="card-title">
+            Cartão
+          </h3>
 
-           
+          <!-- como ler se o botão está on ou of ??   -->
+          <span class="switch">Activar Leitor
+            <label>
+              <input [(ngModel)]="isSwitchedOn" value="Click" type="checkbox" name="first" />
+              <span></span>
+            </label>
+          </span>
         </div>
-      
-          
 
         <!--begin::Form-->
         <form class="form">
-         <div class="card-body">
-          <div class="form-group form-group-last">
-           <div class="alert alert-custom alert-default" id="center" role="alert">
-            <div class="alert-icon"><i class="flaticon-warning text-primary"></i></div>
-            <div class="alert-text">
-            <b > Passar o cartão no leitor para validar atribuição.</b>
+          <div class="card-body">
+            <div class="form-group form-group-last">
+              <div class="alert alert-custom alert-default" id="center" role="alert">
+                <div class="alert-icon"><i class="flaticon-warning text-primary"></i></div>
+                <div class="alert-text">
+                  <b> Passar o cartão no leitor para validar atribuição.</b>
+                </div>
+              </div>
             </div>
-           </div>
-          </div>
-          <div class="form-group">
-            <label>Número:</label>
-           <label class="form-control">{{cardNumber}}</label>
-           <label>Tipo:</label>
-           <label class="form-control">{{cardType}}</label>
-          </div>
-      
-       
-         </div>
-         <div class="card-footer" >
-            
-          <button type="reset" (click)="LinkCard()" class="btn btn-primary mr-2">Atribuir Cartão</button>
-          
-          <button type="reset" (click)="NounCard()"class="btn btn-danger float-right">Elimirar atribuição</button>
-          
-      
-        </div>
-          <div id= "caixa" class="alert alert-custom alert-default"  style="background-color:{{color}}" role="alert">
-            <div class="alert-icon"><i class="flaticon-warning text-primary"></i></div>
-            <div class="alert-text " >
-                {{cardStatus}}
+            <div class="form-group">
+              <label>Número:</label>
+              <label class="form-control">{{cardNumber}}</label>
+              <label>Tipo:</label>
+              <label class="form-control">{{cardType}}</label>
             </div>
-           </div>
-         
+
+
+          </div>
+
+          <div class="card-footer">
+
+            <button type="reset" (click)="LinkCard()" class="btn btn-primary mr-2">Atribuir
+              Cartão</button>
+
+            <button type="reset" (click)="NounCard()" class="btn btn-danger float-right">Elimirar
+              atribuição</button>
+
+
+          </div>
+
+          <div id="caixa" class="alert alert-custom alert-default" style="background-color:{{color}}" role="alert">
+            <div class="alert-icon"><i class="flaticon-warning text-primary"></i></div>
+            <div class="alert-text ">
+              {{cardStatus}}
+            </div>
+          </div>
         </form>
         <!--end::Form-->
-       </div>
+      </div>
     </div>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-</form>
-
-
-
+  </div>
 
 </div>
