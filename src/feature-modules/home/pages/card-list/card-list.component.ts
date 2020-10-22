@@ -30,8 +30,8 @@ export class CardListComponent extends Mixin(Core, Animations, Stores) implement
   cardStatusColor: string = "label-success"
 
 
-  cards: [CardModel];
-  entitys:[EntityModel];
+  cards: CardModel[];
+  entities: EntityModel[];
 
   constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService, private cardsService: CardsService, private entityService: EntityService) {
     super();
@@ -49,28 +49,30 @@ export class CardListComponent extends Mixin(Core, Animations, Stores) implement
     console.log('Get cards');
     this.cardsService.getCards().subscribe((data: any) => {
       console.log('cards', data);
-
-      
       this.cards = data.cards;
          
-    /*   data.cards.forEach(cards => {
+       data.cards.forEach(cards => {
         const c = {...cards};
 
         c.cardStatusColor = "label-success";
 
         this.cards.push(c);
-      }); */
+      });
 
     });
 
-
+    console.log('Get entities');
     this.entityService.getEntity().subscribe((data: any) => {
-      console.log('cards', data);
+      console.log('entities', data);
 
-      
-      this.entitys = data.entitys;
-   
+      this.entities = [];
+      data.entities.forEach(entity => {
+        const e = {...entity};
 
+        // TODO: fill additional props
+
+        this.entities.push(e);
+      });
     });
   }
 
