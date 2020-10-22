@@ -56,6 +56,7 @@ export function initializeLayoutConfig(appConfig: LayoutConfigService) {
   providers: [
     AuthenticationService,
     CardsService,
+    // TODO: add service here
     {
       // App base HREF definition.
       provide: APP_BASE_HREF,
