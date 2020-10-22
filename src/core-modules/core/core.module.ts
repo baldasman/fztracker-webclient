@@ -28,6 +28,7 @@ import { environment } from '../../app/config'; // TODO: import this in another 
 // Initialize LayoutConfigService.
 import { LayoutConfig } from '../main-theme/_config/layout.config';
 import { LayoutConfigService } from '../main-theme/services/layout-config.service';
+import { CardsService } from './services/cards.service';
 
 
 export function initializeLayoutConfig(appConfig: LayoutConfigService) {
@@ -54,6 +55,7 @@ export function initializeLayoutConfig(appConfig: LayoutConfigService) {
   ],
   providers: [
     AuthenticationService,
+    CardsService,
     {
       // App base HREF definition.
       provide: APP_BASE_HREF,
