@@ -27,7 +27,7 @@ export class CardListComponent extends Mixin(Core, Animations, Stores) implement
   cardStatusColor: string = "label-success"
 
 
-  cards: [CardModel];
+  cards: CardModel[];
   private _docSub: Subscription;
 
   constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService, private cardsService: CardsService) {
@@ -47,6 +47,7 @@ export class CardListComponent extends Mixin(Core, Animations, Stores) implement
     this.cardsService.getCards().subscribe((data: any) => {
       console.log('cards', data);
 
+      this.cards = [];
       data.cards.forEach(card => {
         const c = {...card};
 
