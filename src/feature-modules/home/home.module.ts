@@ -16,7 +16,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { CardControlViewerComponent } from './pages/card-controlViewer/card-controlViewer.component';
+
 
 
 
@@ -46,7 +46,7 @@ import { CardControlViewerComponent } from './pages/card-controlViewer/card-cont
     CardProfileComponent,
     CardProfileEditComponent,
     CardMovementComponent,
-    CardControlViewerComponent,
+    
 
   ],
   providers: [ 

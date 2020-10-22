@@ -40,11 +40,11 @@ export class CardListComponent extends Mixin(Core, Animations, Stores) implement
   }
 
   ngOnInit() {
-    this._docSub = this.cardService.notification.subscribe(data => {
+  /*   this._docSub = this.cardService.notification.subscribe(data => {
       console.log('event', data);
-
+ */
       // save uuid to input
-    });
+  //  });
 
     console.log('Get cards');
     this.cardsService.getCards().subscribe((data: any) => {
@@ -69,14 +69,7 @@ export class CardListComponent extends Mixin(Core, Animations, Stores) implement
 
       
       this.entitys = data.entitys;
-         
-    /*   data.cards.forEach(cards => {
-        const c = {...cards};
-
-        c.cardStatusColor = "label-success";
-
-        this.cards.push(c);
-      }); */
+   
 
     });
   }

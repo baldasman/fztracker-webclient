@@ -11,6 +11,7 @@ import { CardMovementComponent } from './pages/card-movement/card-movement.compo
 
 
 
+
 const routes: Routes = [
   {
     path: '',
@@ -34,11 +35,7 @@ const routes: Routes = [
         // resolve: { systemResolver: SystemsResolver }
       },
 
-      {
-        path: 'viewer',
-        component: CardControlViewerComponent,
-        // resolve: { systemResolver: SystemsResolver }
-      },
+     
       
 
       {
