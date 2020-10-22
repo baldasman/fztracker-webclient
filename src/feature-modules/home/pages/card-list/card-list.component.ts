@@ -33,8 +33,6 @@ export class CardListComponent extends Mixin(Core, Animations, Stores) implement
   cards: [CardModel];
   entitys:[EntityModel];
 
-  private _docSub: Subscription;
-
   constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService, private cardsService: CardsService, private entityService: EntityService) {
     super();
 
