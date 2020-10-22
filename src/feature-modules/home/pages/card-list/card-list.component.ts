@@ -5,6 +5,9 @@ import { Subscription } from 'rxjs';
 import { CardService } from '@core-modules/core/services/card.service';
 import { CardsService } from '@core-modules/core/services/cards.service';
 import { CardModel } from '@core-modules/core/models/card.model';
+import { uniqueId } from 'lodash';
+import { EntityModel } from '@core-modules/core/models/entity.model';
+import { EntityService } from '@core-modules/core/services/entity.service';
 
 
 @Component({
@@ -28,9 +31,11 @@ export class CardListComponent extends Mixin(Core, Animations, Stores) implement
 
 
   cards: [CardModel];
+  entitys:[EntityModel];
+
   private _docSub: Subscription;
 
-  constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService, private cardsService: CardsService) {
+  constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService, private cardsService: CardsService, private entityService: EntityService) {
     super();
 
     
@@ -47,13 +52,33 @@ export class CardListComponent extends Mixin(Core, Animations, Stores) implement
     this.cardsService.getCards().subscribe((data: any) => {
       console.log('cards', data);
 
-      data.cards.forEach(card => {
-        const c = {...card};
+      
+      this.cards = data.cards;
+         
+    /*   data.cards.forEach(cards => {
+        const c = {...cards};
 
         c.cardStatusColor = "label-success";
 
         this.cards.push(c);
-      });
+      }); */
+
+    });
+
+
+    this.entityService.getEntity().subscribe((data: any) => {
+      console.log('cards', data);
+
+      
+      this.entitys = data.entitys;
+         
+    /*   data.cards.forEach(cards => {
+        const c = {...cards};
+
+        c.cardStatusColor = "label-success";
+
+        this.cards.push(c);
+      }); */
 
     });
   }

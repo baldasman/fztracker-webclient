@@ -35,6 +35,13 @@ const routes: Routes = [
       },
 
       {
+        path: 'viewer',
+        component: CardControlViewerComponent,
+        // resolve: { systemResolver: SystemsResolver }
+      },
+      
+
+      {
         path: 'movimentos',
         component: CardMovementComponent,
         // resolve: { systemResolver: SystemsResolver }

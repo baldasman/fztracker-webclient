@@ -8,7 +8,7 @@ import { CardService } from '@core-modules/core/services/card.service';
 @Component({
   selector: 'app-card-controlViewer',
   templateUrl: './card-controlViewer.component.html',
-  styleUrls: ['./card-controlViewer.component.scss']
+  styleUrls: ['./card-controlViewer.component.scss'],
 })
 export class CardControlViewerComponent extends Mixin(Core, Animations, Stores) implements OnInit, OnDestroy {
   

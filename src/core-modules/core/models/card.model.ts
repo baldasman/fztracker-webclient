@@ -6,19 +6,18 @@ export class CardModel {
   state: string;
   cardNumber: string;
   lastChangeDate: Date;
-  entitySerial: string;
   entityType: string;
 
   // TODO: add missing props
-  name: string ;
-  rankClass: string;
-  totalRegistos: number = 300;
+  
+  entitySerial: string;
+  entityName: string ;
+  entityRankClass: string;
+  totalRegistos: number;;
+  cardaddDate: Date;
+ 
 
-  addDate: string = "17/01/2020";
-  cardType: string = "Militar";
-  lastRegist: string = "12/09/2020";
-  cardStatus: string = "Activo";
-  cardStatusColor: string = "label-success"
+ 
 
   constructor() {
 
