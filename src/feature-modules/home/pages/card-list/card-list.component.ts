@@ -47,7 +47,14 @@ export class CardListComponent extends Mixin(Core, Animations, Stores) implement
     this.cardsService.getCards().subscribe((data: any) => {
       console.log('cards', data);
 
-      this.cards = data.cards;
+      data.cards.forEach(card => {
+        const c = {...card};
+
+        c.cardStatusColor = "label-success";
+
+        this.cards.push(c);
+      });
+
     });
   }
 
