@@ -17,9 +17,19 @@ export class EntityService {
   ) { }
 
 
-  getEntity(search?: string): Observable<[EntityModel]> {
+  getEntity(search: {serial?: string, cardNumber?: string}): Observable<[EntityModel]> {
     const url = new UrlModel(this.apiUrl).setPath('entities/v1');
-    url.setQueryParams({ search });
+
+    let filter = {};
+    if (search.serial && search.serial.trim().length > 0) {
+      filter = { ...filter, serial: search.serial };
+    }
+    
+    if (search.cardNumber && search.cardNumber.trim().length > 0) {
+      filter = { ...filter, cardNumber: search.cardNumber };
+    }
+
+    url.setQueryParams(filter);
 
     return this.http.get(url.buildUrl())
       .pipe(
