@@ -9,6 +9,7 @@ import { CardProfileComponent } from './pages/card-profile/card-profile.componen
 import { CardProfileEditComponent } from './pages/card-profileEdit/card-profileEdit.component';
 import { CardMovementComponent } from './pages/card-movement/card-movement.component';
 import { EntityListComponent } from './pages/entity-list/entity-list.component';
+import { CardControlViewerComponent } from './pages/card-controlViewer/card-controlViewer.component';
 
 
 
@@ -67,6 +68,13 @@ const routes: Routes = [
       {
         path: 'link',
         component: AttachCardComponent ,
+
+        // resolve: { systemResolver: SystemsResolver }
+      },
+
+      {
+        path: 'controlo',
+        component: CardControlViewerComponent ,
 
         // resolve: { systemResolver: SystemsResolver }
       },

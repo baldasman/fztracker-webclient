@@ -17,6 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { EntityListComponent } from './pages/entity-list/entity-list.component';
+import { CardControlViewerComponent } from './pages/card-controlViewer/card-controlViewer.component';
 
 
 
@@ -48,6 +49,7 @@ import { EntityListComponent } from './pages/entity-list/entity-list.component';
     CardProfileEditComponent,
     CardMovementComponent,
     EntityListComponent,
+    CardControlViewerComponent
     
 
   ],
