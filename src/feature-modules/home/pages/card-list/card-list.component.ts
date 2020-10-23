@@ -62,7 +62,7 @@ export class CardListComponent extends Mixin(Core, Animations, Stores) implement
     });
 
     console.log('Get entities');
-    this.entityService.getEntity().subscribe((data: any) => {
+    this.entityService.getEntity({}).subscribe((data: any) => {
       console.log('entities', data);
 
       this.entities = [];

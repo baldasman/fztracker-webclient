@@ -61,7 +61,7 @@ export class EntityListComponent extends Mixin(Core, Animations, Stores) impleme
     });
 
     console.log('Get entities');
-    this.entityService.getEntity().subscribe((data: any) => {
+    this.entityService.getEntity({}).subscribe((data: any) => {
       console.log('entities', data);
 
       this.entities = [];
