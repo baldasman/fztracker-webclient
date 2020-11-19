@@ -13,11 +13,11 @@
             <div class="text-center mb-10">
               <div class="symbol symbol-60 symbol-circle symbol-xl-90">
                 <div class="symbol-label" style="background-image: url({{urlImage}})"></div>
-                <i class="symbol-badge symbol-badge-bottom bg-success"></i>
+               
               </div>
-              <h4 class="font-weight-bold my-2">Conceição Silva</h4>
-              <div class="text-muted mb-2">Civil</div>
-              <span class="label label-light-warning label-inline font-weight-bold label-lg">Active</span>
+              <h4 class="font-weight-bold my-2">Corpo de Fuzileiros</h4>
+              <div class="text-muted mb-2">EF+Alf</div>
+              <span class="label label-light-success label-inline font-weight-bold label-lg">Active</span>
             </div>
             <!--end::User-->
           
@@ -56,7 +56,7 @@
                       <!--end::Svg Icon-->
                     </span>
                   </span>
-                  <span class="navi-text font-size-lg">Dados Pessoais</span>
+                  <span class="navi-text font-size-lg">CF-Alfeite</span>
                 </a>
               </div>
               <div class="navi-item mb-2">
@@ -74,7 +74,7 @@
                       <!--end::Svg Icon-->
                     </span>
                   </span>
-                  <span class="navi-text font-size-lg">Pesquisa</span>
+                  <span class="navi-text font-size-lg">CF-Escola</span>
                 </a>
               </div>
            
@@ -97,7 +97,7 @@
             <div class="card card-custom card-stretch gutter-b">
               <!--begin::Header-->
               <div class="card-header border-0">
-                <h3 class="card-title font-weight-bolder text-dark">Movimentos</h3>
+                <h3 class="card-title font-weight-bolder text-dark">Destaque</h3>
                 
               </div>
               <!--end::Header-->
@@ -113,15 +113,15 @@
                       <!--begin::Info-->
                       <div class="d-flex flex-column align-items-cente py-2 w-75">
                         <!--begin::Title-->
-                        <a href="#" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">Ultimo Registo</a>
+                        <a href="#" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">Militares no CF</a>
                         <!--end::Title-->
                         <!--begin::Data-->
-                        <span class="text-muted font-weight-bold">Entrada no CF-Alfc 24/11/2020 11:56</span>
+                        <span class="text-muted font-weight-bold">Fora do CF -  {{militaresForaCf}}</span>
                         <!--end::Data-->
                       </div>
                       <!--end::Info-->
                       <!--begin::Label-->
-                      <span class="label label-lg label-light-success label-inline font-weight-bold py-4">Válido</span>
+                      <span class="label label-lg label-light-success label-inline font-weight-bold py-4">{{militaresCf}}</span>
                       <!--end::Label-->
                     </div>
                     <!--end::Section-->
@@ -139,15 +139,15 @@
                       <!--begin::Info-->
                       <div class="d-flex flex-column align-items-cente py-2 w-75">
                         <!--begin::Title-->
-                        <a href="#" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">Cartao Atribuido</a>
+                        <a href="#" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">Militares CF-Alf</a>
                         <!--end::Title-->
                         <!--begin::Data-->
-                        <span class="text-muted font-weight-bold">M0035 em 23/11/2020</span>
+                        <span class="text-muted font-weight-bold">Fora do CF-Alf -  {{militaresForaCfAlf}}</span>
                         <!--end::Data-->
                       </div>
                       <!--end::Info-->
                       <!--begin::Label-->
-                      <span class="label label-lg label-light-success label-inline font-weight-bold py-4">ok</span>
+                      <span class="label label-lg label-light-success label-inline font-weight-bold py-4">{{militaresCfAlf}}</span>
                       <!--end::Label-->
                     </div>
                     <!--end::Section-->
@@ -165,15 +165,15 @@
                       <!--begin::Info-->
                       <div class="d-flex flex-column align-items-cente py-2 w-75">
                         <!--begin::Title-->
-                        <a href="#" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">Cartão eliminado</a>
+                        <a href="#" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">Militares CF-Alf</a>
                         <!--end::Title-->
                         <!--begin::Data-->
-                        <span class="text-muted font-weight-bold">M0023 22/11/2020</span>
+                        <span class="text-muted font-weight-bold">Fora do CF-Ef -{{militaresForaCfEf}}</span>
                         <!--end::Data-->
                       </div>
                       <!--end::Info-->
                       <!--begin::Label-->
-                      <span class="label label-lg label-light-success label-inline font-weight-bold py-4">ok</span>
+                      <span class="label label-lg label-light-success label-inline font-weight-bold py-4">{{militaresCfEf}}</span>
                       <!--end::Label-->
                     </div>
                     <!--end::Section-->
@@ -191,15 +191,15 @@
                       <!--begin::Info-->
                       <div class="d-flex flex-column align-items-cente py-2 w-75">
                         <!--begin::Title-->
-                        <a href="#" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">Cartao Atribuido</a>
+                        <a href="#" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">Alunos e Civis</a>
                         <!--end::Title-->
                         <!--begin::Data-->
-                        <span class="text-muted font-weight-bold">M0023 em 25/10/2020</span>
+                        <span class="text-muted font-weight-bold">Alf: {{alunosCivisCfAlf}} EF: {{alunosCivisCfEf}} </span>
                         <!--end::Data-->
                       </div>
                       <!--end::Info-->
                       <!--begin::Label-->
-                      <span class="label label-lg label-light-success label-inline font-weight-bold py-4">ok</span>
+                      <span class="label label-lg label-light-success label-inline font-weight-bold py-4">{{alunosCivisCfAlf + alunosCivisCfEf }}</span>
                       <!--end::Label-->
                     </div>
                     <!--end::Section-->
@@ -217,15 +217,15 @@
                       <!--begin::Info-->
                       <div class="d-flex flex-column align-items-cente py-2 w-75">
                         <!--begin::Title-->
-                        <a href="#" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">Registado em:</a>
+                        <a href="#" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">Visitas:</a>
                         <!--end::Title-->
                         <!--begin::Data-->
-                        <span class="text-muted font-weight-bold">12/10/2020</span>
+                        <span class="text-muted font-weight-bold">Alf: {{visitasCfAlf}} EF: {{visitasCfEf}}</span>
                         <!--end::Data-->
                       </div>
                       <!--end::Info-->
                       <!--begin::Label-->
-                      <span class="label label-lg label-light-success label-inline font-weight-bold py-4">OK</span>
+                      <span class="label label-lg label-light-success label-inline font-weight-bold py-4">{{visitasCfAlf + visitasCfEf}}</span>
                       <!--end::Label-->
                     </div>
                     <!--end::Section-->
@@ -244,7 +244,7 @@
             <div class="card card-custom card-stretch gutter-b">
               <!--begin::Header-->
               <div class="card-header border-0 py-5">
-                <h3 class="card-title font-weight-bolder text-white">Vista semanal</h3>
+                <h3 class="card-title font-weight-bolder text-white">CF-Alf</h3>
                 
               </div>
               <!--end::Header-->
@@ -278,24 +278,24 @@
                   <!--begin::Row-->
                   <div class="row m-0">
                     <div class="col px-8 py-6 mr-8">
-                      <div class="font-size-sm text-muted font-weight-bold">Média Horas Diárias</div>
-                      <div class="font-size-h4 font-weight-bolder">13,30h</div>
+                      <div class="font-size-sm text-muted font-weight-bold">Média no CF</div>
+                      <div class="font-size-h4 font-weight-bolder">300</div>
                     </div>
                     <div class="col px-8 py-6">
-                      <div class="font-size-sm text-muted font-weight-bold">Ultima Entrada</div>
-                      <div class="font-size-h4 font-weight-bolder">CF - 230830 OUT 20</div>
+                      <div class="font-size-sm text-muted font-weight-bold">Média Horas no CF</div>
+                      <div class="font-size-h4 font-weight-bolder">7h</div>
                     </div>
                   </div>
                   <!--end::Row-->
                   <!--begin::Row-->
                   <div class="row m-0">
                     <div class="col px-8 py-6 mr-8">
-                      <div class="font-size-sm text-muted font-weight-bold">Média horas Semanais</div>
-                      <div class="font-size-h4 font-weight-bolder">58h</div>
+                      <div class="font-size-sm text-muted font-weight-bold">Média Fora no CF</div>
+                      <div class="font-size-h4 font-weight-bolder">50</div>
                     </div>
                     <div class="col px-8 py-6">
-                      <div class="font-size-sm text-muted font-weight-bold">Ultima Saída</div>
-                      <div class="font-size-h4 font-weight-bolder">CF - 230830 OUT 20</div>
+                      <div class="font-size-sm text-muted font-weight-bold">Média Horas Na EF</div>
+                      <div class="font-size-h4 font-weight-bolder">8h</div>
                     </div>
                   </div>  
                   <!--end::Row-->
@@ -331,7 +331,7 @@
           <div class="card-header flex-wrap border-0 pt-6 pb-0">
               <div class="card-title">
                   <h3 class="card-label">Lista de Registos
-                      <span class="d-block text-muted pt-2 font-size-sm">Ultimos 30 Movimentos Realizados</span></h3>
+                      <span class="d-block text-muted pt-2 font-size-sm">Ultimos 30 Movimentos Realizados no CF</span></h3>
               </div>
 
           

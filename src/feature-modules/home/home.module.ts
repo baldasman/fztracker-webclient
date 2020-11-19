@@ -9,13 +9,17 @@ import { AttachCardComponent } from './pages/attach-card/attach-card.component';
 import { CardListComponent } from './pages/card-list/card-list.component';
 import { CardProfileComponent } from './pages/card-profile/card-profile.component';
 import { CardProfileEditComponent } from './pages/card-profileEdit/card-profileEdit.component';
-import { CardMovementComponent } from './pages/card-movement/card-movement.component';
-
+import { CardMovementComponent } from './pages/card-movement/card-movement.component'; 
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { EntityListComponent } from './pages/entity-list/entity-list.component';
+import { CardControlViewerComponent } from './pages/card-controlViewer/card-controlViewer.component';
+import { CfHomeComponent } from './pages/cf-home/cf-home.component';
+
+
 
 
 
@@ -35,6 +39,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+      
     
     
   ],
@@ -45,6 +50,10 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
     CardProfileComponent,
     CardProfileEditComponent,
     CardMovementComponent,
+    EntityListComponent,
+    CardControlViewerComponent,
+    CfHomeComponent,
+    
 
   ],
   providers: [ 

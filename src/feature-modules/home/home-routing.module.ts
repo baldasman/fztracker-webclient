@@ -8,6 +8,10 @@ import { AttachCardComponent } from './pages/attach-card/attach-card.component';
 import { CardProfileComponent } from './pages/card-profile/card-profile.component';
 import { CardProfileEditComponent } from './pages/card-profileEdit/card-profileEdit.component';
 import { CardMovementComponent } from './pages/card-movement/card-movement.component';
+import { EntityListComponent } from './pages/entity-list/entity-list.component';
+import { CardControlViewerComponent } from './pages/card-controlViewer/card-controlViewer.component';
+import { CfHomeComponent } from './pages/cf-home/cf-home.component';
+
 
 
 
@@ -18,7 +22,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'cfhome',
         // component: HomeComponent,
         // resolve: { systemResolver: SystemsResolver }
       },
@@ -34,9 +38,24 @@ const routes: Routes = [
         // resolve: { systemResolver: SystemsResolver }
       },
 
+      
+      {
+        path: 'entidades',
+        component: EntityListComponent,
+        // resolve: { systemResolver: SystemsResolver }
+      },
+     
+      
+
       {
         path: 'movimentos',
         component: CardMovementComponent,
+        // resolve: { systemResolver: SystemsResolver }
+      },
+
+      {
+        path: 'cfhome',
+        component: CfHomeComponent,
         // resolve: { systemResolver: SystemsResolver }
       },
 
@@ -56,6 +75,13 @@ const routes: Routes = [
       {
         path: 'link',
         component: AttachCardComponent ,
+
+        // resolve: { systemResolver: SystemsResolver }
+      },
+
+      {
+        path: 'controlo',
+        component: CardControlViewerComponent ,
 
         // resolve: { systemResolver: SystemsResolver }
       },

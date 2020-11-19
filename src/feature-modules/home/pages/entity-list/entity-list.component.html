@@ -1,0 +1,230 @@
+<!--begin::Wrapper-->
+<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+    <!--begin::Header-->
+    
+    <!--end::Header-->
+    <!--begin::Content-->
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        <!--begin::Subheader-->
+        <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
+            <div class="container-fluid d-flex  justify-content-between flex-wrap flex-sm-nowrap">
+                <!--begin::Details-->
+                <div class="d-flex  flex-wrap mr-2">
+                    <!--begin::Title-->
+                    <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Lista de entidades</h5>
+                    <!--end::Title-->
+                    <!--begin::Separator-->
+                    <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-5 bg-gray-200"></div>
+                    <!--end::Separator-->
+                    <!--begin::Search Form-->
+                    <div class="d-flex align-items-center" id="kt_subheader_search">
+                        <div class="date">
+                        <!-- <span class="text-dark-50 font-weight-bold" id="kt_subheader_total">{{MovimentsDay |  date:'dd/MM/yyyy'}}</span> -->
+                        </div>
+                     
+
+
+                   <!--   <div class="card card-custom card-stretch gutter-b min-h-260px">
+                            <form class="form" [formGroup]="entitySearchform" (ngSubmit)="searchEntity()">
+                              <div class="card-body">
+                                <div class="form-group" ng-app="DemoApp" ng-controller="DemoCtrl">
+                                  <label>NII: {{findnii}}</label>
+                  
+                                  <catalog-forms-input autoFocus id="findnii" [formControlField]="fes.findnii" formControlName="findnii"
+                                    placeholder="{{ placeholherNii }}" required="true" [hideMessages]="true"></catalog-forms-input>
+                                  <span class="form-text text-muted">Insira o NII</span>
+                                </div>
+                                <button type="submit" class="btn btn-primary mr-2">Pesquisar</button>
+                              </div>
+                            </form>
+                          </div> 
+ -->
+                     
+                     
+                     
+                        <div class="date">
+                        <form class="form ml-5" [formGroup]="entitySearchform" (ngSubmit)="searchEntity()">
+                            <div class="row">
+                                <div class="col">
+                                
+                                        <div class="input-group input-group-sm input-group-solid" ng-app="DemoApp" ng-controller="DemoCtrl" style="max-width: 175px">
+                                        
+                                            <catalog-forms-input id="findnii" [formControlField]="fes.findnii" formControlName="findnii"
+                                            placeholder="{{ placeholherNii }}" required="false" [hideMessages]="true">
+                                            
+                                            </catalog-forms-input>
+                                       </div>
+                               </div>
+                             
+                             <button type="submit" class="btn btn-primary mr-2">Pesquisar</button>
+                            </div>
+                        </form>
+                    </div>
+
+                       
+                        
+                                                
+                       
+                    </div>
+                    <!--end::Search Form-->
+
+                </div>
+                <!--end::Details-->
+
+                
+                <!--begin::Toolbar-->
+                
+
+                  
+                    <!--begin::Button-->
+                
+                    <!--end::Button-->
+                  
+                
+                <!--end::Toolbar-->
+            </div>
+        </div>
+        <!--end::Subheader-->
+        <!--begin::Entry-->
+
+        <div class="d-flex flex-column-fluid">
+            <!--begin::Container-->
+            <div class="container">
+                <!--begin::Card-->
+                <div class="card card-custom">
+        
+      
+            <!--begin: Datatable-->
+            <div class="datatable datatable-bordered datatable-head-custom" id="kt_datatable">
+                <table class="newtable">
+                    <thead class="datatable-head">
+                        <tr class="datatable-row" style="left: 0px;">
+                            <th data-field="RecordID"
+                                class="datatable-cell-left datatable-cell datatable-cell-sort datatable-cell-sorted"
+                                data-sort="asc"><span style="width: 40px;">#<i
+                                        class="flaticon2-arrow-up"></i></span></th>
+                            <th data-field="OrderID" class="datatable-cell datatable-cell-sort"><span
+                                    style="width: 250px;">Entidade</span></th>
+                            <th data-field="Country" class="datatable-cell datatable-cell-sort"><span
+                                    style="width: 158px;">Cartão Atribuido</span></th>
+                            <th data-field="ShipDate" class="datatable-cell datatable-cell-sort"><span
+                                    style="width: 158px;">Ultimo Movimento</span></th>
+                            <th data-field="CompanyName" class="datatable-cell datatable-cell-sort"><span
+                                    style="width: 158px;">Estado</span></th>
+                            <th data-field="Status" class="datatable-cell datatable-cell-sort"><span
+                                    style="width: 158px;">In/out</span></th>
+                         
+                        </tr>
+                    </thead>
+                    <tbody class="datatable-body">
+                        <!--list users-->
+                    
+                        <tr *ngFor="let entity of entities; let i = index"  data-row="46" class="datatable-row datatable-row-even" style="left: 0px;">
+                            <td class="datatable-cell-sorted datatable-cell-left datatable-cell"
+                                data-field="RecordID" aria-label="00"><span style="width: 40px;"><span
+                                        class="font-weight-bolder">{{ i+1 }}</span></span></td>
+                            <td data-field="OrderID" aria-label="0781-5555" class="datatable-cell"><span
+                                    style="width: 250px;">
+                                    <div class="d-flex align-items-center">
+                                        <div class="imgmil"> <div class="symbol symbol-40 symbol-sm flex-shrink-0"> 
+                                       
+                                            <img
+                                                src="assets/media/users/{{entity.permanent.serial}}.bmp" alt="Sem Foto"> </div></div>
+                                        <div class="ml-4">
+                                             <a href="/profile" class="text-dark-75 font-weight-bolder font-size-lg mb-0 text-hover-primary">
+                                                {{entity.permanent.name}}</a> <div
+                                                class="text-muted font-weight-bold ">{{entity.nopermanent.rank}}  {{entity.permanent.class}}</div>
+                                        </div>
+                                    </div>
+                                </span></td>
+                            <td data-field="card" aria-label="Indonesia" class="datatable-cell"><span
+                                    style="width: 158px;">
+                                    <div class="font-weight-bolder font-size-lg mb-0">{{cardNumber}}</div>
+                                    <div class="font-weight-bold text-muted">UID:{{cardUid}}</div>
+                                </span></td>
+                            <td data-field="cardDate" aria-label="3/17/2017" class="datatable-cell"><span
+                                    style="width: 158px;">
+                                    <div class="font-weight-bolder font-size-lg mb-0">{{entity.nopermanent.location}}</div>
+                                    <div class="text-muted">{{entity.lastMovementDate}}</div>
+                                </span></td>
+
+                                <td data-field="Status" aria-label="5" class="datatable-cell"><span
+                                    style="width: 158px;"><span
+                                        class="label label-lg font-weight-bold {{cardStatusColor}} label-inline">{{entity.state}}</span></span>
+                            </td>
+                               
+                            <td data-field="Status" aria-label="5" class="datatable-cell"><span
+                                    style="width: 158px;"><span
+                                        class="label label-lg font-weight-bold {{cardStatusColor}} label-inline">{{entity.inOut}}</span></span>
+                            </td>
+                          
+                        </tr>
+                       
+                    
+                    </tbody>
+
+                    <tfoot > 
+                        
+                        
+                        
+                        <!-- <tr><td colspan="7">  <hr>  </td> </tr>
+                        <tr>   <td   colspan="2"></td>
+                             <td data-field="Status" aria-label="5" class="datatable-cell">
+                                        <a href="#"> <span style="width: 158px;"><span
+                                            class="label label-lg font-weight-bold {{cardStatusColor}} label-inline"> < </span></span></a>
+                            </td>
+                             <td data-field="Status" aria-label="5" class="datatable-cell">
+                                    <a href="#"> <span style="width: 158px;">
+                                    <span class="label label-lg font-weight-bold {{cardStatusColor}} label-inline">></span></span></a>
+                            </td>
+                        </tr> -->
+                        <tr>
+                            <td colspan="7">
+                                <nav aria-label="...">
+                                    <ul class="pagination justify-content-end">
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Previous">
+                                              <span aria-hidden="true">&laquo;</span>
+                                              <span class="sr-only">Menos</span>
+                                            </a>
+                                          </li>
+
+                                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                      <li class="page-item active">
+                                        <a class="page-link" href="#">3 <span class="sr-only">(current)</span></a>
+                                      </li>
+                                      <li class="page-item"><a class="page-link" href="#">4</a></li>
+
+                                      <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                          <span aria-hidden="true">&raquo;</span>
+                                          <span class="sr-only">Mais</span>
+                                        </a>
+                                      </li>
+                                    </ul>
+                                  </nav>
+                            </td>
+                        </tr>
+                    </tfoot>
+
+                </table>
+            </div>
+            <!--end: Datatable-->
+        </div></div></div>
+
+
+   
+
+        
+
+
+        <!--end::Entry-->
+    </div>
+    <!--end::Content-->
+    <!--begin::Footer-->
+  
+    <!--end::Footer-->
+</div>
+<!--end::Wrapper-->
+

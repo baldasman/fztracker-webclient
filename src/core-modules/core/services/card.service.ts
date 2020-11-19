@@ -11,9 +11,4 @@ export class CardService {
   constructor(private socket: Socket) { 
     console.log('CardService', this.notification);
   }
-  
-  // newDocument() {
-  //   this.socket.emit('addDoc', { id: this.docId(), doc: '' });
-  // }
-
 }

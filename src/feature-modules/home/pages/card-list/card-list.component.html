@@ -111,10 +111,10 @@
                                 <tbody class="datatable-body">
                                     <!--list users-->
                                 
-                                    <tr data-row="45" class="datatable-row datatable-row-even" style="left: 0px;">
+                                    <tr *ngFor="let card of cards; let i = index"  data-row="45" class="datatable-row datatable-row-even" style="left: 0px;">
                                         <td class="datatable-cell-sorted datatable-cell-left datatable-cell"
                                             data-field="RecordID" aria-label="00"><span style="width: 40px;"><span
-                                                    class="font-weight-bolder">01</span></span></td>
+                                                    class="font-weight-bolder">{{ i+1 }}</span></span></td>
                                         <td data-field="OrderID" aria-label="0781-5555" class="datatable-cell"><span
                                                 style="width: 250px;">
                                                 <div class="d-flex align-items-center">
@@ -124,28 +124,28 @@
                                                             src="assets/media/users/teste1.jpg" alt="photo"> </div></div>
                                                     <div class="ml-4">
                                                         <div class="text-dark-75 font-weight-bolder font-size-lg mb-0">
-                                                            {{name}}</div> <a href="#"
+                                                            {{ name }}</div> <a href="#"
                                                             class="text-muted font-weight-bold text-hover-primary">{{rankClass}}</a>
                                                     </div>
                                                 </div>
                                             </span></td>
                                         <td data-field="Country" aria-label="Indonesia" class="datatable-cell"><span
                                                 style="width: 158px;">
-                                                <div class="font-weight-bolder font-size-lg mb-0">{{cardNumber}}</div>
-                                                <div class="font-weight-bold text-muted">UID:{{cardUid}}</div>
+                                                <div class="font-weight-bolder font-size-lg mb-0">{{card.cardNumber}}</div>
+                                                <div class="font-weight-bold text-muted">UID:{{card.uid}}</div>
                                             </span></td>
                                         <td data-field="ShipDate" aria-label="3/17/2017" class="datatable-cell"><span
                                                 style="width: 158px;">
                                                 <div class="font-weight-bolder text-primary mb-0">{{addDate}}</div>
-                                                <div class="text-muted">{{cardType}}</div>
+                                                <div class="text-muted">{{card.entityType}}</div>
                                             </span></td>
                                         <td data-field="CompanyName" aria-label="Beier-Mante" class="datatable-cell">
                                             <span style="width: 158px;">
-                                                <div class="font-weight-bold text-muted">{{lastRegist}}</div>
+                                                <div class="font-weight-bold text-muted">{{card.lastChangeDate}}</div>
                                             </span></td>
                                         <td data-field="Status" aria-label="5" class="datatable-cell"><span
                                                 style="width: 158px;"><span
-                                                    class="label label-lg font-weight-bold {{cardStatusColor}} label-inline">{{cardStatus}}</span></span>
+                                                    class="label label-lg font-weight-bold {{cardStatusColor}} label-inline">{{card.state}}</span></span>
                                         </td>
                                         <td data-field="Actions" data-autohide-disabled="false" aria-label="null"
                                             class="datatable-cell"><span
