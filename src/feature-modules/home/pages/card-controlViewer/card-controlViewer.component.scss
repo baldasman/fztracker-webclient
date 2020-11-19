@@ -42,3 +42,25 @@
   font: bold 125%/125% "Comic Sans MS", cursive;
  
 }
+
+.newtable {
+  background-color: #ffffff;
+  border-collapse: collapse;
+  overflow: hidden;
+  width: 100%;
+
+}
+
+.imgmil img { 
+  width: 100%; 
+  transition: 0.5s all ease-in-out; 
+  z-index:-40
+} 
+.imgmil:hover img { 
+  transform: scale(1.5); 
+}
+
+.responsive {
+  width: auto;
+  height: auto;
+}

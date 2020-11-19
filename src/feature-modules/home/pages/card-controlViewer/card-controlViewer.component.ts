@@ -12,7 +12,21 @@ import { CardService } from '@core-modules/core/services/card.service';
 })
 export class CardControlViewerComponent extends Mixin(Core, Animations, Stores) implements OnInit, OnDestroy {
   
-
+  name: string = "Isabel Pereira";
+  rankClass: string = "Civil";
+  MovimentsDay: Date = new Date(); 
+  cardNumber: string = "C0001";
+  cardUid: string = "US12324235322";
+  movdate: string = "17/01/2020";
+  movhora: string = "10:25";
+  lastRegist: string = "12/09/2020";
+  cardStatus: string = "Entrou";
+  cardStatusColor: string = "label-success"
+  urlImage : string = "assets/media/users/1212.jpg";
+  totalRegistos: number = 300;
+  notas: string = "entrou sem cartão";
+  model;
+  model2;
   private _docSub: Subscription;
 
   constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService) {
