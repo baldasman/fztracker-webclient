@@ -10,6 +10,7 @@ import { CardProfileEditComponent } from './pages/card-profileEdit/card-profileE
 import { CardMovementComponent } from './pages/card-movement/card-movement.component';
 import { EntityListComponent } from './pages/entity-list/entity-list.component';
 import { CardControlViewerComponent } from './pages/card-controlViewer/card-controlViewer.component';
+import { CfHomeComponent } from './pages/cf-home/cf-home.component';
 
 
 
@@ -21,7 +22,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'cfhome',
         // component: HomeComponent,
         // resolve: { systemResolver: SystemsResolver }
       },
@@ -49,6 +50,12 @@ const routes: Routes = [
       {
         path: 'movimentos',
         component: CardMovementComponent,
+        // resolve: { systemResolver: SystemsResolver }
+      },
+
+      {
+        path: 'cfhome',
+        component: CfHomeComponent,
         // resolve: { systemResolver: SystemsResolver }
       },
 
