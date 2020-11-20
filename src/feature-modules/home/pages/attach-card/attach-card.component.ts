@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { Animations, Core, Forms, Mixin, Stores } from '@app/base';
 import { CardService } from '@core-modules/core/services/card.service';
@@ -8,14 +8,15 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-attach-card',
   templateUrl: './attach-card.component.html',
-  styleUrls: ['./attach-card.component.scss']
+  styleUrls: ['./attach-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) implements OnInit, OnDestroy {
 
 
   entitySearchform: FormGroup;
   get fes() { return this.entitySearchform.controls; }
-  
+
   assignCardform: FormGroup;
   get fac() { return this.assignCardform.controls; }
 
@@ -26,7 +27,7 @@ export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) 
   urlImage: string = "assets/media/users/teste1.jpg";
   cardNumber: string;
   cardType: string = "";
-  cardStatus: string = "Status do Cartão ";
+  cardStatus: string = "";
   cardOwner: string = "";
   color: string = "";
   placeholherNii: string;
@@ -35,13 +36,13 @@ export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) 
 
   private _docSub: Subscription;
 
-  constructor(private cardService: CardService, private entityService: EntityService) {
+  constructor(private cardService: CardService, private entityService: EntityService, private cdr: ChangeDetectorRef) {
     super();
 
     this.entitySearchform = this.formBuilder.group({
       findnii: [null, Validators.required]
     });
-    
+
     this.assignCardform = this.formBuilder.group({
       cardNumber: [null, Validators.required]
     });
@@ -84,7 +85,7 @@ export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) 
 
 
     // Call api
-    this.entityService.getEntity({serial: this.fes.findnii.value}).subscribe((data: any) => {
+    this.entityService.getEntity({ serial: this.fes.findnii.value }).subscribe((data: any) => {
       if (data.entities && data.entities.length > 0) {
         const entity = data.entities[0];
         this.name = entity.permanent.name; // API - Devolve Entity name
@@ -92,7 +93,7 @@ export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) 
         this.rankClass = `${entity.nopermanent.rank} ${entity.permanent.class}`;
         // this.cardNumber = "Numero do Cartão"; // API - Devolve cardNumber associado a esta entidade se nao existir devolve (this.cardOwner = "")
         // this.cardType = "teste de cardType"; // API - Devolve Cardtype
-    
+
         // if (this.cardOwner == "") {
         //   this.cardStatus = "Cartao não Atribuido";
         //   this.color = "PaleGreen";
@@ -111,11 +112,13 @@ export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) 
   }
 
   LinkCard() {
-    console.log('LinkCard', this.fes.findnii.value, this.fac.cardNumber.value);
-
     // link da entidader ao cartao 
     this.entityService.assignCard(this.fes.findnii.value, this.fac.cardNumber.value).subscribe((data: any) => {
-      console.log('LinkCard response', data);
+      this.cardStatus = 'Cartão atribuído com sucesso!';
+      this.cdr.detectChanges();
+    }, (error) => {
+      this.cardStatus = error.error.data.error;
+      this.cdr.detectChanges();
     });
   }
 

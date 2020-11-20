@@ -18,9 +18,10 @@ export class ApiInInterceptor implements HttpInterceptor {
   ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
     return next.handle(request).pipe(
       tap((event: HttpEvent<any>) => {
-        // this.logger.error(this.loggerContext, request, event); // TODO: algo se passa aqui!!!!
+        // this.logger.debug(this.loggerContext, request, event instanceof HttpResponse, event); // TODO: algo se passa aqui!!!!
         if (event instanceof HttpResponse) {
           switch (event.status) {
             case 400: // Bad request!
