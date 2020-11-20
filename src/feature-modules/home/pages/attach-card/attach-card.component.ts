@@ -15,6 +15,9 @@ export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) 
 
   entitySearchform: FormGroup;
   get fes() { return this.entitySearchform.controls; }
+  
+  assignCardform: FormGroup;
+  get fac() { return this.assignCardform.controls; }
 
   //@Input() cssClasses = '';
   findnii: string = "";
@@ -29,8 +32,6 @@ export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) 
   placeholherNii: string;
   checked: boolean = false;
   isSwitchedOn = false;
-  ;
-
 
   private _docSub: Subscription;
 
@@ -39,6 +40,10 @@ export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) 
 
     this.entitySearchform = this.formBuilder.group({
       findnii: [null, Validators.required]
+    });
+    
+    this.assignCardform = this.formBuilder.group({
+      cardNumber: [null, Validators.required]
     });
 
     this.placeholherNii = "insira NII Válido";
@@ -106,8 +111,12 @@ export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) 
   }
 
   LinkCard() {
-    // link da entidader ao cartao 
+    console.log('LinkCard', this.fes.findnii.value, this.fac.cardNumber.value);
 
+    // link da entidader ao cartao 
+    this.entityService.assignCard(this.fes.findnii.value, this.fac.cardNumber.value).subscribe((data: any) => {
+      console.log('LinkCard response', data);
+    });
   }
 
   NounCard() {

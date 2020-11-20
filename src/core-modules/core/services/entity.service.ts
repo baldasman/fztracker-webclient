@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { EnvironmentStore } from '../../stores/environment/environment.store';
+import { CardModel } from '../models/card.model';
 import { EntityModel } from '../models/entity.model';
 import { UrlModel } from '../models/url.model';
 
@@ -32,6 +33,20 @@ export class EntityService {
     url.setQueryParams(filter);
 
     return this.http.get(url.buildUrl())
+      .pipe(
+        map((response: { data: any }) => response.data)
+      );
+  }
+
+  assignCard(serial: string, cardNumber: string): Observable<{entity: EntityModel, card: CardModel}> {
+    const url = new UrlModel(this.apiUrl).setPath('entities/v1/:entitySerial/assign-card');
+
+    url.setPathParams({entitySerial: serial});
+    const body = {
+      cardNumber
+    };
+
+    return this.http.post(url.buildUrl(), body)
       .pipe(
         map((response: { data: any }) => response.data)
       );
