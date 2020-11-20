@@ -13,11 +13,11 @@ import { CardService } from '@core-modules/core/services/card.service';
 
 
 @Component({
-  selector: 'app-cf-home',
-  templateUrl: './cf-home.component.html',
-  styleUrls: ['./cf-home.component.scss']
+  selector: 'app-ef-home',
+  templateUrl: './ef-home.component.html',
+  styleUrls: ['./ef-home.component.scss']
 })
-export class CfHomeComponent extends Mixin(Core, Animations, Stores) implements OnInit, OnDestroy {
+export class EfHomeComponent extends Mixin(Core, Animations, Stores) implements OnInit, OnDestroy {
   
   
   title = 'appBootstrap';
@@ -36,7 +36,7 @@ export class CfHomeComponent extends Mixin(Core, Animations, Stores) implements 
   colorsThemeBaseDanger = '';
   colorsThemeBasePrimary = '';
   colorsThemeLightPrimary = '';
-  urlImage : string = "assets/media/polos/cfhome.jpg";
+  urlImage : string = "assets/media/polos/efhome.jpg";
   name: string = "Conceição Silva";
   rankClass: string = "Civil";
   totalRegistos: number = 300;

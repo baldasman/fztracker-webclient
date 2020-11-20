@@ -11,6 +11,7 @@ import { CardMovementComponent } from './pages/card-movement/card-movement.compo
 import { EntityListComponent } from './pages/entity-list/entity-list.component';
 import { CardControlViewerComponent } from './pages/card-controlViewer/card-controlViewer.component';
 import { CfHomeComponent } from './pages/cf-home/cf-home.component';
+import { EfHomeComponent } from './pages/ef-home/ef-home.component';
 
 
 
@@ -56,6 +57,12 @@ const routes: Routes = [
       {
         path: 'cfhome',
         component: CfHomeComponent,
+        // resolve: { systemResolver: SystemsResolver }
+      },
+
+      {
+        path: 'efhome',
+        component: EfHomeComponent,
         // resolve: { systemResolver: SystemsResolver }
       },
 

@@ -10,14 +10,12 @@ import { CardListComponent } from './pages/card-list/card-list.component';
 import { CardProfileComponent } from './pages/card-profile/card-profile.component';
 import { CardProfileEditComponent } from './pages/card-profileEdit/card-profileEdit.component';
 import { CardMovementComponent } from './pages/card-movement/card-movement.component'; 
-
-import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { EntityListComponent } from './pages/entity-list/entity-list.component';
 import { CardControlViewerComponent } from './pages/card-controlViewer/card-controlViewer.component';
 import { CfHomeComponent } from './pages/cf-home/cf-home.component';
+import { EfHomeComponent } from './pages/ef-home/ef-home.component';
 
 
 
@@ -53,6 +51,7 @@ import { CfHomeComponent } from './pages/cf-home/cf-home.component';
     EntityListComponent,
     CardControlViewerComponent,
     CfHomeComponent,
+    EfHomeComponent,
     
 
   ],
