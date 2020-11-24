@@ -1,0 +1,100 @@
+.page-custom {
+  @media (min-width: 1024px) {
+    margin-top: -55px; // to remove gap left by subheader bar
+  }
+}
+
+
+.newtable {
+  background-color: #ffffff;
+  border-collapse: collapse;
+  overflow: hidden;
+  width: 100%;
+
+}
+
+.imgmil img { 
+  width: 100%; 
+  transition: 0.5s all ease-in-out; 
+  z-index:-40
+} 
+.imgmil:hover img { 
+  transform: scale(1.5); 
+}
+
+#kt_wrapper {padding-top: 0%;}
+
+.profile-content {
+  overflow: hidden;
+  width: 100%;
+
+}
+
+.portlet.light {
+  padding: 12px 20px 15px;
+  background-color: #fff;
+}
+.portlet.light>.portlet-title {
+  padding: 0;
+  min-height: 48px;
+}
+
+.portlet.light>.portlet-title>.caption {
+  color: #666;
+  padding: 10px 0;
+}
+.portlet>.portlet-title>.caption {
+
+  display: inline-block;
+  font-size: 18px;
+  line-height: 18px;
+  padding: 10px 0;
+}
+.portlet>.portlet-title>.caption {
+  
+  display: inline-block;
+  font-size: 18px;
+  line-height: 18px;
+  padding: 10px 0;
+}
+.font-blue-madison {
+  color: #578ebe!important;
+}
+.uppercase {
+  text-transform: uppercase!important;
+}
+.bold {
+  font-weight: 700!important;
+}
+.portlet>.portlet-title>.nav-tabs {
+  background: 0 0;
+  margin: 1px 0 0;
+
+  display: inline-block;
+  border: 0;
+}
+.btn.default:not(.btn-outline) {
+  color: #666;
+  background-color: #e1e5ec;
+  border-color: #e1e5ec;
+}
+.btn:not(.btn-sm):not(.btn-lg) {
+  line-height: 1.44;
+}
+.fileinput .btn {
+  vertical-align: middle;
+}
+.btn {
+  outline: 0!important;
+  margin-right: 10px;
+}
+
+.center {
+  text-align: center;
+}
+
+table { 
+  padding-top: 0%;
+  border-collapse: separate;
+  border-spacing: 5px;
+}

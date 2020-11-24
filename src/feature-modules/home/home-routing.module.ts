@@ -12,6 +12,7 @@ import { EntityListComponent } from './pages/entity-list/entity-list.component';
 import { CardControlViewerComponent } from './pages/card-controlViewer/card-controlViewer.component';
 import { CfHomeComponent } from './pages/cf-home/cf-home.component';
 import { EfHomeComponent } from './pages/ef-home/ef-home.component';
+import { AddEntityComponent } from './pages/add-entity/add-entity.component';
 
 
 
@@ -43,6 +44,12 @@ const routes: Routes = [
       {
         path: 'entidades',
         component: EntityListComponent,
+        // resolve: { systemResolver: SystemsResolver }
+      },
+
+      {
+        path: 'addentidades',
+        component: AddEntityComponent,
         // resolve: { systemResolver: SystemsResolver }
       },
      

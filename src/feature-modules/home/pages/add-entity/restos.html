@@ -1,0 +1,163 @@
+<h1>Adicionar entidades </h1>
+
+<div class="attach">
+  <div class="form-group row">
+ 
+    <div class="col-lg-3">
+      
+      <div class="">
+        <div class="card card-custom card-stretch gutter-b min-h-260px">
+          <form class="form" [formGroup]="entitySearchform" (ngSubmit)="searchEntity()">
+            <div class="card-body">
+              <div class="form-group" ng-app="DemoApp" ng-controller="DemoCtrl">
+                <label>NII: {{findnii}}</label>
+
+                  <catalog-forms-input autoFocus id="findnii" [formControlField]="fes.findnii" formControlName="findnii"
+                  placeholder="" required="true" [hideMessages]="true"></catalog-forms-input>
+                <span class="form-text text-muted">Insira o NII</span>
+              </div>
+              <button type="submit" class="btn btn-primary mr-2">Pesquisar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+     
+      <div class="123">
+        <div class="card card-custom card-stretch gutter-b min-h-260px">
+          <form class="form">
+            <div class="card-body">
+              <div class="form-group row">
+                <div class="col">
+                  <div class="image-input image-input-outline" id="kt_image_2">
+                    <div class="image-input-wrapper" style="background-image: url({{urlImage}}); width: 120px;
+                    height: 160px;"></div>
+
+                    <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                      data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
+                      <i class="fa fa-pen icon-sm text-muted"></i>
+                      <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg, .bmp," />
+                      <input type="hidden" name="profile_avatar_remove" />
+                    </label>
+
+                    <span class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                      data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+                      <i class="ki ki-bold-close icon-xs text-muted"></i>
+                    </span>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label>Nome:</label>
+                    <label type="text" class="form-control">{{entityFirstName}}</label>
+
+                  </div>
+                  <div class="form-group">
+                    <label>Posto e Class</label>
+                    <label type="text" class="form-control">{{entityRank}}</label>
+                  </div>
+                  <div class="row">
+                    <div class="flex-column">
+                      <button class="label label-lg label-light-success label-inline font-weight-bold py-4" style="margin-right: 5px; width: 80px;">Add</button>
+                    </div>  
+                    <div class="flex-column">
+                      <button class="label label-lg label-light-primary label-inline font-weight-bold py-4" style=" width: 80px;"> Edit</button>
+                   </div> 
+                </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div> 
+
+    <!-- right column -->
+    <div class="col-lg-6">
+      <div class="card card-custom min-h-500px">
+        <div class="card-header">
+          <h3 class="card-title">
+            Entidade
+          </h3>
+
+        </div>
+
+        <!--begin::Form-->
+
+        <div class="tab-pane active" id="tab_1_1">
+          <form class="form-group" [formGroup]="addentityform">
+              <div class="row">
+                <div class="col">
+                    <label class="control-label">Número</label>
+                    <catalog-forms-input  id="entitySerial" [formControlField]="fac.entitySerial" formControlName="entitySerial" placeholder="9021498" required="true" [hideMessages]="true"></catalog-forms-input>           
+                </div>
+                <div class="col">
+                  
+                      <label class="control-label">Posto</label>
+                      <catalog-forms-input  id="entitySerial" [formControlField]="fac.entityRank" formControlName="entityRank" placeholder="1SAR" required="true" [hideMessages]="true"></catalog-forms-input>           
+                    
+                </div>
+
+                <div class="col">
+                  
+                  <label class="control-label">Classe</label>
+                  <catalog-forms-input  id="entitySerial" [formControlField]="fac.entityClass" formControlName="entityClass" placeholder="FZ" required="true" [hideMessages]="true"></catalog-forms-input>           
+
+                
+            </div>
+              </div>
+              <div class="row">
+                  <div class="col">
+              
+                  <label class="control-label">Primeiro Nome</label>
+                  <catalog-forms-input  id="entitySerial" [formControlField]="fac.entityFirstName" formControlName="entityFirstName" placeholder="António" required="true" [hideMessages]="true"></catalog-forms-input>           
+
+
+                
+                </div>
+           
+              <div class="col">
+              
+                  <label class="control-label">Ultimo Nome</label>
+                  <catalog-forms-input  id="entitySerial" [formControlField]="fac.entityLastName" formControlName="entityLastName" placeholder="Santos" required="true" [hideMessages]="true"></catalog-forms-input>           
+
+                </div>
+              
+              </div>
+                 
+              <div class="row">
+                <div class="col">
+
+                      <label class="control-label">Unidade</label>
+                      <catalog-forms-input  id="entitySerial" [formControlField]="fac.entityUnit" formControlName="entityUnit" placeholder="BF2" required="true" [hideMessages]="true"></catalog-forms-input>           
+
+                    </div>
+                    <div class="col">
+
+                      <label class="control-label">Polo</label>
+                      <catalog-forms-input  id="entitySerial" [formControlField]="fac.entityPolo" formControlName="entityPolo" placeholder="CF-ALF" required="true" [hideMessages]="true"></catalog-forms-input>           
+
+                    </div>
+
+
+
+                  </div>
+
+
+        
+                  <label class="control-label">Notas</label>
+                  <textarea class="form-control" rows="3" placeholder=""></textarea>
+           
+
+              <div class="margiv-top-10">
+                <button class="label label-lg label-light-primary label-inline font-weight-bold py-4" style="width: 100px;"> Gravar</button>
+              </div>
+          </form>
+      </div>
+
+        <!--end::Form-->
+      </div>
+    </div>
+  </div>
+
+</div>
