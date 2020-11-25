@@ -26,7 +26,7 @@ export class AddEntityComponent extends Mixin(Core, Animations, Forms, Stores) i
   findnii: string = "";
   entityPolo: string;
   rankClass: string;
-  urlImage: string = "assets/media/users/teste1.jpg";
+  urlImage: string = "assets/media/users/desc.bmp";
   entitySerial: string;
   cardType: string = "";
   entityFirstName: string = "";
