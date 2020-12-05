@@ -52,4 +52,14 @@ export class EntityService {
       );
   }
 
+  removeCard(serial: string): Observable<{entity: EntityModel, card: CardModel}> {
+    const url = new UrlModel(this.apiUrl).setPath('entities/v1/:entitySerial/remove-card');
+
+    url.setPathParams({entitySerial: serial});
+
+    return this.http.post(url.buildUrl(), {})
+      .pipe(
+        map((response: { data: any }) => response.data)
+      );
+  }
 }

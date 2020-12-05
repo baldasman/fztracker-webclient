@@ -13,3 +13,14 @@
 
 h1{margin-bottom: 20px;}
 
+.image-input-wrapper {
+  text-align: center;
+  vertical-align: middle;
+
+  max-width: 115px;
+    max-height: 115px;
+  img {
+    max-width: 115px;
+    max-height: 115px;
+  }
+}
