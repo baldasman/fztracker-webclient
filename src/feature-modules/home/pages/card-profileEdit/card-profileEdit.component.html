@@ -118,47 +118,74 @@
                         <div class="tab-content">
                             <!-- PERSONAL INFO TAB -->
                             <div class="tab-pane active" id="tab_1_1">
-                                <form role="form" action="#">
-                                    <div class="row">
-                                        <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Primeiro Nome</label>
-                                        <input type="text" placeholder="Tomé" class="form-control"> </div>
-                                    </div>
+                              <form class="form-group " [formGroup]="addentityform">
+                                <div class="row col-lg-12">
+                                  <div class="col">
+                                      <label class="control-label">Número</label>
+                                      <catalog-forms-input  id="entitySerial" [formControlField]="fac.entitySerial" formControlName="entitySerial" placeholder="9021498" required="true" [hideMessages]="true"></catalog-forms-input>           
+                                  </div>
+                                  <div class="col">
+                                    
+                                        <label class="control-label">Posto</label>
+                                        <catalog-forms-input  id="entitySerial" [formControlField]="fac.entityRank" formControlName="entityRank" placeholder="1SAR" required="true" [hideMessages]="true"></catalog-forms-input>           
+                                      
+                                  </div>
+                  
+                                  <div class="col">
+                                    
+                                    <label class="control-label">Classe</label>
+                                    <catalog-forms-input  id="entitySerial" [formControlField]="fac.entityClass" formControlName="entityClass" placeholder="FZ" required="true" [hideMessages]="true"></catalog-forms-input>           
+                  
+                                  
+                              </div>
+                                </div>
+                                <div class="row col-lg-12">
                                     <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Ultimos Nomes</label>
-                                        <input type="text" placeholder="moreira de Sousa" class="form-control"> </div>
+                                
+                                    <label class="control-label">Primeiro Nome</label>
+                                    <catalog-forms-input  id="entitySerial" [formControlField]="fac.entityFirstName" formControlName="entityFirstName" placeholder="António" required="true" [hideMessages]="true"></catalog-forms-input>           
+                  
+                  
+                                  
+                                  </div>
+                             
+                                <div class="col">
+                                
+                                    <label class="control-label">Ultimo Nome</label>
+                                    <catalog-forms-input  id="entitySerial" [formControlField]="fac.entityLastName" formControlName="entityLastName" placeholder="Santos" required="true" [hideMessages]="true"></catalog-forms-input>           
+                  
+                                  </div>
+                                
+                                </div>
+                                   
+                                <div class="row col-lg-12">
+                                  <div class="col">
+                  
+                                        <label class="control-label">Unidade</label>
+                                        <catalog-forms-input  id="entitySerial" [formControlField]="fac.entityUnit" formControlName="entityUnit" placeholder="BF2" required="true" [hideMessages]="true"></catalog-forms-input>           
+                  
+                                      </div>
+                                      <div class="col">
+                  
+                                        <label class="control-label">Polo</label>
+                                        <catalog-forms-input  id="entitySerial" [formControlField]="fac.entityPolo" formControlName="entityPolo" placeholder="CF-ALF" required="true" [hideMessages]="true"></catalog-forms-input>           
+                  
+                                      </div>
+                  
+                  
+                  
                                     </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Posto e classe</label>
-                                        <input type="text" placeholder="1SAR FZ" class="form-control"> </div>
-                                    </div>
-                                    <div class="col">
-                                    <div class="form-group">
-                                        <label class="control-label">Número Cartao Atribuido</label>
-                                        <input type="text" placeholder="M0000" class="form-control"> </div>
-                                    </div>
-                                    </div>
-                                        <div class="form-group">
-                                            <label class="control-label">Unidade</label>
-                                            <input type="text" placeholder="CF-Alfeite" class="form-control"> </div>
-
-
-      
-                                    <div class="form-group">
-                                        <label class="control-label">Notas</label>
-                                        <textarea class="form-control" rows="3" placeholder=""></textarea>
-                                    </div>
-
-                                    <div class="margiv-top-10">
-                                        <a href="javascript:;" class="btn green"> Guardar alterações </a>
-                                        <a href="javascript:;" class="btn default"> Cancelar </a>
-                                    </div>
-                                </form>
+                  
+                  
+                          
+                                    <label class="control-label">Notas</label>
+                                    <textarea class="form-control" rows="3" placeholder=""></textarea>
+                             
+                  
+                                <div class="margiv-top-10">
+                                  <button class="label label-lg label-light-primary label-inline font-weight-bold py-4" style="width: 100px;"> Gravar</button>
+                                </div>
+                            </form>
                             </div>
                             <!-- END PERSONAL INFO TAB -->
                             <!-- CHANGE AVATAR TAB -->
@@ -351,14 +378,14 @@
                                                   <td>    
                                                     <input [(ngModel)]="dynamicArray[i].statuscard" class="form-control" type="text"/>    
                                                   </td> 
-                                                  <td>    
-                                                    <span style="overflow: visible; margin-left: 10px; position: relative; width: 130px;">
-                                                      <a href="javascript:;" 
+                                                  <td style="width: 200px">    
+                                                    <span style="overflow: visible; margin-left: 10px; position: relative; width: 230px;">
+                                                       <a href="javascript:;" 
                                                          class="btn btn-sm btn-default {{btnstatus}} btn-text-primary  btn-hover-success btn-icon mr-2"
                                                          title="Editar"> <span class="svg-icon svg-icon-md"> <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-check-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                           <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                                                         </svg> </span> 
-                                                           </a> 
+                                                           </a>  
    
                                                            <a href="javascript:;"  (click)="BlockCard()" class="btn btn-sm btn-default {{btnblock}} btn-text-primary btn-hover-warning btn-icon"
                                                            title="Bloquear"> <span class="svg-icon svg-icon-md"> <svg

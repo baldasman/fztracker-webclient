@@ -1,10 +1,12 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Animations, Core, Mixin, Stores } from '@app/base';
+import { Animations, Core, Forms, Mixin, Stores } from '@app/base';
 import { LayoutConfigService } from '@core-modules/main-theme/services/layout-config.service';
 import { Subscription } from 'rxjs';
 import { CardService } from '@core-modules/core/services/card.service';
 import { HomeModule } from '../../home.module';
 import { ToastrService } from 'ngx-toastr';
+import { EntityService } from '@core-modules/core/services/entity.service';
+import { FormGroup, Validators } from '@angular/forms';
 
 
 
@@ -14,8 +16,18 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './card-profileEdit.component.html',
   styleUrls: ['./card-profileEdit.component.scss']
 })
-export class CardProfileEditComponent extends Mixin(Core, Animations, Stores) implements OnInit, OnDestroy {
-   @Input() cssClasses = '';
+export class CardProfileEditComponent extends Mixin(Core, Animations, Forms, Stores) implements OnInit, OnDestroy {
+  
+  
+  entitySearchform: FormGroup;
+  get fes() { return this.entitySearchform.controls; }
+
+  addentityform: FormGroup;
+  get fac() { return this.addentityform.controls; }
+  
+  
+  
+  @Input() cssClasses = '';
   
   title = 'appBootstrap';
   model;
@@ -53,7 +65,7 @@ export class CardProfileEditComponent extends Mixin(Core, Animations, Stores) im
 
   private _docSub: Subscription;
 
-  constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService, private toastr: ToastrService) {
+  constructor(private layoutConfigService: LayoutConfigService, private entityService: EntityService, private cardService: CardService, private toastr: ToastrService) {
     super();
 
   /*   if (this.cardNumber == "" ) {
@@ -63,6 +75,20 @@ export class CardProfileEditComponent extends Mixin(Core, Animations, Stores) im
     else {
       this.btnstatus = "disabled";
     } */
+    this.entitySearchform = this.formBuilder.group({
+      findnii: [null, Validators.required]
+    });
+
+    this.addentityform = this.formBuilder.group({
+      entitySerial: [null, Validators.required],
+      entityFirstName: [null, Validators.required],
+      entityLastName: [null, Validators.required],
+      entityRank: [null, Validators.required],
+      entityClass: [null, Validators.required],
+      entityUnit: [null, Validators.required],
+      entityPolo: [null, Validators.required],
+
+    });
  
 
 

@@ -17,10 +17,14 @@ h1{margin-bottom: 20px;}
   text-align: center;
   vertical-align: middle;
 
-  max-width: 115px;
-    max-height: 115px;
+  max-width: 415px;
+    max-height: 415px;
   img {
-    max-width: 115px;
-    max-height: 115px;
+    max-width: 415px;
+    max-height: 415px;
   }
 }
+
+.image-input .image-input-wrapper {
+  width: 120px;
+  height: 200px;}
