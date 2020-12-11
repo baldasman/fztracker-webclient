@@ -31,6 +31,8 @@ export class EntityListComponent extends Mixin(Core, Animations,Forms, Stores) i
   placeholherNii:string;
   findnii: string = "";
   entitySearchform: FormGroup;
+  entityType: string = "Militar";
+  entityLocal: string = "ALF";
   get fes() { return this.entitySearchform.controls; }
 
   cards: CardModel[];
@@ -54,6 +56,11 @@ export class EntityListComponent extends Mixin(Core, Animations,Forms, Stores) i
       // save uuid to input
   //  });
 
+
+
+
+
+  
     console.log('Get cards');
     this.cardsService.getCards().subscribe((data: any) => {
       console.log('cards', data);
