@@ -126,7 +126,8 @@ export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) 
       this.hasCard = true;
       this.cdr.detectChanges();
     }, (e) => {
-      this.cardStatus = e.error.error;
+      console.log(e);
+      this.cardStatus = e.error.resultMessage || e.error.error;
       this.fac.cardNumber.enable();
       this.hasCard = false;
       this.hasError = true;
