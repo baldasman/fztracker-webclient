@@ -54,14 +54,14 @@ export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) 
 
 
   ngOnInit() {
-    this._docSub = this.cardService.notification.subscribe(data => {
-      console.log('event', data);
+    this._docSub = this.cardService.notification.subscribe(movement => {
+      console.log('movement', movement);
 
-      // save uuid to input
+      // Filter eventes by location
+      if (movement.location !== 'LOCAL') {
+        console.log('discard!!!');
+      }
     });
-
-
-
   }
 
 

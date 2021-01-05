@@ -6,7 +6,7 @@ import { Socket } from 'ngx-socket-io';
   providedIn: 'root'
 })
 export class CardService {
-  notification = this.socket.fromEvent<any>('card');
+  notification = this.socket.fromEvent<any>('movement');
 
   constructor(private socket: Socket) { 
     console.log('CardService', this.notification);
