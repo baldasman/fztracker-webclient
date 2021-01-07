@@ -2,8 +2,12 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Animations, Core, Mixin, Stores } from '@app/base';
 import { LayoutConfigService } from '@core-modules/main-theme/services/layout-config.service';
 import { Subscription } from 'rxjs';
-import { CardService } from '@core-modules/core/services/card.service';
-
+import { CardsService } from '@core-modules/core/services/cards.service';
+import { CardModel } from '@core-modules/core/models/card.model';
+import { MovementModel } from '@core-modules/core/models/movement.model';
+import { FormGroup, Validators } from '@angular/forms';
+import { EntityService } from '@core-modules/core/services/entity.service';
+import { MovementsService } from '@core-modules/core/services/movements.service';
 
 @Component({
   selector: 'app-card-movement',
@@ -28,12 +32,16 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Stores) impl
   notas: string = "entrou sem cartão";
   model;
   model2;
-
+  findnii: string = "";
+  MovementSearchform: FormGroup;
+  get fes() { return this.MovementSearchform.controls; }
   
+  cards: CardModel[];
+  movements: MovementModel[];
 
   private _docSub: Subscription;
 
-  constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService, ) {
+  constructor(private layoutConfigService: LayoutConfigService, private movementService: MovementsService, private cardsService: CardsService) {
     super();
 
   }
@@ -42,7 +50,32 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Stores) impl
 
   ngOnInit() {
 
+
+    console.log('Get movements');
+    this.movementService.getMovements().subscribe((data: any) => {
+      console.log('movements', data);
+
+      this.movements = [];
+      data.movements.forEach(movement => {
+        const e = {...movement};
+
+        
+
+        this.movements.push(e);
+      });
+    });
+
+
   }
+   searchMovement() {
+
+  this.movementService.getMovements().subscribe((data: any) => {
+    if (data.movements && data.movements.length > 0) {
+      const movement = data.movements[0];
+    
+    }
+  });
+} 
  
 
 

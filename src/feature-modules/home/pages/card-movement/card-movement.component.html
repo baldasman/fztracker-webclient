@@ -131,10 +131,10 @@
                     <tbody class="datatable-body">
                         <!--list users-->
                     
-                        <tr data-row="46" class="datatable-row datatable-row-even" style="left: 0px;">
+                        <tr  *ngFor="let movement of movements; let i = index" data-row="46" class="datatable-row datatable-row-even" style="left: 0px;">
                             <td class="datatable-cell-sorted datatable-cell-left datatable-cell"
                                 data-field="RecordID" aria-label="00"><span style="width: 40px;"><span
-                                        class="font-weight-bolder">01</span></span></td>
+                                        class="font-weight-bolder">{{ i+1 }}</span></span></td>
                             <td data-field="OrderID" aria-label="0781-5555" class="datatable-cell"><span
                                     style="width: 250px;">
                                     <div class="d-flex align-items-center">

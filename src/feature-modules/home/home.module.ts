@@ -17,6 +17,8 @@ import { CardControlViewerComponent } from './pages/card-controlViewer/card-cont
 import { CfHomeComponent } from './pages/cf-home/cf-home.component';
 import { EfHomeComponent } from './pages/ef-home/ef-home.component';
 import { AddEntityComponent } from './pages/add-entity/add-entity.component';
+import { CfAlfHomeComponent } from './pages/cfalf-home/cfalf-home.component';
+import { MovementsService } from '@core-modules/core/services/movements.service';
 
 
 
@@ -54,10 +56,12 @@ import { AddEntityComponent } from './pages/add-entity/add-entity.component';
     CfHomeComponent,
     EfHomeComponent,
     AddEntityComponent,
+    CfAlfHomeComponent,
+    
     
 
   ],
-  providers: [ 
+  providers: [ MovementsService 
     
   ],
   bootstrap: [HomeComponent]
