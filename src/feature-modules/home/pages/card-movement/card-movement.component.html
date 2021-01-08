@@ -144,21 +144,23 @@
                                                 src="{{urlImage}}" alt="photo"> </div></div>
                                         <div class="ml-4">
                                              <a href="/profile" class="text-dark-75 font-weight-bolder font-size-lg mb-0 text-hover-primary">
-                                                {{name}}</a> <div
+                                                {{movement.entityName}}</a> <div
                                                 class="text-muted font-weight-bold ">{{rankClass}}</div>
                                         </div>
                                     </div>
                                 </span></td>
                             <td data-field="card" aria-label="Indonesia" class="datatable-cell"><span
                                     style="width: 158px;">
-                                    <div class="font-weight-bolder font-size-lg mb-0">{{cardNumber}}</div>
-                                    <div class="font-weight-bold text-muted">UID:{{cardUid}}</div>
+                                    <div class="font-weight-bolder font-size-lg mb-0">{{movement.cardNumber}}</div>
+                                    <div class="font-weight-bold text-muted">UID:{{movement.location}}</div>
                                 </span></td>
+                                
                             <td data-field="cardDate" aria-label="3/17/2017" class="datatable-cell"><span
                                     style="width: 158px;">
-                                    <div class="font-weight-bolder font-size-lg mb-0">{{movdate}}</div>
-                                    <div class="text-muted">{{movhora}}</div>
+                                    <div class="font-weight-bolder font-size-lg mb-0">{{movement.movementDate |  date:'dd/MM/yyyy'}}</div>
+                                    <div class="text-muted">{{movement.movementDate | date: ' HH:mm'  }}</div>
                                 </span></td>
+
                             <td data-field="Lastregist" aria-label="Beier-Mante" class="datatable-cell">
                                 <span style="width: 158px;">
                                     <div class="text-muted">{{notas}}</div>
