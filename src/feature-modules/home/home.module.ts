@@ -61,7 +61,7 @@ import { MovementsService } from '@core-modules/core/services/movements.service'
     
 
   ],
-  providers: [ MovementsService 
+  providers: [  
     
   ],
   bootstrap: [HomeComponent]

@@ -22,10 +22,16 @@
                         <span class="text-dark-50 font-weight-bold" id="kt_subheader_total">{{MovimentsDay |  date:'dd/MM/yyyy'}}</span>
                         </div>
                         <div class="date">
-                        <form class="ml-5">
+
+                        
+
+                        <form class="form ml-5" [formGroup]="MovementSearchform" (ngSubmit)="searchMovement()">
                             <div class="input-group input-group-sm input-group-solid" style="max-width: 175px">
-                                <input type="text" class="form-control" id="kt_subheader_search_form"
-                                    placeholder="NII ou Matricula..." />
+                          
+                                <catalog-forms-input autoFocus id="findnii" [formControlField]="fes.findnii" formControlName="findnii"
+                                placeholder="{{ placeholherNii }}" [hideMessages]="true"></catalog-forms-input>
+
+
                                 <div class="input-group-append">
                                     <span class="input-group-text">
                                         <span class="svg-icon">
@@ -73,24 +79,23 @@
                               
                                 <div class="input-group input-large date-picker input-daterange" data-date="" data-date-format="mm/dd/yyyy">
                                     <input class="form-control" placeholder="AAAA-MM-DD"
-                                    name="dp1" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                                    name="dp1" [(ngModel)]="from" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
                                     <span class="input-group-addon"> a </span>
                                     <input class="form-control" placeholder="AAAA-MM-DD"
-                                    name="dp2" [(ngModel)]="model2" ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()"> 
+                                    name="dp2" [(ngModel)]="to" ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()"> 
                                   </div>
                                                              
-                         <!--   <button type ="input" class="btn btn-success"(click)="Find()" >Pesquisar</button> -->
+                           <button type ="input" class="btn btn-light-primary  font-weight-bold btn-sm px-4 font-size-base ml-2"(click)="searchMovement()" >Pesquisar</button> 
                    
                         </div>
              
                       </form>
-                    <!--begin::Button-->
-                    <a href="#" class=""></a>
-                    <!--end::Button-->
-                    <!--begin::Button-->
+                    <!--begin::Button
+                 <a href="#" class=""></a>
+              
                     <a href="#"
                         class="btn btn-light-primary  font-weight-bold btn-sm px-4 font-size-base ml-2">Pesquisar</a>
-                    <!--end::Button-->
+                    end::Button-->
                   
                 </div>
                 <!--end::Toolbar-->

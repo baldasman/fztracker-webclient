@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Animations, Core, Mixin, Stores } from '@app/base';
+import { Animations, Core, Forms, Mixin, Stores } from '@app/base';
 import { LayoutConfigService } from '@core-modules/main-theme/services/layout-config.service';
 import { Subscription } from 'rxjs';
 import { CardsService } from '@core-modules/core/services/cards.service';
@@ -14,7 +14,7 @@ import { MovementsService } from '@core-modules/core/services/movements.service'
   templateUrl: './card-movement.component.html',
   styleUrls: ['./card-movement.component.scss']
 })
-export class  CardMovementComponent extends Mixin(Core, Animations, Stores) implements OnInit, OnDestroy {
+export class  CardMovementComponent extends Mixin(Core, Animations, Forms, Stores) implements OnInit, OnDestroy {
  
   //exemplo para teste, será preciso API para ir buscar este conteudo.
   name: string = "Isabel Pereira";
@@ -30,9 +30,10 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Stores) impl
   urlImage : string = "assets/media/users/1212.jpg";
   totalRegistos: number = 300;
   notas: string = "entrou sem cartão";
-  model;
-  model2;
+  from;
+  to;
   findnii: string = "";
+  placeholherNii: string = "pesquisa por NII";
   MovementSearchform: FormGroup;
   get fes() { return this.MovementSearchform.controls; }
   
@@ -44,7 +45,12 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Stores) impl
   constructor(private layoutConfigService: LayoutConfigService, private movementService: MovementsService, private cardsService: CardsService) {
     super();
 
+    this.MovementSearchform = this.formBuilder.group({
+      findnii: [null, null]
+    });
+
   }
+
 
  
 
@@ -55,23 +61,26 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Stores) impl
     this.movementService.getMovements().subscribe((data: any) => {
       console.log('movements', data);
 
-      this.movements = [];
-      data.movements.forEach(movement => {
+      this.movements = data.movements;
+    /*   data.movements.forEach(movement => {
         const e = {...movement};
 
         
 
         this.movements.push(e);
-      });
+      }); */
     });
 
 
   }
    searchMovement() {
 
-  this.movementService.getMovements().subscribe((data: any) => {
-    if (data.movements && data.movements.length > 0) {
-      const movement = data.movements[0];
+     console.log('search', this.fes.findnii.value, this.from, this.to);
+   const fromDate =`${this.from.year}-${this.from.month}-${this.from.day}`;
+   const toDate =`${this.to.year}-${this.to.month}-${this.to.day}`;
+  this.movementService.getMovements(this.fes.findnii.value, fromDate, toDate).subscribe((data: any) => {
+    if (data.movements) {
+      this.movements = data.movements;
     
     }
   });

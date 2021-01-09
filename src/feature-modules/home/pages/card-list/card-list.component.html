@@ -112,7 +112,7 @@
                                 <tbody class="datatable-body">
                                     <!--list users-->
                                 
-                                    <tr *ngFor="let card of cards; let i = index"  data-row="45" class="datatable-row datatable-row-even" style="left: 0px;">
+                                    <tr *ngFor="let card of cards; let i = index"  data-row="01" class="datatable-row datatable-row-even" style="left: 0px;">
                                         <td class="datatable-cell-sorted datatable-cell-left datatable-cell"
                                             data-field="RecordID" aria-label="00"><span style="width: 40px;"><span
                                                     class="font-weight-bolder">{{ i+1 }}</span></span></td>
@@ -121,7 +121,8 @@
                                                 style="width: 158px;">
                                                 <div class="font-weight-bolder font-size-lg mb-0">{{card.cardNumber}}</div>
                                                 <div class="font-weight-bold text-muted">UID:{{card.id}}</div>
-                                            </span></td>
+                                            </span>
+                                        </td>
 
                                             <td data-field="entity" aria-label="0781-5555" class="datatable-cell"><span
                                                 style="width: 200px;">
@@ -133,7 +134,8 @@
                                                             class="text-muted font-weight-bold text-hover-primary">{{rankClass}}</a>
                                                     </div>
                                                 </div>
-                                            </span></td>
+                                            </span>
+                                        </td>
 
 
                                         <td data-field="ShipDate" aria-label="3/17/2017" class="datatable-cell"><span
