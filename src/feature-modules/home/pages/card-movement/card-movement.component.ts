@@ -9,6 +9,7 @@ import { FormGroup, Validators } from '@angular/forms';
 import { EntityService } from '@core-modules/core/services/entity.service';
 import { MovementsService } from '@core-modules/core/services/movements.service';
 import { dateHourMinFormat } from '@core-modules/core/models/dates-helper.component';
+import { data } from 'jquery';
 
 @Component({
   selector: 'app-card-movement',
@@ -36,6 +37,9 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Forms, Store
   findnii: string = "";
   placeholherNii: string = "pesquisa por NII";
   MovementSearchform: FormGroup;
+  toDate;
+  fromDate;
+ 
   get fes() { return this.MovementSearchform.controls; }
   
   cards: CardModel[];
@@ -76,12 +80,42 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Forms, Store
   }
    searchMovement() {
 
- 
 
-     console.log('search', this.fes.findnii.value, this.from, this.to);
-   const fromDate =`${this.from.year}-${this.from.month}-${this.from.day}`;
-   const toDate =`${this.to.year}-${this.to.month}-${this.to.day}`;
-  this.movementService.getMovements(this.fes.findnii.value, fromDate, toDate).subscribe((data: any) => {
+    var currentTime = new Date();
+    var month = currentTime.getMonth() + 1;
+    var day = currentTime.getDate();
+    var year = currentTime.getFullYear();
+    const todayDate = (year+"-"+month+"-"+day);
+
+    
+    
+ 
+    if (this.from == undefined && this.to == undefined && this.fes.findnii.value == null ) {console.log("testes ao log")
+    this.fromDate = todayDate;
+    this.toDate = todayDate;
+    console.log('today',todayDate );
+  
+   }
+
+   if (this.from == undefined && this.to == undefined && this.fes.findnii.value != null ) {console.log("testes ao log")
+   var month2 = month;
+    if ((month2 -1 ) == 0)
+        {month2 = 12}
+
+  var todayDatebefore = ((year+"-"+month2+"-"+day));
+
+  this.fromDate = todayDatebefore;
+  this.toDate = todayDate;
+  console.log('datas', todayDatebefore, todayDate)
+  }
+
+   if (this.from != undefined && this.to != undefined ) {
+   this.fromDate =`${this.from.year}-${this.from.month}-${this.from.day}`;
+   this.toDate =`${this.to.year}-${this.to.month}-${this.to.day}`;
+   console.log('search', this.fes.findnii.value, this.from, this.to);
+  }
+
+  this.movementService.getMovements(this.fes.findnii.value, this.fromDate, this.toDate).subscribe((data: any) => {
     if (data.movements) {
       this.movements = data.movements;
     
