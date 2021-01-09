@@ -8,6 +8,7 @@ import { MovementModel } from '@core-modules/core/models/movement.model';
 import { FormGroup, Validators } from '@angular/forms';
 import { EntityService } from '@core-modules/core/services/entity.service';
 import { MovementsService } from '@core-modules/core/services/movements.service';
+import { dateHourMinFormat } from '@core-modules/core/models/dates-helper.component';
 
 @Component({
   selector: 'app-card-movement',
@@ -74,6 +75,8 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Forms, Store
 
   }
    searchMovement() {
+
+ 
 
      console.log('search', this.fes.findnii.value, this.from, this.to);
    const fromDate =`${this.from.year}-${this.from.month}-${this.from.day}`;
