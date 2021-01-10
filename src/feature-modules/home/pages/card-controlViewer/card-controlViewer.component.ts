@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { CardService } from '@core-modules/core/services/card.service';
 import { MovementsService } from '@core-modules/core/services/movements.service';
 import { MovementModel } from '@core-modules/core/models/movement.model';
+import { EntityListComponent } from '../entity-list/entity-list.component';
+import { EntityService } from '@core-modules/core/services/entity.service';
 
 
 @Component({
@@ -25,6 +27,7 @@ export class CardControlViewerComponent extends Mixin(Core, Animations, Forms, S
   local: string =null;
   MovementSearchform: FormGroup;
   movements: MovementModel[];
+  foto: string = "assets/media/users/desc.bmp";
 
   private _docSub: Subscription;
   get fes() { return this.MovementSearchform.controls; }
@@ -47,7 +50,9 @@ export class CardControlViewerComponent extends Mixin(Core, Animations, Forms, S
   ngOnInit() {
     this._docSub = this.cardService.notification.subscribe(movement => {
       console.log('movement', movement);
-
+      console.log('movement', movement.entity.permanent.serial);
+      this.foto = `assets/media/users/${movement.entity.permanent.serial}.bmp`;
+     
       // Filter eventes by location
     
        });
@@ -60,9 +65,10 @@ export class CardControlViewerComponent extends Mixin(Core, Animations, Forms, S
       this.movements = data.movements;
 
       // save uuid to input
+      
     });
- 
-
+    
+  
 }
 
 
