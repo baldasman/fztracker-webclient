@@ -27,13 +27,15 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Forms, Store
   notas: string = "entrou sem cartão";
   from;
   to;
+  local: string =null;
   findnii: string = "";
   placeholherNii: string = "pesquisa por NII";
   MovementSearchform: FormGroup;
   toDate;
   fromDate;
   number="Todos";
-  numbers=["Todos","CF-Alfeite","CF-Escola"]
+  numbers=["Todos","LOCALX","CF-Escola"]
+  
 
  
   get fes() { return this.MovementSearchform.controls; }
@@ -116,8 +118,8 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Forms, Store
    this.toDate =`${this.to.year}-${this.to.month}-${this.to.day}`;
    console.log('search', this.fes.findnii.value, this.from, this.to);
   }
-
-  this.movementService.getMovements(this.fes.findnii.value, this.fromDate, this.toDate).subscribe((data: any) => {
+  console.log('teste a movimentos', this.fes.findnii.value, this.from, this.to, this.local);
+  this.movementService.getMovements(this.fes.findnii.value, this.fromDate, this.toDate, this.local).subscribe((data: any) => {
     if (data.movements) {
       this.movements = data.movements;
     
@@ -125,6 +127,16 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Forms, Store
   });
 } 
  
+selectChangeHandler (event: any) {
+  //update the ui
+
+  if (event.target.value =="Todos"){ this.local  = null} 
+  else this.local  = event.target.value;
+  
+  console.log("a alteraçao " , this.local)
+}
+
+
 
 
 }

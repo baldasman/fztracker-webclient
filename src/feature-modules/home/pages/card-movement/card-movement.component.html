@@ -93,7 +93,7 @@
                         </div>
 
                        <div class="local">
-                            <select  class="row justify-content-between  font-weight-bold btn-sm px-4 font-size-base ml-2" name="num" [(ngModel)]="number" style="margin-left: 30px">
+                            <select  class="row justify-content-between  font-weight-bold btn-sm px-4 font-size-base ml-2"  (change)="selectChangeHandler($event)" name="num" [(ngModel)]="number"  style="margin-left: 30px">
                             <option *ngFor="let n of numbers" [value]="n">{{n}}</option>
                             </select>
                       

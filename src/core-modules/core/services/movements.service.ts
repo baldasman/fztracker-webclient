@@ -17,7 +17,7 @@ export class MovementsService {
   ) { }
 
 
-  getMovements(search?: string, from?: string, to?: string): Observable<[MovementModel]> {
+  getMovements(search?: string, from?: string, to?: string, local?: string): Observable<[MovementModel]> {
     const url = new UrlModel(this.apiUrl).setPath('/movements/v1');
     let filter = {};
       if (search) {
@@ -28,7 +28,10 @@ export class MovementsService {
       }
      if (to) {
       filter = {...filter, to};
-    }
+      }
+      if (local) {
+        filter = {...filter, local};
+       }
     console.log(filter);
     url.setQueryParams(filter);
 
