@@ -18,15 +18,17 @@
                     <!--end::Separator-->
                     <!--begin::Search Form-->
                     <div class="d-flex align-items-center" id="kt_subheader_search">
-                        <div class="date">
+                     <!--    <div class="date">
                         <span class="text-dark-50 font-weight-bold" id="kt_subheader_total">{{MovimentsDay |  date:'dd/MM/yyyy'}}</span>
-                        </div>
+                        </div> -->
                         <div class="date">
 
-                        
+                                                
 
                         <form class="form ml-5" [formGroup]="MovementSearchform" (ngSubmit)="searchMovement()">
-                            <div class="input-group input-group-sm input-group-solid" style="max-width: 175px">
+                            <div class="input-group input-group-sm input-group-solid">
+
+                              
                           
                                 <catalog-forms-input autoFocus id="findnii" [formControlField]="fes.findnii" formControlName="findnii"
                                 placeholder="{{ placeholherNii }}" [hideMessages]="true"></catalog-forms-input>
@@ -77,7 +79,8 @@
                         <div class="form-group">
         
                               
-                                <div class="input-group input-large date-picker input-daterange" data-date="" data-date-format="mm/dd/yyyy">
+                                <div class="input-group input-large date-picker input-daterange" data-date="" data-date-format="mm/dd/yyyy" style="width: 300px;">
+                                    <span class="input-group-addon"> de </span>
                                     <input class="form-control" placeholder="AAAA-MM-DD"
                                     name="dp1" [(ngModel)]="from" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
                                     <span class="input-group-addon"> a </span>
@@ -88,7 +91,13 @@
                            <button type ="input" class="btn btn-light-primary  font-weight-bold btn-sm px-4 font-size-base ml-2"(click)="searchMovement()" >Pesquisar</button> 
                    
                         </div>
-             
+
+                       <div class="local">
+                            <select  class="row justify-content-between  font-weight-bold btn-sm px-4 font-size-base ml-2" name="num" [(ngModel)]="number" style="margin-left: 30px">
+                            <option *ngFor="let n of numbers" [value]="n">{{n}}</option>
+                            </select>
+                      
+                        </div> 
                       </form>
                     <!--begin::Button
                  <a href="#" class=""></a>
@@ -127,7 +136,7 @@
                             <th data-field="ShipDate" class="datatable-cell datatable-cell-sort"><span
                                     style="width: 158px;">Movimento</span></th>
                             <th data-field="CompanyName" class="datatable-cell datatable-cell-sort"><span
-                                    style="width: 158px;">Notas</span></th>
+                                    style="width: 158px;">Local e Notas</span></th>
                             <th data-field="Status" class="datatable-cell datatable-cell-sort"><span
                                     style="width: 158px;">Status</span></th>
                          
@@ -146,18 +155,18 @@
                                         <div class="imgmil"> <div class="symbol symbol-40 symbol-sm flex-shrink-0"> 
                                        
                                             <img
-                                                src="{{urlImage}}" alt="photo"> </div></div>
+                                                src="assets/media/users/{{movement.entitySerial}}.bmp" alt="photo"> </div></div>
                                         <div class="ml-4">
                                              <a href="/profile" class="text-dark-75 font-weight-bolder font-size-lg mb-0 text-hover-primary">
                                                 {{movement.entityName}}</a> <div
-                                                class="text-muted font-weight-bold ">{{rankClass}}</div>
+                                                class="text-muted font-weight-bold ">{{movement.entitySerial}}</div>
                                         </div>
                                     </div>
                                 </span></td>
                             <td data-field="card" aria-label="Indonesia" class="datatable-cell"><span
                                     style="width: 158px;">
                                     <div class="font-weight-bolder font-size-lg mb-0">{{movement.cardNumber}}</div>
-                                    <div class="font-weight-bold text-muted">UID:{{movement.location}}</div>
+                                    <div class="font-weight-bold text-muted">UID:{{movement.cardId}}</div>
                                 </span></td>
                                 
                             <td data-field="cardDate" aria-label="3/17/2017" class="datatable-cell"><span
@@ -168,16 +177,18 @@
 
                             <td data-field="Lastregist" aria-label="Beier-Mante" class="datatable-cell">
                                 <span style="width: 158px;">
-                                    <div class="text-muted">{{notas}}</div>
+                                    <div class="font-weight-bolder font-size-lg mb-0">{{movement.location}}</div>
+                                    <div class="text-muted">falta as notas do movimento</div>
                                    
                                 </span></td>
                             <td data-field="Status" aria-label="5" class="datatable-cell"><span
                                     style="width: 158px;"><span
-                                        class="label label-lg font-weight-bold {{cardStatusColor}} label-inline">{{cardStatus}}</span></span>
+                                        class="label label-lg font-weight-bold {{cardStatusColor}} label-inline">{{movement.inOut}}</span></span>
                             </td>
                           
                         </tr>
                        
+
                     
                     </tbody>
                 </table>

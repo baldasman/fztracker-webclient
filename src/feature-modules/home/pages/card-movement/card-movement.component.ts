@@ -19,17 +19,10 @@ import { data } from 'jquery';
 export class  CardMovementComponent extends Mixin(Core, Animations, Forms, Stores) implements OnInit, OnDestroy {
  
   //exemplo para teste, será preciso API para ir buscar este conteudo.
-  name: string = "Isabel Pereira";
-  rankClass: string = "Civil";
   MovimentsDay: Date = new Date(); 
-  cardNumber: string = "C0001";
-  cardUid: string = "US12324235322";
-  movdate: string = "17/01/2020";
-  movhora: string = "10:25";
-  lastRegist: string = "12/09/2020";
-  cardStatus: string = "Entrou";
+    cardStatus: string = "Entrou";
   cardStatusColor: string = "label-success"
-  urlImage : string = "assets/media/users/1212.jpg";
+
   totalRegistos: number = 300;
   notas: string = "entrou sem cartão";
   from;
@@ -39,6 +32,9 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Forms, Store
   MovementSearchform: FormGroup;
   toDate;
   fromDate;
+  number="Todos";
+  numbers=["Todos","CF-Alfeite","CF-Escola"]
+
  
   get fes() { return this.MovementSearchform.controls; }
   
@@ -65,8 +61,10 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Forms, Store
     console.log('Get movements');
     this.movementService.getMovements().subscribe((data: any) => {
       console.log('movements', data);
+     
 
       this.movements = data.movements;
+
     /*   data.movements.forEach(movement => {
         const e = {...movement};
 
@@ -80,7 +78,7 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Forms, Store
   }
    searchMovement() {
 
-
+  
     var currentTime = new Date();
     var month = currentTime.getMonth() + 1;
     var day = currentTime.getDate();
@@ -97,16 +95,20 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Forms, Store
   
    }
 
-   if (this.from == undefined && this.to == undefined && this.fes.findnii.value != null ) {console.log("testes ao log")
-   var month2 = month;
-    if ((month2 -1 ) == 0)
-        {month2 = 12}
+   if (this.from == undefined && this.to == undefined && this.fes.findnii.value != null ) {
+ 
+      var month2 = (month-1);
+      var year2 = year;
+          if ((month2) == 0) {
+            month2 = 12, year2 = (year - 1);
+          };
 
-  var todayDatebefore = ((year+"-"+month2+"-"+day));
 
-  this.fromDate = todayDatebefore;
-  this.toDate = todayDate;
-  console.log('datas', todayDatebefore, todayDate)
+      var oldDate = ((year2+"-"+month2+"-"+day));
+
+      this.fromDate = oldDate;
+      this.toDate = todayDate;
+      console.log('datas', oldDate, todayDate);
   }
 
    if (this.from != undefined && this.to != undefined ) {
