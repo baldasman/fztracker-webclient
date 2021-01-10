@@ -11,6 +11,7 @@ import { MovementsService } from '@core-modules/core/services/movements.service'
 import { dateHourMinFormat } from '@core-modules/core/models/dates-helper.component';
 import { data } from 'jquery';
 
+
 @Component({
   selector: 'app-card-movement',
   templateUrl: './card-movement.component.html',
@@ -20,11 +21,8 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Forms, Store
  
   //exemplo para teste, será preciso API para ir buscar este conteudo.
   MovimentsDay: Date = new Date(); 
-    cardStatus: string = "Entrou";
   cardStatusColor: string = "label-success"
-
   totalRegistos: number = 300;
-  notas: string = "entrou sem cartão";
   from;
   to;
   local: string =null;
@@ -33,9 +31,9 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Forms, Store
   MovementSearchform: FormGroup;
   toDate;
   fromDate;
-  number="Todos";
-  numbers=["Todos","LOCALX","CF-Escola"]
   
+  place  ="Todos";
+  places = ["Todos","LOCALX","CF-Escola"];
 
  
   get fes() { return this.MovementSearchform.controls; }
@@ -59,8 +57,8 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Forms, Store
 
   ngOnInit() {
 
-
-    console.log('Get movements');
+    console.log('home' );
+    
     this.movementService.getMovements().subscribe((data: any) => {
       console.log('movements', data);
      
@@ -105,12 +103,10 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Forms, Store
             month2 = 12, year2 = (year - 1);
           };
 
-
       var oldDate = ((year2+"-"+month2+"-"+day));
-
       this.fromDate = oldDate;
       this.toDate = todayDate;
-      console.log('datas', oldDate, todayDate);
+      
   }
 
    if (this.from != undefined && this.to != undefined ) {
@@ -128,13 +124,12 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Forms, Store
 } 
  
 selectChangeHandler (event: any) {
-  //update the ui
+  //altera o local
 
   if (event.target.value =="Todos"){ this.local  = null} 
   else this.local  = event.target.value;
   
-  console.log("a alteraçao " , this.local)
-}
+  }
 
 
 

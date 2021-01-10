@@ -73,5 +73,6 @@ export class HomeModule {
   uid:string;
   statuscard:string;
   addcards:string;
+  
 
  }
