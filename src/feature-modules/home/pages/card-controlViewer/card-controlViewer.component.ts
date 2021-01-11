@@ -81,25 +81,23 @@ export class CardControlViewerComponent extends Mixin(Core, Animations, Forms, S
 
 
 
-selectChangeHandler (event: any) {
+  selectChangeHandler (event: any) {
 
-    if (event.target.value =="Todos"){ this.local  = null} 
-    else this.local  = event.target.value;
-    
+      if (event.target.value =="Todos"){ this.local  = null} 
+      else this.local  = event.target.value;
+      
 
-  console.log('teste a movimentos', this.fes.findnii.value, this.fromDate, this.toDate, this.local);
-  this.movementService.getMovements(this.fes.findnii.value, this.fromDate, this.toDate, this.local).subscribe((data: any) => {
-        if (data.movements) {
-          this.movements = data.movements;
-        
-        }
-      });
-
-
-} 
+        console.log('teste a movimentos', this.fes.findnii.value, this.fromDate, this.toDate, this.local);
+        this.movementService.getMovements(this.fes.findnii.value, this.fromDate, this.toDate, this.local).subscribe((data: any) => {
+              if (data.movements) {
+                this.movements = data.movements;
+              
+              }
+            });
 
 
+      
+      } 
 
 
-
-  }
+}
