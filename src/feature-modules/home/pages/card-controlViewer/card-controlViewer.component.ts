@@ -13,13 +13,15 @@ import { EntityService } from '@core-modules/core/services/entity.service';
   selector: 'app-card-controlViewer',
   templateUrl: './card-controlViewer.component.html',
   styleUrls: ['./card-controlViewer.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  //changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardControlViewerComponent extends Mixin(Core, Animations, Forms, Stores) implements OnInit, OnDestroy {
   
 
   MovimentsDay: Date = new Date(); 
   cardStatusColor: string = "label-success"
+  namePhoto: string = "";
+  inOut: string = "";
   model;
   model2;
   fromDate;
@@ -48,15 +50,6 @@ export class CardControlViewerComponent extends Mixin(Core, Animations, Forms, S
   }
 
   ngOnInit() {
-    this._docSub = this.cardService.notification.subscribe(movement => {
-      console.log('movement', movement);
-      console.log('movement', movement.entity.permanent.serial);
-      this.foto = `assets/media/users/${movement.entity.permanent.serial}.bmp`;
-     
-      // Filter eventes by location
-    
-       });
-    
 
     this.movementService.getMovements().subscribe((data: any) => {
       console.log('movements', data);
@@ -64,18 +57,35 @@ export class CardControlViewerComponent extends Mixin(Core, Animations, Forms, S
 
       this.movements = data.movements;
 
-      // save uuid to input
+            });
+
+    this._docSub = this.cardService.notification.subscribe(movement => {
+      console.log('movement', movement);
+      
+     if (movement.movement.location == this.local ||  this.local == null) {
+      this.foto = `assets/media/users/${movement.entity.permanent.serial}.bmp`;
+      this.namePhoto = `${movement.movement.entityName} `;
+      
+      this.movementService.getMovements().subscribe((data: any) => {       
+        this.movements = data.movements;
+
+       if (movement.movement.inOut == true) { this.inOut = "Entrou"}
+
+
+        });}
       
     });
     
-  
 }
 
 
+
+
 selectChangeHandler (event: any) {
-//altera o local
-if (event.target.value =="Todos"){ this.local  = null} 
-else this.local  = event.target.value;
+
+    if (event.target.value =="Todos"){ this.local  = null} 
+    else this.local  = event.target.value;
+    
 
   console.log('teste a movimentos', this.fes.findnii.value, this.fromDate, this.toDate, this.local);
   this.movementService.getMovements(this.fes.findnii.value, this.fromDate, this.toDate, this.local).subscribe((data: any) => {
@@ -86,7 +96,10 @@ else this.local  = event.target.value;
       });
 
 
-}
+} 
 
 
-}
+
+
+
+  }
