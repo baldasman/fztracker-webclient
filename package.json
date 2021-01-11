@@ -33,6 +33,7 @@
     "bootstrap": "^4.4.1",
     "countries-and-timezones": "^2.2.0",
     "dynamicgrid": "^0.1.1695",
+    "howler": "^2.2.1",
     "jquery": "^3.5.1",
     "lodash": "^4.17.15",
     "moment-timezone": "^0.5.31",

@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { CardService } from '@core-modules/core/services/card.service';
 import { MovementsService } from '@core-modules/core/services/movements.service';
 import { MovementModel } from '@core-modules/core/models/movement.model';
+import { ToastrService } from 'ngx-toastr';
+import {Howl} from 'howler';
 import { EntityListComponent } from '../entity-list/entity-list.component';
 import { EntityService } from '@core-modules/core/services/entity.service';
 
@@ -29,7 +31,7 @@ export class CardControlViewerComponent extends Mixin(Core, Animations, Forms, S
   local: string =null;
   MovementSearchform: FormGroup;
   movements: MovementModel[];
-  foto: string = "assets/media/users/desc.bmp";
+  foto: string = "assets/media/default.bmp";
 
   private _docSub: Subscription;
   get fes() { return this.MovementSearchform.controls; }
@@ -40,7 +42,7 @@ export class CardControlViewerComponent extends Mixin(Core, Animations, Forms, S
   places = ["Todos","LOCALX","CF-Escola"];
 
 
-  constructor(private cardService: CardService, private layoutConfigService: LayoutConfigService, private movementService: MovementsService) {
+  constructor(private cardService: CardService, private layoutConfigService: LayoutConfigService, private movementService: MovementsService, private toastr: ToastrService) {
     super();
 
     this.MovementSearchform = this.formBuilder.group({
@@ -68,11 +70,14 @@ export class CardControlViewerComponent extends Mixin(Core, Animations, Forms, S
       
       this.movementService.getMovements().subscribe((data: any) => {       
         this.movements = data.movements;
+        this.toastr.success('Cartão autorizado');
+        
+            let sound = new Howl({
+                  src: ['assets/media/in.wav']
+                    });
 
-       if (movement.movement.inOut == true) { this.inOut = "Entrou"}
-
-
-        });}
+                  sound.play()
+       });}
       
     });
     

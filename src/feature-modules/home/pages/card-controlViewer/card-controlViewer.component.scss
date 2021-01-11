@@ -1,24 +1,44 @@
 .page-custom {
   @media (min-width: 1024px) {
     margin-top: -55px; // to remove gap left by subheader bar
+    
   }
 }
 
+.header {
+ 
+   position: relative;
+   padding-bottom: 10%;
+   
+}
+
+
+.header p {
+  margin: 0;
+  position: absolute;
+  left: 40%;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 500%;
+  font-weight: 1000;
+
+}
 
 .parent-div {
   height: 300px; 
   width:200px;
+  position:absolute;
  }
  
  .parent-div img {
   height: 100%;
   width: 100%;
+ 
  }
 
  .parent {
   height: 400px; 
   width: 300px;
-  border: 3px solid rgb(73, 133, 73);
+ 
   padding: 0;
   position: relative;
   text-align: center;
@@ -38,7 +58,7 @@
   bottom: 4px;
   background-color: rgb(177, 190, 186);
   transform: translate(-50%, -50%);
-  border: 3px solid rgb(73, 133, 73);
+  
   font: bold 125%/125% "Comic Sans MS", cursive;
  
 }
