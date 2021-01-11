@@ -68,19 +68,31 @@ export class CardControlViewerComponent extends Mixin(Core, Animations, Forms, S
       this.foto = `assets/media/users/${movement.entity.permanent.serial}.bmp`;
       this.namePhoto = `${movement.movement.entityName} `;
       
-      this.movementService.getMovements().subscribe((data: any) => {       
-        this.movements = data.movements;
-        this.toastr.success('Cartão autorizado');
-        
-            let sound = new Howl({
-                  src: ['assets/media/in.wav']
-                    });
+              this.movementService.getMovements().subscribe((data: any) => {       
+              this.movements = data.movements;
+              
+              
+                if (movement.movement.inOut == true) {  
+                  this.toastr.success('Cartão autorizado');
+                      let sound = new Howl({
+                          src: ['assets/media/in.wav']
+                            });
 
-                  sound.play()
-       });}
-      
-    });
-    
+                          sound.play()
+                    } ;
+
+                    if (movement.movement.inOut == false) { 
+                      this.toastr.info('Cartão autorizado'); 
+                      let sound = new Howl({
+                          src: ['assets/media/out.wav']
+                            });
+
+                          sound.play()
+                    } ;
+
+                });
+        }      
+    });    
 }
 
 
