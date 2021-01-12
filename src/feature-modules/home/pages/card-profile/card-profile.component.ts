@@ -10,6 +10,7 @@ import { MovementsService } from '@core-modules/core/services/movements.service'
 import { MovementModel } from '@core-modules/core/models/movement.model';
 import { Console } from 'console';
 import { EntityService } from '@core-modules/core/services/entity.service';
+import { CardsService } from '@core-modules/core/services/cards.service';
 
 
 
@@ -51,7 +52,7 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
   location: string = "";
   cardNumber: string = "M0001";
   cardUid: string = "US12324235322";
-  addDate: string = "17/01/2020";
+  addDate: string = "";
   cardType: string = "Civil";
   lastRegistDate: Date;
   lastRegistHora: Date;
@@ -60,6 +61,12 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
   serial: string;
   movements: MovementModel[];
   profile;
+ 
+  local: string =null;
+
+  place  ="Todos";
+   places = ["Todos", "True ", "False"];
+
   public paginaAtual = 1;
   private _docSub: Subscription;
 
@@ -69,7 +76,7 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
   assignCardform: FormGroup;
   get fac() { return this.assignCardform.controls; }
 
-  constructor(private entityService: EntityService, private movementService: MovementsService, private layoutConfigService: LayoutConfigService, private cardService: CardService, private route: ActivatedRoute, private environmentStore: EnvironmentStore) {
+  constructor(private cardsService: CardsService, private entityService: EntityService, private movementService: MovementsService, private layoutConfigService: LayoutConfigService, private cardService: CardService, private route: ActivatedRoute, private environmentStore: EnvironmentStore) {
     super();
     this.fontFamily = this.layoutConfigService.getConfig('js.fontFamily');
     this.colorsGrayGray500 = this.layoutConfigService.getConfig('js.colors.gray.gray500');
@@ -101,8 +108,7 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
           this.profile = this.movements[0].entitySerial;
           this.name = this.movements[0].entityName;
           this.cardNumber = this.movements[0].cardNumber;
-          this.cardUid = this.movements[0].entitySerial;
-          this.addDate = this.movements[0].entitySerial;
+
           this.cardType = this.movements[0].entityType;
           this.location = this.movements[0].location;
           this.lastRegistDate = this.movements[0].movementDate;;
@@ -120,6 +126,18 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
           const entity = data.entities[0];
           console.log('entidade', entity);
         }
+
+      });
+
+      
+      this.cardsService.getCards(this.serial).subscribe((data: any) => {
+        const cdr = data.cards[0];
+         console.log('cartão', cdr);
+         this.addDate = cdr.lastChangeDate;
+         this.cardUid = cdr.uid;
+         console.log('data', this.addDate);
+         console.log('UID', this.cardUid);
+
 
       });
 
@@ -204,7 +222,13 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
 
 
 
-
+  selectChangeHandler (event: any) {
+    //altera o local
+  
+    if (event.target.value =="Todos"){ this.local  = null} 
+    else this.local  = event.target.value;
+    
+    }
 
 
 
