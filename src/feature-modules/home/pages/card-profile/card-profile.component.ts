@@ -47,19 +47,21 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
   name: string = "Conceição Silva";
   rankClass: string = "Civil";
   totalRegistos: number = 300;
+  location: string = "";
   cardNumber: string = "M0001";
   cardUid: string = "US12324235322";
   addDate: string = "17/01/2020";
   cardType: string = "Civil";
   lastRegistDate: Date;
   lastRegistHora: Date;
-  cardStatus;
-  cardStatusColor: string = "label-success";
+  cardStatus: string = "Saída";
+  cardStatusColor: string = "label-light-danger";
   serial: string;
   movements: MovementModel[];
   profile;
   public paginaAtual = 1;
   private _docSub: Subscription;
+
 
   constructor(private movementService: MovementsService, private layoutConfigService: LayoutConfigService, private cardService: CardService, private route: ActivatedRoute,  private environmentStore: EnvironmentStore) {
     super();
@@ -94,9 +96,14 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
       this.cardUid = this.movements[0].entitySerial;
       this.addDate = this.movements[0].entitySerial;
       this.cardType= this.movements[0].entityType;
+      this.location = this.movements[0].location;
       this.lastRegistDate = this.movements[0].movementDate;;
       this.lastRegistHora = this.movements[0].movementDate;
-      this.cardStatus = this.movements[0].inOut;
+      if (this.movements[0].inOut == true ) {
+       this.cardStatus = "Entrada";
+       this.cardStatusColor = "label-light-success";
+      };
+      
 
      
       }

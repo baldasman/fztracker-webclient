@@ -24,7 +24,7 @@
             <!--begin::Nav-->
             <div class="navi navi-bold navi-hover navi-active navi-link-rounded">
               <div class="navi-item mb-2">
-                <a href="custom/apps/profile/profile-1/overview.html" class="navi-link py-4 active">
+                <a href="#" class="navi-link py-4 active">
                   <span class="navi-icon mr-2">
                     <span class="svg-icon">
                       <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Layers.svg-->
@@ -60,7 +60,7 @@
                 </a>
               </div>
               <div class="navi-item mb-2">
-                <a href="/profileSearch" class="navi-link py-4">
+                <a href="/movimentos/{{profile}}" class="navi-link py-4">
                   <span class="navi-icon mr-2">
                     <span class="svg-icon">
                       <!--begin::Svg Icon | path:assets/media/svg/icons/Code/Compiling.svg-->
@@ -116,12 +116,12 @@
                         <a href="#" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">Ultimo Registo</a>
                         <!--end::Title-->
                         <!--begin::Data-->
-                        <span class="text-muted font-weight-bold">Entrada no CF-Alfc 24/11/2020 11:56</span>
+                        <span class="text-muted font-weight-bold">{{lastRegistDate  |  date:'dd-MM-yyyy -  HH:mm'}}</span>
                         <!--end::Data-->
                       </div>
                       <!--end::Info-->
                       <!--begin::Label-->
-                      <span class="label label-lg label-light-success label-inline font-weight-bold py-4">Válido</span>
+                      <span class="label label-lg {{cardStatusColor}} label-inline font-weight-bold py-4">{{cardStatus}}</span>
                       <!--end::Label-->
                     </div>
                     <!--end::Section-->
@@ -283,7 +283,7 @@
                     </div>
                     <div class="col px-8 py-6">
                       <div class="font-size-sm text-muted font-weight-bold">Ultima Entrada</div>
-                      <div class="font-size-h4 font-weight-bolder">CF - 230830 OUT 20</div>
+                      <div class="font-size-h4 font-weight-bolder">{{location}} {{lastRegistDate  |  date:'dd-MM-yyyy'}}</div>
                     </div>
                   </div>
                   <!--end::Row-->
