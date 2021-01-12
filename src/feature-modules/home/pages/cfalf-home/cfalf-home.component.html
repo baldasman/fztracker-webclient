@@ -29,7 +29,7 @@
               <!--begin::Nav-->
               <div class="navi navi-bold navi-hover navi-active navi-link-rounded">
                 <div class="navi-item ">
-                  <a href="custom/apps/profile/profile-1/overview.html" class="navi-link py-4 active">
+                  <a href="#" class="navi-link py-4 ">
                     <span class="navi-icon mr-2">
                       <span class="svg-icon">
                         <!--begin::Svg Icon | path:assets/media/svg/icons/General/User.svg-->
@@ -67,8 +67,8 @@
                 </div>
   
                 <div class="navi-item ">
-                  <a href="/alfeite" class="navi-link py-4">
-                    <span class="navi-icon mr-2">
+                  <a href="/alfeite" class="navi-link py-4 active">
+                    <span class="navi-icon mr-2 ">
                       <span class="svg-icon">
                         <!--begin::Svg Icon | path:assets/media/svg/icons/Code/Compiling.svg-->
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -102,9 +102,31 @@
                         <!--end::Svg Icon-->
                       </span>
                     </span>
-                    <span class="navi-text font-size-lg">Pesquisa</span>
+                    <span class="navi-text font-size-lg">Entidades</span>
                   </a>
                 </div>
+
+                <div class="navi-item ">
+                  <a href="/movimentos" class="navi-link py-3">
+                    <span class="navi-icon mr-2">
+                      <span class="svg-icon">
+                        <!--begin::Svg Icon | path:assets/media/svg/icons/Code/Compiling.svg-->
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <rect x="0" y="0" width="24" height="24"></rect>
+                            <path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+  
+                            <path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z" fill="#000000" fill-rule="nonzero"/>
+  
+                          </g>
+                        </svg>
+                        <!--end::Svg Icon-->
+                      </span>
+                    </span>
+                    <span class="navi-text font-size-lg">Movimentos</span>
+                  </a>
+                </div>
+             
              
               
               </div>
@@ -169,7 +191,7 @@
                       <!--begin::Info-->
                       <div class="d-flex flex-column align-items-cente py-2 w-75">
                         <!--begin::Title-->
-                        <a href="#" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">CF - Alfeite</a>
+                        <a href="\alfeite" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">CF - Alfeite</a>
                         <!--end::Title-->
                         <!--begin::Data-->
                         <span class="text-muted font-weight-bold"></span>
@@ -330,7 +352,37 @@
                   <!--end::Content-->
                 </div>
                 <!--begin::Item-->
-              
+                <div class="mb-6 "style="padding-bottom: 10px;">
+                  <!--begin::Content-->
+                  <div class="d-flex align-items-center flex-grow-1">
+                    
+                    <!--begin::Section-->
+                    <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
+                      <!--begin::Info-->
+                      <div class="d-flex flex-column align-items-cente py-2 w-75">
+                        <!--begin::Title-->
+                        <a href="#" class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">Refeições</a>
+                        <!--end::Title-->
+                        <!--begin::Data-->
+                        <span class="text-muted font-weight-bold">Alfeite Almoço/jantar</span>
+                        <!--end::Data-->
+                      </div>
+                      <!--end::Info-->
+                      <!--begin::Label-->
+                      <div class="row">
+                        <div class="flex-column">
+                          <span class="label label-lg label-light-primary label-inline font-weight-bold py-4" style="margin-right: 5px; width: 50px;">{{militaresCfEf}}</span>
+                        </div>  
+                        <div class="flex-column">
+                          <span class="label label-lg label-light-info label-inline font-weight-bold py-4" style=" width: 50px;">{{militaresForaCfEf}}</span>
+                       </div> 
+                    </div>
+                      <!--end::Label-->
+                    </div>
+                    <!--end::Section-->
+                  </div>
+                  <!--end::Content-->
+                </div>
        
             
               </div>

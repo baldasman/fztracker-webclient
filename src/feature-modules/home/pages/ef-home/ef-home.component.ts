@@ -95,12 +95,12 @@ export class EfHomeComponent extends Mixin(Core, Animations, Stores) implements 
     return {
         series: [
           {
-            name: "CF-ALF",
+            name: "Entradas",
             type: "column",
             data: [100, 88, 108, 110, 122, 214, 190, ]
           },
           {
-            name: "CF-EF",
+            name: "Saídas",
             type: "column",
             data: [90, 80, 150, 120, 130, 200, 200,  ]
           }
@@ -120,7 +120,7 @@ export class EfHomeComponent extends Mixin(Core, Animations, Stores) implements 
           width: [0, 4]
         },
         title: {
-          text: "Entradas por Dias"
+            text: "Militares últimos 7 Dias "
          
         },
         dataLabels: {
@@ -128,13 +128,13 @@ export class EfHomeComponent extends Mixin(Core, Animations, Stores) implements 
           enabledOnSeries: []
         },
         labels: [
-          "01 Nov ",
-          "02 Nov ",
-          "03 Nov ",
-          "04 Nov ",
-          "05 Nov ",
-          "06 Nov ",
-          "07 Nov ",
+          "01 Fev ",
+          "02 Fev ",
+          "03 Fev ",
+          "04 Fev ",
+          "05 Fev ",
+          "06 Fev ",
+          "07 Fev ",
           
       
   
@@ -148,7 +148,7 @@ export class EfHomeComponent extends Mixin(Core, Animations, Stores) implements 
         yaxis: [
           {
             title: {
-              text: "Número de Entradas"
+              text: "Número de Entradas/Saídas"
             }
             
           },

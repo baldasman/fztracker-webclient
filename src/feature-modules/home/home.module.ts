@@ -19,7 +19,7 @@ import { EfHomeComponent } from './pages/ef-home/ef-home.component';
 import { AddEntityComponent } from './pages/add-entity/add-entity.component';
 import { CfAlfHomeComponent } from './pages/cfalf-home/cfalf-home.component';
 import { MovementsService } from '@core-modules/core/services/movements.service';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -40,6 +40,7 @@ import { MovementsService } from '@core-modules/core/services/movements.service'
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    NgxPaginationModule,
       
     
     

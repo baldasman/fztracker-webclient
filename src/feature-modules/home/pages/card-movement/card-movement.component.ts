@@ -31,6 +31,7 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Forms, Store
   MovementSearchform: FormGroup;
   toDate;
   fromDate;
+  public paginaAtual = 1;
   
   place  ="Todos";
   places = ["Todos","LOCALX","CF-Escola"];

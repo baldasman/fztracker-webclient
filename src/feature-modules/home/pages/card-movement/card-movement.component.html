@@ -138,7 +138,7 @@
                     <tbody class="datatable-body">
                      
                     
-                        <tr  *ngFor="let movement of movements; let i = index" data-row="46" class="datatable-row datatable-row-even" style="left: 0px;">
+                        <tr  *ngFor="let movement of movements | paginate: { itemsPerPage: 15, currentPage: paginaAtual }; let i = index" data-row="46" class="datatable-row datatable-row-even" style="left: 0px;">
                             <td class="datatable-cell-sorted datatable-cell-left datatable-cell"
                                 data-field="RecordID" aria-label="00"><span style="width: 40px;"><span
                                         class="font-weight-bolder">{{ i+1 }}</span></span></td>
@@ -184,6 +184,12 @@
 
                     
                     </tbody>
+                    <tfoot> 
+                        <tr> 
+                            <td colspan="2"> <pagination-controls (pageChange)="paginaAtual = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
+                            </td>
+                        </tr>
+                   </tfoot>
 
                     
                 </table>
