@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { EnvironmentStore } from '@core-modules/stores';
 import { MovementsService } from '@core-modules/core/services/movements.service';
 import { MovementModel } from '@core-modules/core/models/movement.model';
+import { Console } from 'console';
 
 
 
@@ -41,7 +42,7 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
   colorsThemeBaseDanger = '';
   colorsThemeBasePrimary = '';
   colorsThemeLightPrimary = '';
-  profile:;
+
   urlImage : string = "assets/media/users/1212.jpg";
   name: string = "Conceição Silva";
   rankClass: string = "Civil";
@@ -50,12 +51,13 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
   cardUid: string = "US12324235322";
   addDate: string = "17/01/2020";
   cardType: string = "Civil";
-  lastRegistDate: string = "12/09/2020";
-  lastRegistHora: string = "10:22";
-  cardStatus: string = "Entrou";
+  lastRegistDate: Date;
+  lastRegistHora: Date;
+  cardStatus;
   cardStatusColor: string = "label-success";
   serial: string;
   movements: MovementModel[];
+  profile;
   public paginaAtual = 1;
   private _docSub: Subscription;
 
@@ -84,18 +86,27 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
     this.movementService.getMovements(this.serial, null, null, null).subscribe((data: any) => {
       if (data.movements) {
         this.movements = data.movements;
-        this.profile = this.movements[0];
-       
+        
+      console.log('teste2',data.movements[0]);
+      this.profile = this.movements[0].entitySerial;
+      this.name = this.movements[0].entityName;
+      this.cardNumber = this.movements[0].cardNumber;
+      this.cardUid = this.movements[0].entitySerial;
+      this.addDate = this.movements[0].entitySerial;
+      this.cardType= this.movements[0].entityType;
+      this.lastRegistDate = this.movements[0].movementDate;;
+      this.lastRegistHora = this.movements[0].movementDate;
+      this.cardStatus = this.movements[0].inOut;
+
+     
       }
     });
 
-
-
-
+      
 
 
      //cahmadas 
-     console.log('serial',this.serial);
+     
     });
  
     this.chartOptions6 = this.getChartOptions6();
