@@ -1,11 +1,13 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Animations, Core, Mixin, Stores } from '@app/base';
+import { Animations, Core, Forms, Mixin, Stores } from '@app/base';
 import { LayoutConfigService } from '@core-modules/main-theme/services/layout-config.service';
 import { Subscription } from 'rxjs';
 import { CardService } from '@core-modules/core/services/card.service';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { EnvironmentStore } from '@core-modules/stores';
+import { MovementsService } from '@core-modules/core/services/movements.service';
+import { MovementModel } from '@core-modules/core/models/movement.model';
 
 
 
@@ -20,7 +22,7 @@ import { EnvironmentStore } from '@core-modules/stores';
   templateUrl: './card-profile.component.html',
   styleUrls: ['./card-profile.component.scss']
 })
-export class CardProfileComponent extends Mixin(Core, Animations, Stores) implements OnInit, OnDestroy {
+export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores) implements OnInit, OnDestroy {
   
   
   title = 'appBootstrap';
@@ -39,6 +41,7 @@ export class CardProfileComponent extends Mixin(Core, Animations, Stores) implem
   colorsThemeBaseDanger = '';
   colorsThemeBasePrimary = '';
   colorsThemeLightPrimary = '';
+  profile:;
   urlImage : string = "assets/media/users/1212.jpg";
   name: string = "Conceição Silva";
   rankClass: string = "Civil";
@@ -52,10 +55,11 @@ export class CardProfileComponent extends Mixin(Core, Animations, Stores) implem
   cardStatus: string = "Entrou";
   cardStatusColor: string = "label-success";
   serial: string;
-
+  movements: MovementModel[];
+  public paginaAtual = 1;
   private _docSub: Subscription;
 
-  constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService, private route: ActivatedRoute,  private environmentStore: EnvironmentStore) {
+  constructor(private movementService: MovementsService, private layoutConfigService: LayoutConfigService, private cardService: CardService, private route: ActivatedRoute,  private environmentStore: EnvironmentStore) {
     super();
     this.fontFamily = this.layoutConfigService.getConfig('js.fontFamily');
     this.colorsGrayGray500 = this.layoutConfigService.getConfig('js.colors.gray.gray500');
@@ -74,7 +78,21 @@ export class CardProfileComponent extends Mixin(Core, Animations, Stores) implem
     
      this.serial = params.serial;
 
-this.urlImage = `${this.environmentStore.ENV.API_URL}/assets/userPhotos/${this.serial}.bmp`;
+    this.urlImage = `${this.environmentStore.ENV.API_URL}/assets/userPhotos/${this.serial}.bmp`;
+
+
+    this.movementService.getMovements(this.serial, null, null, null).subscribe((data: any) => {
+      if (data.movements) {
+        this.movements = data.movements;
+        this.profile = this.movements[0];
+       
+      }
+    });
+
+
+
+
+
 
      //cahmadas 
      console.log('serial',this.serial);

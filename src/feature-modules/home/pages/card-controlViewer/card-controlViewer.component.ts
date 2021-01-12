@@ -67,7 +67,7 @@ export class CardControlViewerComponent extends Mixin(Core, Animations, Forms, S
       console.log('movement', movement);
       
      if (movement.movement.location == this.local ||  this.local == null) {
-      this.foto = `assets/media/users/${movement.entity.permanent.serial}.bmp`;
+     this.foto = `assets/media/users/${movement.entity.permanent.serial}.bmp`;
       this.namePhoto = `${movement.movement.entityName} `;
       
               this.movementService.getMovements().subscribe((data: any) => {       

@@ -22,10 +22,10 @@ import { MovementsService } from '@core-modules/core/services/movements.service'
   styleUrls: ['./ef-home.component.scss']
 })
 export class EfHomeComponent extends Mixin(Core, Animations, Forms, Stores) implements OnInit, OnDestroy {
-  
+
   public paginaAtual = 1;
   title = 'appBootstrap';
-  
+
   model;
   model2;
 
@@ -40,31 +40,31 @@ export class EfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
   colorsThemeBaseDanger = '';
   colorsThemeBasePrimary = '';
   colorsThemeLightPrimary = '';
-  urlImage : string = "assets/media/polos/efhome.jpg";
+  urlImage: string = "assets/media/polos/efhome.jpg";
   totalRegistos: number = 300;
   cardStatusColor: string = "label-success";
 
-  militaresCf:number = 890;
-  militaresForaCf:number = 200;
+  militaresCf: number = 890;
+  militaresForaCf: number = 200;
 
-  militaresCfAlf:number = 700;
-  militaresForaCfAlf:number = 150;
+  militaresCfAlf: number = 700;
+  militaresForaCfAlf: number = 150;
 
-  militaresCfEf:number = 290;
-  militaresForaCfEf:number = 50;
+  militaresCfEf: number = 290;
+  militaresForaCfEf: number = 50;
 
-  alunosAlf:number = 20;
-  alunosEf:number = 200;
+  alunosAlf: number = 20;
+  alunosEf: number = 200;
 
-  civisAlf:number = 20;
-  civisEf:number = 30;
-  
-  visitasAlf:number = 18;
-  visitasEf:number = 10;
-  
+  civisAlf: number = 20;
+  civisEf: number = 30;
+
+  visitasAlf: number = 18;
+  visitasEf: number = 10;
+
   MovementSearchform: FormGroup;
   get fes() { return this.MovementSearchform.controls; }
-  
+
   cards: CardModel[];
   movements: MovementModel[];
 
@@ -79,97 +79,104 @@ export class EfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
     this.colorsThemeBaseDanger = this.layoutConfigService.getConfig('js.colors.theme.base.danger');
     this.colorsThemeBasePrimary = this.layoutConfigService.getConfig('js.colors.theme.base.primary');
     this.colorsThemeLightPrimary = this.layoutConfigService.getConfig('js.colors.theme.light.primary');
- 
-    
+
+
   }
 
-  ngOnInit(){  
-    
- 
+  ngOnInit() {
+
+
     this.chartOptions6 = this.getChartOptions6();
 
 
+    this.movementService.getMovements(null, null, null, "CF-Escola").subscribe((data: any) => {
+      if (data.movements) {
+        this.movements = data.movements;
+      
+      }
+    });
+    
   }
 
   getChartOptions6() {
     return {
-        series: [
-          {
-            name: "Entradas",
-            type: "column",
-            data: [100, 88, 108, 110, 122, 214, 190, ]
-          },
-          {
-            name: "Saídas",
-            type: "column",
-            data: [90, 80, 150, 120, 130, 200, 200,  ]
-          }
-        ],
-        chart: {
-          height: 260,
-          type: "line"
-        
-         
+      series: [
+        {
+          name: "Entradas",
+          type: "column",
+          data: [100, 88, 108, 110, 122, 214, 190,]
         },
-
-        toolbar: {
-          show: false
-        },
-
-        stroke: {
-          width: [0, 4]
-        },
-        title: {
-            text: "Militares últimos 7 Dias "
-         
-        },
-        dataLabels: {
-          enabled: false,
-          enabledOnSeries: []
-        },
-        labels: [
-          "01 Fev ",
-          "02 Fev ",
-          "03 Fev ",
-          "04 Fev ",
-          "05 Fev ",
-          "06 Fev ",
-          "07 Fev ",
-          
-      
-  
-        ],
-        xaxis: {
-          type: "bar"
-          
-        
+        {
+          name: "Saídas",
+          type: "column",
+          data: [90, 80, 150, 120, 130, 200, 200,]
         }
-        ,
-        yaxis: [
-          {
-            title: {
-              text: "Número de Entradas/Saídas"
-            }
-            
-          },
-       
-        ]
-      };
+      ],
+      chart: {
+        height: 260,
+        type: "line"
+
+
+      },
+
+      toolbar: {
+        show: false
+      },
+
+      stroke: {
+        width: [0, 4]
+      },
+      title: {
+        text: "Militares últimos 7 Dias "
+
+      },
+      dataLabels: {
+        enabled: false,
+        enabledOnSeries: []
+      },
+      labels: [
+        "01 Fev ",
+        "02 Fev ",
+        "03 Fev ",
+        "04 Fev ",
+        "05 Fev ",
+        "06 Fev ",
+        "07 Fev ",
+
+
+
+      ],
+      xaxis: {
+        type: "bar"
+
+
+      }
+      ,
+      yaxis: [
+        {
+          title: {
+            text: "Número de Entradas/Saídas"
+          }
+
+        },
+
+      ]
     };
+  };
 
 
 
 
 
 
-    Find() { console.log(this.model)}
+  Find() { console.log(this.model) }
 
 
 
 
-   
-    
-    
+
+
+
 
 
 
