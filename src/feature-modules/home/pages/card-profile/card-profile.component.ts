@@ -3,6 +3,9 @@ import { Animations, Core, Mixin, Stores } from '@app/base';
 import { LayoutConfigService } from '@core-modules/main-theme/services/layout-config.service';
 import { Subscription } from 'rxjs';
 import { CardService } from '@core-modules/core/services/card.service';
+import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { EnvironmentStore } from '@core-modules/stores';
 
 
 
@@ -48,11 +51,11 @@ export class CardProfileComponent extends Mixin(Core, Animations, Stores) implem
   lastRegistHora: string = "10:22";
   cardStatus: string = "Entrou";
   cardStatusColor: string = "label-success";
-  
+  serial: string;
 
   private _docSub: Subscription;
 
-  constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService,) {
+  constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService, private route: ActivatedRoute,  private environmentStore: EnvironmentStore) {
     super();
     this.fontFamily = this.layoutConfigService.getConfig('js.fontFamily');
     this.colorsGrayGray500 = this.layoutConfigService.getConfig('js.colors.gray.gray500');
@@ -61,12 +64,21 @@ export class CardProfileComponent extends Mixin(Core, Animations, Stores) implem
     this.colorsThemeBaseDanger = this.layoutConfigService.getConfig('js.colors.theme.base.danger');
     this.colorsThemeBasePrimary = this.layoutConfigService.getConfig('js.colors.theme.base.primary');
     this.colorsThemeLightPrimary = this.layoutConfigService.getConfig('js.colors.theme.light.primary');
- 
+   
     
   }
 
   ngOnInit(){  
     
+    this.route.params.subscribe(params => {
+    
+     this.serial = params.serial;
+
+this.urlImage = `${this.environmentStore.ENV.API_URL}/assets/userPhotos/${this.serial}.bmp`;
+
+     //cahmadas 
+     console.log('serial',this.serial);
+    });
  
     this.chartOptions6 = this.getChartOptions6();
 

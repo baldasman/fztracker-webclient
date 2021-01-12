@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import {Howl} from 'howler';
 import { EntityListComponent } from '../entity-list/entity-list.component';
 import { EntityService } from '@core-modules/core/services/entity.service';
+import { EnvironmentStore } from '@core-modules/stores';
 
 
 @Component({
@@ -39,11 +40,12 @@ export class CardControlViewerComponent extends Mixin(Core, Animations, Forms, S
  
 
   place  ="Todos";
-  places = ["Todos","LOCALX","CF-Escola"];
+  places = [];
 
 
-  constructor(private cardService: CardService, private layoutConfigService: LayoutConfigService, private movementService: MovementsService, private toastr: ToastrService) {
+  constructor( private environmentStore: EnvironmentStore,private cardService: CardService, private layoutConfigService: LayoutConfigService, private movementService: MovementsService, private toastr: ToastrService) {
     super();
+    this.places = this.environmentStore.ENV.LOCAIS;
 
     this.MovementSearchform = this.formBuilder.group({
       findnii: [null, null]

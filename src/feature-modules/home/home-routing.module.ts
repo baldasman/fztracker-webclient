@@ -81,7 +81,7 @@ const routes: Routes = [
 
 
       {
-        path: 'profile',
+        path: 'profile/:serial',
         component: CardProfileComponent,
         // resolve: { systemResolver: SystemsResolver }
       },

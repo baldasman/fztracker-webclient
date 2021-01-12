@@ -19,6 +19,7 @@ export class EnvironmentModel {
   WS_PATH: string;
   WS_USERNAME: string;
   WS_PASSWORD: string;
+  LOCAIS: string[];
 }
 
 export const environment: EnvironmentModel = {
@@ -33,5 +34,6 @@ export const environment: EnvironmentModel = {
   WS_PORT: window['__env'].WS_PORT || 443,
   WS_PATH: window['__env'].WS_PATH || '',
   WS_USERNAME: window['__env'].WS_USERNAME || '',
-  WS_PASSWORD: window['__env'].WS_PASSWORD || ''
+  WS_PASSWORD: window['__env'].WS_PASSWORD || '',
+  LOCAIS: window['__env'].LOCAIS || []
 };

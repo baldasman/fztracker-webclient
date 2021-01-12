@@ -1,8 +1,12 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Animations, Core, Mixin, Stores } from '@app/base';
+import { Animations, Core, Forms, Mixin, Stores } from '@app/base';
 import { LayoutConfigService } from '@core-modules/main-theme/services/layout-config.service';
 import { Subscription } from 'rxjs';
 import { CardService } from '@core-modules/core/services/card.service';
+import { CardModel } from '@core-modules/core/models/card.model';
+import { MovementModel } from '@core-modules/core/models/movement.model';
+import { FormGroup, FormsModule } from '@angular/forms';
+import { MovementsService } from '@core-modules/core/services/movements.service';
 
 
 
@@ -17,9 +21,9 @@ import { CardService } from '@core-modules/core/services/card.service';
   templateUrl: './ef-home.component.html',
   styleUrls: ['./ef-home.component.scss']
 })
-export class EfHomeComponent extends Mixin(Core, Animations, Stores) implements OnInit, OnDestroy {
+export class EfHomeComponent extends Mixin(Core, Animations, Forms, Stores) implements OnInit, OnDestroy {
   
-  
+  public paginaAtual = 1;
   title = 'appBootstrap';
   
   model;
@@ -37,17 +41,9 @@ export class EfHomeComponent extends Mixin(Core, Animations, Stores) implements 
   colorsThemeBasePrimary = '';
   colorsThemeLightPrimary = '';
   urlImage : string = "assets/media/polos/efhome.jpg";
-  name: string = "Conceição Silva";
-  rankClass: string = "Civil";
   totalRegistos: number = 300;
-  cardNumber: string = "M0001";
-  cardUid: string = "US12324235322";
-  addDate: string = "17/01/2020";
-  cardType: string = "Civil";
-  lastRegistDate: string = "12/09/2020";
-  lastRegistHora: string = "10:22";
-  cardStatus: string = "Entrou";
   cardStatusColor: string = "label-success";
+
   militaresCf:number = 890;
   militaresForaCf:number = 200;
 
@@ -66,11 +62,15 @@ export class EfHomeComponent extends Mixin(Core, Animations, Stores) implements 
   visitasAlf:number = 18;
   visitasEf:number = 10;
   
+  MovementSearchform: FormGroup;
+  get fes() { return this.MovementSearchform.controls; }
   
+  cards: CardModel[];
+  movements: MovementModel[];
 
   private _docSub: Subscription;
 
-  constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService,) {
+  constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService, private movementService: MovementsService,) {
     super();
     this.fontFamily = this.layoutConfigService.getConfig('js.fontFamily');
     this.colorsGrayGray500 = this.layoutConfigService.getConfig('js.colors.gray.gray500');

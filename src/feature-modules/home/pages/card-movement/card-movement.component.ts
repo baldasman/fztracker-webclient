@@ -10,6 +10,7 @@ import { EntityService } from '@core-modules/core/services/entity.service';
 import { MovementsService } from '@core-modules/core/services/movements.service';
 import { dateHourMinFormat } from '@core-modules/core/models/dates-helper.component';
 import { data } from 'jquery';
+import { EnvironmentStore } from '@core-modules/stores';
 
 
 @Component({
@@ -34,7 +35,7 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Forms, Store
   public paginaAtual = 1;
   
   place  ="Todos";
-  places = ["Todos","LOCALX","CF-Escola"];
+  places = [];
 
  
   get fes() { return this.MovementSearchform.controls; }
@@ -44,8 +45,9 @@ export class  CardMovementComponent extends Mixin(Core, Animations, Forms, Store
 
   private _docSub: Subscription;
 
-  constructor(private layoutConfigService: LayoutConfigService, private movementService: MovementsService, private cardsService: CardsService) {
+  constructor( private environmentStore: EnvironmentStore, private layoutConfigService: LayoutConfigService, private movementService: MovementsService, private cardsService: CardsService) {
     super();
+    this.places = this.environmentStore.ENV.LOCAIS;
 
     this.MovementSearchform = this.formBuilder.group({
       findnii: [null, null]
