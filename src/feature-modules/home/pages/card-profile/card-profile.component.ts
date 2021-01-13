@@ -61,11 +61,16 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
   serial: string;
   movements: MovementModel[];
   profile;
- 
-  local: string =null;
+  toDate;
+  fromDate;
+  inOut: string =  "true";
+  term;
 
-  place  ="Todos";
-   places = ["Todos", "True ", "False"];
+  local: string = null;
+
+  place: string = null;;
+
+  places = ["Todos", "true ", "false"];
 
   public paginaAtual = 1;
   private _docSub: Subscription;
@@ -85,8 +90,6 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
     this.colorsThemeBaseDanger = this.layoutConfigService.getConfig('js.colors.theme.base.danger');
     this.colorsThemeBasePrimary = this.layoutConfigService.getConfig('js.colors.theme.base.primary');
     this.colorsThemeLightPrimary = this.layoutConfigService.getConfig('js.colors.theme.light.primary');
-
-
   }
 
   ngOnInit() {
@@ -97,8 +100,23 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
 
       this.urlImage = `${this.environmentStore.ENV.API_URL}/assets/userPhotos/${this.serial}.bmp`;
 
+      var currentTime = new Date();
+      var month = currentTime.getMonth() + 1;
+      var day = currentTime.getDate();
+      var year = currentTime.getFullYear();
+      const todayDate = (year + "-" + month + "-" + day);
+      var month2 = (month - 1);
+      var year2 = year;
+      if ((month2) == 0) {
+        month2 = 12, year2 = (year - 1);
+      };
 
-      this.movementService.getMovements(this.serial, null, null, null).subscribe((data: any) => {
+      var oldDate = ((year2 + "-" + month2 + "-" + day));
+      this.fromDate = oldDate;
+      this.toDate = todayDate;
+
+
+      this.movementService.getMovements(this.serial, this.fromDate, this.toDate, null).subscribe((data: any) => {
         if (data.movements) {
           this.movements = data.movements;
 
@@ -129,14 +147,14 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
 
       });
 
-      
+
       this.cardsService.getCards(this.serial).subscribe((data: any) => {
         const cdr = data.cards[0];
-         console.log('cartão', cdr);
-         this.addDate = cdr.lastChangeDate;
-         this.cardUid = cdr.uid;
-         console.log('data', this.addDate);
-         console.log('UID', this.cardUid);
+        console.log('cartão', cdr);
+        this.addDate = cdr.lastChangeDate;
+        this.cardUid = cdr.uid;
+        console.log('data', this.addDate);
+        console.log('UID', this.cardUid);
 
 
       });
@@ -222,13 +240,13 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
 
 
 
-  selectChangeHandler (event: any) {
+  selectChangeHandler(event: any) {
     //altera o local
+    var placeBollean = event.target.value;
   
-    if (event.target.value =="Todos"){ this.local  = null} 
-    else this.local  = event.target.value;
-    
-    }
+  this.place = "LOCAL";
+    console.log(this.place)
+  }
 
 
 
