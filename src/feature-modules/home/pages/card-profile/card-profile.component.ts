@@ -68,10 +68,7 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
 
   local: string = null;
 
-  place: string = null;;
-
-  places = ["Todos", "true ", "false"];
-
+ 
   public paginaAtual = 1;
   private _docSub: Subscription;
 
@@ -238,15 +235,6 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
   Find() { console.log(this.model) }
 
 
-
-
-  selectChangeHandler(event: any) {
-    //altera o local
-    var placeBollean = event.target.value;
-  
-  this.place = "LOCAL";
-    console.log(this.place)
-  }
 
 
 

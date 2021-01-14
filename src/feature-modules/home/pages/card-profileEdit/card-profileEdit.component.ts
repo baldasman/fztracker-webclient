@@ -7,6 +7,11 @@ import { HomeModule } from '../../home.module';
 import { ToastrService } from 'ngx-toastr';
 import { EntityService } from '@core-modules/core/services/entity.service';
 import { FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { EnvironmentStore } from '@core-modules/stores';
+import { MovementsService } from '@core-modules/core/services/movements.service';
+import { CardsService } from '@core-modules/core/services/cards.service';
+import { Console } from 'console';
 
 
 
@@ -59,13 +64,14 @@ export class CardProfileEditComponent extends Mixin(Core, Animations, Forms, Sto
   btnblock: string = "";
   dynamicArray: Array<HomeModule> = [];  
   newDynamic: any = {}; 
+  serial: string;
  
 
 
 
   private _docSub: Subscription;
 
-  constructor(private layoutConfigService: LayoutConfigService, private entityService: EntityService, private cardService: CardService, private toastr: ToastrService) {
+  constructor(private toastr: ToastrService, private cardsService: CardsService, private entityService: EntityService, private movementService: MovementsService, private layoutConfigService: LayoutConfigService, private cardService: CardService, private route: ActivatedRoute, private environmentStore: EnvironmentStore) {
     super();
 
   /*   if (this.cardNumber == "" ) {
@@ -76,7 +82,9 @@ export class CardProfileEditComponent extends Mixin(Core, Animations, Forms, Sto
       this.btnstatus = "disabled";
     } */
     this.entitySearchform = this.formBuilder.group({
-      findnii: [null, Validators.required]
+      findnii: [9830401, Validators.required]
+   
+       
     });
 
     this.addentityform = this.formBuilder.group({
@@ -89,23 +97,39 @@ export class CardProfileEditComponent extends Mixin(Core, Animations, Forms, Sto
       entityPolo: [null, Validators.required],
 
     });
- 
+    console.log( 'form', this.entitySearchform) 
 
 
 
   }
 
   ngOnInit(): void {  
+
+
+    this.route.params.subscribe(params => {
+
+      this.serial = params.serial;
+   
+  });
+   console.log(this.serial);
+
+
+
+
+
+
+
+
+   
+
     this.newDynamic = {name: "", email: "",phone:""};  
     this.dynamicArray.push(this.newDynamic); 
  
-    
-
-  }
+  
 
 
 
- 
+}
 
 
 

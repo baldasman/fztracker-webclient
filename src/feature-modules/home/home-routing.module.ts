@@ -87,7 +87,7 @@ const routes: Routes = [
       },
 
       {
-        path: 'profileEdit',
+        path: 'profileEdit/:serial',
         component: CardProfileEditComponent,
         // resolve: { systemResolver: SystemsResolver }
       },
