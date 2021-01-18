@@ -11,6 +11,7 @@ import { MovementModel } from '@core-modules/core/models/movement.model';
 import { Console } from 'console';
 import { EntityService } from '@core-modules/core/services/entity.service';
 import { CardsService } from '@core-modules/core/services/cards.service';
+import Swal from 'sweetalert2';
 
 
 
@@ -64,12 +65,13 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
   toDate;
   fromDate;
   inOut: string =  "true";
+ 
+ 
   term;
 
   local: string = null;
-
- 
   public paginaAtual = 1;
+  itemsPerPage = 15;
   private _docSub: Subscription;
 
   entitySearchform: FormGroup;
@@ -236,7 +238,14 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
 
 
 
+  Abc(position) {
+    var pos = ((this.itemsPerPage*(this.paginaAtual - 1))+(position));
+    Swal.fire({
+      imageUrl: `assets/media/users/${this.movements[pos].entitySerial}.bmp`,
+      imageAlt: 'Sem foto'
+    })
 
+  }
 
 
 

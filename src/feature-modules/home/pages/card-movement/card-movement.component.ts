@@ -35,6 +35,7 @@ export class CardMovementComponent extends Mixin(Core, Animations, Forms, Stores
   fromDate;
   public paginaAtual = 1;
   itemsPerPage = 15;
+  term;
 
   place = "Todos";
   places = [];
