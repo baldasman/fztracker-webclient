@@ -7,7 +7,7 @@ import { CardModel } from '@core-modules/core/models/card.model';
 import { MovementModel } from '@core-modules/core/models/movement.model';
 import { FormGroup, FormsModule } from '@angular/forms';
 import { MovementsService } from '@core-modules/core/services/movements.service';
-
+import Swal from 'sweetalert2/dist/sweetalert2.js'; 
 
 
 
@@ -98,6 +98,8 @@ export class EfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
     
   }
 
+
+
   getChartOptions6() {
     return {
       series: [
@@ -173,7 +175,7 @@ export class EfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
 
 
 
-
+ 
 
 
 
