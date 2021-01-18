@@ -82,7 +82,7 @@ export class CardProfileEditComponent extends Mixin(Core, Animations, Forms, Sto
       this.btnstatus = "disabled";
     } */
     this.entitySearchform = this.formBuilder.group({
-      findnii: [9830401, Validators.required]
+      findnii: [null, Validators.required]
    
        
     });

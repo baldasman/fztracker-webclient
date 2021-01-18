@@ -23,7 +23,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class EfHomeComponent extends Mixin(Core, Animations, Forms, Stores) implements OnInit, OnDestroy {
 
-  public paginaAtual = 1;
+  
   title = 'appBootstrap';
 
   model;
@@ -61,6 +61,10 @@ export class EfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
 
   visitasAlf: number = 18;
   visitasEf: number = 10;
+
+  public paginaAtual = 1;
+  itemsPerPage = 15;
+  term;
 
   MovementSearchform: FormGroup;
   get fes() { return this.MovementSearchform.controls; }
@@ -175,7 +179,21 @@ export class EfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
 
 
 
- 
+  absoluteIndex(indexOnPage: number): number {
+
+
+    return this.itemsPerPage * (this.paginaAtual - 1) + indexOnPage;
+  }
+
+  Abc(position) {
+    var pos = ((this.itemsPerPage*(this.paginaAtual - 1))+(position));
+    Swal.fire({
+      imageUrl: `assets/media/users/${this.movements[pos].entitySerial}.bmp`,
+      imageAlt: 'Sem foto'
+    })
+
+  }
+
 
 
 

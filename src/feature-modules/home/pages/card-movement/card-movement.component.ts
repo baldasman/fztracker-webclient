@@ -12,6 +12,7 @@ import { dateHourMinFormat } from '@core-modules/core/models/dates-helper.compon
 import { data } from 'jquery';
 import { EnvironmentStore } from '@core-modules/stores';
 import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -48,7 +49,7 @@ export class CardMovementComponent extends Mixin(Core, Animations, Forms, Stores
 
   private _docSub: Subscription;
 
-  constructor(private environmentStore: EnvironmentStore, private layoutConfigService: LayoutConfigService, private movementService: MovementsService, private cardsService: CardsService) {
+  constructor(private toastr: ToastrService, private environmentStore: EnvironmentStore, private layoutConfigService: LayoutConfigService, private movementService: MovementsService, private cardsService: CardsService) {
     super();
     this.places = this.environmentStore.ENV.LOCAIS;
 
@@ -90,8 +91,13 @@ export class CardMovementComponent extends Mixin(Core, Animations, Forms, Stores
     var day = currentTime.getDate();
     var year = currentTime.getFullYear();
     const todayDate = (year + "-" + month + "-" + day);
+/* 
+    var timeJump2 = new Date(this.toDate);
 
 
+    var timeDiffS = Math.abs(currentTime.getTime() - timeJump2.getTime());
+    var diffDays = Math.ceil(timeDiffS / (1000 * 3600 * 24));
+    alert(timeDiff) */
 
 
     if (this.from == undefined && this.to == undefined && this.fes.findnii.value == null) {
@@ -115,19 +121,37 @@ export class CardMovementComponent extends Mixin(Core, Animations, Forms, Stores
       this.toDate = todayDate;
 
     }
+   
+  
+
 
     if (this.from != undefined && this.to != undefined) {
       this.fromDate = `${this.from.year}-${this.from.month}-${this.from.day}`;
       this.toDate = `${this.to.year}-${this.to.month}-${this.to.day}`;
       console.log('search', this.fes.findnii.value, this.from, this.to);
     }
-    console.log('teste a movimentos', this.fes.findnii.value, this.from, this.to, this.local);
-    this.movementService.getMovements(this.fes.findnii.value, this.fromDate, this.toDate, this.local).subscribe((data: any) => {
-      if (data.movements) {
-        this.movements = data.movements;
+    var dateFirst = new Date(this.fromDate);
+    var dateSecond = new Date(this.toDate);
+    var timeDiff = Math.abs(dateSecond.getTime() - dateFirst.getTime());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
-      }
-    });
+    if (diffDays < 90) {
+
+
+      console.log('teste a movimentos', this.fes.findnii.value, this.from, this.to, this.local);
+      this.movementService.getMovements(this.fes.findnii.value, this.fromDate, this.toDate, this.local).subscribe((data: any) => {
+        if (data.movements) {
+          this.movements = data.movements;
+
+        }
+      });
+
+
+    } else {
+      this.toastr.error("intrevalo de pesquisa não pode ser superior a 90 dias", 'Atenção');
+    }
+
+
   }
 
   selectChangeHandler(event: any) {
@@ -146,7 +170,7 @@ export class CardMovementComponent extends Mixin(Core, Animations, Forms, Stores
   }
 
   Abc(position) {
-    var pos = ((this.itemsPerPage*(this.paginaAtual - 1))+(position));
+    var pos = ((this.itemsPerPage * (this.paginaAtual - 1)) + (position));
     Swal.fire({
       imageUrl: `assets/media/users/${this.movements[pos].entitySerial}.bmp`,
       imageAlt: 'Sem foto'
