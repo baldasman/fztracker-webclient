@@ -91,13 +91,6 @@ export class CardMovementComponent extends Mixin(Core, Animations, Forms, Stores
     var day = currentTime.getDate();
     var year = currentTime.getFullYear();
     const todayDate = (year + "-" + month + "-" + day);
-/* 
-    var timeJump2 = new Date(this.toDate);
-
-
-    var timeDiffS = Math.abs(currentTime.getTime() - timeJump2.getTime());
-    var diffDays = Math.ceil(timeDiffS / (1000 * 3600 * 24));
-    alert(timeDiff) */
 
 
     if (this.from == undefined && this.to == undefined && this.fes.findnii.value == null) {
