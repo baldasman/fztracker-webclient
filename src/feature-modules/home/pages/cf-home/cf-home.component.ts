@@ -1,9 +1,13 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Animations, Core, Mixin, Stores } from '@app/base';
+import { Animations, Core, Forms, Mixin, Stores } from '@app/base';
 import { LayoutConfigService } from '@core-modules/main-theme/services/layout-config.service';
 import { Subscription } from 'rxjs';
 import { CardService } from '@core-modules/core/services/card.service';
-
+import { CardModel } from '@core-modules/core/models/card.model';
+import { MovementModel } from '@core-modules/core/models/movement.model';
+import { FormGroup, FormsModule } from '@angular/forms';
+import { MovementsService } from '@core-modules/core/services/movements.service';
+import Swal from 'sweetalert2/dist/sweetalert2.js'; 
 
 
 
@@ -17,11 +21,11 @@ import { CardService } from '@core-modules/core/services/card.service';
   templateUrl: './cf-home.component.html',
   styleUrls: ['./cf-home.component.scss']
 })
-export class CfHomeComponent extends Mixin(Core, Animations, Stores) implements OnInit, OnDestroy {
-  
+export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) implements OnInit, OnDestroy {
+
   
   title = 'appBootstrap';
-  
+
   model;
   model2;
 
@@ -36,41 +40,40 @@ export class CfHomeComponent extends Mixin(Core, Animations, Stores) implements 
   colorsThemeBaseDanger = '';
   colorsThemeBasePrimary = '';
   colorsThemeLightPrimary = '';
-  urlImage : string = "assets/media/polos/cfhome.jpg";
-  name: string = "Conceição Silva";
-  rankClass: string = "Civil";
+  urlImage: string = "assets/media/polos/cfhome.jpg";
   totalRegistos: number = 300;
-  cardNumber: string = "M0001";
-  cardUid: string = "US12324235322";
-  addDate: string = "17/01/2020";
-  cardType: string = "Civil";
-  lastRegistDate: string = "12/09/2020";
-  lastRegistHora: string = "10:22";
-  cardStatus: string = "Entrou";
   cardStatusColor: string = "label-success";
-  militaresCf:number = 890;
-  militaresForaCf:number = 200;
 
-  militaresCfAlf:number = 700;
-  militaresForaCfAlf:number = 150;
+  militaresCf: number = 890;
+  militaresForaCf: number = 200;
 
-  militaresCfEf:number = 290;
-  militaresForaCfEf:number = 50;
+  militaresCfAlf: number = 700;
+  militaresForaCfAlf: number = 150;
 
-  alunosAlf:number = 20;
-  alunosEf:number = 200;
+  militaresCfEf: number = 290;
+  militaresForaCfEf: number = 50;
 
-  civisAlf:number = 20;
-  civisEf:number = 30;
-  
-  visitasAlf:number = 18;
-  visitasEf:number = 10;
-  
-  
+ mealscf1:number = 20;
+ mealscf2:number = 200;
+ mealscf3:number = 80;
+
+ cardsCfEf:number = 150;
+ cardsCfAlf:number = 500;
+
+ 
+  public paginaAtual = 1;
+  itemsPerPage = 15;
+  term;
+
+  MovementSearchform: FormGroup;
+  get fes() { return this.MovementSearchform.controls; }
+
+  cards: CardModel[];
+  movements: MovementModel[];
 
   private _docSub: Subscription;
 
-  constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService,) {
+  constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService, private movementService: MovementsService,) {
     super();
     this.fontFamily = this.layoutConfigService.getConfig('js.fontFamily');
     this.colorsGrayGray500 = this.layoutConfigService.getConfig('js.colors.gray.gray500');
@@ -79,97 +82,120 @@ export class CfHomeComponent extends Mixin(Core, Animations, Stores) implements 
     this.colorsThemeBaseDanger = this.layoutConfigService.getConfig('js.colors.theme.base.danger');
     this.colorsThemeBasePrimary = this.layoutConfigService.getConfig('js.colors.theme.base.primary');
     this.colorsThemeLightPrimary = this.layoutConfigService.getConfig('js.colors.theme.light.primary');
- 
-    
+
+
   }
 
-  ngOnInit(){  
-    
- 
+  ngOnInit() {
+
+
     this.chartOptions6 = this.getChartOptions6();
 
 
+    this.movementService.getMovements(null, null, null, "CF-Escola").subscribe((data: any) => {
+      if (data.movements) {
+        this.movements = data.movements;
+      
+      }
+    });
+    
   }
+
+
 
   getChartOptions6() {
     return {
-        series: [
-          {
-            name: "CF-ALF",
-            type: "column",
-            data: [100, 88, 108, 110, 122, 214, 190, ]
-          },
-          {
-            name: "CF-EF",
-            type: "column",
-            data: [90, 80, 150, 120, 130, 200, 200,  ]
-          }
-        ],
-        chart: {
-          height: 260,
-          type: "line"
-        
-         
+      series: [
+        {
+          name: "Entradas",
+          type: "column",
+          data: [100, 88, 108, 110, 122, 214, 190,]
         },
-
-        toolbar: {
-          show: false
-        },
-
-        stroke: {
-          width: [0, 4]
-        },
-        title: {
-          text: "Entradas por Dias"
-         
-        },
-        dataLabels: {
-          enabled: false,
-          enabledOnSeries: []
-        },
-        labels: [
-          "01 Nov ",
-          "02 Nov ",
-          "03 Nov ",
-          "04 Nov ",
-          "05 Nov ",
-          "06 Nov ",
-          "07 Nov ",
-          
-      
-  
-        ],
-        xaxis: {
-          type: "bar"
-          
-        
+        {
+          name: "Saídas",
+          type: "column",
+          data: [90, 80, 150, 120, 130, 200, 200,]
         }
-        ,
-        yaxis: [
-          {
-            title: {
-              text: "Número de Entradas"
-            }
-            
-          },
-       
-        ]
-      };
+      ],
+      chart: {
+        height: 260,
+        type: "line"
+
+
+      },
+
+      toolbar: {
+        show: false
+      },
+
+      stroke: {
+        width: [0, 4]
+      },
+      title: {
+        text: "Militares últimos 7 Dias "
+
+      },
+      dataLabels: {
+        enabled: false,
+        enabledOnSeries: []
+      },
+      labels: [
+        "01 Fev ",
+        "02 Fev ",
+        "03 Fev ",
+        "04 Fev ",
+        "05 Fev ",
+        "06 Fev ",
+        "07 Fev ",
+
+
+
+      ],
+      xaxis: {
+        type: "bar"
+
+
+      }
+      ,
+      yaxis: [
+        {
+          title: {
+            text: "Número de Entradas/Saídas"
+          }
+
+        },
+
+      ]
     };
+  };
 
 
 
 
 
 
-    Find() { console.log(this.model)}
+  Find() { console.log(this.model) }
+
+
+
+  absoluteIndex(indexOnPage: number): number {
+
+
+    return this.itemsPerPage * (this.paginaAtual - 1) + indexOnPage;
+  }
+
+  Abc(position) {
+    var pos = ((this.itemsPerPage*(this.paginaAtual - 1))+(position));
+    Swal.fire({
+      imageUrl: `assets/media/users/${this.movements[pos].entitySerial}.bmp`,
+      imageAlt: 'Sem foto'
+    })
+
+  }
 
 
 
 
-   
-    
-    
 
 
 

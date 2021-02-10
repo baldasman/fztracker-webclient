@@ -53,6 +53,11 @@ export class EfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
   militaresCfEf: number = 290;
   militaresForaCfEf: number = 50;
 
+  mealscf1:number = 20;
+  mealscf2:number = 200;
+  mealscf3:number = 80;
+ 
+
   alunosAlf: number = 20;
   alunosEf: number = 200;
 
