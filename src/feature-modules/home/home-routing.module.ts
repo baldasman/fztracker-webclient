@@ -14,6 +14,7 @@ import { CfHomeComponent } from './pages/cf-home/cf-home.component';
 import { EfHomeComponent } from './pages/ef-home/ef-home.component';
 import { AddEntityComponent } from './pages/add-entity/add-entity.component';
 import { CfAlfHomeComponent } from './pages/cfalf-home/cfalf-home.component';
+import { FotoTestComponent } from './pages/foto-test/foto-test.component';
 
 
 
@@ -105,6 +106,15 @@ const routes: Routes = [
 
         // resolve: { systemResolver: SystemsResolver }
       },
+      {
+        path: 'foto',
+        component: FotoTestComponent,
+
+        // resolve: { systemResolver: SystemsResolver }
+      },
+
+
+      
 
     ]
   }
