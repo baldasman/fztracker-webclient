@@ -22,6 +22,7 @@ import { MovementsService } from '@core-modules/core/services/movements.service'
 import { NgxPaginationModule } from 'ngx-pagination';
 import { BrowserModule } from '@angular/platform-browser';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FotoTestComponent } from './pages/foto-test/foto-test.component';
 
 
 
@@ -61,6 +62,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     EfHomeComponent,
     AddEntityComponent,
     CfAlfHomeComponent,
+    FotoTestComponent,
     
     
 

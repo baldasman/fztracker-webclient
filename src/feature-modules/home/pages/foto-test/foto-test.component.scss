@@ -1,0 +1,30 @@
+.page-custom {
+  @media (min-width: 1024px) {
+    margin-top: -55px; // to remove gap left by subheader bar
+  }
+}
+
+
+#caixa{margin-top: 15px;text-align: center;}
+
+#center{text-align: center}
+
+.attach{display: block; margin-left: 5% }
+
+h1{margin-bottom: 20px;}
+
+.image-input-wrapper {
+  text-align: center;
+  vertical-align: middle;
+
+  max-width: 415px;
+    max-height: 415px;
+  img {
+    max-width: 415px;
+    max-height: 415px;
+  }
+}
+
+.image-input .image-input-wrapper {
+  width: 120px;
+  height: 200px;}
