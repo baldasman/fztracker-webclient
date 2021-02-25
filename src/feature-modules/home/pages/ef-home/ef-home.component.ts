@@ -89,7 +89,6 @@ export class EfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
     this.colorsThemeBasePrimary = this.layoutConfigService.getConfig('js.colors.theme.base.primary');
     this.colorsThemeLightPrimary = this.layoutConfigService.getConfig('js.colors.theme.light.primary');
 
-
   }
 
   ngOnInit() {
@@ -98,7 +97,7 @@ export class EfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
     this.chartOptions6 = this.getChartOptions6();
 
 
-    this.movementService.getMovements(null, null, null, "CF-Escola").subscribe((data: any) => {
+    this.movementService.getMovements(null, null, null, "Todos").subscribe((data: any) => {
       if (data.movements) {
         this.movements = data.movements;
       
