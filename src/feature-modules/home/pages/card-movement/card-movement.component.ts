@@ -40,7 +40,8 @@ export class CardMovementComponent extends Mixin(Core, Animations, Forms, Stores
 
   place = "Todos";
   places = [];
-
+ 
+  
 
   get fes() { return this.MovementSearchform.controls; }
 
@@ -56,7 +57,7 @@ export class CardMovementComponent extends Mixin(Core, Animations, Forms, Stores
     this.MovementSearchform = this.formBuilder.group({
       findnii: [null, null]
     });
-
+  console.log(this.place);
   }
 
 
