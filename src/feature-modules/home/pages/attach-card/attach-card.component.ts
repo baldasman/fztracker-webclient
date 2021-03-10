@@ -90,9 +90,32 @@ export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) 
     this.entityService.findEntity(this.fes.findnii.value).subscribe((data: any) => {
 
       console.log('find',data);
+
+      const entity = data;
+      this.name = entity.name;
+      this.urlImage = `assets/media/users/${entity.serial}.bmp`;
+     this.fac.cardNumber.setValue(entity.cardNumber);
+      this.hasCard = (entity.cardNumber || '').length > 0;
+
+      if (this.hasCard) {
+        this.fac.cardNumber.disable();
+        this.cardStatus = "Cartão Atribuído";
+      } else {
+        this.fac.cardNumber.enable();
+        this.cardStatus = "Sem cartao não Atribuido";
+      }
+
+      this.cdr.detectChanges();
+
+
+    }, (error)=> {
+      this.clearEntity();
+      
+
+      console.log(error);
     });
 
-    this.entityService.getEntity({ serial: this.fes.findnii.value }).subscribe((data: any) => {
+/*     this.entityService.getEntity({ serial: this.fes.findnii.value }).subscribe((data: any) => {
       if (data.entities && data.entities.length === 1) {
         const entity = data.entities[0];
         this.name = entity.permanent.name;
@@ -113,7 +136,7 @@ export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) 
       } else {
         this.clearEntity();
       }
-    });
+    }); */
   }
 
   WaitCard() {

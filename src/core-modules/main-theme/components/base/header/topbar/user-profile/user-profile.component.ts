@@ -24,7 +24,9 @@ export class UserProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.firstName = this.userInfo.user.name.split(' ')[0];
+
+    const nameParts = this.userInfo.user.name.split(' ');
+    this.firstName = nameParts[nameParts.length-1];
     this.firstNameLetter = this.userInfo.user.name[0].toUpperCase();
   }
 
