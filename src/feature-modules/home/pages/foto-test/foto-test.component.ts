@@ -86,35 +86,36 @@ export class FotoTestComponent extends Mixin(Core, Animations, Forms, Stores) im
     this.hasError = false;
 
     // Call api
-    this.entityService.getEntity({ serial: this.fes.findnii.value }).subscribe((data: any) => {
-      if (data.entities && data.entities.length === 1) {
-        const entity = data.entities[0];
-        this.name = entity.permanent.name;
-        this.urlImage = `assets/media/users/${entity.permanent.serial}.bmp`;
-        this.rankClass = `${entity.nopermanent.rank} ${entity.permanent.class}`;
-        this.fac.cardNumber.setValue(entity.cardNumber);
-        this.hasCard = (entity.cardNumber || '').length > 0;
+    this.entityService.findEntity(this.fes.findnii.value).subscribe((data: any) => {
 
-        if (this.hasCard) {
-          this.fac.cardNumber.disable();
-          this.cardStatus = "Cartão Atribuído";
-        } else {
-          this.fac.cardNumber.enable();
-          this.cardStatus = "Sem cartao não Atribuido";
-        }
+      console.log('find',data);
 
-        this.cdr.detectChanges();
+      const entity = data;
+      this.name = entity.name;
+      this.urlImage = `assets/media/users/${entity.serial}.bmp`;
+     this.fac.cardNumber.setValue(entity.cardNumber);
+      this.hasCard = (entity.cardNumber || '').length > 0;
+
+      if (this.hasCard) {
+        this.fac.cardNumber.disable();
+        this.cardStatus = "Cartão Atribuído";
       } else {
-        this.clearEntity();
+        this.fac.cardNumber.enable();
+        this.cardStatus = "Sem cartao não Atribuido";
       }
+
+      this.cdr.detectChanges();
+
+
+    }, (error)=> {
+      this.clearEntity();
+      
+
+      console.log(error);
     });
   }
 
-  WaitCard() {
-    // API - se cartao lido, devolve o numero de cartao (this.cardNumber) e Tipo de Cartao (cardType)
-    // se cartao lido, atera o findNum(), preenchendo todos os campos
-    
-  }
+ 
 
   linkCard() {
     this.hasError = false;
@@ -135,24 +136,6 @@ export class FotoTestComponent extends Mixin(Core, Animations, Forms, Stores) im
     });
   }
 
-  removeCard() {
-    this.hasError = false;
-
-    // desasocia o cartao da entidade 
-    this.entityService.removeCard(this.fes.findnii.value).subscribe((data: any) => {
-      this.cardStatus = 'Cartão removido com sucesso!';
-      this.fac.cardNumber.setValue('');
-      this.fac.cardNumber.enable();
-      this.hasCard = false;
-      this.cdr.detectChanges();
-    }, (error) => {
-      this.cardStatus = error.error.data.error;
-      this.fac.cardNumber.enable();
-      this.hasCard = true;
-      this.hasError = true;
-      this.cdr.detectChanges();
-    });
-  }
 
   private clearEntity() {
     this.name = '';
