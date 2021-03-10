@@ -18,6 +18,16 @@ export class EntityService {
   ) { }
 
 
+  findEntity(serial:string): Observable<EntityModel> {
+    const url = new UrlModel(this.apiUrl).setPath('entities/v1/find');
+    url.setQueryParams({serial});
+
+    return this.http.get(url.buildUrl())
+      .pipe(
+        map((response: { data: any }) => response.data)
+      );
+  }
+
   getEntity(search: {serial?: string, cardNumber?: string}): Observable<[EntityModel]> {
     const url = new UrlModel(this.apiUrl).setPath('entities/v1');
 

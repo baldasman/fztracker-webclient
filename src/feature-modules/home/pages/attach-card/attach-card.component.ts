@@ -86,6 +86,12 @@ export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) 
     this.hasError = false;
 
     // Call api
+
+    this.entityService.findEntity(this.fes.findnii.value).subscribe((data: any) => {
+
+      console.log('find',data);
+    });
+
     this.entityService.getEntity({ serial: this.fes.findnii.value }).subscribe((data: any) => {
       if (data.entities && data.entities.length === 1) {
         const entity = data.entities[0];
