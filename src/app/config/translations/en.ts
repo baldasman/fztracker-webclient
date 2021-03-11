@@ -3,10 +3,10 @@ export const locale = {
   data: {
     // Global app/configuration translations.
     app: {
-      title: 'WebTool',
-      description: `WebTool is a tool to make your systems management easy!
-        <br><br>This will offer you a list of actions you can perform over them such as managing gateways (adding, editing, removing, etc.) or managing devices of those gateways in a very simple way.
-        <br><br>It also allows you to import or export your workspaces so that you can either continue working oustide this tool or catching up with some previous work you started elsewhere.`,
+      title: 'FZGuard',
+      description: `O FZGuard, plataforma de gestao e controlo de acessos no CCF
+        <br><br>Esta platafora permite, editar e remover cartões de acesso, bem como, consultar os movimentos por eles realizados.
+        <br><br>integrando várias bases de dados, esta aplicação tem como objectivo dotar o CCF de umasistema cenralizado e unico de controlo de acessos, reduzindo o erro do utilizador e aumentando a eficácia `,
 
       date_formats: {
         full: 'EEEE, MMMM d, y \'at\' h:mm:ss a',
@@ -14,7 +14,7 @@ export const locale = {
       },
 
       menus: {
-        about: 'About',
+        about: 'Sobre',
         advanced: 'Advanced',
         close: 'Close',
         export: 'Export',

@@ -3,6 +3,7 @@ import { FormGroup, Validators } from '@angular/forms';
 import { Animations, Core, Forms, Mixin, Stores } from '@app/base';
 import { CardService } from '@core-modules/core/services/card.service';
 import { EntityService } from '@core-modules/core/services/entity.service';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -23,10 +24,10 @@ export class FotoTestComponent extends Mixin(Core, Animations, Forms, Stores) im
   //@Input() cssClasses = '';
   findnii: string = "";
   name: string;
-  rankClass: string;
+  email: string;
   urlImage: string = "assets/media/users/fz.png";
   cardNumber: string;
-  cardType: string = "";
+  unit: string = "";
   cardStatus: string = "";
   cardOwner: string = "";
   color: string = "";
@@ -38,7 +39,7 @@ export class FotoTestComponent extends Mixin(Core, Animations, Forms, Stores) im
 
   private _docSub: Subscription;
 
-  constructor(private cardService: CardService, private entityService: EntityService, private cdr: ChangeDetectorRef) {
+  constructor(private toastr: ToastrService, private cardService: CardService, private entityService: EntityService, private cdr: ChangeDetectorRef) {
     super();
 
     this.entitySearchform = this.formBuilder.group({
@@ -91,9 +92,17 @@ export class FotoTestComponent extends Mixin(Core, Animations, Forms, Stores) im
       console.log('find',data);
 
       const entity = data;
+
+
+      var temp = entity.unit.split(",");
+      var correct = temp[2];
+      var correctUnit = correct.split("=");
+
       this.name = entity.name;
+      this.email = entity.email;
+      this.unit =  correctUnit[1];
       this.urlImage = `assets/media/users/${entity.serial}.bmp`;
-     this.fac.cardNumber.setValue(entity.cardNumber);
+      this.fac.cardNumber.setValue(entity.cardNumber);
       this.hasCard = (entity.cardNumber || '').length > 0;
 
       if (this.hasCard) {
@@ -110,8 +119,8 @@ export class FotoTestComponent extends Mixin(Core, Animations, Forms, Stores) im
     }, (error)=> {
       this.clearEntity();
       
-
-      console.log(error);
+      this.toastr.error("Nii nao existe", 'Atenção');
+      console.log('deu merda' + error);
     });
   }
 
@@ -140,12 +149,10 @@ export class FotoTestComponent extends Mixin(Core, Animations, Forms, Stores) im
   private clearEntity() {
     this.name = '';
     this.urlImage = 'assets/media/users/desc.bmp';
-    this.rankClass = '';
-    this.fac.cardNumber.setValue('');
-
-    this.fac.cardNumber.enable();
-    this.hasCard = false;
-    this.cardStatus = "";
+    
+    this.name = "";
+    this.email = "";
+    this.unit =  "";
 
     this.cdr.detectChanges();
   }
