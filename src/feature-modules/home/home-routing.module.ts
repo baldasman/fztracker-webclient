@@ -26,7 +26,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'cfhome',
+        redirectTo: 'foto',
         // component: HomeComponent,
         // resolve: { systemResolver: SystemsResolver }
       },

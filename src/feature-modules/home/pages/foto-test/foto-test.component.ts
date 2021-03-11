@@ -28,7 +28,7 @@ export class FotoTestComponent extends Mixin(Core, Animations, Forms, Stores) im
   urlImage: string = "assets/media/users/fz.png";
   cardNumber: string;
   unit: string = "";
-  cardStatus: string = "";
+  stat: string = "";
   cardOwner: string = "";
   color: string = "";
   placeholherNii: string;
@@ -101,17 +101,12 @@ export class FotoTestComponent extends Mixin(Core, Animations, Forms, Stores) im
       this.name = entity.name;
       this.email = entity.email;
       this.unit =  correctUnit[1];
+      this.stat  = entity.type;
       this.urlImage = `assets/media/users/${entity.serial}.bmp`;
       this.fac.cardNumber.setValue(entity.cardNumber);
       this.hasCard = (entity.cardNumber || '').length > 0;
 
-      if (this.hasCard) {
-        this.fac.cardNumber.disable();
-        this.cardStatus = "Cartão Atribuído";
-      } else {
-        this.fac.cardNumber.enable();
-        this.cardStatus = "Sem cartao não Atribuido";
-      }
+      
 
       this.cdr.detectChanges();
 
@@ -131,13 +126,13 @@ export class FotoTestComponent extends Mixin(Core, Animations, Forms, Stores) im
 
     // link da entidader ao cartao 
     this.entityService.assignCard(this.fes.findnii.value, this.fac.cardNumber.value).subscribe((data: any) => {
-      this.cardStatus = 'Cartão atribuído com sucesso!';
+     
       this.fac.cardNumber.disable();
       this.hasCard = true;
       this.cdr.detectChanges();
     }, (e) => {
       console.log(e);
-      this.cardStatus = e.error.resultMessage || e.error.error;
+     
       this.fac.cardNumber.enable();
       this.hasCard = false;
       this.hasError = true;
