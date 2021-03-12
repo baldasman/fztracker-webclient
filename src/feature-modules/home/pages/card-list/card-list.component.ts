@@ -28,8 +28,9 @@ export class CardListComponent extends Mixin(Core, Animations, Stores) implement
   lastRegist: string = "12/09/2020";
   cardStatus: string = "Activo";
   cardStatusColor: string = "label-success"
-
-
+  entitieLast;
+  valor;
+ii;
   cards: CardModel[];
   entities: EntityModel[];
 
@@ -50,15 +51,14 @@ export class CardListComponent extends Mixin(Core, Animations, Stores) implement
     this.cardsService.getCards().subscribe((data: any) => {
       console.log('cards', data);
       this.cards = data.cards;
-         
+     
        data.cards.forEach(cards => {
         const c = {...cards};
-
-        c.cardStatusColor = "label-success";
-
+  
+        c.cardStatusColor = "label-success";;
         this.cards.push(c);
       });
-
+ 
     });
 
     console.log('Get entities');
@@ -68,8 +68,11 @@ export class CardListComponent extends Mixin(Core, Animations, Stores) implement
       this.entities = [];
       data.entities.forEach(entity => {
         const e = {...entity};
+      
 
-        // TODO: fill additional props
+     
+               console.log('a treta é' +this.entitieLast );     
+           // TODO: fill additional props
 
         this.entities.push(e);
       });
@@ -77,7 +80,7 @@ export class CardListComponent extends Mixin(Core, Animations, Stores) implement
   }
 
 
-
+ 
 
   
   

@@ -19,6 +19,10 @@ export class CardsService {
 
   getCards(search?: string): Observable<[CardModel]> {
     const url = new UrlModel(this.apiUrl).setPath('cards/v1');
+   
+    
+    
+    
     url.setQueryParams({ search });
 
     return this.http.get(url.buildUrl())

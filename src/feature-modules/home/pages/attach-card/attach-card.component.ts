@@ -94,7 +94,7 @@ export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) 
       const entity = data;
       this.name = entity.name;
       this.urlImage = `assets/media/users/${entity.serial}.bmp`;
-     this.fac.cardNumber.setValue(entity.cardNumber);
+      this.fac.cardNumber.setValue(entity.cardNumber);
       this.hasCard = (entity.cardNumber || '').length > 0;
 
       if (this.hasCard) {

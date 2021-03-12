@@ -1,9 +1,5 @@
 <!--begin::Wrapper-->
 <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
-    <!--begin::Header-->
-    
-    <!--end::Header-->
-    <!--begin::Content-->
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Subheader-->
         <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
@@ -26,8 +22,7 @@
                                 <div class="input-group-append">
                                     <span class="input-group-text">
                                         <span class="svg-icon">
-                                            <!--begin::Svg Icon | path:assets/media/svg/icons/General/Search.svg-->
-                                            <svg xmlns="http://www.w3.org/2000/svg" 
+                                            <svg xmlns="http://www.w3.org/2000/svg"
                                                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
                                                 viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -42,7 +37,7 @@
                                             </svg>
                                             <!--end::Svg Icon-->
                                         </span>
-                                        <!--<i class="flaticon2-search-1 icon-sm"></i>-->
+                                   
                                     </span>
                                 </div>
                             </div>
@@ -58,10 +53,10 @@
                     <a href="#" class=""></a>
                     <!--end::Button-->
                     <!--begin::Button-->
-                    <a href="#"
-                        class="btn btn-light-primary font-weight-bold btn-sm px-4 font-size-base ml-2">Adicinar Cartão</a>
+                    <a href="#" class="btn btn-light-primary font-weight-bold btn-sm px-4 font-size-base ml-2">Adicinar
+                        Cartão</a>
                     <!--end::Button-->
-                  
+
                 </div>
                 <!--end::Toolbar-->
             </div>
@@ -77,9 +72,9 @@
                     <div class="card-header flex-wrap border-0 pt-6 pb-0">
                         <div class="card-title">
                             <h3 class="card-label">Lista de Cartões
-                                <span class="d-block text-muted pt-2 font-size-sm">Lista de Cartões registados da BD</span></h3>
+                                <span class="d-block text-muted pt-2 font-size-sm">Lista de Cartões registados da BD</span>
+                            </h3>
                         </div>
-   
                     </div>
                     <!--end::Header-->
                     <!--begin::Body-->
@@ -93,11 +88,10 @@
                                             class="datatable-cell-left datatable-cell datatable-cell-sort datatable-cell-sorted"
                                             data-sort="asc"><span style="width: 40px;">#<i
                                                     class="flaticon2-arrow-up"></i></span></th>
-
                                         <th data-field="Country" class="datatable-cell datatable-cell-sort"><span
                                                 style="width: 158px;">Cartão</span></th>
-                                                <th data-field="OrderID" class="datatable-cell datatable-cell-sort"><span
-                                                    style="width: 250px;">Entidade</span></th>
+                                        <th data-field="OrderID" class="datatable-cell datatable-cell-sort"><span
+                                                style="width: 250px;">Entidade</span></th>
                                         <th data-field="ShipDate" class="datatable-cell datatable-cell-sort"><span
                                                 style="width: 158px;">Data da Atribuição</span></th>
                                         <th data-field="CompanyName" class="datatable-cell datatable-cell-sort"><span
@@ -111,33 +105,32 @@
                                 </thead>
                                 <tbody class="datatable-body">
                                     <!--list users-->
-                                
-                                    <tr *ngFor="let card of cards; let i = index"  data-row="01" class="datatable-row datatable-row-even" style="left: 0px;">
+                            
+                                    <tr *ngFor=" let card of cards; let i = index"  data-row="01"
+                                        class="datatable-row datatable-row-even" style="left: 0px;">
                                         <td class="datatable-cell-sorted datatable-cell-left datatable-cell"
                                             data-field="RecordID" aria-label="00"><span style="width: 40px;"><span
                                                     class="font-weight-bolder">{{ i+1 }}</span></span></td>
-                                   
+                                                    
                                         <td data-field="card" aria-label="Indonesia" class="datatable-cell"><span
                                                 style="width: 158px;">
-                                                <div class="font-weight-bolder font-size-lg mb-0">{{card.cardNumber}}</div>
-                                                <div class="font-weight-bold text-muted">UID:{{card.id}}</div>
+                                                <div class="font-weight-bolder font-size-lg mb-0">{{card.cardNumber}}
+                                                </div>
+                                                <div class="font-weight-bold text-muted">UID:{{card.uid}}</div>
                                             </span>
                                         </td>
-
-                                            <td data-field="entity" aria-label="0781-5555" class="datatable-cell"><span
+                                        <td data-field="entity" aria-label="0781-5555" class="datatable-cell"><span
                                                 style="width: 200px;">
                                                 <div class="d-flex align-items-center">
-                                                    
+
                                                     <div class="">
                                                         <div class="text-dark-75 font-weight-bolder font-size-lg mb-0">
-                                                            {{ card.entityDesc }}</div> <a href="#"
-                                                            class="text-muted font-weight-bold text-hover-primary">{{rankClass}}</a>
+                                                            {{card.entityDesc}}</div> <a href="#"
+                                                            class="text-muted font-weight-bold text-hover-primary">{{card.entitySerial}}</a>
                                                     </div>
                                                 </div>
                                             </span>
                                         </td>
-
-
                                         <td data-field="ShipDate" aria-label="3/17/2017" class="datatable-cell"><span
                                                 style="width: 158px;">
                                                 <div class="font-weight-bolder text-primary mb-0">{{addDate}}</div>
@@ -145,16 +138,16 @@
                                             </span></td>
                                         <td data-field="CompanyName" aria-label="Beier-Mante" class="datatable-cell">
                                             <span style="width: 158px;">
-                                                <div class="font-weight-bold text-muted">{{card.lastChangeDate}}</div>
-                                            </span></td>
+                                                <div class="font-weight-bold text-muted">{{addDate}}</div>
+                                            </span>
+                                        </td>
                                         <td data-field="Status" aria-label="5" class="datatable-cell"><span
                                                 style="width: 158px;"><span
                                                     class="label label-lg font-weight-bold {{cardStatusColor}} label-inline">{{card.state}}</span></span>
                                         </td>
-                                     
+
                                     </tr>
-                                    
-                                
+
                                 </tbody>
                             </table>
                         </div>
@@ -170,8 +163,7 @@
     </div>
     <!--end::Content-->
     <!--begin::Footer-->
-  
+
     <!--end::Footer-->
 </div>
 <!--end::Wrapper-->
-

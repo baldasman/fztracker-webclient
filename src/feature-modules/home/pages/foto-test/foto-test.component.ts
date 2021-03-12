@@ -97,10 +97,11 @@ export class FotoTestComponent extends Mixin(Core, Animations, Forms, Stores) im
       var temp = entity.unit.split(",");
       var correct = temp[2];
       var correctUnit = correct.split("=");
-
+      this.unit =  correctUnit[1];
+      
       this.name = entity.name;
       this.email = entity.email;
-      this.unit =  correctUnit[1];
+      
       this.stat  = entity.type;
       this.urlImage = `assets/media/users/${entity.serial}.bmp`;
       this.fac.cardNumber.setValue(entity.cardNumber);

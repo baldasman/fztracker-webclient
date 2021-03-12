@@ -92,6 +92,15 @@ export class EntityListComponent extends Mixin(Core, Animations,Forms, Stores) i
   }
 
 
+unit (unidade) {
+ console.log('o valor da unidade é '+unidade);
+
+  var temp = unidade.split(",");
+      var correct = temp[2];
+      var correctUnit = correct.split("=");
+      this.unit =  correctUnit[1];
+}
+
 
 
   searchEntity() {
