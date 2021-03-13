@@ -9,6 +9,7 @@ import { FormGroup, FormsModule } from '@angular/forms';
 import { MovementsService } from '@core-modules/core/services/movements.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js'; 
 
+import * as moment from 'moment';
 
 
 
@@ -104,15 +105,19 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
 
 
   getChartOptions6() {
+    const date = moment();
+
+
+
     return {
       series: [
         {
-          name: "Entradas",
+          name: "Entradas ALF",
           type: "column",
           data: [100, 88, 108, 110, 122, 214, 190,]
         },
         {
-          name: "Saídas",
+          name: "Entradas EF",
           type: "column",
           data: [90, 80, 150, 120, 130, 200, 200,]
         }
@@ -139,14 +144,15 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
         enabled: false,
         enabledOnSeries: []
       },
+
       labels: [
-        "01 Fev ",
-        "02 Fev ",
-        "03 Fev ",
-        "04 Fev ",
-        "05 Fev ",
-        "06 Fev ",
-        "07 Fev ",
+        moment(date).subtract("7", "days").format('DD-MMM'), 
+        moment(date).subtract("6", "days").format('DD-MMM'),
+        moment(date).subtract("5", "days").format('DD-MMM'), 
+        moment(date).subtract("4", "days").format('DD-MMM'),
+        moment(date).subtract("3", "days").format('DD-MMM'),
+        moment(date).subtract("2", "days").format('DD-MMM'), 
+        moment(date).subtract("1", "days").format('DD-MMM'),
 
 
 
@@ -160,7 +166,7 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
       yaxis: [
         {
           title: {
-            text: "Número de Entradas/Saídas"
+            text: "Número de Entradas CCF"
           }
 
         },
