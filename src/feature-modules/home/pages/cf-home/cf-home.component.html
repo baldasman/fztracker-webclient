@@ -218,7 +218,7 @@
                       <!--begin::Info-->
                       <div class="d-flex flex-column align-items-cente py-2 w-75">
                         <!--begin::Title-->
-                        <a href="/escola"
+                        <a href="#"
                           class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">Corpo de Fuzileiros</a>
                         <!--end::Title-->
                         <!--begin::Data-->
@@ -258,7 +258,7 @@
       <!--begin::Info-->
       <div class="d-flex flex-column align-items-cente py-2 w-75">
         <!--begin::Title-->
-        <a href="#"
+        <a href="/escola"
           class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">CF - Escola</a>
         <!--end::Title-->
         <!--begin::Data-->
@@ -297,7 +297,7 @@
                       <!--begin::Info-->
                       <div class="d-flex flex-column align-items-cente py-2 w-75">
                         <!--begin::Title-->
-                        <a href="#"
+                        <a href="/alfeite"
                           class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">CF-Alfeite</a>
                         <!--end::Title-->
                         <!--begin::Data-->
@@ -348,8 +348,8 @@
         <!--begin::Info-->
         <div class="d-flex flex-column align-items-cente py-2 w-75">
           <!--begin::Title-->
-          <a href="#"
-            class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">Cartoes Registados</a>
+          <a href="/card-list"
+            class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1">Cartôes Atribuidos</a>
           <!--end::Title-->
           <!--begin::Data-->
           <span class="text-muted font-weight-bold">Alfeite / Escola </span>
@@ -450,11 +450,11 @@
 
                   <div class="row m-0">
                     <div class="col px-8 py-6 mr-8">
-                      <div class="font-size-sm text-muted font-weight-bold">Militares na EF</div>
+                      <div class="font-size-sm text-muted font-weight-bold">Militares no CF</div>
                       <div class="font-size-h4 font-weight-bolder">300</div>
                     </div>
                     <div class="col px-8 py-6">
-                      <div class="font-size-sm text-muted font-weight-bold">Alunos na EF</div>
+                      <div class="font-size-sm text-muted font-weight-bold">Militares fora do CF</div>
                       <div class="font-size-h4 font-weight-bolder">100</div>
                     </div>
                   </div>
@@ -462,11 +462,11 @@
                   <!--begin::Row-->
                   <div class="row m-0">
                     <div class="col px-8 py-6 mr-8">
-                      <div class="font-size-sm text-muted font-weight-bold">Militares fora EF</div>
+                      <div class="font-size-sm text-muted font-weight-bold">Civis no CF</div>
                       <div class="font-size-h4 font-weight-bolder">50</div>
                     </div>
                     <div class="col px-8 py-6">
-                      <div class="font-size-sm text-muted font-weight-bold">Horas na EF</div>
+                      <div class="font-size-sm text-muted font-weight-bold">Civis fora do CF</div>
                       <div class="font-size-h4 font-weight-bolder">30</div>
                     </div>
                   </div>
@@ -500,154 +500,5 @@
   </div>
   <!--end::Container-->
 </div>
-<div class="d-flex flex-column-fluid">
-  <!--begin::Container-->
-  <div class="container">
-    <!--begin::Card-->
-    <div class="card card-custom">
-      <!--begin::Header-->
-      <div class="card-header flex-wrap border-0 pt-6 pb-0">
-        <div class="card-title">
-          <h3 class="card-label">Lista de Registos
-            <span class="d-block text-muted pt-2 font-size-sm">Ultimos 30 Movimentos Realizados na Escola de
-              Fuzileiros</span>
-          </h3>
-        </div>
 
-
-        <!--  <form class="form-inline">
-               
-                <div class="form-group">
-
-                      
-                        <div class="input-group input-large date-picker input-daterange" data-date="" data-date-format="mm/dd/yyyy">
-                            <input class="form-control" placeholder="AAAA-MM-DD"
-                            name="dp1" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
-                            <span class="input-group-addon"> a </span>
-                            <input class="form-control" placeholder="AAAA-MM-DD"
-                            name="dp2" [(ngModel)]="model2" ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()"> 
-                          </div>
-                                                     
-                   <button type ="input" class="btn btn-success"(click)="Find()" >Pesquisar</button>
-           
-                </div>
-     
-              </form> -->
-
-
-
-
-
-
-      </div>
-      <!--end::Header-->
-      <!--begin::Body-->
-      <div class="card-body">
-
-        <div class="form-group d-flex flex-row-reverse ">
-          <input type="text" class="form-control w-25 " placeholder="Filtro" [(ngModel)]="term">
-        </div>
-
-
-        <!--begin: Datatable-->
-        <div class="datatable datatable-bordered datatable-head-custom" id="kt_datatable">
-
-          <table class="newtable">
-            <thead class="datatable-head">
-              <tr class="datatable-row" style="left: 0px;">
-                <th data-field="RecordID"
-                  class="datatable-cell-left datatable-cell datatable-cell-sort datatable-cell-sorted" data-sort="asc">
-                  <span style="width: 40px;">#<i class="flaticon2-arrow-up"></i></span></th>
-                <th data-field="OrderID" class="datatable-cell datatable-cell-sort"><span
-                    style="width: 250px;">Entidade</span></th>
-                <th data-field="Country" class="datatable-cell datatable-cell-sort"><span style="width: 158px;">Cartão
-                    Atribuido</span></th>
-                <th data-field="ShipDate" class="datatable-cell datatable-cell-sort"><span
-                    style="width: 158px;">Movimento</span></th>
-                <th data-field="CompanyName" class="datatable-cell datatable-cell-sort"><span
-                    style="width: 158px;">Local e Notas</span></th>
-                <th data-field="Status" class="datatable-cell datatable-cell-sort"><span
-                    style="width: 158px;">Status</span></th>
-
-              </tr>
-            </thead>
-            <tbody class="datatable-body">
-              <!--  -->
-
-              <tr
-                *ngFor="let movement of movements |filter:term | paginate: {currentPage: paginaAtual,  itemsPerPage: itemsPerPage} ;let i = index"
-                data-row="46" class="datatable-row datatable-row-even" style="left: 0px;">
-                <td class="datatable-cell-sorted datatable-cell-left datatable-cell" data-field="RecordID"
-                  aria-label="00"><span style="width: 40px;"><span class="font-weight-bolder"> {{ itemsPerPage *
-                      (paginaAtual - 1) + (i+1) }}</span></span></td>
-                <td data-field="OrderID" aria-label="0781-5555" class="datatable-cell"><span style="width: 250px;">
-                    <div class="d-flex align-items-center">
-                      <div class="imgmil">
-                        <div class="symbol symbol-40 symbol-sm flex-shrink-0">
-
-                          <img src="assets/media/users/{{movement.entitySerial}}.bmp" (click)="Abc(i)" alt="photo">
-                        </div>
-                      </div>
-                      <div class="ml-4">
-                        <a href="/profile/{{movement.entitySerial}}"
-                          class="text-dark-75 font-weight-bolder font-size-lg mb-0 text-hover-primary">
-                          {{movement.entityName}}</a>
-                        <div class="text-muted font-weight-bold ">{{movement.entitySerial}}
-                        </div>
-                      </div>
-                    </div>
-                  </span></td>
-                <td data-field="card" aria-label="Indonesia" class="datatable-cell"><span style="width: 158px;">
-                    <div class="font-weight-bolder font-size-lg mb-0">{{movement.cardNumber}}
-                    </div>
-                    <div class="font-weight-bold text-muted">UID:{{movement.cardId}}</div>
-                  </span></td>
-
-                <td data-field="cardDate" aria-label="3/17/2017" class="datatable-cell"><span style="width: 158px;">
-                    <div class="font-weight-bolder font-size-lg mb-0">{{movement.movementDate |
-                      date:'dd/MM/yyyy'}}</div>
-                    <div class="text-muted">{{movement.movementDate | date: ' HH:mm' }}</div>
-                  </span></td>
-
-                <td data-field="Lastregist" aria-label="Beier-Mante" class="datatable-cell">
-                  <span style="width: 158px;">
-                    <div class="font-weight-bolder font-size-lg mb-0">{{movement.location}}
-                    </div>
-                    <div class="text-muted">falta as notas do movimento</div>
-
-                  </span>
-                </td>
-                <td data-field="Status" aria-label="5" class="datatable-cell"><span style="width: 158px;"><span
-                      class="label label-lg font-weight-bold {{cardStatusColor}} label-inline">{{movement.inOut}}</span></span>
-                </td>
-
-              </tr>
-
-            </tbody>
-            <tfoot>
-              <tr>
-                <td colspan="6" class="p-3">
-                  <pagination-controls class="d-flex justify-content-end " (pageChange)="paginaAtual = $event"
-                    previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
-                </td>
-              </tr>
-            </tfoot>
-
-
-          </table>
-
-
-
-
-        </div>
-        <!--end: Datatable-->
-
-
-      </div>
-      <!--end::Body-->
-    </div>
-    <!--end::Card-->
-  </div>
-  <!--end::Container-->
-</div>
 <!--end::Entry-->
