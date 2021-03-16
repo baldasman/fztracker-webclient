@@ -130,9 +130,14 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
           this.location = this.movements[0].location;
           this.lastRegistDate = this.movements[0].movementDate;;
           this.lastRegistHora = this.movements[0].movementDate;
+          console.log('a mov é ' + this.movements[0].inOut );
+          console.log('a cor é' + this.cardStatus, this.cardStatusColor );
           if (this.movements[0].inOut == true) {
+            console.log();
             this.cardStatus = "Entrada";
             this.cardStatusColor = "label-light-success";
+
+            
           };
         }
       });
