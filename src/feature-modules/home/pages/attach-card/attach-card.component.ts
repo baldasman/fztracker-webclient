@@ -23,11 +23,12 @@ export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) 
   //@Input() cssClasses = '';
   findnii: string = "";
   name: string;
-  rankClass: string;
+  email: string;
   urlImage: string = "assets/media/users/fz.png";
   cardNumber: string;
-  cardType: string = "";
-  cardStatus: string = "";
+  cardStatus: string;
+  unit: string = "";
+  stat: string = "";
   cardOwner: string = "";
   color: string = "";
   placeholherNii: string;
@@ -92,7 +93,15 @@ export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) 
       console.log('find',data);
 
       const entity = data;
+
+      var temp = entity.unit.split(",");
+      var correct = temp[2];
+      var correctUnit = correct.split("=");
+      this.unit =  correctUnit[1];
+      
       this.name = entity.name;
+      this.email = entity.email;
+      this.stat  = entity.type;
       this.urlImage = `assets/media/users/${entity.serial}.bmp`;
       this.fac.cardNumber.setValue(entity.cardNumber);
       this.hasCard = (entity.cardNumber || '').length > 0;
@@ -186,7 +195,9 @@ export class AttachCardComponent extends Mixin(Core, Animations, Forms, Stores) 
   private clearEntity() {
     this.name = '';
     this.urlImage = 'assets/media/users/desc.bmp';
-    this.rankClass = '';
+    this.email = "";
+    this.unit =  "";
+
     this.fac.cardNumber.setValue('');
 
     this.fac.cardNumber.enable();
