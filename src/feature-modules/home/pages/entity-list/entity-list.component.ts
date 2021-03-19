@@ -35,8 +35,14 @@ export class EntityListComponent extends Mixin(Core, Animations,Forms, Stores) i
   entityLocal: string = "ALF";
   get fes() { return this.entitySearchform.controls; }
 
+  term;
+
+  local: string = null;
+  public paginaAtual = 1;
+  itemsPerPage = 15;
   cards: CardModel[];
   entities: EntityModel[];
+  entitiFoto:[];
 
   constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService, private cardsService: CardsService, private entityService: EntityService) {
     super();
@@ -79,7 +85,8 @@ export class EntityListComponent extends Mixin(Core, Animations,Forms, Stores) i
     console.log('Get entities');
     this.entityService.getEntity({}).subscribe((data: any) => {
       console.log('entities', data);
-
+      
+      
       this.entities = [];
       data.entities.forEach(entity => {
         const e = {...entity};
@@ -130,24 +137,30 @@ unit (unidade) {
     this.entityService.getEntity({serial: this.fes.findnii.value}).subscribe((data: any) => {
       if (data.entities && data.entities.length > 0) {
         const entity = data.entities[0];
-        // this.name = entity.permanent.name; // API - Devolve Entity name
-        //this.urlImage = `assets/media/users/${entity.permanent.serial}.bmp`;
-        //this.rankClass = `${entity.nopermanent.rank} ${entity.permanent.class}`;
-        // this.cardNumber = "Numero do Cartão"; // API - Devolve cardNumber associado a esta entidade se nao existir devolve (this.cardOwner = "")
-        // this.cardType = "teste de cardType"; // API - Devolve Cardtype
-    
-        // if (this.cardOwner == "") {
-        //   this.cardStatus = "Cartao não Atribuido";
-        //   this.color = "PaleGreen";
-        // }
+       
       }
     });
   }
 
 
+  Abc(position) {
 
+
+
+    var pos = ((this.itemsPerPage * (this.paginaAtual - 1)) + (position));
+    Swal.fire({
+      imageUrl: `assets/media/users/${this.entities[pos].serial}.bmp`,
+      imageAlt: 'Sem foto'
+    })
+
+  }
   
   
+  Abcd(myvalue) {
+   console.log('a minha posição '+ myvalue);
+    
+  }
+
 
 
 }

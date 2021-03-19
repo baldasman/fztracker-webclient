@@ -93,7 +93,7 @@
                         </div>
                       </div> </div>  
 
-                      <div class="alert alert-custom alert-default"
+                      <div class="alert alert-custom alert-default" style="margin-top: 20px;"
                       [ngClass]="{'alert-success': hasCard, 'alert-danger': hasError}">
                       <div class="alert-text">
                         {{ cardStatus }}
@@ -106,53 +106,6 @@
                       <h6 class="text-muted f-w-400"> </h6>
                     </div>
                   </div>
-                 <!--  <div class="row">
-                    <form class="form" [formGroup]="assignCardform">
-                      
-                        
-                          <label>Número:</label>
-                          <catalog-forms-input id="cardNumber" [formControlField]="fac.cardNumber"
-                            formControlName="cardNumber" placeholder="" required="true" [hideMessages]="true">
-                          </catalog-forms-input>
-                       
-
-                        <div class="row">
-                          <div class="col-sm-6">
-                            <p class="m-b-10 f-w-600"> Email</p>
-                            <h6 class="text-muted f-w-400">{{email}}</h6>
-                          </div>
-                          <div class="col-sm-6">
-                            <p class="m-b-10 f-w-600">unidade</p>
-                            <h6 class="text-muted f-w-400">{{unit}}</h6>
-                          </div>
-                        </div>
-
-
-
-
-                        <div class="col-sm-6">
-                        <div class="alert alert-custom alert-default"
-                          [ngClass]="{'alert-success': hasCard, 'alert-danger': hasError}">
-                          <div class="alert-text">
-                            {{ cardStatus }}
-                          </div>
-                        </div>
-                     
-                      </div>
-                        <div class="col-sm-6">
-                        <button [disabled]="hasCard" type="button" (click)="linkCard()"
-                          class="btn btn-primary mr-2">Atribuir Cartão</button>
-                        <button [disabled]="!hasCard" type="button" (click)="removeCard()"
-                          class="btn btn-danger float-right">Elimirar atribuição</button>
-                        </div>
-                    </form>
-
-                  </div> -->
-
-
-
-
-
                 </div>
               </div>
             </div>

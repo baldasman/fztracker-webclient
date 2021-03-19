@@ -11,6 +11,7 @@ export class EntityModel {
   movements: [];
   log: [];
   resources: [];
+  serial: string;
 
  
 
