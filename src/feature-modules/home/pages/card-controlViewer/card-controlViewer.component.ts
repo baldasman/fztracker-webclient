@@ -64,10 +64,46 @@ export class CardControlViewerComponent extends Mixin(Core, Animations, Forms, S
             });
 
     this._docSub = this.cardService.notification.subscribe(movement => {
-      console.log('movement', movement);
+      console.log('movement2', movement);
       
+/*{
+    "movement": {
+        "uid": "54aa37e9-854e-477b-a004-2c9770e4465c",
+        "location": "Cf-Alfeite",
+        "sensor": "Cf-Alf.CarIn",
+        "cardId": "0438F61AE66C81",
+        "manual": false,
+        "inOut": true,
+        "cardIdShort": "0438F6",
+        "cardNumber": "M0183",
+        "entitySerial": "9830401",
+        "entityType": "QP - ACTIVO",
+        "entityName": "SAJ FZ Moreira de Sousa",
+        "movementDate": "2021-04-28T21:46:10.196Z"
+    },
+    "entity": {
+        "inOut": true,
+        "resources": [],
+        "_id": "6048cd7017b1b429dc8e0b97",
+        "lastMovementDate": "2021-04-28T21:46:10.196Z",
+        "serial": "9830401",
+        "state": "ACTIVE",
+        "name": "SAJ FZ Moreira de Sousa",
+        "unit": "CN=M9830401,OU=USERS,OU=CCF,OU=Marinha,DC=marinha,DC=pt",
+        "type": "QP - ACTIVO",
+        "email": "moreira.sousa@marinha.pt",
+        "__v": 0,
+        "cardId": "0438F61AE66C81",
+        "cardNumber": "M0183"
+    }
+}*/
+
+
+
+     
+
      if (movement.movement.location == this.local ||  this.local == null) {
-     this.foto = `assets/media/users/${movement.entity.permanent.serial}.bmp`;
+     this.foto = `assets/media/users/${movement.entity.serial}.bmp`;
       this.namePhoto = `${movement.movement.entityName} `;
       
               this.movementService.getMovements().subscribe((data: any) => {       
