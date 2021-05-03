@@ -348,8 +348,8 @@
                                               </tr>    
                                           </thead>    
                                           <tbody >    
-                                               <tr *ngFor="let dynamic of dynamicArray; let i = index;">    
-                                              
+                                           <!--     <tr *ngFor="let dynamic of dynamicArray; let i = index;">    
+                                               
                                                   <td>    
                                                     <input [(ngModel)]="dynamicArray[i].card" class="form-control" type="text" />    
                                                   </td>    
@@ -363,7 +363,7 @@
                                                   <td>    
                                                     <input [(ngModel)]="dynamicArray[i].statuscard" class="form-control" type="text"/>    
                                                   </td> 
-                                                  <td>    
+                                                  <td>   
                                                     <span style="overflow: visible; margin-left: 10px; position: relative; width: 130px;">
                                                       <a href="javascript:;" 
                                                          class="btn btn-sm btn-default btn-text-primary  btn-hover-success btn-icon mr-2"
@@ -409,7 +409,7 @@
                                                  </span>
                                                   
                                                   </td> 
-                                              </tr>    
+                                              </tr>   -->  
                                               <tr>    
                                                 <td (click)="addRow()">    
                                                   <i class="fa fa-plus fa-2x"></i>    

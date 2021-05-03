@@ -74,11 +74,11 @@ import { FotoTestComponent } from './pages/foto-test/foto-test.component';
 })
 export class HomeModule {
 
-  card:string;  
-  type:string;  
-  uid:string;
-  statuscard:string;
-  addcards:string;
+  marca:string;  
+  modelo:string;  
+  cor:string;
+  matricula:string;
+  status:string;
   
 
  }

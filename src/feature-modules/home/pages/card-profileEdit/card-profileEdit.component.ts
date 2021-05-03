@@ -16,6 +16,7 @@ import { Console } from 'console';
 
 
 
+
 @Component({
   selector: 'app-card-profileEdit',
   templateUrl: './card-profileEdit.component.html',
@@ -65,7 +66,11 @@ export class CardProfileEditComponent extends Mixin(Core, Animations, Forms, Sto
   dynamicArray: Array<HomeModule> = [];  
   newDynamic: any = {}; 
   serial: string;
- 
+  marca: string;
+  modelo:string;
+  cor: string;
+  matricula: string;
+  status: string;
 
 
 
@@ -122,7 +127,7 @@ export class CardProfileEditComponent extends Mixin(Core, Animations, Forms, Sto
 
    
 
-    this.newDynamic = {name: "", email: "",phone:""};  
+    this.newDynamic = {marca: "", modelo: "",cor:"",matricula:"",status:""}; 
     this.dynamicArray.push(this.newDynamic); 
  
   
@@ -184,12 +189,20 @@ export class CardProfileEditComponent extends Mixin(Core, Animations, Forms, Sto
 
 
     addRow() {    
-      this.newDynamic = {card: "", type: "",uid:"",addcards:"",statuscard:""};  
+      this.newDynamic = {marca: "", modelo: "",cor:"",matricula:"",status:""};  
         this.dynamicArray.push(this.newDynamic);  
         this.toastr.success('Novo registo Adicionado com sucesso', 'Novo Registo');  
         console.log(this.dynamicArray);  
+
+        console.log(this.modelo);
+
+        
         return true;  
     }  
+
+
+
+
     
     deleteRow(index) {  
         if(this.dynamicArray.length ==1) {  

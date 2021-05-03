@@ -147,6 +147,7 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
         if (data.entities && data.entities.length === 1) {
           const entity = data.entities[0];
           console.log('entidade', entity);
+           this.profile = entity.serial;
         }
 
       });
