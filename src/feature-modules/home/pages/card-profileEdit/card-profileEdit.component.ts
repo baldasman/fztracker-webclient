@@ -47,14 +47,14 @@ export class CardProfileEditComponent extends Mixin(Core, Animations, Forms, Sto
   colorsThemeBasePrimary = '';
   colorsThemeLightPrimary = '';
   urlImage : string = "assets/media/users/1212.jpg";
-  name: string = "Conceição Silva";
+  name: string = "";
   rankClass: string = "Civil";
   totalRegistos: number = 300;
   cardNumber: string = "M001";
   cardUid: string = "US12324235322";
   cardRen: string = "";
   addDate: string = "17/01/2020";
-  cardType: string = "Civil";
+  entityType: string = "Civil";
   lastRegistDate: string = "12/09/2020";
   lastRegistHora: string = "10:22";
   cardStatus: string = "Entrou";
@@ -71,7 +71,9 @@ export class CardProfileEditComponent extends Mixin(Core, Animations, Forms, Sto
   cor: string;
   matricula: string;
   status: string;
-
+  cardStatusColor;
+  location;
+  profile;
 
 
   private _docSub: Subscription;
@@ -114,9 +116,33 @@ export class CardProfileEditComponent extends Mixin(Core, Animations, Forms, Sto
     this.route.params.subscribe(params => {
 
       this.serial = params.serial;
-   
+      this.urlImage = `${this.environmentStore.ENV.API_URL}/assets/userPhotos/${this.serial}.bmp`;
+      this.name = params.entityName;
+    
+      
+      this.entityService.getEntity({ serial: this.serial }).subscribe((data: any) => {
+        if (data.entities && data.entities.length === 1) {
+          const entity = data.entities[0];
+          console.log('entidade', entity);
+           this.profile = entity.serial;
+           this.name  = entity.name;
+           this.rankClass = entity.type;
+           this.cardRen = entity.state
+console.log( entity.state); 
+        }
+
+      });
+
+
+
+
+
+
+
+
   });
    console.log(this.serial);
+
 
 
 
