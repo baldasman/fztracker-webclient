@@ -23,6 +23,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { BrowserModule } from '@angular/platform-browser';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FotoTestComponent } from './pages/foto-test/foto-test.component';
+import { cardmanualComponent } from './pages/card-manual/card-manual.component';
 
 
 
@@ -63,6 +64,7 @@ import { FotoTestComponent } from './pages/foto-test/foto-test.component';
     AddEntityComponent,
     CfAlfHomeComponent,
     FotoTestComponent,
+    cardmanualComponent,
     
     
 

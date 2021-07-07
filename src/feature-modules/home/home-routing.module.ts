@@ -15,6 +15,7 @@ import { EfHomeComponent } from './pages/ef-home/ef-home.component';
 import { AddEntityComponent } from './pages/add-entity/add-entity.component';
 import { CfAlfHomeComponent } from './pages/cfalf-home/cfalf-home.component';
 import { FotoTestComponent } from './pages/foto-test/foto-test.component';
+import { cardmanualComponent } from './pages/card-manual/card-manual.component';
 
 
 
@@ -112,7 +113,14 @@ const routes: Routes = [
 
         // resolve: { systemResolver: SystemsResolver }
       },
+      {
+        path: 'manual',
+        component: cardmanualComponent,
 
+        // resolve: { systemResolver: SystemsResolver }
+      },
+
+      
 
       
 
