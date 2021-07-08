@@ -3,6 +3,7 @@ import { FormGroup, Validators } from '@angular/forms';
 import { Animations, Core, Forms, Mixin, Stores } from '@app/base';
 import { CardService } from '@core-modules/core/services/card.service';
 import { EntityService } from '@core-modules/core/services/entity.service';
+import { MovementsService } from '@core-modules/core/services/movements.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -39,7 +40,7 @@ export class cardmanualComponent extends Mixin(Core, Animations, Forms, Stores) 
 
   private _docSub: Subscription;
 
-  constructor(private cardService: CardService, private entityService: EntityService, private cdr: ChangeDetectorRef) {
+  constructor(private cardService: CardService, private entityService: EntityService, private cdr: ChangeDetectorRef, private movementService: MovementsService) {
     super();
 
     this.entitySearchform = this.formBuilder.group({
@@ -90,18 +91,18 @@ export class cardmanualComponent extends Mixin(Core, Animations, Forms, Stores) 
 
     this.entityService.findEntity(this.fes.findnii.value).subscribe((data: any) => {
 
-      console.log('find',data);
+      console.log('find', data);
 
       const entity = data;
 
       var temp = entity.unit.split(",");
       var correct = temp[2];
       var correctUnit = correct.split("=");
-      this.unit =  correctUnit[1];
-      
+      this.unit = correctUnit[1];
+
       this.name = entity.name;
       this.email = entity.email;
-      this.stat  = entity.type;
+      this.stat = entity.type;
       this.urlImage = `assets/media/users/${entity.serial}.bmp`;
       this.fac.cardNumber.setValue(entity.cardNumber);
       this.hasCard = (entity.cardNumber || '').length > 0;
@@ -117,9 +118,9 @@ export class cardmanualComponent extends Mixin(Core, Animations, Forms, Stores) 
       this.cdr.detectChanges();
 
 
-    }, (error)=> {
+    }, (error) => {
       this.clearEntity();
-      
+
 
       console.log(error);
     });
@@ -130,24 +131,50 @@ export class cardmanualComponent extends Mixin(Core, Animations, Forms, Stores) 
 
 
   in() {
-    
 
- 
-   
+    const location = "Cf-Alfeite";
+    const cardId = "04F29A1AE66C80";
+    const manual = true;
+    const inOut = true;
+    const sensor = "web";
+
+
+    this.movementService.addmovement(location, sensor, cardId, manual, inOut).subscribe(response => {
+      console.log(response);
+    }, error => {
+      console.error(error);
+    });
+
+
+
+
   }
 
   out() {
-  
+
+    const location = "Cf-Alfeite";
+    const cardId = "04F29A1AE66C80";
+    const manual = true;
+    const inOut = false;
+    const sensor = "web";
 
 
-    
+    this.movementService.addmovement(location, sensor, cardId, manual, inOut).subscribe(response => {
+      console.log(response);
+    }, error => {
+      console.error(error);
+    });
+
+
+
+
   }
 
   private clearEntity() {
     this.name = '';
     this.urlImage = 'assets/media/users/desc.bmp';
     this.email = "";
-    this.unit =  "";
+    this.unit = "";
 
     this.fac.cardNumber.setValue('');
 

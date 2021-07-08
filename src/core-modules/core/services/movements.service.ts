@@ -20,18 +20,18 @@ export class MovementsService {
   getMovements(search?: string, from?: string, to?: string, local?: string): Observable<[MovementModel]> {
     const url = new UrlModel(this.apiUrl).setPath('/movements/v1');
     let filter = {};
-      if (search) {
-         filter = {...filter, search};
-      }
-      if (from) {
-        filter = {...filter, from};
-      }
-     if (to) {
-      filter = {...filter, to};
-      }
-      if (local) {
-        filter = {...filter, local};
-       }
+    if (search) {
+      filter = { ...filter, search };
+    }
+    if (from) {
+      filter = { ...filter, from };
+    }
+    if (to) {
+      filter = { ...filter, to };
+    }
+    if (local) {
+      filter = { ...filter, local };
+    }
     console.log(filter);
     url.setQueryParams(filter);
 
@@ -40,5 +40,29 @@ export class MovementsService {
         map((response: { data: any }) => response.data)
       );
   }
+
+  addmovement(location: string, sensor: string, cardId: string, manual: boolean, inOut: boolean) {
+    const url = new UrlModel(this.apiUrl).setPath('/entities/v1/movement');
+    const body = {
+      location,
+      sensor,
+      cardId,
+      manual,
+      inOut
+    };
+
+
+    return this.http.post(url.buildUrl(), body)
+      .pipe(
+        map((response: { data: any }) => response.data)
+      );
+
+  }
+
+
+
+
+
+
 
 }

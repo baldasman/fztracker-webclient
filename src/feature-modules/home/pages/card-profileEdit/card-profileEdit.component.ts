@@ -128,7 +128,7 @@ export class CardProfileEditComponent extends Mixin(Core, Animations, Forms, Sto
            this.name  = entity.name;
            this.rankClass = entity.type;
            this.cardRen = entity.state
-console.log( entity.state); 
+
         }
 
       });
