@@ -10,7 +10,7 @@ import {Howl} from 'howler';
 import { EntityListComponent } from '../entity-list/entity-list.component';
 import { EntityService } from '@core-modules/core/services/entity.service';
 import { EnvironmentStore } from '@core-modules/stores';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-card-controlViewer',
@@ -33,6 +33,8 @@ export class CardControlViewerComponent extends Mixin(Core, Animations, Forms, S
   MovementSearchform: FormGroup;
   movements: MovementModel[];
   foto: string = "assets/media/default.bmp";
+  public paginaAtual = 1;
+  itemsPerPage = 15;
 
   private _docSub: Subscription;
   get fes() { return this.MovementSearchform.controls; }
@@ -153,6 +155,18 @@ export class CardControlViewerComponent extends Mixin(Core, Animations, Forms, S
 
       
       } 
+
+
+
+      Abc(position) {
+        var pos = ((this.itemsPerPage * (this.paginaAtual - 1)) + (position));
+        Swal.fire({
+          imageUrl: `assets/media/users/${this.movements[pos].entitySerial}.bmp`,
+          imageAlt: 'Sem foto'
+        })
+    
+      }
+
 
 
 }

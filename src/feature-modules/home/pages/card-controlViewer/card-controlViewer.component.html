@@ -7,7 +7,7 @@
             <div class=" card d-flex" style="">
                 <div class=" container parent d-flex align-items-center">
                     <img class="responsive"  src="{{foto}}" alt="First "> 
-                    <div class="centered ">{{namePhoto}}</div>
+                    <div class="centered " style="font-size: 20px;">{{namePhoto}}</div>
                 </div>
             </div>
        </div>
@@ -63,11 +63,14 @@
                                             <div class="d-flex align-items-center">
                                                 <div class="imgmil"> <div class="symbol symbol-40 symbol-sm flex-shrink-0"> 
                                                
-                                                    <img
-                                                        src="assets/media/users/{{movement.entitySerial}}.bmp" alt="photo"> </div></div>
+                                                    <img src="assets/media/users/{{movement.entitySerial}}.bmp"
+                                                    (click)="Abc(i)" alt="photo">
+                                                </div></div>
                                                 <div class="ml-4">
-                                                     <a href="/profile" class="text-dark-75 font-weight-bolder font-size-lg mb-0 text-hover-primary">
-                                                        {{movement.entityName}}</a> <div
+                                                    <!--  <a href="/profile" class="text-dark-75 font-weight-bolder font-size-lg mb-0 text-hover-primary">
+                                                        {{movement.entityName}}</a> -->
+                                                        <div class="font-weight-bolder font-size-lg mb-0"> {{movement.entityName}}</div>
+                                                        <div
                                                         class="text-muted font-weight-bold ">{{movement.entitySerial}}</div>
                                                 </div>
                                             </div>
@@ -90,10 +93,9 @@
                                             <div class="text-muted">falta as notas do movimento</div>
                                            
                                         </span></td>
-                                    <td data-field="Status" aria-label="5" class="datatable-cell"><span
-                                            style="width: 158px;"><span
-                                                class="label label-lg font-weight-bold {{cardStatusColor}} label-inline">{{movement.inOut ? 'ENTROU' : 'SAIU'}}</span></span>
-                                    </td>
+                                        <td data-field="Status" aria-label="5" class="datatable-cell"><span style="width: 158px;"><span
+                                            [ngClass]="{'label-success': movement.inOut,'label-danger': !movement.inOut}"  class="label label-lg font-weight-bold {{movement.inOut}} label-inline">{{movement.inOut ? 'ENTROU':'SAIU'}}</span></span>
+                                        </td>
                                   
                                 </tr>
                   
