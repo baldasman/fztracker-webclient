@@ -10,12 +10,7 @@ import { MovementsService } from '@core-modules/core/services/movements.service'
 import Swal from 'sweetalert2/dist/sweetalert2.js'; 
 
 import * as moment from 'moment';
-
-
-
-
-
-
+import { AnalyticsService } from '@core-modules/core/services/analytics.service';
 
 @Component({
   selector: 'app-cf-home',
@@ -74,8 +69,13 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
 
   private _docSub: Subscription;
 
-  constructor(private layoutConfigService: LayoutConfigService, private cardService: CardService, private movementService: MovementsService,) {
+  constructor(
+    private layoutConfigService: LayoutConfigService, 
+    private analyticsService: AnalyticsService, 
+    private movementService: MovementsService,
+  ) {
     super();
+
     this.fontFamily = this.layoutConfigService.getConfig('js.fontFamily');
     this.colorsGrayGray500 = this.layoutConfigService.getConfig('js.colors.gray.gray500');
     this.colorsGrayGray200 = this.layoutConfigService.getConfig('js.colors.gray.gray200');
@@ -84,10 +84,18 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
     this.colorsThemeBasePrimary = this.layoutConfigService.getConfig('js.colors.theme.base.primary');
     this.colorsThemeLightPrimary = this.layoutConfigService.getConfig('js.colors.theme.light.primary');
 
-
   }
 
   ngOnInit() {
+    /*
+    this.analyticsService.getMovementsByDate(true, (new Date().toISOString())).subscribe(data => {
+      console.log('onMovemetnsByDate', data);
+    });
+    */
+
+    this.analyticsService.entitesCountByState(true).subscribe(data => {
+      console.log('entitesCountByState', data);
+    });
 
 
     this.chartOptions6 = this.getChartOptions6();

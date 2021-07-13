@@ -31,6 +31,7 @@ import { LayoutConfigService } from '../main-theme/services/layout-config.servic
 import { CardsService } from './services/cards.service';
 import { EntityService } from './services/entity.service';
 import { MovementsService } from './services/movements.service';
+import { AnalyticsService } from './services/analytics.service';
 
 
 export function initializeLayoutConfig(appConfig: LayoutConfigService) {
@@ -60,6 +61,7 @@ export function initializeLayoutConfig(appConfig: LayoutConfigService) {
     CardsService,
     EntityService,
     MovementsService,
+    AnalyticsService,
 
     // TODO: add service here
     {
