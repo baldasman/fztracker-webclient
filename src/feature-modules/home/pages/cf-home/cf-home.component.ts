@@ -87,13 +87,13 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
   }
 
   ngOnInit() {
-    /*
+    
     this.analyticsService.getMovementsByDate(true, (new Date().toISOString())).subscribe(data => {
       console.log('onMovemetnsByDate', data);
     });
-    */
+    
 
-    this.analyticsService.entitesCountByState(true).subscribe(data => {
+    this.analyticsService.entitesCountByState(false).subscribe(data => {
       console.log('entitesCountByState', data);
     });
 
@@ -101,7 +101,7 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
     this.chartOptions6 = this.getChartOptions6();
 
 
-    this.movementService.getMovements(null, null, null, "CF-Escola").subscribe((data: any) => {
+    this.movementService.getMovements(null, null, null, "Cf.Alfeite").subscribe((data: any) => {
       if (data.movements) {
         this.movements = data.movements;
       
