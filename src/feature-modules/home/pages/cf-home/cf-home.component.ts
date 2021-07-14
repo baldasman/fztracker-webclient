@@ -70,7 +70,7 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
   mealscf3: number = 0;
 
   cardsCfEf: number = 0;
-  cardsCfAlf: number = 320;
+  cardsCfAlf: number = 642;
 
 
   public paginaAtual = 1;
