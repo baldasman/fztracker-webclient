@@ -36,6 +36,27 @@ export class AnalyticsService {
       );
   }
 
+  getMovementsCountByDate(inOut?: boolean, from?: string ): Observable<{count: number }> {
+    const url = new UrlModel(this.apiUrl).setPath('/movements/CountbyDate');
+    let filter = {};
+    if (inOut) {
+      filter = { ...filter, inOut };
+    }
+    if (from) {
+      filter = { ...filter, from };
+
+     
+    }
+
+    console.log('getMovementsByDate', filter);
+    url.setQueryParams(filter);
+
+    return this.http.get(url.buildUrl())
+      .pipe(
+        map((response: { data: any }) => response.data)
+      );
+  }
+
   entitesCountByState(inOut: boolean, local?: string): Observable<[MovementModel]> {
     const url = new UrlModel(this.apiUrl).setPath('/entitesCountByState');
     let filter = {};
