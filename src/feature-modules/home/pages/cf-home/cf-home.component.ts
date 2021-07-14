@@ -7,10 +7,12 @@ import { CardModel } from '@core-modules/core/models/card.model';
 import { MovementModel } from '@core-modules/core/models/movement.model';
 import { FormGroup, FormsModule } from '@angular/forms';
 import { MovementsService } from '@core-modules/core/services/movements.service';
-import Swal from 'sweetalert2/dist/sweetalert2.js'; 
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 import * as moment from 'moment';
 import { AnalyticsService } from '@core-modules/core/services/analytics.service';
+import { count } from 'rxjs/operators';
+import { data } from 'jquery';
 
 @Component({
   selector: 'app-cf-home',
@@ -19,7 +21,7 @@ import { AnalyticsService } from '@core-modules/core/services/analytics.service'
 })
 export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) implements OnInit, OnDestroy {
 
-  
+
   title = 'appBootstrap';
 
   model;
@@ -28,6 +30,20 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
 
   @Input() cssClasses = '';
 
+
+  day1Graf: number;
+  day2Graf: number;
+  day3Graf: number;
+  day4Graf: number;
+  day5Graf: number;
+  day6Graf: number;
+  day7Graf: number = 0;
+
+  private day7Series = [];
+  private day7CallsCounter = 0;
+
+  day8Graf: number;
+  day9Graf: number;
   chartOptions6: any = {};
   fontFamily = '';
   colorsGrayGray500 = '';
@@ -40,7 +56,7 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
   totalRegistos: number = 300;
   cardStatusColor: string = "label-success";
 
-  militaresCf: number = 890;
+  militaresCf: number = (890);
   militaresForaCf: number = 200;
 
   militaresCfAlf: number = 700;
@@ -49,14 +65,14 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
   militaresCfEf: number = 290;
   militaresForaCfEf: number = 50;
 
- mealscf1:number = 20;
- mealscf2:number = 200;
- mealscf3:number = 80;
+  mealscf1: number = 0;
+  mealscf2: number = 0;
+  mealscf3: number = 0;
 
- cardsCfEf:number = 150;
- cardsCfAlf:number = 500;
+  cardsCfEf: number = 0;
+  cardsCfAlf: number = 320;
 
- 
+
   public paginaAtual = 1;
   itemsPerPage = 15;
   term;
@@ -67,11 +83,12 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
   cards: CardModel[];
   movements: MovementModel[];
 
+
   private _docSub: Subscription;
 
   constructor(
-    private layoutConfigService: LayoutConfigService, 
-    private analyticsService: AnalyticsService, 
+    private layoutConfigService: LayoutConfigService,
+    private analyticsService: AnalyticsService,
     private movementService: MovementsService,
   ) {
     super();
@@ -87,33 +104,150 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
   }
 
   ngOnInit() {
+
+
+
     /*
     this.analyticsService.getMovementsByDate(true, (new Date().toISOString())).subscribe(data => {
       console.log('onMovemetnsByDate', data);
     });
     */
 
+
+
+
     this.analyticsService.entitesCountByState(true).subscribe(data => {
       console.log('entitesCountByState', data);
+
+      let xx = Object.values(data);
+
+      this.militaresCf = +xx;
+      this.militaresCfAlf = +xx;
+      this.militaresCfEf = 0;
+
+      //console.log('entitesCountByState by tfuzo', xx[0]  );
     });
+
+
+
+
+    this.analyticsService.entitesCountByState(false).subscribe(data => {
+      console.log('entitesCountByState', data);
+
+
+      let xx = Object.values(data);
+
+      this.militaresForaCf = +xx;
+      this.militaresForaCfAlf = +xx;
+      this.militaresForaCfEf = 0;
+
+    });
+
 
 
     this.chartOptions6 = this.getChartOptions6();
 
 
-    this.movementService.getMovements(null, null, null, "CF-Escola").subscribe((data: any) => {
+    this.movementService.getMovements(null, null, null, "Cf-Alfeite").subscribe((data: any) => {
       if (data.movements) {
         this.movements = data.movements;
-      
+
       }
     });
-    
+
   }
 
 
 
   getChartOptions6() {
-    const date = moment();
+
+    let day1 = moment().subtract("7", "days");
+    let day2 = moment().subtract("6", "days");
+    let day3 = moment().subtract("5", "days");
+    let day4 = moment().subtract("4", "days");
+    let day5 = moment().subtract("3", "days");
+    let day6 = moment().subtract("2", "days");
+    let day7 = moment().subtract("1", "days");
+
+    // Antes de chamar todas, limpar
+    this.day7Series = [];
+    this.day7Series[0] = { data: [0, 0, 0, 0, 0, 0, 0] };
+    this.day7Series[1] = { data: [0, 0, 0, 0, 0, 0, 0] };
+
+    this.day7CallsCounter = 7;  // TODO:mudar para 7
+
+    // 1 day
+    this.analyticsService.getMovementsCountByDate(true, day1.toString(),).subscribe(data => {
+      this.day7Series[0].data[0] = data.count;
+
+      this.day7CallsCounter--;
+
+      if (this.day7CallsCounter === 0) {
+        this.update7DaysChart(this.day7Series);
+      }
+    });
+    // 2 day
+    this.analyticsService.getMovementsCountByDate(true, day2.toString(),).subscribe(data => {
+      this.day7Series[0].data[1] = data.count;
+
+      this.day7CallsCounter--;
+
+      if (this.day7CallsCounter === 0) {
+        this.update7DaysChart(this.day7Series);
+      }
+    });
+    // 3 day
+    this.analyticsService.getMovementsCountByDate(true, day3.toString(),).subscribe(data => {
+      this.day7Series[0].data[2] = data.count;
+
+      this.day7CallsCounter--;
+
+      if (this.day7CallsCounter === 0) {
+        this.update7DaysChart(this.day7Series);
+      }
+    });
+    // 4 day
+    this.analyticsService.getMovementsCountByDate(true, day4.toString(),).subscribe(data => {
+      this.day7Series[0].data[3] = data.count;
+
+      this.day7CallsCounter--;
+
+      if (this.day7CallsCounter === 0) {
+        this.update7DaysChart(this.day7Series);
+      }
+    });
+    // 5 day
+    this.analyticsService.getMovementsCountByDate(true, day5.toString(),).subscribe(data => {
+      this.day7Series[0].data[4] = data.count;
+
+      this.day7CallsCounter--;
+
+      if (this.day7CallsCounter === 0) {
+        this.update7DaysChart(this.day7Series);
+      }
+    });
+
+    // 6 day
+    this.analyticsService.getMovementsCountByDate(true, day6.toString(),).subscribe(data => {
+      this.day7Series[0].data[5] = data.count;
+
+      this.day7CallsCounter--;
+
+      if (this.day7CallsCounter === 0) {
+        this.update7DaysChart(this.day7Series);
+      }
+    });
+    // 7 day
+    this.analyticsService.getMovementsCountByDate(true, day7.toString(),).subscribe(data => {
+      this.day7Series[0].data[6] = data.count;
+
+      this.day7CallsCounter--;
+
+      if (this.day7CallsCounter === 0) {
+        this.update7DaysChart(this.day7Series);
+      }
+    });
+
 
 
 
@@ -122,12 +256,28 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
         {
           name: "Entradas ALF",
           type: "column",
-          data: [100, 88, 108, 110, 122, 214, 190,]
+          data: [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+          ]
         },
         {
           name: "Entradas EF",
           type: "column",
-          data: [90, 80, 150, 120, 130, 200, 200,]
+          data: [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+          ]
         }
       ],
       chart: {
@@ -154,13 +304,13 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
       },
 
       labels: [
-        moment(date).subtract("7", "days").format('DD-MMM'), 
-        moment(date).subtract("6", "days").format('DD-MMM'),
-        moment(date).subtract("5", "days").format('DD-MMM'), 
-        moment(date).subtract("4", "days").format('DD-MMM'),
-        moment(date).subtract("3", "days").format('DD-MMM'),
-        moment(date).subtract("2", "days").format('DD-MMM'), 
-        moment(date).subtract("1", "days").format('DD-MMM'),
+        day1.format('DD-MMM'),
+        day2.format('DD-MMM'),
+        day3.format('DD-MMM'),
+        day4.format('DD-MMM'),
+        day5.format('DD-MMM'),
+        day6.format('DD-MMM'),
+        day7.format('DD-MMM'),
 
 
 
@@ -199,7 +349,7 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
   }
 
   Abc(position) {
-    var pos = ((this.itemsPerPage*(this.paginaAtual - 1))+(position));
+    var pos = ((this.itemsPerPage * (this.paginaAtual - 1)) + (position));
     Swal.fire({
       imageUrl: `assets/media/users/${this.movements[pos].entitySerial}.bmp`,
       imageAlt: 'Sem foto'
@@ -212,7 +362,9 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
 
 
 
-
+  private update7DaysChart(series: any[]): void {
+    this.chartOptions6.series = series;
+  }
 
 
 
