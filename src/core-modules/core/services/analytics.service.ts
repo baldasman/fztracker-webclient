@@ -36,6 +36,7 @@ export class AnalyticsService {
       );
   }
 
+
   getMovementsCountByDate(inOut?: boolean, from?: string ): Observable<{count: number }> {
     const url = new UrlModel(this.apiUrl).setPath('/movements/CountbyDate');
     let filter = {};
