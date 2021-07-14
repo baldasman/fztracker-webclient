@@ -117,7 +117,7 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
 
 
     this.analyticsService.entitesCountByState(true).subscribe(data => {
-      console.log('entitesCountByState', data);
+      console.log('contagar entidades in', data);
 
       let xx = Object.values(data);
 
@@ -132,7 +132,7 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
 
 
     this.analyticsService.entitesCountByState(false).subscribe(data => {
-      console.log('entitesCountByState', data);
+      console.log('contagar entidades out', data);
 
 
       let xx = Object.values(data);
