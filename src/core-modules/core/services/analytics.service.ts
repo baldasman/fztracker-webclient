@@ -58,13 +58,16 @@ export class AnalyticsService {
       );
   }
 
-  entitesCountByState(inOut: boolean, local?: string): Observable<[MovementModel]> {
+  entitesCountByState(inOut: boolean, local?: string, from?:Date): Observable<[MovementModel]> {
     const url = new UrlModel(this.apiUrl).setPath('/entitesCountByState');
     let filter = {};
     filter = { ...filter, inOut };
     
     if (local) {
       filter = { ...filter, local };
+    }
+    if (from) {
+      filter = { ...filter, from };
     }
 
     console.log('entitesCountByState', filter);
