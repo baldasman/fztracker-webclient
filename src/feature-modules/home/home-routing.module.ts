@@ -114,7 +114,7 @@ const routes: Routes = [
       {
         path: 'profileEdit/:serial',
         component: CardProfileEditComponent,
-        canActivate: [AuthenticationGuard],
+        canActivate: [PersonalGuard],
         // resolve: { systemResolver: SystemsResolver }
       },
 
