@@ -64,9 +64,9 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
   profile;
   toDate;
   fromDate;
-  inOut: string =  "true";
- 
- 
+  inOut: string = "true";
+
+
   term;
 
   local: string = null;
@@ -115,41 +115,34 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
       this.toDate = todayDate;
 
 
-      this.movementService.getMovements(this.serial, this.fromDate, this.toDate, null).subscribe((data: any) => {
-        if (data.movements) {
-          this.movements = data.movements;
-
-
-
-          console.log('teste2', data.movements[0]);
-          this.profile = this.movements[0].entitySerial;
-          this.name = this.movements[0].entityName;
-          this.cardNumber = this.movements[0].cardNumber;
-
-          this.cardType = this.movements[0].entityType;
-          this.location = this.movements[0].location;
-          this.lastRegistDate = this.movements[0].movementDate;;
-          this.lastRegistHora = this.movements[0].movementDate;
-          console.log('a mov é ' + this.movements[0].inOut );
-          console.log('a cor é' + this.cardStatus, this.cardStatusColor );
-          if (this.movements[0].inOut == true) {
-            console.log();
-            this.cardStatus = "Entrada";
-            this.cardStatusColor = "label-light-success";
-
-            
-          };
-        }
-      });
 
 
       this.entityService.getEntity({ serial: this.serial }).subscribe((data: any) => {
+        console.log('getEntity', data);
+
         if (data.entities && data.entities.length === 1) {
           const entity = data.entities[0];
           console.log('entidade', entity);
-           this.profile = entity.serial;
-        }
+          this.profile = entity.serial;
 
+          this.name = entity.name;
+          this.cardNumber = entity.cardNumber;
+
+          this.cardType = entity.type;
+          //this.location = entity.location;
+          this.lastRegistDate = entity.lastMovementDate;;
+          this.lastRegistHora = entity.lastMovementDate;
+          console.log('a mov é ' + entity.inOut);
+          console.log('a cor é' + this.cardStatus, this.cardStatusColor);
+          if (entity.inOut == true) {
+            console.log();
+            this.cardStatus = "Entrada";
+            this.cardStatusColor = "label-light-success";
+          };
+
+          // Get Movements for entity
+          this.getMovements();
+        }
       });
 
 
@@ -245,7 +238,7 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
 
 
   Abc(position) {
-    var pos = ((this.itemsPerPage*(this.paginaAtual - 1))+(position));
+    var pos = ((this.itemsPerPage * (this.paginaAtual - 1)) + (position));
     Swal.fire({
       imageUrl: `assets/media/users/${this.movements[pos].entitySerial}.bmp`,
       imageAlt: 'Sem foto'
@@ -253,10 +246,36 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
 
   }
 
+  getMovements(): void {
+    this.movementService.getMovements(this.serial, this.fromDate, this.toDate, null).subscribe((data: any) => {
+      if (data.movements) {
+        this.movements = data.movements;
 
 
+        if (data.movements && data.movements.length > 0) {
+          console.log('teste2', data.movements[0]);
+          //this.profile = this.movements[0].entitySerial;
+          //this.name = this.movements[0].entityName;
+          //this.cardNumber = this.movements[0].cardNumber;
+
+          //this.cardType = this.movements[0].entityType;
+          this.location = this.movements[0].location;
+          //this.lastRegistDate = this.movements[0].movementDate;;
+          //this.lastRegistHora = this.movements[0].movementDate;
+          //console.log('a mov é ' + this.movements[0].inOut);
+          //console.log('a cor é' + this.cardStatus, this.cardStatusColor);
+          /*if (this.movements[0].inOut == true) {
+            console.log();
+            this.cardStatus = "Entrada";
+            this.cardStatusColor = "label-light-success";
 
 
+          };*/
+        }
+
+      }
+    });
+  }
 
 
 

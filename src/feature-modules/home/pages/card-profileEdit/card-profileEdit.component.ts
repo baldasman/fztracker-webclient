@@ -152,7 +152,7 @@ export class CardProfileEditComponent extends Mixin(Core, Animations, Forms, Sto
 
 
    
-
+//status para activo ou inativo nunca retirandoa viatura do mongo validar se ela já existe em outra entidade
     this.newDynamic = {marca: "", modelo: "",cor:"",matricula:"",status:""}; 
     this.dynamicArray.push(this.newDynamic); 
  

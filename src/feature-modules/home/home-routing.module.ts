@@ -16,9 +16,9 @@ import { AddEntityComponent } from './pages/add-entity/add-entity.component';
 import { CfAlfHomeComponent } from './pages/cfalf-home/cfalf-home.component';
 import { FotoTestComponent } from './pages/foto-test/foto-test.component';
 import { cardmanualComponent } from './pages/card-manual/card-manual.component';
-
-
-
+import { AdminGuard } from '@core-modules/core/guards/admin.guard';
+import { PersonalGuard } from '@core-modules/core/guards/personal.guard';
+import { AuthenticationGuard } from '@core-modules/core';
 
 const routes: Routes = [
   {
@@ -28,18 +28,23 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: 'foto',
+        canActivate: [AuthenticationGuard],
         // component: HomeComponent,
         // resolve: { systemResolver: SystemsResolver }
       },
       {
         path: 'home',
+       
         component: HomeComponent,
+        canActivate: [AuthenticationGuard],
         // resolve: { systemResolver: SystemsResolver }
       },
 
       {
         path: 'card-list',
+        canActivate: [AdminGuard],
         component: CardListComponent,
+        
         // resolve: { systemResolver: SystemsResolver }
       },
 
@@ -47,12 +52,14 @@ const routes: Routes = [
       {
         path: 'entidades',
         component: EntityListComponent,
+        canActivate: [AuthenticationGuard],
         // resolve: { systemResolver: SystemsResolver }
       },
 
       {
         path: 'addentidades',
         component: AddEntityComponent,
+        canActivate: [AuthenticationGuard],
         // resolve: { systemResolver: SystemsResolver }
       },
      
@@ -61,62 +68,79 @@ const routes: Routes = [
       {
         path: 'movimentos',
         component: CardMovementComponent,
+        canActivate: [AuthenticationGuard],
         // resolve: { systemResolver: SystemsResolver }
       },
 
       {
         path: 'cfhome',
         component: CfHomeComponent,
+        canActivate: [AuthenticationGuard],
         // resolve: { systemResolver: SystemsResolver }
       },
       {
         path: 'alfeite',
         component: CfAlfHomeComponent,
+        canActivate: [AuthenticationGuard],
         // resolve: { systemResolver: SystemsResolver }
       },
 
       {
         path: 'escola',
         component: EfHomeComponent,
+        canActivate: [AuthenticationGuard],
         // resolve: { systemResolver: SystemsResolver }
       },
+
+      // - 1 admin - ve tudo 
+      // um gruarda para ver o parametros de entrada 
+
+      // - 2 instititucional 
+      // m98636641661
+      // m5x544444646
+      // - 3 pessoal 
+// admin ou pessoal 
+
+
 
 
       {
         path: 'profile/:serial',
         component: CardProfileComponent,
+        canActivate: [PersonalGuard],
         // resolve: { systemResolver: SystemsResolver }
       },
 
       {
         path: 'profileEdit/:serial',
         component: CardProfileEditComponent,
+        canActivate: [AuthenticationGuard],
         // resolve: { systemResolver: SystemsResolver }
       },
 
       {
         path: 'link',
         component: AttachCardComponent ,
-
+        canActivate: [AuthenticationGuard],
         // resolve: { systemResolver: SystemsResolver }
       },
 
       {
         path: 'controlo',
         component: CardControlViewerComponent ,
-
+        canActivate: [AuthenticationGuard],
         // resolve: { systemResolver: SystemsResolver }
       },
       {
         path: 'foto',
         component: FotoTestComponent,
-
+        canActivate: [AuthenticationGuard],
         // resolve: { systemResolver: SystemsResolver }
       },
       {
         path: 'manual',
         component: cardmanualComponent,
-
+        canActivate: [AuthenticationGuard],
         // resolve: { systemResolver: SystemsResolver }
       },
 

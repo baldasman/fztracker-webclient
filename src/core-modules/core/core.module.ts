@@ -32,6 +32,9 @@ import { CardsService } from './services/cards.service';
 import { EntityService } from './services/entity.service';
 import { MovementsService } from './services/movements.service';
 import { AnalyticsService } from './services/analytics.service';
+import { AdminGuard } from './guards/admin.guard';
+import { InstGuard } from './guards/inst.guard';
+import { PersonalGuard } from './guards/personal.guard';
 
 
 export function initializeLayoutConfig(appConfig: LayoutConfigService) {
@@ -92,6 +95,9 @@ export function initializeLayoutConfig(appConfig: LayoutConfigService) {
 
     // Guards.
     AuthenticationGuard,
+    AdminGuard,
+    InstGuard,
+    PersonalGuard,
 
     // Resolvers.
     StoresResolver

@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    canActivate: [AuthenticationGuard],
+    //canActivate: [AuthenticationGuard],
     resolve: {
       storesResolver: StoresResolver
     },

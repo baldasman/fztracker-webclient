@@ -28,4 +28,10 @@ export class AuthenticationService {
       map((response: {}) => !!response));
   }
 
+  getSession() {
+    const url = new UrlModel(this.apiUrl).setPath('auth/v1/token').buildUrl();
+    return this.http.get(url).pipe(take(1),
+      map((response: { data: any }) => response.data));
+  }
+
 }
