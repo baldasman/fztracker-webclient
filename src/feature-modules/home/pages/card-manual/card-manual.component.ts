@@ -52,7 +52,8 @@ export class cardmanualComponent extends Mixin(Core, Animations, Forms, Stores) 
     this.places = this.environmentStore.ENV.UNINDADES;
 
     this.entitySearchform = this.formBuilder.group({
-      findnii: [null, null]
+      findnii: [null, null],
+      local:[],
     });
 
     this.assignCardform = this.formBuilder.group({
@@ -83,6 +84,7 @@ export class cardmanualComponent extends Mixin(Core, Animations, Forms, Stores) 
 
   searchEntity() {
     console.log("searchEntity | findnii =" + this.fes.findnii.value);
+    console.log("searchEntity | local =" + this.fes.local.value);
 
     // if (this.fes.findnii.value == null) {
     //   return;
@@ -139,16 +141,15 @@ export class cardmanualComponent extends Mixin(Core, Animations, Forms, Stores) 
 
 //FALTA CRIAR DROP PARA LOCAL DE ENTRADA 
 
-  in() {
-
-    const location = "CF-Alfeite";
+  in(local) {
+    
+    const location = local;
     const cardId = this.uid;
     const manual = true;
     const inOut = true;
     const sensor = "web";
 
-    //console.log('o valor é', cardId);
-   // console.log('o valor é', this.uid);
+  
 
     this.movementService.addmovement(location, sensor, cardId, manual, inOut).subscribe(response => {
       console.log(response);
@@ -178,6 +179,11 @@ export class cardmanualComponent extends Mixin(Core, Animations, Forms, Stores) 
 
 
 
+
+  }
+
+  test(local) {
+var a = local
 
   }
 
