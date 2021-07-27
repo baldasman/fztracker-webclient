@@ -20,6 +20,7 @@ export class EnvironmentModel {
   WS_USERNAME: string;
   WS_PASSWORD: string;
   LOCAIS: string[];
+  UNINDADES: string[];
 }
 
 export const environment: EnvironmentModel = {
@@ -35,5 +36,6 @@ export const environment: EnvironmentModel = {
   WS_PATH: window['__env'].WS_PATH || '',
   WS_USERNAME: window['__env'].WS_USERNAME || '',
   WS_PASSWORD: window['__env'].WS_PASSWORD || '',
-  LOCAIS: window['__env'].LOCAIS || []
+  LOCAIS: window['__env'].LOCAIS || [],
+  UNINDADES: window['__env'].UNIDADES || [],
 };

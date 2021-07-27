@@ -59,8 +59,12 @@
                       <h6 class="text-muted f-w-400">{{email}}</h6>
                     </div>
                     <div class="col-sm-6">
-                      <p class="m-b-10 f-w-600">unidade</p>
-                      <h6 class="text-muted f-w-400">{{unit}}</h6>
+                      <p class="m-b-10 f-w-600">Local</p>
+
+                      <select  class="row justify-content-between  font-weight-bold btn-sm px-4 font-size-base ml-2"   name="num" [(ngModel)]="place"  style="margin-left: 30px">
+                        <option *ngFor="let n of places" [value]="n">{{n}}</option>
+                        </select>
+                     <!-- <h6 class="text-muted f-w-400">{{unit}}</h6> -->
                     </div>
                   </div>
 

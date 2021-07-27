@@ -1,9 +1,12 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
 import { Animations, Core, Forms, Mixin, Stores } from '@app/base';
+import { environment } from '@app/config';
 import { CardService } from '@core-modules/core/services/card.service';
 import { EntityService } from '@core-modules/core/services/entity.service';
 import { MovementsService } from '@core-modules/core/services/movements.service';
+import { EnvironmentStore } from '@core-modules/stores';
+import { Console } from 'console';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -37,11 +40,16 @@ export class cardmanualComponent extends Mixin(Core, Animations, Forms, Stores) 
   isSwitchedOn = false;
   hasCard = false;
   hasError = false;
+  uid:string;
+  place  ="";
+  places = [];
 
   private _docSub: Subscription;
 
-  constructor(private cardService: CardService, private entityService: EntityService, private cdr: ChangeDetectorRef, private movementService: MovementsService) {
+  constructor( private environmentStore: EnvironmentStore, private cardService: CardService, private entityService: EntityService, private cdr: ChangeDetectorRef, private movementService: MovementsService) {
     super();
+
+    this.places = this.environmentStore.ENV.UNINDADES;
 
     this.entitySearchform = this.formBuilder.group({
       findnii: [null, null]
@@ -103,6 +111,7 @@ export class cardmanualComponent extends Mixin(Core, Animations, Forms, Stores) 
       this.name = entity.name;
       this.email = entity.email;
       this.stat = entity.type;
+      this.uid=entity.cardId;
       this.urlImage = `assets/media/users/${entity.serial}.bmp`;
       this.fac.cardNumber.setValue(entity.cardNumber);
       this.hasCard = (entity.cardNumber || '').length > 0;
@@ -128,22 +137,24 @@ export class cardmanualComponent extends Mixin(Core, Animations, Forms, Stores) 
 
   }
 
-
+//FALTA CRIAR DROP PARA LOCAL DE ENTRADA 
 
   in() {
 
-    const location = "Cf-Alfeite";
-    const cardId = "04F29A1AE66C80";
+    const location = "CF-Alfeite";
+    const cardId = this.uid;
     const manual = true;
     const inOut = true;
     const sensor = "web";
 
+    //console.log('o valor é', cardId);
+   // console.log('o valor é', this.uid);
 
     this.movementService.addmovement(location, sensor, cardId, manual, inOut).subscribe(response => {
       console.log(response);
     }, error => {
       console.error(error);
-    });
+    }); 
 
 
 
@@ -152,8 +163,8 @@ export class cardmanualComponent extends Mixin(Core, Animations, Forms, Stores) 
 
   out() {
 
-    const location = "Cf-Alfeite";
-    const cardId = "04F29A1AE66C80";
+    const location = "CF-Alfeite";
+    const cardId = this.uid;
     const manual = true;
     const inOut = false;
     const sensor = "web";
