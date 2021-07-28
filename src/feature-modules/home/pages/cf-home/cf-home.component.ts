@@ -13,6 +13,7 @@ import * as moment from 'moment';
 import { AnalyticsService } from '@core-modules/core/services/analytics.service';
 import { count } from 'rxjs/operators';
 import { data } from 'jquery';
+import { EntityService } from '@core-modules/core/services/entity.service';
 
 @Component({
   selector: 'app-cf-home',
@@ -90,6 +91,7 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
     private layoutConfigService: LayoutConfigService,
     private analyticsService: AnalyticsService,
     private movementService: MovementsService,
+    private cardService: CardService,
   ) {
     super();
 
@@ -105,7 +107,36 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
 
   ngOnInit() {
 
+    
+    this._docSub = this.cardService.notification.subscribe(movement => {
+      console.log('movement', movement);
+      
+      console.log('movimento é ', movement.entity.inOut);
 
+        if (movement.entity.inOut == true){
+          this.militaresForaCf = (+this.militaresForaCf -1);
+          this.militaresCf = (+this.militaresCf +1);
+          console.log('militares IN', this.militaresForaCf, this.militaresCf );
+          
+          document.getElementById('milcf').innerHTML = this.militaresCf.toString();
+        }
+        if(movement.entity.inOut == false) {
+
+          this.militaresForaCf = (+this.militaresForaCf +1);
+          this.militaresCf = (+this.militaresCf -1);
+          console.log('militares OUT ', this.militaresForaCf, this.militaresCf );
+
+          document.getElementById('milcf').innerHTML = this.militaresCf.toString();
+        }
+
+   
+      
+
+      // Filter eventes by location
+      if (movement.location !== 'LOCAL') {
+        console.log('discard!!!');
+      }
+    });
 
     /*
     this.analyticsService.getMovementsByDate(true, (new Date().toISOString())).subscribe(data => {
@@ -145,6 +176,9 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
 
 
 
+
+
+
     this.chartOptions6 = this.getChartOptions6();
 
 
@@ -154,6 +188,13 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
 
       }
     });
+
+  }
+
+
+  entitys(){
+    
+
 
   }
 
