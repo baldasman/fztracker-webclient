@@ -48,17 +48,23 @@ export class SignInComponent extends Mixin(Core, Animations, Forms, Stores) impl
     this.subscriptions.push(
       this.authenticationService.signIn(this.f.authId.value, this.f.authPassword.value).subscribe(
         result => {
-
+        console.log('o resiltado', result);
           localStorage.setItem('token', result.token);
+          localStorage.setItem('externalId', result.externalId);
 
           let redirectTo: string;
           if (localStorage.getItem('referrer')) {
             redirectTo = localStorage.getItem('referrer');
             localStorage.removeItem('referrer');
-          } else {
-            redirectTo = '/';
-          }
+          } else if (result.isAdmin === true) {
+            const serial = result.externalId || 'x';
+            redirectTo = `/profile/${serial.substr(1)}`;
 
+          } else {
+            redirectTo = '/cfhome';
+
+          }
+          console.log('redirectTo', redirectTo);
           this.hidePageLoader();
           this.notification.success(this.translate('features.authentication.messages.login_success'));
 

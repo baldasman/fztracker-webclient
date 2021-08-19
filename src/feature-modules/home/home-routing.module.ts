@@ -19,6 +19,7 @@ import { cardmanualComponent } from './pages/card-manual/card-manual.component';
 import { AdminGuard } from '@core-modules/core/guards/admin.guard';
 import { PersonalGuard } from '@core-modules/core/guards/personal.guard';
 import { AuthenticationGuard } from '@core-modules/core';
+import { InstGuard } from '@core-modules/core/guards/inst.guard';
 
 const routes: Routes = [
   {
@@ -134,7 +135,7 @@ const routes: Routes = [
       {
         path: 'foto',
         component: FotoTestComponent,
-        canActivate: [AuthenticationGuard],
+        canActivate: [AuthenticationGuard, InstGuard],
         // resolve: { systemResolver: SystemsResolver }
       },
       {

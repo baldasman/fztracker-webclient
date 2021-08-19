@@ -13,7 +13,7 @@ export class AuthenticationService extends Mixin(Core, Stores) {
 
   constructor() { super(); }
 
-  signIn(username: string, password: string): Observable<{ token: string }> {
+  signIn(username: string, password: string): Observable<{ token: string , externalId: string, isUser: boolean, isAdmin: boolean, accessRank: boolean}> {
     const url = new UrlModel(this.apiUrl).setPath('auth/v1/signin');
     return this.http.post(url.buildUrl(), { authId: username, password, sessionType: 'portal' })
       .pipe(
