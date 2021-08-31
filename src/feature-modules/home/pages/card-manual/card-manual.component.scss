@@ -4,7 +4,6 @@
   }
 }
 
-
 #caixa{margin-top: 15px;text-align: center;}
 
 #center{text-align: center}
@@ -16,8 +15,7 @@ h1{margin-bottom: 20px;}
 .image-input-wrapper {
   text-align: center;
   vertical-align: middle;
-
-  max-width: 415px;
+    max-width: 415px;
     max-height: 415px;
   img {
     max-width: 415px;
@@ -29,15 +27,14 @@ h1{margin-bottom: 20px;}
   width: 120px;
   height: 200px;}
 
-
   body {
     background-color: #f9f9fa
 }
 
-.padding {
+/* .padding {
     padding: 3rem !important
 }
-
+ */
 .user-card-full {
     overflow: hidden
 }
