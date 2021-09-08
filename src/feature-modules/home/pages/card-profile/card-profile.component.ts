@@ -12,7 +12,7 @@ import { Console } from 'console';
 import { EntityService } from '@core-modules/core/services/entity.service';
 import { CardsService } from '@core-modules/core/services/cards.service';
 import Swal from 'sweetalert2';
-
+import * as moment from 'moment';
 
 
 
@@ -167,13 +167,37 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
 
   }
 
+ 
+
   getChartOptions6() {
+
+    let day1 = moment().subtract("7", "days");
+    let day2 = moment().subtract("6", "days");
+    let day3 = moment().subtract("5", "days");
+    let day4 = moment().subtract("4", "days");
+    let day5 = moment().subtract("3", "days");
+    let day6 = moment().subtract("2", "days");
+    let day7 = moment().subtract("1", "days");
+
+   let xdata1 = 8;
+
+   this.movementService.getMovements(this.serial, day1.toString(), day1.toString(), null).subscribe((data: any) => {
+    if (data.movements) {
+       let movements2 = data.movements;
+       console.log('o movemento do dia ' , movements2);
+
+       console.log('o movemento do dia ' , movements2[0].cardNumber);
+    }
+   
+  });
+
+
     return {
       series: [
         {
           name: "CF-ALF",
           type: "column",
-          data: [8, 8, 8, 10, 12, 24, 10,]
+          data: [xdata1, 8, 8, 10, 12, 24, 10,]
         },
         {
           name: "CF-EF",
@@ -196,20 +220,21 @@ export class CardProfileComponent extends Mixin(Core, Animations, Forms, Stores)
         width: [0, 4]
       },
       title: {
-        text: "Corpo de Fuzileiros"
+        text: "Corpo de Fuzileiros - Grafico em desenvolvimento"
+     
       },
       dataLabels: {
         enabled: false,
         enabledOnSeries: []
       },
       labels: [
-        "01 Nov 2020",
-        "02 Nov 2020",
-        "03 Nov 2020",
-        "04 Nov 2020",
-        "05 Nov 2020",
-        "06 Nov 2020",
-        "07 Nov 2020",
+        day1.format('DD-MMM'),
+        day2.format('DD-MMM'),
+        day3.format('DD-MMM'),
+        day4.format('DD-MMM'),
+        day5.format('DD-MMM'),
+        day6.format('DD-MMM'),
+        day7.format('DD-MMM'),
 
 
 
