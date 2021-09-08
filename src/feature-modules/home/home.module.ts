@@ -24,6 +24,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FotoTestComponent } from './pages/foto-test/foto-test.component';
 import { cardmanualComponent } from './pages/card-manual/card-manual.component';
+import { CardArmasViewerComponent } from './pages/card-armasViewer/card-armasViewer.component';
 
 
 
@@ -65,6 +66,7 @@ import { cardmanualComponent } from './pages/card-manual/card-manual.component';
     CfAlfHomeComponent,
     FotoTestComponent,
     cardmanualComponent,
+    CardArmasViewerComponent,
     
     
 

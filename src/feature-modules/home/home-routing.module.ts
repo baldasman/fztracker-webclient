@@ -20,6 +20,7 @@ import { AdminGuard } from '@core-modules/core/guards/admin.guard';
 import { PersonalGuard } from '@core-modules/core/guards/personal.guard';
 import { AuthenticationGuard } from '@core-modules/core';
 import { InstGuard } from '@core-modules/core/guards/inst.guard';
+import { CardArmasViewerComponent } from './pages/card-armasViewer/card-armasViewer.component';
 
 const routes: Routes = [
   {
@@ -141,6 +142,12 @@ const routes: Routes = [
       {
         path: 'manual',
         component: cardmanualComponent,
+        canActivate: [AuthenticationGuard],
+        // resolve: { systemResolver: SystemsResolver }
+      },
+      {
+        path: 'armas',
+        component: CardArmasViewerComponent,
         canActivate: [AuthenticationGuard],
         // resolve: { systemResolver: SystemsResolver }
       },

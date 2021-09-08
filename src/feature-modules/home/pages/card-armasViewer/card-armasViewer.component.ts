@@ -13,12 +13,12 @@ import { EnvironmentStore } from '@core-modules/stores';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-card-controlViewer',
-  templateUrl: './card-controlViewer.component.html',
-  styleUrls: ['./card-controlViewer.component.scss'],
+  selector: 'app-card-armasViewer',
+  templateUrl: './card-armasViewer.component.html',
+  styleUrls: ['./card-armasViewer.component.scss'],
   //changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CardControlViewerComponent extends Mixin(Core, Animations, Forms, Stores) implements OnInit, OnDestroy {
+export class CardArmasViewerComponent extends Mixin(Core, Animations, Forms, Stores) implements OnInit, OnDestroy {
   
 
   MovimentsDay: Date = new Date(); 
@@ -41,13 +41,13 @@ export class CardControlViewerComponent extends Mixin(Core, Animations, Forms, S
  
  
 
-  place  ="Cf-Alfeite";
+  place  ="Cf-Armas";
   places = [];
 
 
   constructor( private environmentStore: EnvironmentStore,private cardService: CardService, private layoutConfigService: LayoutConfigService, private movementService: MovementsService, private toastr: ToastrService) {
     super();
-    this.places = this.environmentStore.ENV.LOCAIS;
+    this.places = ["Cf-Armas"];
 
     this.MovementSearchform = this.formBuilder.group({
       findnii: [null, null]
@@ -140,7 +140,7 @@ export class CardControlViewerComponent extends Mixin(Core, Animations, Forms, S
 
   selectChangeHandler (event: any) {
 
-      if (event.target.value =="Todos"){ this.local  = null} 
+      if (event.target.value =="Cf-Armas"){ this.local  = null} 
       else this.local  = event.target.value;
       
 
