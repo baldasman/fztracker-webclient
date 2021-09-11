@@ -29,7 +29,7 @@ export class CardArmasViewerComponent extends Mixin(Core, Animations, Forms, Sto
   model2;
   fromDate;
   toDate;
-  local: string =null;
+  local: string ="Cf-Armas";
   MovementSearchform: FormGroup;
   movements: MovementModel[];
   foto: string = "assets/media/default.bmp";
@@ -47,7 +47,7 @@ export class CardArmasViewerComponent extends Mixin(Core, Animations, Forms, Sto
 
   constructor( private environmentStore: EnvironmentStore,private cardService: CardService, private layoutConfigService: LayoutConfigService, private movementService: MovementsService, private toastr: ToastrService) {
     super();
-    this.places = ["Cf-Armas"];
+    this.places = this.environmentStore.ENV.LOCAIS;
 
     this.MovementSearchform = this.formBuilder.group({
       findnii: [null, null]
@@ -57,7 +57,7 @@ export class CardArmasViewerComponent extends Mixin(Core, Animations, Forms, Sto
 
   ngOnInit() {
 
-    this.movementService.getMovements().subscribe((data: any) => {
+    this.movementService.getMovements(this.fes.findnii.value, this.fromDate, this.toDate, "Cf-Armas").subscribe((data: any) => {
       console.log('movements', data);
      
 
@@ -104,11 +104,11 @@ export class CardArmasViewerComponent extends Mixin(Core, Animations, Forms, Sto
 
      
 
-     if (movement.movement.location == this.local ||  this.local == null) {
+     if (movement.movement.location == this.local) {
      this.foto = `assets/media/users/${movement.entity.serial}.bmp`;
       this.namePhoto = `${movement.movement.entityName} `;
       
-              this.movementService.getMovements().subscribe((data: any) => {       
+              this.movementService.getMovements(this.fes.findnii.value, this.fromDate, this.toDate, this.local).subscribe((data: any) => {       
               this.movements = data.movements;
               
               
@@ -140,7 +140,7 @@ export class CardArmasViewerComponent extends Mixin(Core, Animations, Forms, Sto
 
   selectChangeHandler (event: any) {
 
-      if (event.target.value =="Cf-Armas"){ this.local  = null} 
+      if (event.target.value =="Todos"){ this.local  = null} 
       else this.local  = event.target.value;
       
 

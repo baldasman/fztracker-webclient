@@ -22,7 +22,7 @@
                 <div class="row justify-content-end" style="padding-bottom: 10px;">
 
                     <div class="col-2">
-                        <select  class="row justify-content-between  font-weight-bold btn-sm px-4 font-size-base ml-2"  (change)="selectChangeHandler($event)" name="num" [(ngModel)]="place"  style="margin-left: 30px">
+                        <select  class="row justify-content-between  font-weight-bold btn-sm px-4 font-size-base ml-2"  (change)="selectChangeHandler($event)" name="num" [(ngModel)]="place"  style="display: none">
                         <option *ngFor="let n of places" [value]="n">{{n}}</option>
                         </select>
                   
@@ -38,13 +38,13 @@
                                         class="datatable-cell-left datatable-cell datatable-cell-sort datatable-cell-sorted"
                                         data-sort="asc"><span style="width: 40px;">#<i
                                                 class="flaticon2-arrow-up"></i></span></th>
-                                    <th data-field="OrderID" class="datatable-cell datatable-cell-sort"><span
+                                    <th data-field="ID" class="datatable-cell datatable-cell-sort"><span
                                             style="width: 250px;">Entidade</span></th>
-                                    <th data-field="Country" class="datatable-cell datatable-cell-sort"><span
+                                    <th data-field="Card" class="datatable-cell datatable-cell-sort"><span
                                             style="width: 158px;">Cartão Atribuido</span></th>
-                                    <th data-field="ShipDate" class="datatable-cell datatable-cell-sort"><span
+                                    <th data-field="Mov" class="datatable-cell datatable-cell-sort"><span
                                             style="width: 158px;">Movimento</span></th>
-                                    <th data-field="CompanyName" class="datatable-cell datatable-cell-sort"><span
+                                    <th data-field="Notes" class="datatable-cell datatable-cell-sort"><span
                                             style="width: 158px;">Local e Notas</span></th>
                                     <th data-field="Status" class="datatable-cell datatable-cell-sort"><span
                                             style="width: 158px;">Status</span></th>

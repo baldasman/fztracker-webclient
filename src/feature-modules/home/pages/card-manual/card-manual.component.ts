@@ -40,20 +40,20 @@ export class cardmanualComponent extends Mixin(Core, Animations, Forms, Stores) 
   isSwitchedOn = false;
   hasCard = false;
   hasError = false;
-  uid:string;
-  place  ="";
+  uid: string;
+  place = "";
   places = [];
 
   private _docSub: Subscription;
 
-  constructor( private environmentStore: EnvironmentStore, private cardService: CardService, private entityService: EntityService, private cdr: ChangeDetectorRef, private movementService: MovementsService) {
+  constructor(private environmentStore: EnvironmentStore, private cardService: CardService, private entityService: EntityService, private cdr: ChangeDetectorRef, private movementService: MovementsService) {
     super();
 
     this.places = this.environmentStore.ENV.UNINDADES;
 
     this.entitySearchform = this.formBuilder.group({
       findnii: [null, null],
-      local:[],
+      local: [],
     });
 
     this.assignCardform = this.formBuilder.group({
@@ -113,7 +113,7 @@ export class cardmanualComponent extends Mixin(Core, Animations, Forms, Stores) 
       this.name = entity.name;
       this.email = entity.email;
       this.stat = entity.type;
-      this.uid=entity.cardId;
+      this.uid = entity.cardId;
       this.urlImage = `assets/media/users/${entity.serial}.bmp`;
       this.fac.cardNumber.setValue(entity.cardNumber);
       this.hasCard = (entity.cardNumber || '').length > 0;
@@ -139,32 +139,32 @@ export class cardmanualComponent extends Mixin(Core, Animations, Forms, Stores) 
 
   }
 
-//FALTA CRIAR DROP PARA LOCAL DE ENTRADA 
+  //FALTA CRIAR DROP PARA LOCAL DE ENTRADA 
 
   in(local) {
-    
+
     const location = local;
     const cardId = this.uid;
     const manual = true;
     const inOut = true;
     const sensor = "web";
 
-  
+
 
     this.movementService.addmovement(location, sensor, cardId, manual, inOut).subscribe(response => {
       console.log(response);
     }, error => {
       console.error(error);
-    }); 
+    });
 
 
 
 
   }
 
-  out() {
+  out(local) {
 
-    const location = "CF-Alfeite";
+    const location = local;
     const cardId = this.uid;
     const manual = true;
     const inOut = false;
@@ -183,7 +183,7 @@ export class cardmanualComponent extends Mixin(Core, Animations, Forms, Stores) 
   }
 
   test(local) {
-var a = local
+    var a = local
 
   }
 
