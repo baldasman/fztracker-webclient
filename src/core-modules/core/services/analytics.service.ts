@@ -37,7 +37,7 @@ export class AnalyticsService {
   }
 
 
-  getMovementsCountByDate(inOut?: boolean, from?: string ): Observable<{count: number }> {
+  getMovementsCountByDate(inOut?: boolean, from?: string, local?: string ): Observable<{count: number }> {
     const url = new UrlModel(this.apiUrl).setPath('/movements/CountbyDate');
     let filter = {};
     if (inOut) {
@@ -45,9 +45,12 @@ export class AnalyticsService {
     }
     if (from) {
       filter = { ...filter, from };
-
-     
+           
     }
+    if (local) {
+      filter = { ...filter, local };
+    }
+    
 
     console.log('getMovementsByDate', filter);
     url.setQueryParams(filter);

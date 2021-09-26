@@ -12,6 +12,7 @@ export class EntityModel {
   log: [];
   resources: [];
   serial: string;
+  lastlocal: string;
 
  
 

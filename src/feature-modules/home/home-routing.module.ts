@@ -21,6 +21,7 @@ import { PersonalGuard } from '@core-modules/core/guards/personal.guard';
 import { AuthenticationGuard } from '@core-modules/core';
 import { InstGuard } from '@core-modules/core/guards/inst.guard';
 import { CardArmasViewerComponent } from './pages/card-armasViewer/card-armasViewer.component';
+import { controloComponent } from './pages/controlo/controlo.component';
 
 const routes: Routes = [
   {
@@ -94,18 +95,7 @@ const routes: Routes = [
         // resolve: { systemResolver: SystemsResolver }
       },
 
-      // - 1 admin - ve tudo 
-      // um gruarda para ver o parametros de entrada 
-
-      // - 2 instititucional 
-      // m98636641661
-      // m5x544444646
-      // - 3 pessoal 
-// admin ou pessoal 
-
-
-
-
+ 
       {
         path: 'profile/:serial',
         component: CardProfileComponent,
@@ -127,12 +117,7 @@ const routes: Routes = [
         // resolve: { systemResolver: SystemsResolver }
       },
 
-      {
-        path: 'controlo',
-        component: CardControlViewerComponent ,
-        canActivate: [AuthenticationGuard],
-        // resolve: { systemResolver: SystemsResolver }
-      },
+      
       {
         path: 'foto',
         component: FotoTestComponent,
@@ -148,6 +133,20 @@ const routes: Routes = [
       {
         path: 'armas',
         component: CardArmasViewerComponent,
+        canActivate: [AuthenticationGuard],
+        // resolve: { systemResolver: SystemsResolver }
+      },
+
+      {
+        path: 'controlo',
+        component: controloComponent ,
+        canActivate: [AuthenticationGuard],
+        // resolve: { systemResolver: SystemsResolver }
+      },
+
+      {
+        path: 'controlos',
+        component: CardControlViewerComponent ,
         canActivate: [AuthenticationGuard],
         // resolve: { systemResolver: SystemsResolver }
       },

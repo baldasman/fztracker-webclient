@@ -25,6 +25,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FotoTestComponent } from './pages/foto-test/foto-test.component';
 import { cardmanualComponent } from './pages/card-manual/card-manual.component';
 import { CardArmasViewerComponent } from './pages/card-armasViewer/card-armasViewer.component';
+import { controloComponent } from './pages/controlo/controlo.component';
 
 
 
@@ -67,6 +68,7 @@ import { CardArmasViewerComponent } from './pages/card-armasViewer/card-armasVie
     FotoTestComponent,
     cardmanualComponent,
     CardArmasViewerComponent,
+    controloComponent,
     
     
 
