@@ -218,7 +218,7 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
     this.day7CallsCounter = 7;  // TODO:mudar para 7
 
     // 1 day
-    this.analyticsService.getMovementsCountByDate(true, day1.toString(),).subscribe(data => {
+    this.analyticsService.getMovementsCountByDate(true, day1.toString(),"Cf-Alfeite").subscribe(data => {
       this.day7Series[0].data[0] = data.count;
 
       this.day7CallsCounter--;
@@ -228,7 +228,7 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
       }
     });
     // 2 day
-    this.analyticsService.getMovementsCountByDate(true, day2.toString(),).subscribe(data => {
+    this.analyticsService.getMovementsCountByDate(true, day2.toString(),"Cf-Alfeite").subscribe(data => {
       this.day7Series[0].data[1] = data.count;
 
       this.day7CallsCounter--;
@@ -238,7 +238,7 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
       }
     });
     // 3 day
-    this.analyticsService.getMovementsCountByDate(true, day3.toString(),).subscribe(data => {
+    this.analyticsService.getMovementsCountByDate(true, day3.toString(),"Cf-Alfeite").subscribe(data => {
       this.day7Series[0].data[2] = data.count;
 
       this.day7CallsCounter--;
@@ -248,7 +248,7 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
       }
     });
     // 4 day
-    this.analyticsService.getMovementsCountByDate(true, day4.toString(),).subscribe(data => {
+    this.analyticsService.getMovementsCountByDate(true, day4.toString(),"Cf-Alfeite").subscribe(data => {
       this.day7Series[0].data[3] = data.count;
 
       this.day7CallsCounter--;
@@ -258,7 +258,7 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
       }
     });
     // 5 day
-    this.analyticsService.getMovementsCountByDate(true, day5.toString(),).subscribe(data => {
+    this.analyticsService.getMovementsCountByDate(true, day5.toString(),"Cf-Alfeite").subscribe(data => {
       this.day7Series[0].data[4] = data.count;
 
       this.day7CallsCounter--;
@@ -269,7 +269,7 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
     });
 
     // 6 day
-    this.analyticsService.getMovementsCountByDate(true, day6.toString(),).subscribe(data => {
+    this.analyticsService.getMovementsCountByDate(true, day6.toString(),"Cf-Alfeite").subscribe(data => {
       this.day7Series[0].data[5] = data.count;
 
       this.day7CallsCounter--;
@@ -279,7 +279,7 @@ export class CfHomeComponent extends Mixin(Core, Animations, Forms, Stores) impl
       }
     });
     // 7 day
-    this.analyticsService.getMovementsCountByDate(true, day7.toString(),).subscribe(data => {
+    this.analyticsService.getMovementsCountByDate(true, day7.toString(),"Cf-Alfeite").subscribe(data => {
       this.day7Series[0].data[6] = data.count;
 
       this.day7CallsCounter--;
