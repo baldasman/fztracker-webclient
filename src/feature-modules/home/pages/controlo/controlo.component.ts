@@ -86,6 +86,7 @@ export class controloComponent extends Mixin(Core, Animations, Forms, Stores) im
 
         this.militaresNoCf = +xx;
         document.getElementById("CardsIn").innerHTML = this.militaresNoCf;
+        document.getElementById("CardsInCardsOut").innerHTML = (this.militaresNoCf+this.militaresForaCf);
 
     });
 
