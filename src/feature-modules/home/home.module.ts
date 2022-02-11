@@ -27,6 +27,8 @@ import { cardmanualComponent } from './pages/card-manual/card-manual.component';
 import { CardArmasViewerComponent } from './pages/card-armasViewer/card-armasViewer.component';
 import { controloComponent } from './pages/controlo/controlo.component';
 import { GunMovementComponent } from './pages/gun-movement/gun-movement.component';
+import { AttachGunComponent } from './pages/attach-gun/attach-gun.component';
+
 
 
 
@@ -71,7 +73,7 @@ import { GunMovementComponent } from './pages/gun-movement/gun-movement.componen
     CardArmasViewerComponent,
     controloComponent,
     GunMovementComponent,
-    
+    AttachGunComponent
 
   ],
   providers: [  

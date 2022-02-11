@@ -1,0 +1,138 @@
+<h1>Atribuir/Remover Armeiros</h1>
+
+
+
+
+<div class="col-lg-12">
+  <div class="page-content page-container" id="page-content">
+    <div class="padding">
+      <div class="row container d-flex justify-content-center">
+        <div class="col-xl-12 col-md-12">
+          <div class="card user-card-full">
+            <div class="row m-l-0 m-r-0">
+              <div class="col-sm-4 bg-c-lite-green user-profile">
+                <div class="card-block text-center text-white">
+                  <form class="form" [formGroup]="entitySearchform" (ngSubmit)="searchEntity()">
+
+                    <div class="row" ng-app="DemoApp" ng-controller="DemoCtrl">
+
+                      <div class="col-sm-6">
+                        <catalog-forms-input autoFocus id="findnii" [formControlField]="fes.findnii"
+                          formControlName="findnii" placeholder="{{ placeholherNii }}" [hideMessages]="true">
+                        </catalog-forms-input>
+                      </div>
+                      <div class="col-sm-6">
+                        <button type="submit" class="btn btn-primary mr-2">Pesquisar</button>
+                      </div>
+                    </div>
+                  </form>
+                  <div class="m-b-25" style="margin-top: 10px;"> <img src="{{urlImage}}" class="img-radius"
+                      alt="Nao Existe Fotografia"> </div>
+                  <h5 class="f-w-600">{{name}}</h5>
+                  <h6 class=" f-w-400">{{stat}}</h6>
+                  <h6 class=" f-w-400">{{cardNumber}}</h6>
+                  <h3 class=" f-w-800" style="margin-top: 19px;">Armeiro:{{armeiro}}</h3>
+                  <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="card-block">
+
+                  <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Armeiro</h6>
+                  <div class="row">
+                    <form class="form" [formGroup]="entitySearchform" (ngSubmit)="searchEntity()">
+
+                      <div class="row" ng-app="DemoApp" ng-controller="DemoCtrl">
+
+                        <div class="col-sm-6">
+                          <label>Numero: {{findgun}}</label>
+
+                          <catalog-forms-input autoFocus id="findnii" [formControlField]="fes.findnii"
+                            formControlName="findnii" placeholder="{{ placeholhergun }}" [hideMessages]="true">
+                          </catalog-forms-input>
+
+
+                        </div>
+
+
+                        <div class="col-sm-6">
+
+                          <span class="m-b-10 f-w-600">Pesquisa numero de armeiro</span>
+
+                          <button type="submit" class="btn btn-primary mr-2">Pesquisar</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+
+                  <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Dados</h6>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <p class="m-b-10 f-w-600"> G3</p>
+                      <h6 class="text-muted f-w-400">{{email}}</h6>
+                    </div>
+                    <div class="col-sm-6">
+                      <p class="m-b-10 f-w-600">P38</p>
+                      <h6 class="text-muted f-w-400">{{unit}}</h6>
+                    </div>
+                    <div class="col-sm-6">
+                      <p class="m-b-10 f-w-600"> MG3</p>
+                      <h6 class="text-muted f-w-400">{{email}}</h6>
+                    </div>
+                    <div class="col-sm-6">
+                      <p class="m-b-10 f-w-600">CG</p>
+                      <h6 class="text-muted f-w-400">{{unit}}</h6>
+                    </div>
+                  </div>
+
+                  <div class="row">
+
+                    <form class="form" [formGroup]="assignCardform" style="width: 100%;">
+                      <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Atribuir</h6>
+                      <div class="row" ng-app="DemoApp" ng-controller="DemoCtrl">
+
+                        <div class="col-sm-6">
+
+                          <label>Número:</label>
+                          <catalog-forms-input id="cardNumber" [formControlField]="fac.cardNumber"
+                            formControlName="cardNumber" placeholder="" required="true" [hideMessages]="true">
+                          </catalog-forms-input>
+
+                        </div>
+                          <div class="col-sm-6">
+                          <div class="row">
+                            <label>Número:</label>
+                          </div>
+                          <div class="row">
+                            <button [disabled]="hasCard" type="button" (click)="linkCard()"
+                              class="btn btn-primary mr-2">Atribuir Armeiro</button>
+                            <button [disabled]="!hasCard" type="button" (click)="removeCard()"
+                              class="btn btn-danger float-right">Elimirar atribuição</button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="alert alert-custom alert-default" style="margin-top: 20px;"
+                        [ngClass]="{'alert-success': hasCard, 'alert-danger': hasError}">
+                        <div class="alert-text">
+                          {{ cardStatus }}
+                        </div>
+                      </div>
+                    </form>
+
+
+                    <div class="col-sm-6">
+                      <p class="m-b-10 f-w-600"></p>
+                      <h6 class="text-muted f-w-400"> </h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
