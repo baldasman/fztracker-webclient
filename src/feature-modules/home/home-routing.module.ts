@@ -22,6 +22,7 @@ import { AuthenticationGuard } from '@core-modules/core';
 import { InstGuard } from '@core-modules/core/guards/inst.guard';
 import { CardArmasViewerComponent } from './pages/card-armasViewer/card-armasViewer.component';
 import { controloComponent } from './pages/controlo/controlo.component';
+import { GunMovementComponent } from './pages/gun-movement/gun-movement.component';
 
 const routes: Routes = [
   {
@@ -71,6 +72,14 @@ const routes: Routes = [
       {
         path: 'movimentos',
         component: CardMovementComponent,
+        canActivate: [AuthenticationGuard],
+        // resolve: { systemResolver: SystemsResolver }
+      },
+
+      
+      {
+        path: 'armasmovimentos',
+        component: GunMovementComponent,
         canActivate: [AuthenticationGuard],
         // resolve: { systemResolver: SystemsResolver }
       },

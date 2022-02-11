@@ -26,6 +26,7 @@ import { FotoTestComponent } from './pages/foto-test/foto-test.component';
 import { cardmanualComponent } from './pages/card-manual/card-manual.component';
 import { CardArmasViewerComponent } from './pages/card-armasViewer/card-armasViewer.component';
 import { controloComponent } from './pages/controlo/controlo.component';
+import { GunMovementComponent } from './pages/gun-movement/gun-movement.component';
 
 
 
@@ -69,7 +70,7 @@ import { controloComponent } from './pages/controlo/controlo.component';
     cardmanualComponent,
     CardArmasViewerComponent,
     controloComponent,
-    
+    GunMovementComponent,
     
 
   ],
