@@ -40,16 +40,16 @@
 
                   <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Armeiro</h6>
                   <div class="row">
-                    <form class="form" [formGroup]="entitySearchform" (ngSubmit)="searchEntity()">
+                    <form class="form" [formGroup]="entitySearchform" (ngSubmit)="teste()">
 
                       <div class="row" ng-app="DemoApp" ng-controller="DemoCtrl">
 
                         <div class="col-sm-6">
                           <label>Numero: {{findgun}}</label>
 
-                          <catalog-forms-input autoFocus id="findnii" [formControlField]="fes.findnii"
+                      <catalog-forms-input autoFocus id="findnii" [formControlField]="fes.findnii"
                             formControlName="findnii" placeholder="{{ placeholhergun }}" [hideMessages]="true">
-                          </catalog-forms-input>
+                          </catalog-forms-input> 
 
 
                         </div>
@@ -65,23 +65,23 @@
                     </form>
                   </div>
 
-                  <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Dados</h6>
+                  <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Armas</h6>
                   <div class="row">
                     <div class="col-sm-6">
                       <p class="m-b-10 f-w-600"> G3</p>
-                      <h6 class="text-muted f-w-400">{{email}}</h6>
+                      <h6 class="text-muted f-w-400">{{g3}}</h6>
                     </div>
                     <div class="col-sm-6">
                       <p class="m-b-10 f-w-600">P38</p>
-                      <h6 class="text-muted f-w-400">{{unit}}</h6>
+                      <h6 class="text-muted f-w-400">{{p38}}</h6>
                     </div>
                     <div class="col-sm-6">
                       <p class="m-b-10 f-w-600"> MG3</p>
-                      <h6 class="text-muted f-w-400">{{email}}</h6>
+                      <h6 class="text-muted f-w-400">{{mg3}}</h6>
                     </div>
                     <div class="col-sm-6">
                       <p class="m-b-10 f-w-600">CG</p>
-                      <h6 class="text-muted f-w-400">{{unit}}</h6>
+                      <h6 class="text-muted f-w-400">{{cg}}</h6>
                     </div>
                   </div>
 
@@ -104,9 +104,9 @@
                             <label>Número:</label>
                           </div>
                           <div class="row">
-                            <button [disabled]="hasCard" type="button" (click)="linkCard()"
+                            <button [disabled]="hasCard" type="button" (click)="teste()"
                               class="btn btn-primary mr-2">Atribuir Armeiro</button>
-                            <button [disabled]="!hasCard" type="button" (click)="removeCard()"
+                            <button [disabled]="!hasCard" type="button" (click)="teste()"
                               class="btn btn-danger float-right">Elimirar atribuição</button>
                           </div>
                         </div>
