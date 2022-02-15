@@ -38,7 +38,11 @@ export class AttachGunComponent extends Mixin(Core, Animations, Forms, Stores) i
   isSwitchedOn = false;
   hasCard = false;
   hasError = false;
-  armeiro: string = ""
+  armeiro: string = "";
+  g3: string = "";
+  mg3: string = "";
+  cg: string = "";
+  p38: string = "";
 
   private _docSub: Subscription;
 
@@ -190,5 +194,13 @@ export class AttachGunComponent extends Mixin(Core, Animations, Forms, Stores) i
     this.cardStatus = "";
 
     this.cdr.detectChanges();
+  }
+
+
+   teste(){
+this.p38 = "151124E"
+this.cg = "1123564"
+this.g3 = "12393730"
+this.mg3 = "12845"
   }
 }
