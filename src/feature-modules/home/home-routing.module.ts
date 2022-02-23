@@ -24,6 +24,7 @@ import { CardArmasViewerComponent } from './pages/card-armasViewer/card-armasVie
 import { controloComponent } from './pages/controlo/controlo.component';
 import { GunMovementComponent } from './pages/gun-movement/gun-movement.component';
 import { AttachGunComponent } from './pages/attach-gun/attach-gun.component';
+import { CardArmasDViewerComponent } from './pages/card-armasDViewer/card-armasDViewer.component';
 
 
 const routes: Routes = [
@@ -155,6 +156,13 @@ const routes: Routes = [
         // resolve: { systemResolver: SystemsResolver }
       },
 
+       {
+        path: 'armas-d',
+        component: CardArmasDViewerComponent,
+        canActivate: [AuthenticationGuard],
+        // resolve: { systemResolver: SystemsResolver }
+      },
+ 
       {
         path: 'controlo',
         component: controloComponent ,

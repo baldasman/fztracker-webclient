@@ -56,7 +56,7 @@ export class InstGuard implements CanActivate {
         }
 
         console.log('not inst => GO HOME!!!!');
-        this.router.navigateByUrl('/not-found');
+        this.router.navigateByUrl('/');
         return false;
       }),
       catchError(() => {

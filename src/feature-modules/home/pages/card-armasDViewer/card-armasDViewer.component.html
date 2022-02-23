@@ -1,0 +1,221 @@
+<!-- <div class="header"> <p>Corpo de Fuzileiros</p></div> -->
+       
+       
+   <div class="row ">
+    <div class="col-sm-3" style="float: left;">
+       <div class="container  ">
+            <div class=" card d-flex" >
+                <div class=" container parent d-flex align-items-center">
+                    <img class="responsive"  src="{{foto}}" alt="First "> 
+                    <div class="centered " style="font-size: 20px;">{{namePhoto}}</div>
+                </div>
+            </div>
+       </div>
+    </div>
+    
+      <div class="col"  style="float: right;">
+        <div class="d-flex flex-fluid">
+          <!--begin::Container-->
+          <div class="container">
+              <!--begin::Card-->
+              <div class="card card-custom">
+                <div class="row justify-content-end" style="padding-bottom: 10px;">
+
+                    <div class="col-2">
+                        <select  class="row justify-content-between  font-weight-bold btn-sm px-4 font-size-base ml-2"  (change)="selectChangeHandler($event)" name="num" [(ngModel)]="place"  style="display: none">
+                        <option *ngFor="let n of places" [value]="n">{{n}}</option>
+                        </select>
+                  
+                    </div> 
+
+                 </div>
+                    <!--begin: Datatable-->
+                    <div class="datatable datatable-bordered datatable-head-custom" id="kt_datatable">
+                        <table class="newtable">
+                            <thead class="datatable-head">
+                                <tr class="datatable-row" style="left: 0px;">
+                                    <th data-field="RecordID"
+                                        class="datatable-cell-left datatable-cell datatable-cell-sort datatable-cell-sorted"
+                                        data-sort="asc"><span style="width: 40px;">#<i
+                                                class="flaticon2-arrow-up"></i></span></th>
+                                    <th data-field="ID" class="datatable-cell datatable-cell-sort"><span
+                                            style="width: 250px;">Entidade</span></th>
+                                    <th data-field="Card" class="datatable-cell datatable-cell-sort"><span
+                                            style="width: 158px;">Cartão Atribuido</span></th>
+                                    <th data-field="Mov" class="datatable-cell datatable-cell-sort"><span
+                                            style="width: 158px;">Movimento</span></th>
+                                    <th data-field="Notes" class="datatable-cell datatable-cell-sort"><span
+                                            style="width: 158px;">Local e Notas</span></th>
+                                    <th data-field="Status" class="datatable-cell datatable-cell-sort"><span
+                                            style="width: 158px;">Status</span></th>
+                                 
+                                </tr>
+                            </thead>
+                            <tbody class="datatable-body">
+                                <!--list users-->
+                            
+                                <tr  *ngFor="let movement of movements | slice:0:8; let i = index" data-row="46" class="datatable-row datatable-row-even" style="left: 0px;">
+                                    <td class="datatable-cell-sorted datatable-cell-left datatable-cell"
+                                        data-field="RecordID" aria-label="00"><span style="width: 40px;"><span
+                                                class="font-weight-bolder">{{ i+1 }}</span></span></td>
+                                    <td data-field="OrderID" aria-label="0781-5555" class="datatable-cell"><span
+                                            style="width: 250px;">
+                                            <div class="d-flex align-items-center">
+                                                <div class="imgmil"> <div class="symbol symbol-40 symbol-sm flex-shrink-0"> 
+                                               
+                                                    <img src="assets/media/users/{{movement.entitySerial}}.bmp"
+                                                    (click)="Abc(i)" alt="photo">
+                                                </div></div>
+                                                <div class="ml-4">
+                                                    <!--  <a href="/profile" class="text-dark-75 font-weight-bolder font-size-lg mb-0 text-hover-primary">
+                                                        {{movement.entityName}}</a> -->
+                                                        <div class="font-weight-bolder font-size-lg mb-0"> {{movement.entityName}}</div>
+                                                        <div
+                                                        class="text-muted font-weight-bold ">{{movement.entitySerial}}</div>
+                                                </div>
+                                            </div>
+                                        </span></td>
+                                    <td data-field="card" aria-label="Indonesia" class="datatable-cell"><span
+                                            style="width: 158px;">
+                                            <div class="font-weight-bolder font-size-lg mb-0">{{movement.cardNumber}}</div>
+                                            <div class="font-weight-bold text-muted">UID:{{movement.cardId}}</div>
+                                        </span></td>
+                                        
+                                    <td data-field="cardDate" aria-label="3/17/2017" class="datatable-cell"><span
+                                            style="width: 158px;">
+                                            <div class="font-weight-bolder font-size-lg mb-0">{{movement.movementDate |  date:'dd/MM/yyyy'}}</div>
+                                            <div class="text-muted">{{movement.movementDate | date: ' HH:mm'  }}</div>
+                                        </span></td>
+        
+                                    <td data-field="Lastregist" aria-label="Beier-Mante" class="datatable-cell">
+                                        <span style="width: 158px;">
+                                            <div class="font-weight-bolder font-size-lg mb-0">{{movement.location}}</div>
+                                            <div class="text-muted">falta as notas do movimento</div>
+                                           
+                                        </span></td>
+                                        <td data-field="Status" aria-label="5" class="datatable-cell"><span style="width: 158px;"><span
+                                            [ngClass]="{'label-success': movement.inOut,'label-danger': !movement.inOut}"  class="label label-lg font-weight-bold {{movement.inOut}} label-inline">{{movement.inOut ? 'ENTROU':'SAIU'}}</span></span>
+                                        </td>
+                                  
+                                </tr>
+                  
+                  </tbody>
+              </table>
+          </div>
+          <!--end: Datatable-->
+      </div></div></div>
+    </div>
+      
+        <!-- <div class="col"><div class="parent-div"><img class="center-block" src="assets/media/users/1212.jpg" alt="First slide"> </div></div>
+        <div class="col"><div class="parent-div"><img class="img-fluid" src="assets/media/users/20099.bmp" alt="Second slide"></div></div>
+        <div class="col"><div class="parent-div"><img class="img-fluid" src="assets/media/users/20104.bmp" alt="3 slide"></div></div>
+        <div class="col"><div class="parent-div"><img class="img-fluid" src="assets/media/users/20109.bmp" alt="4 slide"></div></div>
+        <div class="col"><div class="parent-div"><img class="img-fluid" src="assets/media/users/20110.bmp" alt="5 slide"></div></div>
+        <div class="col"><div class="parent-div"><img class="img-fluid" src="assets/media/users/9830401.bmp" alt="6 slide"></div></div> -->
+      </div>
+      <div class="row  justify-content-center ">       <label class=" font-weight-bolder font-size-lg " style="margin-top: 20px;">EM TESTES, tabela nao funcional </label> </div>
+      <div class="row "> 
+        
+        <div class="container  ">
+      
+        <div class="form-group">
+      
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Item</th>
+                        <th scope="col">número</th>
+                        <th scope="col">Ultimo Movimento</th>
+                        <th scope="col">Notas</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>G3</td>
+                        <td>123451</td>
+                     
+                        <td>25-05-2021</td>
+                        <td><input class=" col-8 form-control spinner" type="text" placeholder="notas"></td>
+                        <td>
+                            <div class="row"> 
+                                   <label class="col-2 col-form-label">Armeiro</label>
+                                   <div class="col-2">
+                                    <span class="switch switch-outline switch-icon switch-warning">
+                                     <label>
+                                      <input type="checkbox" name="select"/>
+                                      <span></span>
+                                     </label>
+                                    </span>
+                                   </div>
+                                   <label class="col-2 col-form-label">Fora</label>
+       
+                               </div>
+       
+                               </td>
+                  
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>P38</td>
+                        <td>34567E</td>
+                     
+                        <td>02-08-2021</td>
+                        <td><input class=" col-8 form-control spinner" type="text" placeholder="notas"></td>
+                        <td>
+                            <div class="row"> 
+                                   <label class="col-2 col-form-label">Armeiro</label>
+                                   <div class="col-2">
+                                    <span class="switch switch-outline switch-icon switch-warning">
+                                     <label>
+                                      <input type="checkbox" name="select"/>
+                                      <span></span>
+                                     </label>
+                                    </span>
+                                   </div>
+                                   <label class="col-2 col-form-label">Fora</label>
+       
+                               </div>
+       
+                               </td>
+                  
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>PMW</td>
+                        <td>66751</td>
+                     
+                        <td>12-01-2021</td>
+                        <td><input class=" col-8 form-control spinner" type="text" placeholder="notas"></td>
+                        <td>
+                            <div class="row"> 
+                                   <label class="col-2 col-form-label">Armeiro</label>
+                                   <div class="col-2">
+                                    <span class="switch switch-outline switch-icon switch-warning">
+                                     <label>
+                                      <input type="checkbox" name="select"/>
+                                      <span></span>
+                                     </label>
+                                    </span>
+                                   </div>
+                                   <label class="col-2 col-form-label">Fora</label>
+       
+                               </div>
+       
+                               </td>
+                  
+                    </tr>
+                    <tr>
+                        <button type="button" class="btn btn-primary">Salvar</button>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+       
+    </div>
+    
+    
+    </div>

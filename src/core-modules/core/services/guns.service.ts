@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { EnvironmentStore } from '../../stores/environment/environment.store';
-import { GunsModel } from '../models/Guns.model';
+import { GunsModel } from '../models/guns.model';
 import { UrlModel } from '../models/url.model';
 
 @Injectable()
 export class GunsService {
 
-  private apiUrl = this.environmentStore.ENV.API_URL + "/fztracker";
+  private apiUrl = this.environmentStore.ENV.API_URL + "/fztracker/guns/v1";
 
   constructor(
     private http: HttpClient,
@@ -17,8 +17,8 @@ export class GunsService {
   ) { }
 
 
-  getCards(search?: string): Observable<[GunsModel]> {
-    const url = new UrlModel(this.apiUrl).setPath('guns/v1');
+  getAllGuns(search?: string): Observable<[GunsModel]> {
+    const url = new UrlModel(this.apiUrl).setPath('/getAllGuns');
    
     
     
@@ -30,5 +30,20 @@ export class GunsService {
         map((response: { data: any }) => response.data)
       );
   }
+
+  getAllArmerGuns(ArmeiroId: string): Observable<[GunsModel]> {
+    const url = new UrlModel(this.apiUrl).setPath('/getAllArmerGuns');
+   
+    
+    
+    
+    url.setQueryParams({ ArmeiroId });
+
+    return this.http.get(url.buildUrl())
+      .pipe(
+        map((response: { data: any }) => response.data)
+      );
+  }
+
 
 }
