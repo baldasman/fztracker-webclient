@@ -57,7 +57,7 @@ export class CardArmasDViewerComponent extends Mixin(Core, Animations, Forms, St
 
   ngOnInit() {
 
-    this.movementService.getMovements(this.fes.findnii.value, this.fromDate, this.toDate, "Cf-Armas").subscribe((data: any) => {
+    this.movementService.getMovements(this.fes.findnii.value, this.fromDate, this.toDate, "Cf-DArmas").subscribe((data: any) => {
       console.log('movements', data);
      
 
