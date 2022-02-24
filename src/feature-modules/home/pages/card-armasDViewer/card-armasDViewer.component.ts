@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Animations, Core, FormGroup, Forms, Mixin, Stores } from '@app/base';
 import { LayoutConfigService } from '@core-modules/main-theme/services/layout-config.service';
 import { Subscription } from 'rxjs';
@@ -7,8 +7,6 @@ import { MovementsService } from '@core-modules/core/services/movements.service'
 import { MovementModel } from '@core-modules/core/models/movement.model';
 import { ToastrService } from 'ngx-toastr';
 import {Howl} from 'howler';
-import { EntityListComponent } from '../entity-list/entity-list.component';
-import { EntityService } from '@core-modules/core/services/entity.service';
 import { EnvironmentStore } from '@core-modules/stores';
 import Swal from 'sweetalert2';
 
@@ -69,7 +67,7 @@ export class CardArmasDViewerComponent extends Mixin(Core, Animations, Forms, St
       console.log('movement2', movement);
       
     
-
+    // procura a fotografia do militar na DB
      if (movement.movement.location == this.local) {
      this.foto = `assets/media/users/${movement.entity.serial}.bmp`;
       this.namePhoto = `${movement.movement.entityName} `;
@@ -77,7 +75,7 @@ export class CardArmasDViewerComponent extends Mixin(Core, Animations, Forms, St
               this.movementService.getMovements(this.fes.findnii.value, this.fromDate, this.toDate, this.local).subscribe((data: any) => {       
               this.movements = data.movements;
               
-              
+              //impreime no ecra informação de in/out
                 if (movement.movement.inOut == true) {  
                   this.toastr.success('Cartão autorizado');
                       let sound = new Howl({
