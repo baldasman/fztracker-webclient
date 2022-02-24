@@ -27,7 +27,7 @@ export class CardArmasDViewerComponent extends Mixin(Core, Animations, Forms, St
   model2;
   fromDate;
   toDate;
-  local: string ="Cf-DArmas";
+  local: string ="Cf-ArmasD";
   MovementSearchform: FormGroup;
   movements: MovementModel[];
   foto: string = "assets/media/default.bmp";
@@ -39,7 +39,7 @@ export class CardArmasDViewerComponent extends Mixin(Core, Animations, Forms, St
  
  
 
-  place  ="Cf-DArmas";
+  place  ="Cf-ArmasD";
   places = [];
 
 
@@ -55,7 +55,7 @@ export class CardArmasDViewerComponent extends Mixin(Core, Animations, Forms, St
 
   ngOnInit() {
 
-    this.movementService.getMovements(this.fes.findnii.value, this.fromDate, this.toDate, "Cf-DArmas").subscribe((data: any) => {
+    this.movementService.getMovements(this.fes.findnii.value, this.fromDate, this.toDate, "Cf-ArmasD").subscribe((data: any) => {
       console.log('movements', data);
      
 
