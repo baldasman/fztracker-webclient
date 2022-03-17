@@ -29,6 +29,7 @@ import { controloComponent } from './pages/controlo/controlo.component';
 import { GunMovementComponent } from './pages/gun-movement/gun-movement.component';
 import { AttachGunComponent } from './pages/attach-gun/attach-gun.component';
 import { CardArmasDViewerComponent } from './pages/card-armasDViewer/card-armasDViewer.component';
+import { PagesListComponent } from './pages/pages-list/pages-list.component';
 
 
 
@@ -75,7 +76,8 @@ import { CardArmasDViewerComponent } from './pages/card-armasDViewer/card-armasD
     controloComponent,
     GunMovementComponent,
     AttachGunComponent,
-    CardArmasDViewerComponent
+    CardArmasDViewerComponent,
+    PagesListComponent
 
   ],
   providers: [  
