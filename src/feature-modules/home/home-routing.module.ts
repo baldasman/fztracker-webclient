@@ -25,6 +25,7 @@ import { controloComponent } from './pages/controlo/controlo.component';
 import { GunMovementComponent } from './pages/gun-movement/gun-movement.component';
 import { AttachGunComponent } from './pages/attach-gun/attach-gun.component';
 import { CardArmasDViewerComponent } from './pages/card-armasDViewer/card-armasDViewer.component';
+import { PagesListComponent } from './pages/pages-list/pages-list.component';
 
 
 const routes: Routes = [
@@ -49,7 +50,7 @@ const routes: Routes = [
 
       {
         path: 'card-list',
-        canActivate: [AdminGuard],
+        canActivate: [AuthenticationGuard],
         component: CardListComponent,
         
         // resolve: { systemResolver: SystemsResolver }
@@ -140,8 +141,8 @@ const routes: Routes = [
       {
         path: 'foto',
         component: FotoTestComponent,
-        canActivate: [AuthenticationGuard, InstGuard],
-        // resolve: { systemResolver: SystemsResolver }
+        canActivate: [AuthenticationGuard],
+        // canActivate: [AuthenticationGuard, InstGuard] ver o instguard 
       },
       {
         path: 'manual',
@@ -159,6 +160,13 @@ const routes: Routes = [
        {
         path: 'armas-d',
         component: CardArmasDViewerComponent,
+        canActivate: [AuthenticationGuard],
+        // resolve: { systemResolver: SystemsResolver }
+      },
+      
+      {
+        path: 'paginas',
+        component: PagesListComponent,
         canActivate: [AuthenticationGuard],
         // resolve: { systemResolver: SystemsResolver }
       },
