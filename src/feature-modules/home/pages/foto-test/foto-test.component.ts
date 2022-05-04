@@ -26,7 +26,8 @@ export class FotoTestComponent extends Mixin(Core, Animations, Forms, Stores) im
   name: string;
   email: string;
   urlImage: string = "assets/media/users/fz.png";
-  cardNumber: string;
+  cardNumber: string ;
+  cardNumber2: string = "Não Atribuido";
   unit: string = "";
   stat: string = "";
   cardOwner: string = "";
@@ -101,7 +102,8 @@ export class FotoTestComponent extends Mixin(Core, Animations, Forms, Stores) im
       
       this.name = entity.name;
       this.email = entity.email;
-      
+      this.cardNumber2 = entity.cardNumber;
+
       this.stat  = entity.type;
       this.urlImage = `assets/media/users/${entity.serial}.bmp`;
       this.fac.cardNumber.setValue(entity.cardNumber);
