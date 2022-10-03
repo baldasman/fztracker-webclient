@@ -216,16 +216,21 @@ export class CardProfileChartComponent
           show: true,
           // offsetX: 0,
           // offsetY: 0,
-          tools: {
-            download: true,
-            selection: false,
-            zoom: false,
-            zoomin: false,
-            zoomout: false,
-            pan: false,
-            reset: false,
-            customIcons: [],
-          },
+          // tools: {
+          //   download: true,
+          //   selection: false,
+          //   zoom: false,
+          //   zoomin: false,
+          //   zoomout: false,
+          //   pan: false,
+          //   reset: false,
+          //   customIcons: [],
+          // },
+          events: {
+            zoomed: function(chartContext, { xaxis, yaxis }) {
+              console.log('zoomed', chartContext, xaxis, yaxis);
+            }
+          }
         },
       },
 
