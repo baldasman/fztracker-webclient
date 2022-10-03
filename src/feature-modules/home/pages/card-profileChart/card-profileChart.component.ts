@@ -15,11 +15,11 @@ import Swal from 'sweetalert2';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'app-card-profile',
-  templateUrl: './card-profile.component.html',
-  styleUrls: ['./card-profile.component.scss'],
+  selector: 'app-card-profileChart',
+  templateUrl: './card-profileChart.component.html',
+  styleUrls: ['./card-profileChart.component.scss'],
 })
-export class CardProfileComponent
+export class CardProfileChartComponent
   extends Mixin(Core, Animations, Forms, Stores)
   implements OnInit, OnDestroy
 {
@@ -186,13 +186,13 @@ export class CardProfileComponent
   }
 
   getChartOptions6() {
-    let day1 = moment().subtract('7', 'days');
-    let day2 = moment().subtract('6', 'days');
-    let day3 = moment().subtract('5', 'days');
-    let day4 = moment().subtract('4', 'days');
-    let day5 = moment().subtract('3', 'days');
-    let day6 = moment().subtract('2', 'days');
-    let day7 = moment().subtract('1', 'days');
+    let day1 = moment().subtract('6', 'days');
+    let day2 = moment().subtract('5', 'days');
+    let day3 = moment().subtract('4', 'days');
+    let day4 = moment().subtract('3', 'days');
+    let day5 = moment().subtract('2', 'days');
+    let day6 = moment().subtract('1', 'days');
+    let day7 = moment();
 
     let xdata1 = 8;
 
@@ -236,20 +236,20 @@ export class CardProfileComponent
         text: 'Corpo de Fuzileiros - Grafico em desenvolvimento',
       },
       dataLabels: {
-        enabled: true,
+        enabled: false,
         enabledOnSeries: [],
       },
       labels: [
-       day1.format('DD-MMM'),
-       day2.format('DD-MMM'),
-       day3.format('DD-MMM'),
-       day4.format('DD-MMM'),
-       day5.format('DD-MMM'),
-       day6.format('DD-MMM'),
-       day7.format('DD-MMM'),
+        day1.format('DD-MMM'),
+        day2.format('DD-MMM'),
+        day3.format('DD-MMM'),
+        day4.format('DD-MMM'),
+        day5.format('DD-MMM'),
+        day6.format('DD-MMM'),
+        day7.format('DD-MMM'),
       ],
       xaxis: {
-        type: 'category',
+        type: 'datetime',
       },
       yaxis: [
         {
@@ -305,8 +305,8 @@ export class CardProfileComponent
   }
 
   getSiteHours(): void {
-    let minus7days = moment().subtract('7', 'days');
-    let today = moment().subtract('1', 'days');
+    let minus7days = moment().subtract('6', 'days');
+    let today = moment();
 
     this.movementService
       .getSiteHours(this.serial, minus7days.toISOString(), today.toISOString())

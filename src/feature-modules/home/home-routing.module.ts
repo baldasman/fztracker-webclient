@@ -26,6 +26,7 @@ import { GunMovementComponent } from './pages/gun-movement/gun-movement.componen
 import { AttachGunComponent } from './pages/attach-gun/attach-gun.component';
 import { CardArmasDViewerComponent } from './pages/card-armasDViewer/card-armasDViewer.component';
 import { PagesListComponent } from './pages/pages-list/pages-list.component';
+import { CardProfileChartComponent } from './pages/card-profileChart/card-profileChart.component';
 
 
 const routes: Routes = [
@@ -107,8 +108,14 @@ const routes: Routes = [
         canActivate: [AuthenticationGuard],
         // resolve: { systemResolver: SystemsResolver }
       },
-
+      {
+        path: 'chart/:serial',
+        component: CardProfileChartComponent,
+        canActivate: [PersonalGuard],
+        // resolve: { systemResolver: SystemsResolver }
+      },
  
+      
       {
         path: 'profile/:serial',
         component: CardProfileComponent,

@@ -30,6 +30,7 @@ import { GunMovementComponent } from './pages/gun-movement/gun-movement.componen
 import { AttachGunComponent } from './pages/attach-gun/attach-gun.component';
 import { CardArmasDViewerComponent } from './pages/card-armasDViewer/card-armasDViewer.component';
 import { PagesListComponent } from './pages/pages-list/pages-list.component';
+import { CardProfileChartComponent } from './pages/card-profileChart/card-profileChart.component';
 
 
 
@@ -77,7 +78,8 @@ import { PagesListComponent } from './pages/pages-list/pages-list.component';
     GunMovementComponent,
     AttachGunComponent,
     CardArmasDViewerComponent,
-    PagesListComponent
+    PagesListComponent,
+    CardProfileChartComponent
 
   ],
   providers: [  
