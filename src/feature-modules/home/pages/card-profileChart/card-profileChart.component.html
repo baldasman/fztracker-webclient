@@ -44,12 +44,16 @@
     <div class="card-header flex-wrap border-0 pt-6 pb-0">
       <div class="card-title">
         <h3 class="card-label">Lista de Registos
-          <span class="d-block text-muted pt-2 font-size-sm">Permanencia na unidade (Ultimos 30 Dias)</span>
+          <span class="d-block text-muted pt-2 font-size-sm">Permanencia na unidade</span>
         </h3>
       </div>
       <!--campo de pesquisa -->
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Pesquisar" [(ngModel)]="term">
+        <button type="button" [ngClass]="{'btn-primary': timeWindow == 8, 'btn-secondary': timeWindow != 8}" class="btn mr-2" (click)="onChangeScale(8)">7d</button>
+        <button type="button" [ngClass]="{'btn-primary': timeWindow == 31, 'btn-secondary': timeWindow != 31}" class="btn mr-2" (click)="onChangeScale(31)">1M</button>
+        <button type="button" [ngClass]="{'btn-primary': timeWindow == 91, 'btn-secondary': timeWindow != 91}" class="btn mr-2" (click)="onChangeScale(91)">3M</button>
+        <button type="button" [ngClass]="{'btn-primary': timeWindow == 181, 'btn-secondary': timeWindow != 181}" class="btn mr-2" (click)="onChangeScale(181)">6M</button>
+        <button type="button" [ngClass]="{'btn-primary': timeWindow == 366, 'btn-secondary': timeWindow != 366}" class="btn" (click)="onChangeScale(366)">1Y</button>
       </div>
     </div>
 
@@ -78,7 +82,7 @@
         </div>
         <div class="row m-0">
           <div class="col px-8 py-6 mr-8">
-            <div class="font-size-sm text-muted font-weight-bold">Total Horas Últ. 7 dias</div>
+            <div class="font-size-sm text-muted font-weight-bold">Total Horas</div>
             <div class="font-size-h4 font-weight-bolder">{{ stats.last7daysTotalHours }}</div>
           </div>
           <div class="col px-8 py-6">

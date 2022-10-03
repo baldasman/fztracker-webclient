@@ -74,6 +74,7 @@ export class CardProfileComponent
   local: string = null;
   public paginaAtual = 1;
   itemsPerPage = 15;
+  timeWindow: number = 7;
   private _docSub: Subscription;
 
   entitySearchform: FormGroup;
@@ -186,46 +187,26 @@ export class CardProfileComponent
   }
 
   getChartOptions6() {
-    let day1 = moment().subtract('7', 'days');
-    let day2 = moment().subtract('6', 'days');
-    let day3 = moment().subtract('5', 'days');
-    let day4 = moment().subtract('4', 'days');
-    let day5 = moment().subtract('3', 'days');
-    let day6 = moment().subtract('2', 'days');
-    let day7 = moment().subtract('1', 'days');
-
-    let xdata1 = 8;
-
-    this.movementService
-      .getMovements(this.serial, day1.toString(), day1.toString(), null)
-      .subscribe((data: any) => {
-        if (data.movements) {
-          let movements2 = data.movements;
-          console.log('o movemento do dia ', movements2);
-
-          console.log('o movemento do dia ', movements2[0].cardNumber);
-        }
-      });
-
     return {
       series: [],
       chart: {
-        height: 200,
-        type: 'line',
+        height: 350,
+        type: 'bar',
+        //type: 'area',
         toolbar: {
           show: true,
-          // offsetX: 0,
-          // offsetY: 0,
+          offsetX: 0,
+          offsetY: 0,
           tools: {
-            download: true,
-            selection: false,
-            zoom: false,
-            zoomin: false,
-            zoomout: false,
-            pan: false,
-            reset: false,
-            customIcons: [],
-          },
+             download: true,
+             selection: false,
+             zoom: false,
+             zoomin: false,
+             zoomout: false,
+             pan: false,
+             reset: false,
+             customIcons: [],
+           },
         },
       },
 
@@ -235,21 +216,17 @@ export class CardProfileComponent
       title: {
         text: 'Corpo de Fuzileiros - Grafico em desenvolvimento',
       },
-      dataLabels: {
-        enabled: true,
-        enabledOnSeries: [],
+       dataLabels: {
+         enabled: false,
+         enabledOnSeries: [],
       },
-      labels: [
-       day1.format('DD-MMM'),
-       day2.format('DD-MMM'),
-       day3.format('DD-MMM'),
-       day4.format('DD-MMM'),
-       day5.format('DD-MMM'),
-       day6.format('DD-MMM'),
-       day7.format('DD-MMM'),
-      ],
+      categories: [],
       xaxis: {
-        type: 'category',
+        //type: 'category',
+        type: 'datetime',
+        labels: {
+          datetimeUTC: false
+        }
       },
       yaxis: [
         {
@@ -258,6 +235,20 @@ export class CardProfileComponent
           },
         },
       ],
+      /*tooltip: {
+        custom: function({ series, seriesIndex, dataPointIndex, w }) {
+          console.log()
+          return (
+            '<div class="arrow_box">' +
+            "<span>" +
+            moment(w.globals.labels[dataPointIndex]).format('DD MMM') +
+            ": " +
+            series[seriesIndex][dataPointIndex] +
+            "</span>" +
+            "</div>"
+          );
+        }
+      }*/
     };
   }
 
@@ -305,7 +296,7 @@ export class CardProfileComponent
   }
 
   getSiteHours(): void {
-    let minus7days = moment().subtract('7', 'days');
+    let minus7days = moment().subtract(this.timeWindow, 'days');
     let today = moment().subtract('1', 'days');
 
     this.movementService
@@ -326,17 +317,16 @@ export class CardProfileComponent
 
           const serie = {
             name: s,
-            type: 'column',
             data: [],
           };
 
           labels = [];
           for (let i = 0; i < site.days.length; i++) {
-            serie.data.push(site.days[i].hours);
-            labels.push(moment(site.days[i].date).format('DD MMM'));
+            //serie.data.push({x: moment(site.days[i].date).format('DD MMM'), y: site.days[i].hours});
+            //serie.data.push({x: moment.utc(site.days[i].date).unix(), y: site.days[i].hours});
+            serie.data.push({x: moment(site.days[i].date).toDate().getTime(), y: site.days[i].hours});
           }
 
-          this.chartOptions6.labels = labels;
           this.chartOptions6.series.push(serie);
 
           if (site.lastIn) {
@@ -365,6 +355,8 @@ export class CardProfileComponent
 
           this.stats.last7daysTotalHours += site.totalHours;
         }
+
+        this.stats.last7daysTotalHours = Math.round(this.stats.last7daysTotalHours*100)/100;
 
         if (this.stats.last7daysTotalHours > 0 && totalDays > 0) {
           this.stats.last7daysAvgHours = Math.round(this.stats.last7daysTotalHours / totalDays * 100) / 100;
