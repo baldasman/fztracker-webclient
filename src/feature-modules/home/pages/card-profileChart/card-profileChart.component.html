@@ -63,6 +63,31 @@
       </div>
       <!--end: Datatable-->
 
+      <div class="card-spacer bg-white card-rounded flex-grow-1">
+        <!--begin::Row-->
+        <div class="row m-0">
+          <div class="col px-8 py-6 mr-8">
+            <div class="font-size-sm text-muted font-weight-bold">Média Horas Diária</div>
+            <div class="font-size-h4 font-weight-bolder">{{ stats.last7daysAvgHours }}</div>
+          </div>
+          <div class="col px-8 py-6">
+            <div class="font-size-sm text-muted font-weight-bold">Ultima Entrada</div>
+            <div class="font-size-h5 font-weight-bolder">{{lastRegistDate.location}} {{lastRegistDate.date | date:'dd-MM-yyyy'}}
+            </div>
+          </div>
+        </div>
+        <div class="row m-0">
+          <div class="col px-8 py-6 mr-8">
+            <div class="font-size-sm text-muted font-weight-bold">Total Horas Últ. 7 dias</div>
+            <div class="font-size-h4 font-weight-bolder">{{ stats.last7daysTotalHours }}</div>
+          </div>
+          <div class="col px-8 py-6">
+            <div class="font-size-sm text-muted font-weight-bold">Ultima Saída</div>
+            <div class="font-size-h5 font-weight-bolder">{{lastExitDate.location}} {{lastExitDate.date | date:'dd-MM-yyyy'}}
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
     <!--end::Body-->

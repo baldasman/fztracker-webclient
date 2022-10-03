@@ -11,6 +11,9 @@ export class SiteHoursModel {
         days: { date: string; hours: number }[];
         lastIn: string;
         lastOut: string;
+        avgHoursDay: number;
+        totalHours: number;
+        totalDays: number;
       };
     };
   };

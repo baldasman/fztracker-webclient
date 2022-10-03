@@ -312,13 +312,17 @@ export class CardProfileComponent
       .getSiteHours(this.serial, minus7days.toISOString(), today.toISOString())
       .subscribe((data) => {
         console.log('on getSiteHours', data);
+
         this.chartOptions6.series = [];
         let labels = [];
-        let totalHours = 0;
-        let avgHours = 0;
+        let totalDays = 0;
 
         for (const s in data.siteHours.sites) {
           const site = data.siteHours.sites[s];
+          
+          if (site.totalDays > totalDays) {
+            totalDays = site.totalDays;
+          }
 
           const serie = {
             name: s,
@@ -330,7 +334,6 @@ export class CardProfileComponent
           for (let i = 0; i < site.days.length; i++) {
             serie.data.push(site.days[i].hours);
             labels.push(moment(site.days[i].date).format('DD MMM'));
-            totalHours += site.days[i].hours;
           }
 
           this.chartOptions6.labels = labels;
@@ -359,12 +362,12 @@ export class CardProfileComponent
               this.lastExitDate.location = s;
             }
           }
+
+          this.stats.last7daysTotalHours += site.totalHours;
         }
 
-        this.stats.last7daysTotalHours = totalHours;
-
-        if (this.stats.last7daysTotalHours > 0) {
-          this.stats.last7daysAvgHours = Math.round(this.stats.last7daysTotalHours / 7 * 100) / 100;
+        if (this.stats.last7daysTotalHours > 0 && totalDays > 0) {
+          this.stats.last7daysAvgHours = Math.round(this.stats.last7daysTotalHours / totalDays * 100) / 100;
         }
       });
   }
