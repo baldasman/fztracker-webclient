@@ -308,7 +308,9 @@ export class CardProfileChartComponent
         this.chartOptions6.series = [];
         let labels = [];
         let totalDays = 0;
-
+        this.stats.last7daysTotalHours = 0;
+        this.stats.last7daysAvgHours = 0;
+        
         for (const s in data.siteHours.sites) {
           const site = data.siteHours.sites[s];
           
