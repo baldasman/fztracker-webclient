@@ -50,7 +50,6 @@ ii;
     console.log('Get cards');
     this.cardsService.getCards().subscribe((data: any) => {
       console.log('cards', data);
-      this.cards = data.cards;
      
        data.cards.forEach(cards => {
         const c = {...cards};
