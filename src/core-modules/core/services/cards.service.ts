@@ -31,4 +31,13 @@ export class CardsService {
       );
   }
 
+  getCardStats(location: string): Observable<{cardsIn: number, cardsOut: number}> {
+    const url = new UrlModel(this.apiUrl).setPath('cards/v1/stats');
+    url.setQueryParams({ location });
+
+    return this.http.get(url.buildUrl())
+      .pipe(
+        map((response: { data: any }) => response.data)
+      );
+  }
 }

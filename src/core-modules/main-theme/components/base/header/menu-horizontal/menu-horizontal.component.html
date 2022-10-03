@@ -7,13 +7,14 @@
     </div> 
 
 
-  <div ktMenu [options]="menuOptions" id="kt_header_menu" class="header-menu header-menu-mobile " [ngClass]="headerMenuClasses">
+  <!--<div ktMenu [options]="menuOptions" id="kt_header_menu" class="header-menu header-menu-mobile " [ngClass]="headerMenuClasses">
     <ul class="menu-nav" [ngClass]="htmlClassService.getClasses('header_menu_nav', true)">
       <ng-container *ngFor="let item of headerMenus">
         <ng-container *ngIf="item.title" [ngTemplateOutlet]="menuTemplate" [ngTemplateOutletContext]="{ item: item }"></ng-container>
       </ng-container>
     </ul>
   </div>
+-->
 </div>
 
 <ng-template #menuTemplate let-item="item" let-parentItem="parentItem">

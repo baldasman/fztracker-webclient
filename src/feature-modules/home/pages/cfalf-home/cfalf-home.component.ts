@@ -98,7 +98,7 @@ export class CfAlfHomeComponent extends Mixin(Core, Animations, Forms, Stores) i
     this.chartOptions6 = this.getChartOptions6();
 
 
-    this.movementService.getMovements(null, null, null, "CF-Alfeite").subscribe((data: any) => {
+    this.movementService.getMovements(null, null, null, "Cf-Alfeite").subscribe((data: any) => {
       if (data.movements) {
         this.movements = data.movements;
       

@@ -12,6 +12,7 @@ import { EntityService } from '@core-modules/core/services/entity.service';
 import { EnvironmentStore } from '@core-modules/stores';
 import Swal from 'sweetalert2';
 import { AnalyticsService } from '@core-modules/core/services/analytics.service';
+import { CardsService } from '@core-modules/core/services/cards.service';
 
 @Component({
   selector: 'app-controlo',
@@ -36,8 +37,8 @@ export class controloComponent extends Mixin(Core, Animations, Forms, Stores) im
   foto: string = "assets/media/default.bmp";
   public paginaAtual = 1;
   itemsPerPage = 15;
-  militaresNoCf;
-  militaresForaCf;
+  //militaresNoCf;
+  //militaresForaCf;
 
   private _docSub: Subscription;
   private _docSub2: Subscription;
@@ -48,8 +49,15 @@ export class controloComponent extends Mixin(Core, Animations, Forms, Stores) im
   place = "Cf-Alfeite";
   places = [];
 
+  totalCardsIn = 0;
+  totalCardsOut = 0;
 
-  constructor(private environmentStore: EnvironmentStore, private analyticsService: AnalyticsService, private cardService: CardService, private layoutConfigService: LayoutConfigService, private movementService: MovementsService, private toastr: ToastrService) {
+  constructor(
+    private environmentStore: EnvironmentStore, 
+    private analyticsService: AnalyticsService, 
+    private cardService: CardService, 
+    private cardsService: CardsService, 
+    private movementService: MovementsService, private toastr: ToastrService) {
     super();
     this.places = this.environmentStore.ENV.LOCAIS;
 
@@ -68,7 +76,7 @@ export class controloComponent extends Mixin(Core, Animations, Forms, Stores) im
 
   ngOnInit() {
 
-    
+    /*
     this.analyticsService.entitesCountByState(false).subscribe(data => {
     
 
@@ -77,8 +85,8 @@ export class controloComponent extends Mixin(Core, Animations, Forms, Stores) im
       this.militaresForaCf = +xx;
       document.getElementById("CardsOut").innerHTML = this.militaresForaCf;
     });
-
-
+    */
+    /*
       this.analyticsService.entitesCountByState(true).subscribe(data => {
 
 
@@ -89,6 +97,7 @@ export class controloComponent extends Mixin(Core, Animations, Forms, Stores) im
         document.getElementById("CardsInCardsOut").innerHTML = (this.militaresNoCf+this.militaresForaCf);
 
     });
+    */
 
     this.movementService.getMovements(this.fes.findnii.value, this.fromDate, this.toDate, "Cf-Alfeite").subscribe((data: any) => {
       console.log('movements', data);
@@ -98,12 +107,10 @@ export class controloComponent extends Mixin(Core, Animations, Forms, Stores) im
 
     });
 
+    this.getCardStats();
+    
     this._docSub = this.cardService.notification.subscribe(movement => {
       console.log('movement2', movement);
-
-
-
-
       /*{
           "movement": {
               "uid": "54aa37e9-854e-477b-a004-2c9770e4465c",
@@ -136,52 +143,35 @@ export class controloComponent extends Mixin(Core, Animations, Forms, Stores) im
           }
       }*/
 
-
-
-
-
       if (movement.movement.location == this.local) {
         this.foto = `assets/media/users/${movement.entity.serial}.bmp`;
         this.namePhoto = `${movement.movement.entityName} `;
+        
+        if (movement.movement.inOut == true) {
+          this.toastr.success('Cartão autorizado');
+          let sound = new Howl({
+            src: ['assets/media/in.wav']
+          });
 
+          sound.play()
+        };
+
+        if (movement.movement.inOut == false) {
+          this.toastr.info('Cartão autorizado');
+          let sound = new Howl({
+            src: ['assets/media/out.wav']
+          });
+
+          sound.play()
+        };
+
+        // Udate mvement list
         this.movementService.getMovements(this.fes.findnii.value, this.fromDate, this.toDate, this.local).subscribe((data: any) => {
           this.movements = data.movements;
-
-
-          if (movement.movement.inOut == true) {
-
-            this.militaresForaCf = this.militaresForaCf-1;
-            this.militaresNoCf = this.militaresNoCf+1 ;
-
-            document.getElementById("CardsOut").innerHTML = this.militaresForaCf;
-            document.getElementById("CardsIn").innerHTML = this.militaresNoCf;
-
-            this.toastr.success('Cartão autorizado');
-            let sound = new Howl({
-              src: ['assets/media/in.wav']
-            });
-
-            sound.play()
-          };
-
-          if (movement.movement.inOut == false) {
-
-            this.militaresForaCf = this.militaresForaCf+1;
-            this.militaresNoCf = this.militaresNoCf-1 ;
-
-            document.getElementById("CardsOut").innerHTML = this.militaresForaCf;
-            document.getElementById("CardsIn").innerHTML = this.militaresNoCf;
-
-
-            this.toastr.info('Cartão autorizado');
-            let sound = new Howl({
-              src: ['assets/media/out.wav']
-            });
-
-            sound.play()
-          };
-
         });
+
+        // Update stats
+        this.getCardStats();
       }
     });
   }
@@ -218,7 +208,15 @@ export class controloComponent extends Mixin(Core, Animations, Forms, Stores) im
 
   }
 
+  private getCardStats() {
+    this.cardsService.getCardStats(this.local).subscribe((data) => {
+      console.log('on getStats', data);
 
+      this.totalCardsIn = data.cardsIn;
+      this.totalCardsOut = data.cardsOut;
+    });
+
+  }
 
 
 
