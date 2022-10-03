@@ -120,8 +120,8 @@ export class CardProfileChartComponent
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.serial = params.serial;
-
-      this.urlImage = `${this.environmentStore.ENV.API_URL}/assets/userPhotos/${this.serial}.bmp`;
+ 
+      this.urlImage = `/assets/media/users/${this.serial}.bmp`;
 
       var currentTime = new Date();
       var month = currentTime.getMonth() + 1;
