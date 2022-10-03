@@ -37,7 +37,7 @@
     "jquery": "^3.5.1",
     "lodash": "^4.17.15",
     "moment": "^2.29.1",
-    "moment-timezone": "^0.5.31",
+    "moment-timezone": "^0.5.35",
     "ng-apexcharts": "^1.5.1",
     "ng-dynamic-component": "^6.1.0",
     "ng-inline-svg": "^10.1.0",
