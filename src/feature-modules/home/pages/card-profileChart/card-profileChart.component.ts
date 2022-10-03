@@ -249,7 +249,7 @@ export class CardProfileChartComponent
         day7.format('DD-MMM'),
       ],
       xaxis: {
-        type: 'datetime',
+        type: 'category',
       },
       yaxis: [
         {
