@@ -192,8 +192,8 @@ export class CardProfileChartComponent
       series: [],
       chart: {
         height: 350,
-        type: 'bar',
-        //type: 'area',
+     //   type: 'bar',
+        type: 'area',
         toolbar: {
           show: true,
           offsetX: 0,
@@ -215,7 +215,7 @@ export class CardProfileChartComponent
         width: [0, 4],
       },
       title: {
-        text: 'Corpo de Fuzileiros - Grafico em desenvolvimento',
+        text: 'Corpo de Fuzileiros - Horas na Unidade',
       },
        dataLabels: {
          enabled: false,

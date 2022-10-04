@@ -190,7 +190,7 @@ export class CardProfileComponent
     return {
       series: [],
       chart: {
-        height: 350,
+        height: 200,
         type: 'bar',
         //type: 'area',
         toolbar: {
@@ -214,7 +214,7 @@ export class CardProfileComponent
         width: [0, 4],
       },
       title: {
-        text: 'Corpo de Fuzileiros - Grafico em desenvolvimento',
+        text: 'Corpo de Fuzileiros - Horas na unidade',
       },
        dataLabels: {
          enabled: false,
@@ -294,6 +294,7 @@ export class CardProfileComponent
         }
       });
   }
+  
 
   getSiteHours(): void {
     let minus7days = moment().subtract(this.timeWindow, 'days');
