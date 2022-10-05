@@ -49,11 +49,11 @@
       </div>
       <!--campo de pesquisa -->
       <div class="form-group">
-        <button type="button" [ngClass]="{'btn-primary': timeWindow == 8, 'btn-secondary': timeWindow != 8}" class="btn mr-2" (click)="onChangeScale(8)">7d</button>
-        <button type="button" [ngClass]="{'btn-primary': timeWindow == 31, 'btn-secondary': timeWindow != 31}" class="btn mr-2" (click)="onChangeScale(31)">1M</button>
-        <button type="button" [ngClass]="{'btn-primary': timeWindow == 91, 'btn-secondary': timeWindow != 91}" class="btn mr-2" (click)="onChangeScale(91)">3M</button>
-        <button type="button" [ngClass]="{'btn-primary': timeWindow == 181, 'btn-secondary': timeWindow != 181}" class="btn mr-2" (click)="onChangeScale(181)">6M</button>
-        <button type="button" [ngClass]="{'btn-primary': timeWindow == 366, 'btn-secondary': timeWindow != 366}" class="btn" (click)="onChangeScale(366)">1Y</button>
+        <button type="button" [ngClass]="{'btn-primary': timeWindow == 7, 'btn-secondary': timeWindow != 7}" class="btn mr-2" (click)="onChangeScale(7)">7d</button>
+        <button type="button" [ngClass]="{'btn-primary': timeWindow == 30, 'btn-secondary': timeWindow != 30}" class="btn mr-2" (click)="onChangeScale(30)">1M</button>
+        <button type="button" [ngClass]="{'btn-primary': timeWindow == 90, 'btn-secondary': timeWindow != 90}" class="btn mr-2" (click)="onChangeScale(90)">3M</button>
+        <button type="button" [ngClass]="{'btn-primary': timeWindow == 180, 'btn-secondary': timeWindow != 180}" class="btn mr-2" (click)="onChangeScale(180)">6M</button>
+        <button type="button" [ngClass]="{'btn-primary': timeWindow == 365, 'btn-secondary': timeWindow != 365}" class="btn" (click)="onChangeScale(365)">1Y</button>
       </div>
     </div>
 

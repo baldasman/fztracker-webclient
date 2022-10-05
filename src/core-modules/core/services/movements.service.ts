@@ -65,7 +65,7 @@ export class MovementsService {
       .pipe(map((response: { data: any }) => response.data));
   }
 
-  getSiteHours(entitySerial: string, from: string, to: string): Observable<SiteHoursModel> {
+  getSiteHours(entitySerial: string, from: number, to: number): Observable<SiteHoursModel> {
     const url = new UrlModel(this.apiUrl).setPath('/movements/v1/site-hours');
     let filter = {entitySerial, from, to};
     

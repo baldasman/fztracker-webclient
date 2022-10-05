@@ -69,7 +69,7 @@ export class CardProfileChartComponent
   fromDate;
   inOut: string = 'true';
 
-  timeWindow: number = 31;
+  timeWindow: number = 30;
 
   term;
 
@@ -301,7 +301,7 @@ export class CardProfileChartComponent
     let today = moment().subtract(1, 'days');
 
     this.movementService
-      .getSiteHours(this.serial, minus7days.toISOString(), today.toISOString())
+      .getSiteHours(this.serial, minus7days.unix(), today.unix())
       .subscribe((data) => {
         console.log('on getSiteHours', data);
 
