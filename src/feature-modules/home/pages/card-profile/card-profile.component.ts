@@ -1,18 +1,14 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Animations, Core, FormGroup, Forms, Mixin, Stores } from '@app/base';
-import { LayoutConfigService } from '@core-modules/main-theme/services/layout-config.service';
-import { Subscription } from 'rxjs';
-import { CardService } from '@core-modules/core/services/card.service';
 import { ActivatedRoute } from '@angular/router';
-import { environment } from 'src/environments/environment';
-import { EnvironmentStore } from '@core-modules/stores';
-import { MovementsService } from '@core-modules/core/services/movements.service';
+import { Animations, Core, FormGroup, Forms, Mixin, Stores } from '@app/base';
 import { MovementModel } from '@core-modules/core/models/movement.model';
-import { Console } from 'console';
-import { EntityService } from '@core-modules/core/services/entity.service';
 import { CardsService } from '@core-modules/core/services/cards.service';
-import Swal from 'sweetalert2';
+import { EntityService } from '@core-modules/core/services/entity.service';
+import { MovementsService } from '@core-modules/core/services/movements.service';
+import { LayoutConfigService } from '@core-modules/main-theme/services/layout-config.service';
 import * as moment from 'moment';
+import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-card-profile',
@@ -92,9 +88,7 @@ export class CardProfileComponent
     private entityService: EntityService,
     private movementService: MovementsService,
     private layoutConfigService: LayoutConfigService,
-    private cardService: CardService,
-    private route: ActivatedRoute,
-    private environmentStore: EnvironmentStore
+    private route: ActivatedRoute
   ) {
     super();
     this.fontFamily = this.layoutConfigService.getConfig('js.fontFamily');
@@ -170,12 +164,17 @@ export class CardProfileComponent
         });
 
       this.cardsService.getCards(this.serial).subscribe((data: any) => {
-        const cdr = data.cards[0];
-        console.log('cartão', cdr);
-        this.addDate = cdr.lastChangeDate;
-        this.cardUid = cdr.uid;
-        console.log('data', this.addDate);
-        console.log('UID', this.cardUid);
+        if (data.cards.length > 0) {
+          const cdr = data.cards[0];
+          console.log('cartão', cdr);
+          this.addDate = cdr.lastChangeDate;
+          this.cardUid = cdr.uid;
+          console.log('data', this.addDate);
+          console.log('UID', this.cardUid);
+        } else {
+          this.addDate = '---';
+          this.cardUid = '---';
+        }
       });
 
       //cahmadas
@@ -198,15 +197,15 @@ export class CardProfileComponent
           offsetX: 0,
           offsetY: 0,
           tools: {
-             download: true,
-             selection: false,
-             zoom: false,
-             zoomin: false,
-             zoomout: false,
-             pan: false,
-             reset: false,
-             customIcons: [],
-           },
+            download: true,
+            selection: false,
+            zoom: false,
+            zoomin: false,
+            zoomout: false,
+            pan: false,
+            reset: false,
+            customIcons: [],
+          },
         },
       },
 
@@ -216,17 +215,17 @@ export class CardProfileComponent
       title: {
         text: 'Corpo de Fuzileiros - Horas na unidade',
       },
-       dataLabels: {
-         enabled: false,
-         enabledOnSeries: [],
+      dataLabels: {
+        enabled: false,
+        enabledOnSeries: [],
       },
       categories: [],
       xaxis: {
         //type: 'category',
         type: 'datetime',
         labels: {
-          datetimeUTC: false
-        }
+          datetimeUTC: false,
+        },
       },
       yaxis: [
         {
@@ -294,14 +293,13 @@ export class CardProfileComponent
         }
       });
   }
-  
 
   getSiteHours(): void {
     let minus7days = moment().subtract(this.timeWindow, 'days');
     let today = moment().subtract('1', 'days');
 
     this.movementService
-      .getSiteHours(this.serial, minus7days.toISOString(), today.toISOString())
+      .getSiteHours(this.serial, minus7days.unix(), today.unix())
       .subscribe((data) => {
         console.log('on getSiteHours', data);
 
@@ -310,10 +308,10 @@ export class CardProfileComponent
         let totalDays = 0;
         this.stats.last7daysTotalHours = 0;
         this.stats.last7daysAvgHours = 0;
-        
+
         for (const s in data.siteHours.sites) {
           const site = data.siteHours.sites[s];
-          
+
           if (site.totalDays > totalDays) {
             totalDays = site.totalDays;
           }
@@ -327,7 +325,10 @@ export class CardProfileComponent
           for (let i = 0; i < site.days.length; i++) {
             //serie.data.push({x: moment(site.days[i].date).format('DD MMM'), y: site.days[i].hours});
             //serie.data.push({x: moment.utc(site.days[i].date).unix(), y: site.days[i].hours});
-            serie.data.push({x: moment(site.days[i].date).toDate().getTime(), y: site.days[i].hours});
+            serie.data.push({
+              x: moment(site.days[i].date).toDate().getTime(),
+              y: site.days[i].hours,
+            });
           }
 
           this.chartOptions6.series.push(serie);
@@ -359,10 +360,13 @@ export class CardProfileComponent
           this.stats.last7daysTotalHours += site.totalHours;
         }
 
-        this.stats.last7daysTotalHours = Math.round(this.stats.last7daysTotalHours*100)/100;
+        this.stats.last7daysTotalHours =
+          Math.round(this.stats.last7daysTotalHours * 100) / 100;
 
         if (this.stats.last7daysTotalHours > 0 && totalDays > 0) {
-          this.stats.last7daysAvgHours = Math.round(this.stats.last7daysTotalHours / totalDays * 100) / 100;
+          this.stats.last7daysAvgHours =
+            Math.round((this.stats.last7daysTotalHours / totalDays) * 100) /
+            100;
         }
       });
   }

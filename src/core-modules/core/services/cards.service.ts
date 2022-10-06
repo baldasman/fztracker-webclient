@@ -8,36 +8,30 @@ import { UrlModel } from '../models/url.model';
 
 @Injectable()
 export class CardsService {
-
-  private apiUrl = this.environmentStore.ENV.API_URL + "/fztracker";
+  private apiUrl = this.environmentStore.ENV.API_URL + '/fztracker';
 
   constructor(
     private http: HttpClient,
     private environmentStore: EnvironmentStore
-  ) { }
-
+  ) {}
 
   getCards(search?: string): Observable<[CardModel]> {
     const url = new UrlModel(this.apiUrl).setPath('cards/v1');
-   
-    
-    
-    
     url.setQueryParams({ search });
 
-    return this.http.get(url.buildUrl())
-      .pipe(
-        map((response: { data: any }) => response.data)
-      );
+    return this.http
+      .get(url.buildUrl())
+      .pipe(map((response: { data: any }) => response.data));
   }
 
-  getCardStats(location: string): Observable<{cardsIn: number, cardsOut: number}> {
+  getCardStats(
+    location: string
+  ): Observable<{ cardsIn: number; cardsOut: number }> {
     const url = new UrlModel(this.apiUrl).setPath('cards/v1/stats');
     url.setQueryParams({ location });
 
-    return this.http.get(url.buildUrl())
-      .pipe(
-        map((response: { data: any }) => response.data)
-      );
+    return this.http
+      .get(url.buildUrl())
+      .pipe(map((response: { data: any }) => response.data));
   }
 }
