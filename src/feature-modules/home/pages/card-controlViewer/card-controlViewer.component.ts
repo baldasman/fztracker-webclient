@@ -143,9 +143,23 @@ var x = setInterval(function() {
       
               this.movementService.getMovements().subscribe((data: any) => {       
               this.movements = data.movements;
-              
-              
-                if (movement.movement.inOut == true) {  
+              var controlo;
+              controlo = 1000;
+              console.log("entrou aqui"+movement.entity.serial);
+              if (movement.entity.serial == "1000"){ 
+console.log("entrou aqui");
+                this.toastr.warning('Cartão Desconhecido');
+                let sound = new Howl({
+                    src: ['assets/media/in.wav']
+                      });
+
+                    sound.play()
+                    return
+
+
+                    
+              };
+                if (movement.movement.inOut == true && movement.entity.serial!="1000" ) {  
                   this.toastr.success('Cartão autorizado');
                       let sound = new Howl({
                           src: ['assets/media/in.wav']
@@ -154,7 +168,7 @@ var x = setInterval(function() {
                           sound.play()
                     } ;
 
-                    if (movement.movement.inOut == false) { 
+                    if (movement.movement.inOut == false && movement.entity.serial!="1000") { 
                       this.toastr.info('Cartão autorizado'); 
                       let sound = new Howl({
                           src: ['assets/media/out.wav']
@@ -164,6 +178,8 @@ var x = setInterval(function() {
                     } ;
 
                 });
+
+
         }      
     });    
 }

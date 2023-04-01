@@ -143,36 +143,50 @@ export class controloComponent extends Mixin(Core, Animations, Forms, Stores) im
           }
       }*/
 
-      if (movement.movement.location == this.local) {
+      if (movement.movement.location == this.local ||  this.local == null) {
         this.foto = `assets/media/users/${movement.entity.serial}.bmp`;
-        this.namePhoto = `${movement.movement.entityName} `;
-        
-        if (movement.movement.inOut == true) {
-          this.toastr.success('Cartão autorizado');
-          let sound = new Howl({
-            src: ['assets/media/in.wav']
-          });
-
-          sound.play()
-        };
-
-        if (movement.movement.inOut == false) {
-          this.toastr.info('Cartão autorizado');
-          let sound = new Howl({
-            src: ['assets/media/out.wav']
-          });
-
-          sound.play()
-        };
-
-        // Udate mvement list
-        this.movementService.getMovements(this.fes.findnii.value, this.fromDate, this.toDate, this.local).subscribe((data: any) => {
-          this.movements = data.movements;
-        });
-
-        // Update stats
-        this.getCardStats();
-      }
+         this.namePhoto = `${movement.movement.entityName} `;
+         
+                 this.movementService.getMovements().subscribe((data: any) => {       
+                 this.movements = data.movements;
+                 var controlo;
+                 controlo = 1000;
+                 console.log("entrou aqui"+movement.entity.serial);
+                 if (movement.entity.serial == "1000"){ 
+   console.log("entrou aqui");
+                   this.toastr.warning('Cartão Desconhecido');
+                   let sound = new Howl({
+                       src: ['assets/media/in.wav']
+                         });
+   
+                       sound.play()
+                       return
+   
+   
+                       
+                 };
+                   if (movement.movement.inOut == true && movement.entity.serial!="1000" ) {  
+                     this.toastr.success('Cartão autorizado');
+                         let sound = new Howl({
+                             src: ['assets/media/in.wav']
+                               });
+   
+                             sound.play()
+                       } ;
+   
+                       if (movement.movement.inOut == false && movement.entity.serial!="1000") { 
+                         this.toastr.info('Cartão autorizado'); 
+                         let sound = new Howl({
+                             src: ['assets/media/out.wav']
+                               });
+   
+                             sound.play()
+                       } ;
+   
+                   });
+   
+   
+           }   
     });
   }
 
